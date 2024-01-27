@@ -123,6 +123,7 @@ class ProofTreeGenerationPipeline:
             allow_smaller_proofs=False,
             depth_1_reference_weight: Optional[float] = None,
             force_fix_illegal_intermediate_constants=False,
+            distractor_variants_per_tree=1,
             translation_variants_per_logic=1,
             raise_if_translation_not_found=True) -> List[Tuple[ProofTree, Formula, Optional[List[Formula]], List[str], Dict[str, Any], Dict[str, int]]]:
 
@@ -132,73 +133,78 @@ class ProofTreeGenerationPipeline:
         if depth < 1:
             raise ValueError('depth must be >= 1')
 
-        while True:
-            logic =\
-                self._build_logic(
+        variants = []
+        while True:  # HONKOA: what is this while loop for?
+            logics =\
+                self._build_logics(
                     depth,
                     branch_extension_steps,
                     num_distractors,
+                    num_distractor_variants=distractor_variants_per_tree,
                     allow_inconsistency=allow_inconsistency,
                     allow_smaller_proofs=allow_smaller_proofs,
                     depth_1_reference_weight=depth_1_reference_weight,
                     force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants
                 )
-            if logic is None:
+            if len(logics) == 0:
                 logger.info('tree not generated. Will retry.')
                 continue
-            proof_tree, root_negation_formula, formula_distractors, is_formula_distractor_failed, misc = logic
 
-            variants = []
-            for i_variant in range(translation_variants_per_logic):
-                logger.info('================== creating variant=%d from the logic =================', i_variant)
-                proof_tree_var = proof_tree.copy()
-                root_negation_formula_var = copy.deepcopy(root_negation_formula)
-                formula_distractors_var = copy.deepcopy(formula_distractors)
-                is_formula_distractor_failed_var = copy.copy(is_formula_distractor_failed)
-                misc_var = copy.deepcopy(misc)
+            for logic in logics:
+                proof_tree, root_negation_formula, formula_distractors, is_formula_distractor_failed, misc = logic
 
-                translator_stats_var = self._add_translations(
-                    proof_tree_var,
-                    root_negation_formula_var,
-                    formula_distractors_var,
-                    misc_var,
-                    raise_if_translation_not_found=raise_if_translation_not_found,
-                )
+                for i_variant in range(translation_variants_per_logic):
+                    logger.info('================== creating variant=%d from the logic =================', i_variant)
+                    proof_tree_var = proof_tree.copy()
+                    root_negation_formula_var = copy.deepcopy(root_negation_formula)
+                    formula_distractors_var = copy.deepcopy(formula_distractors)
+                    is_formula_distractor_failed_var = copy.copy(is_formula_distractor_failed)
+                    misc_var = copy.deepcopy(misc)
 
-                translation_distractors_var = self._build_translation_distractors(
-                    proof_tree_var,
-                    num_translation_distractors,
-                    is_formula_distractor_failed_var,
-                    num_distractors,
-                )
+                    translator_stats_var = self._add_translations(
+                        proof_tree_var,
+                        root_negation_formula_var,
+                        formula_distractors_var,
+                        misc_var,
+                        raise_if_translation_not_found=raise_if_translation_not_found,
+                    )
 
-                if self.log_stats:
-                    stats_var = self._get_stats(proof_tree_var, formula_distractors_var, translator_stats_var)
-                else:
-                    stats_var = {}
+                    translation_distractors_var = self._build_translation_distractors(
+                        proof_tree_var,
+                        num_translation_distractors,
+                        is_formula_distractor_failed_var,
+                        num_distractors,
+                    )
 
-                variants.append((
-                    proof_tree_var,
-                    root_negation_formula_var,
-                    formula_distractors_var,
-                    translation_distractors_var,
-                    misc_var,
-                    stats_var,
-                ))
+                    if self.log_stats:
+                        stats_var = self._get_stats(proof_tree_var, formula_distractors_var, translator_stats_var)
+                    else:
+                        stats_var = {}
+
+                    variants.append((
+                        proof_tree_var,
+                        root_negation_formula_var,
+                        formula_distractors_var,
+                        translation_distractors_var,
+                        misc_var,
+                        stats_var,
+                    ))
 
             return variants
 
     @profile
-    def _build_logic(self,
+    def _build_logics(self,
                      depth: int,
                      branch_extension_steps: int,
                      num_distractors: int,
+                     num_distractor_variants: int = 1,
                      allow_inconsistency=False,
                      allow_smaller_proofs=False,
                      depth_1_reference_weight: Optional[float] = None,
                      force_fix_illegal_intermediate_constants=False)\
-            -> Optional[Tuple[ProofTree, Formula, List[Formula], bool, Dict[str, Any]]]:
-        misc = {}
+            -> List[Tuple[ProofTree, Formula, List[Formula], bool, Dict[str, Any]]]:
+        if num_distractors == 0:
+            num_distractor_variants = 1
 
         logger.info(self._make_pretty_log('generate proof tree', 'start'))
         try:
@@ -217,40 +223,45 @@ class ProofTreeGenerationPipeline:
         logger.info(self._make_pretty_log('generate proof tree', 'finish'))
 
         if proof_tree is None:
-            return None
+            return []
 
-        # root_negation_formula = Formula(f'{NEGATION}({proof_tree.root_node.formula.rep})')
-        root_negation_formula = negate(proof_tree.root_node.formula)
-        if self.generator.elim_dneg:
-            root_negation_formula = eliminate_double_negation(root_negation_formula)
+        logics: List[Tuple[ProofTree, Formula, List[Formula], bool, Dict[str, Any]]] = []
+        for i_distractor_variant in range(num_distractor_variants):
+            logger.info(self._make_pretty_log(f'generate distractors... variant=[{i_distractor_variant + 1}/{num_distractor_variants}]', 'start'))
+            misc = {}
+            is_formula_distractor_failed = False
+            if num_distractors > 0:
+                if self.distractor is not None:
+                    try:
+                        formula_distractors, _misc = self.distractor.generate(proof_tree,
+                                                                              num_distractors,
+                                                                              allow_inconsistency=allow_inconsistency,
+                                                                              allow_smaller_proofs=allow_smaller_proofs,
+                                                                              best_effort=True)
+                        for _misc_key, _misc_val in _misc.items():
+                            if _misc_key in misc:
+                                raise ValueError(f'Duplicated misc key {_misc_key}')
+                            misc[_misc_key] = _misc_val
 
-        logger.info(self._make_pretty_log('generate distractors', 'start'))
-        is_formula_distractor_failed = False
-        if num_distractors > 0:
-            if self.distractor is not None:
-                try:
-                    formula_distractors, _misc = self.distractor.generate(proof_tree,
-                                                                          num_distractors,
-                                                                          allow_inconsistency=allow_inconsistency,
-                                                                          allow_smaller_proofs=allow_smaller_proofs,
-                                                                          best_effort=True)
-                    for _misc_key, _misc_val in _misc.items():
-                        if _misc_key in misc:
-                            raise ValueError(f'Duplicated misc key {_misc_key}')
-                        misc[_misc_key] = _misc_val
-
-                except (FormulaDistractorGenerationFailure, FormulaDistractorGenerationImpossible) as e:
-                    is_formula_distractor_failed = True
-                    logger.warning('formula distractor %s failed in generating distractors due to the following error. :\n%s',
-                                   str(self.distractor), str(e))
-                    formula_distractors = []
+                    except (FormulaDistractorGenerationFailure, FormulaDistractorGenerationImpossible) as e:
+                        is_formula_distractor_failed = True
+                        logger.warning('formula distractor %s failed in generating distractors due to the following error. :\n%s',
+                                       str(self.distractor), str(e))
+                        formula_distractors = []
+                else:
+                    raise ValueError('could not generate distractors since distractor was not specified in the constructor.')
             else:
-                raise ValueError('could not generate distractors since distractor was not specified in the constructor.')
-        else:
-            formula_distractors = []
-        logger.info(self._make_pretty_log('generate distractors', 'finish'))
+                formula_distractors = []
 
-        return proof_tree, root_negation_formula, formula_distractors, is_formula_distractor_failed, misc
+            _proof_tree = proof_tree.copy()
+            root_negation_formula = negate(_proof_tree.root_node.formula)
+            if self.generator.elim_dneg:
+                root_negation_formula = eliminate_double_negation(root_negation_formula)
+            logics.append((_proof_tree, root_negation_formula, formula_distractors, is_formula_distractor_failed, misc))
+
+            logger.info(self._make_pretty_log(f'generate distractors... variant=[{i_distractor_variant}/{num_distractor_variants}]', 'finish'))
+
+        return logics
 
     @profile
     def _add_translations(self,

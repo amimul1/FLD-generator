@@ -67,6 +67,7 @@ def load_dataset(argument_config: List[str],
                  depth_distrib: str,
                  force_fix_illegal_intermediate_constants: bool,
                  branch_extensions_range: Tuple[int, int],
+                 distractor_variants_per_tree: int,
                  translation_variants_per_logic: int,
                  knowledge_range: float,
                  collapsed_knowledge_range: float,
@@ -206,6 +207,7 @@ def load_dataset(argument_config: List[str],
                            use_collapsed_translation_nodes_for_unknown_tree=use_collapsed_translation_nodes_for_unknown_tree,
                            swap_ng_words=swap_ng_words,
                            word_bank = word_bank if use_collapsed_translation_nodes_for_unknown_tree else None,
+                           distractor_variants_per_tree=distractor_variants_per_tree,
                            translation_variants_per_logic=translation_variants_per_logic)
 
 
@@ -288,6 +290,7 @@ def generate_instances(size: int, *args):
 @click.option('--use-collapsed-translation-nodes-for-unknown-tree', is_flag=True, default=False)
 @click.option('--swap-ng-words-config', default=None)
 #
+@click.option('--distractor-variants-per-tree', type=int, default=1)
 @click.option('--translation-variants-per-logic', type=int, default=1)
 #
 @click.option('--num-workers', type=int, default=1)
@@ -343,6 +346,7 @@ def main(output_path,
          context_shuffles_per_instance,
          use_collapsed_translation_nodes_for_unknown_tree,
          swap_ng_words_config,
+         distractor_variants_per_tree,
          translation_variants_per_logic,
          num_workers,
          min_size_per_worker,
@@ -425,6 +429,7 @@ def main(output_path,
                         depth_distrib,
                         force_fix_illegal_intermediate_constants,
                         branch_extensions_range,
+                        distractor_variants_per_tree,
                         translation_variants_per_logic,
                         knowledge_range,
                         collapsed_knowledge_range,

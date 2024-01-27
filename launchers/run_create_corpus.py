@@ -310,6 +310,7 @@ def make_dataset(dataset_name: str,
 
             'depth_range',
             'depth_distrib',
+            'distractor_variants_per_tree',
             'translation_variants_per_logic',
             'branch_extensions_range',
 
@@ -444,6 +445,7 @@ def make_dataset(dataset_name: str,
                 maybe_option('--context-shuffles-per-instance', job_settings.get("context_shuffles_per_instance", None)),
                 '--use-collapsed-translation-nodes-for-unknown-tree' if job_settings.get('use_collapsed_translation_nodes_for_unknown_tree', False) else '',
 
+                maybe_option('--distractor-variants-per-tree', job_settings.get("distractor_variants_per_tree", None)),
                 maybe_option('--translation-variants-per-logic', job_settings.get("translation_variants_per_logic", None)),
 
                 f'--num-workers {job_settings["num_workers_per_job"]}',
