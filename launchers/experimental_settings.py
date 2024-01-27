@@ -7506,6 +7506,7 @@ _DEFAULT_DATASET_SETTINGS = {
         'translation_configs': _TRANSLATION_THING_CONFIGS_ENG,
         'translation_no_transitive_object': False,
 
+        'distractor_variants_per_tree': 1,
         'translation_variants_per_logic': 1,
     },
 
@@ -7544,6 +7545,7 @@ _DEFAULT_DATASET_SETTINGS = {
 
         'depth_distrib': 'flat',
 
+        'distractor_variants_per_tree': 1,
         'translation_variants_per_logic': 1,
 
     },
@@ -7575,6 +7577,7 @@ _DEFAULT_DATASET_SETTINGS = {
         'translation_configs': _TRANSLATION_THING_CONFIGS_ENG_V1,
         'translation_no_transitive_object': False,
 
+        'distractor_variants_per_tree': 1,
         'translation_variants_per_logic': 1,
 
     },
@@ -7606,6 +7609,7 @@ _DEFAULT_DATASET_SETTINGS = {
         'translation_configs': _TRANSLATION_THING_PERSON_CONFIGS_ENG_V0,
         'translation_no_transitive_object': False,
 
+        'distractor_variants_per_tree': 1,
         'translation_variants_per_logic': 1,
 
     },

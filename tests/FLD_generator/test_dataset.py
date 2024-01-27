@@ -187,6 +187,7 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
     use_collapsed_translation_nodes_for_unknown_tree = False
     translation_distractors_range = (0, 5) if translation_distractor is not None else (0, 0)
 
+    distractor_variants_per_tree = 2
     translation_variants_per_logic = 1
 
     dataset = NLProofSDataset(
@@ -204,6 +205,7 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
         word_bank=word_bank,
         translation_distractors_range=translation_distractors_range,
 
+        distractor_variants_per_tree=distractor_variants_per_tree,
         translation_variants_per_logic=translation_variants_per_logic,
         raise_if_translation_not_found=True,
     )
@@ -217,7 +219,7 @@ if __name__ == '__main__':
     setup_logger(level=logging.INFO)
 
     # test_generate_dataset_AACorpus()
-    # test_generate_dataset_lang('eng')
+    test_generate_dataset_lang('eng')
 
     # test_generate_dataset_lang('jpn')
-    test_generate_dataset_lang('jpn', extra_vocab='BCCWJ')
+    # test_generate_dataset_lang('jpn', extra_vocab='BCCWJ')

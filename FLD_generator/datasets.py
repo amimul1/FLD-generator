@@ -206,6 +206,7 @@ class NLProofSDataset:
                  translation_distractors_range: Optional[Tuple[int, int]] = None,
                  allow_inconsistency=False,
                  allow_smaller_proofs=False,
+                 distractor_variants_per_tree=1,
                  translation_variants_per_logic=1,
                  version: str = '0.3',
                  log_stats=True,
@@ -235,7 +236,8 @@ class NLProofSDataset:
         self._force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants
 
         self.branch_extension_steps = _to_range(*branch_extensions_range)
-        self._translation_variants_per_logic = translation_variants_per_logic
+        self.distractor_variants_per_tree = distractor_variants_per_tree
+        self.translation_variants_per_logic = translation_variants_per_logic
         self.num_distractors = _to_range(*distractors_range) if distractors_range is not None else [0]
         self.num_translation_distractors = _to_range(*translation_distractors_range) if branch_extensions_range is not None else [0]
         self.allow_inconsistency = allow_inconsistency
@@ -301,7 +303,8 @@ class NLProofSDataset:
                 allow_inconsistency=self.allow_inconsistency,
                 allow_smaller_proofs=self.allow_smaller_proofs,
                 force_fix_illegal_intermediate_constants=self._force_fix_illegal_intermediate_constants,
-                translation_variants_per_logic=self._translation_variants_per_logic,
+                distractor_variants_per_tree=self.distractor_variants_per_tree,
+                translation_variants_per_logic=self.translation_variants_per_logic,
                 raise_if_translation_not_found=self.raise_if_translation_not_found,
             )
 
