@@ -47,7 +47,7 @@
       "conclusion": "¬{A}{a}"
   },
   {
-      "id": "predicate.__disjunctive_syllogism",
+      "id": "__predicate.disjunctive_syllogism",
       "premises": [
           "(x): {A}x -> ({B}x v {C}x)",
           "(x): {A}x -> ¬{B}x"
@@ -55,7 +55,7 @@
       "conclusion": "(x): {A}x -> {C}x"
   },
   {
-      "id": "predicate.__generalized_dilemma",
+      "id": "__predicate.generalized_dilemma",
       "premises": [
           "(x): {A}x -> ({B}x v {C}x)",
           "(x): {B}x -> {D}x",

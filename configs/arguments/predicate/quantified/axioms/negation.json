@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.__universal_theorem.negation_elim",
+      "id": "__predicate.universal_theorem.negation_elim",
       "__comment": "this argument can be proved.",
       "premises": [
           "(x): {A}x",

@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.__and_intro",
+      "id": "__predicate.and_intro",
       "premises": [
           "{A}{a}",
           "{B}{b}"
@@ -8,14 +8,14 @@
       "conclusion": "({A}{a} & {B}{b})"
   },
   {
-      "id": "predicate.__and_elim_0",
+      "id": "__predicate.and_elim_0",
       "premises": [
           "({A}{a} & {B}{b})"
       ],
       "conclusion": "{A}{a}"
   },
   {
-      "id": "predicate.__and_elim_1",
+      "id": "__predicate.and_elim_1",
       "premises": [
           "({A}{a} & {B}{b})"
       ],
@@ -24,21 +24,21 @@
 
 
   {
-      "id": "predicate.__or_intro_0",
+      "id": "__predicate.or_intro_0",
       "premises": [
           "{A}{a}"
       ],
       "conclusion": "({A}{a} v {B}{b})"
   },
   {
-      "id": "predicate.__or_intro_1",
+      "id": "__predicate.or_intro_1",
       "premises": [
           "{B}{b}"
       ],
       "conclusion": "({A}{a} v {B}{b})"
   },
   {
-      "id": "predicate.__or_elim",
+      "id": "__predicate.or_elim",
       "premises": [
           "({A}{a} v {B}{b})",
           "{A}{a} -> {C}{c}",
