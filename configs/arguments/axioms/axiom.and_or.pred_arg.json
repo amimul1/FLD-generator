@@ -1,5 +1,56 @@
 [
   {
+      "id": "__and_intro.pred_arg",
+      "premises": [
+          "{A}{a}",
+          "{B}{b}"
+      ],
+      "conclusion": "({A}{a} & {B}{b})"
+  },
+  {
+      "id": "__and_elim_0.pred_arg",
+      "premises": [
+          "({A}{a} & {B}{b})"
+      ],
+      "conclusion": "{A}{a}"
+  },
+  {
+      "id": "__and_elim_1.pred_arg",
+      "premises": [
+          "({A}{a} & {B}{b})"
+      ],
+      "conclusion": "{B}{b}"
+  },
+
+
+  {
+      "id": "__or_intro_0.pred_arg",
+      "premises": [
+          "{A}{a}"
+      ],
+      "conclusion": "({A}{a} v {B}{b})"
+  },
+  {
+      "id": "__or_intro_1.pred_arg",
+      "premises": [
+          "{B}{b}"
+      ],
+      "conclusion": "({A}{a} v {B}{b})"
+  },
+  {
+      "id": "__or_elim.pred_arg",
+      "premises": [
+          "({A}{a} v {B}{b})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {C}{c}"
+      ],
+      "conclusion": "{C}{c}"
+  },
+
+
+
+
+  {
       "id": "and_intro.pred_arg.shared_arg",
       "premises": [
           "{A}{a}",

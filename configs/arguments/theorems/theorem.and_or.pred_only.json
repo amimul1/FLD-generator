@@ -1,6 +1,6 @@
 [
   {
-      "id": "and_interchangeability.pred_only.shared_arg",
+      "id": "and_interchangeability.pred_only",
       "premises": [
           "({A} & {B})"
       ],
@@ -16,7 +16,7 @@
 
 
   {
-      "id": "or_interchangeability.pred_only.shared_arg",
+      "id": "or_interchangeability.pred_only",
       "premises": [
           "({A} v {B})"
       ],
