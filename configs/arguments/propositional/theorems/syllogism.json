@@ -1,0 +1,10 @@
+[
+  {
+      "id": "propositional.universal_theorem.syllogism_0",
+      "premises": [
+          "{A} -> {B}",
+          "{B} -> {C}"
+      ],
+      "conclusion": "{A} -> {C}"
+  }
+]

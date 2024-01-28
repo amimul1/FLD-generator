@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.generalized_modus_ponens",
+      "id": "predicate.universal_theorem.implication_elim",
       "premises": [
           "(x): {A}x -> {B}x",
           "{A}{a}"
