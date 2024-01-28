@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.and_intro"",
+      "id": "propositional.and_intro",
       "premises": [
           "{A}",
           "{B}"
@@ -8,14 +8,14 @@
       "conclusion": "({A} & {B})"
   },
   {
-      "id": "propositional.and_elim_0"",
+      "id": "propositional.and_elim_0",
       "premises": [
           "({A} & {B})"
       ],
       "conclusion": "{A}"
   },
   {
-      "id": "propositional.and_elim_1"",
+      "id": "propositional.and_elim_1",
       "premises": [
           "({A} & {B})"
       ],
@@ -24,21 +24,21 @@
 
 
   {
-      "id": "propositional.or_intro_0"",
+      "id": "propositional.or_intro_0",
       "premises": [
           "{A}"
       ],
       "conclusion": "({A} v {B})"
   },
   {
-      "id": "propositional.or_intro_1"",
+      "id": "propositional.or_intro_1",
       "premises": [
           "{B}"
       ],
       "conclusion": "({A} v {B})"
   },
   {
-      "id": "propositional.or_elim"",
+      "id": "propositional.or_elim",
       "premises": [
           "({A} v {B})",
           "{A} -> {C}",
