@@ -5,5 +5,12 @@
           "{A}{a} ⊢ {B}{b}"
       ],
       "conclusion": "{A}{a} -> {B}{b}"
+  },
+    {
+      "id": "predicate.implication_intro.shared_arg",
+      "premises": [
+          "{A}{a} ⊢ {B}{a}"
+      ],
+      "conclusion": "{A}{a} -> {B}{a}"
   }
 ]
