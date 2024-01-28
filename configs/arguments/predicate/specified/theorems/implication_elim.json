@@ -1,0 +1,32 @@
+[
+  {
+      "id": "predicate.contraposition",
+      "premises": [
+          "{A}{a} -> {B}{b}"
+      ],
+      "conclusion": "¬{B}{b} -> ¬{A}{a}"
+  },
+  {
+      "id": "predicate.syllogism_0",
+      "premises": [
+          "{A}{a} -> {B}{b}",
+          "{B}{b} -> {C}{c}"
+      ],
+      "conclusion": "{A}{a} -> {C}{c}"
+  },
+  {
+      "id": "predicate.contraposition.shared_arg",
+      "premises": [
+          "{A}{a} -> {B}{a}"
+      ],
+      "conclusion": "¬{B}{a} -> ¬{A}{a}"
+  },
+  {
+      "id": "predicate.syllogism_0.shared_arg",
+      "premises": [
+          "{A}{a} -> {B}{a}",
+          "{B}{a} -> {C}{a}"
+      ],
+      "conclusion": "{A}{a} -> {C}{a}"
+  }
+]

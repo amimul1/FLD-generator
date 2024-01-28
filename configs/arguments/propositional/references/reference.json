@@ -1,0 +1,9 @@
+[
+  {
+      "id": "propositional.reference"",
+      "premises": [
+          "{A}"
+      ],
+      "conclusion": "{A}"
+  }
+]

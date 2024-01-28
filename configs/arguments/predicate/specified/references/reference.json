@@ -1,0 +1,17 @@
+[
+  {
+      "id": "predicate.universal_theorem.reference",
+      "premises": [
+          "(x): {A}x"
+      ],
+      "conclusion": "(x): {A}x"
+  },
+
+  {
+      "id": "predicate.existential_theorem.reference",
+      "premises": [
+          "(Ex): {A}x"
+      ],
+      "conclusion": "(Ex): {A}x"
+  }
+]

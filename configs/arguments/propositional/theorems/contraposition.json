@@ -1,0 +1,9 @@
+[
+  {
+      "id": "propositional.contraposition"",
+      "premises": [
+          "{A} -> {B}"
+      ],
+      "conclusion": "¬{B} -> ¬{A}"
+  }
+]

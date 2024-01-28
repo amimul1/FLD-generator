@@ -1,0 +1,17 @@
+[
+  {
+      "id": "propositional.negation_elim"",
+      "premises": [
+          "{A}",
+          "¬{A}"
+      ],
+      "conclusion": "#F#"
+  },
+  {
+      "id": "propositional.negation_intro"",
+      "premises": [
+          "{A} ⊢ #F#"
+      ],
+      "conclusion": "¬{A}"
+  }
+]

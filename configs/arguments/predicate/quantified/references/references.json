@@ -1,0 +1,9 @@
+[
+  {
+      "id": "predicate.reference",
+      "premises": [
+          "{A}{a}"
+      ],
+      "conclusion": "{A}{a}"
+  }
+]

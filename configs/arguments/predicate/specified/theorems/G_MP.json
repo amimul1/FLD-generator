@@ -1,0 +1,10 @@
+[
+  {
+      "id": "predicate.generalized_modus_ponens",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "{A}{a}"
+      ],
+      "conclusion": "{B}{a}"
+  }
+]

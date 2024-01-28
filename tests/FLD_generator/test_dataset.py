@@ -92,25 +92,25 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/predicate_logic/specified/axioms/and_or.json',
-            './configs/arguments/predicate_logic/specified/axioms/implication_intro.json',
-            './configs/arguments/predicate_logic/specified/axioms/negation.json',
-            './configs/arguments/predicate_logic/specified/axioms/implication_elim.json',
-            './configs/arguments/predicate_logic/specified/references/reference.json',
+            './configs/arguments/predicate/specified/axioms/and_or.json',
+            './configs/arguments/predicate/specified/axioms/implication_intro.json',
+            './configs/arguments/predicate/specified/axioms/negation.json',
+            './configs/arguments/predicate/specified/axioms/implication_elim.json',
+            './configs/arguments/predicate/specified/references/reference.json',
 
 
             # # -- AACorpus --
-            # './configs/arguments/predicate_logic/others/AACorpus.json',
+            # './configs/arguments/predicate/others/AACorpus.json',
 
 
             # # -- we exclude the below for speed --
-            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
-            # './configs/arguments/predicate_logic/specified/theorems/implication_elim.json',
+            # './configs/arguments/propositional/theorems/implication_elim.json',
+            # './configs/arguments/predicate/specified/theorems/implication_elim.json',
 
-            # './configs/arguments/propositional_logic/theorems/and_or.json',
-            # './configs/arguments/predicate_logic/specified/theorems/and_or.json',
+            # './configs/arguments/propositional/theorems/and_or.json',
+            # './configs/arguments/predicate/specified/theorems/and_or.json',
 
-            # './configs/arguments/predicate_logic/specified/theorems/G_MP.json',
+            # './configs/arguments/predicate/specified/theorems/G_MP.json',
 
         ],
         elim_dneg=True,

@@ -1,0 +1,9 @@
+[
+  {
+      "id": "predicate.implication_intro",
+      "premises": [
+          "{A}{a} ⊢ {B}{b}"
+      ],
+      "conclusion": "{A}{a} -> {B}{b}"
+  }
+]

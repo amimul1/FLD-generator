@@ -1,9 +1,0 @@
-[
-  {
-      "id": "propositional_logic.implication_intro"",
-      "premises": [
-          "{A} ⊢ {B}"
-      ],
-      "conclusion": "{A} -> {B}"
-  }
-]
