@@ -8,7 +8,7 @@
       "conclusion": "{B}{b}"
   },
   {
-      "id": "implication_elim.pred_arg.shared_arg",
+      "id": "predicate_logic.implication_elim.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}",
           "{A}{a}"

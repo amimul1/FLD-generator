@@ -15,14 +15,14 @@
       "conclusion": "{A}{a} -> {C}{c}"
   },
   {
-      "id": "contraposition.pred_arg.shared_arg",
+      "id": "predicate_logic.contraposition.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}"
       ],
       "conclusion": "¬{B}{a} -> ¬{A}{a}"
   },
   {
-      "id": "syllogism_0.pred_arg.shared_arg",
+      "id": "predicate_logic.syllogism_0.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}",
           "{B}{a} -> {C}{a}"

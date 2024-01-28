@@ -1,6 +1,6 @@
 [
   {
-      "id": "negation_elim.pred_only",
+      "id": "propositional_logic.negation_elim"",
       "premises": [
           "{A}",
           "¬{A}"
@@ -8,7 +8,7 @@
       "conclusion": "#F#"
   },
   {
-      "id": "negation_intro.pred_only",
+      "id": "propositional_logic.negation_intro"",
       "premises": [
           "{A} ⊢ #F#"
       ],

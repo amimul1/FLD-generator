@@ -10,7 +10,7 @@
 
 
   {
-      "id": "contraposition.pred_arg.shared_arg",
+      "id": "predicate_logic.contraposition.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}"
       ],

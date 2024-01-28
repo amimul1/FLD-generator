@@ -1,13 +1,13 @@
 [
   {
-      "id": "contraposition.pred_only",
+      "id": "propositional_logic.contraposition"",
       "premises": [
           "{A} -> {B}"
       ],
       "conclusion": "¬{B} -> ¬{A}"
   },
   {
-      "id": "syllogism_0.pred_only",
+      "id": "propositional_logic.syllogism_0"",
       "premises": [
           "{A} -> {B}",
           "{B} -> {C}"

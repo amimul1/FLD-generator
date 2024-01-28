@@ -1,6 +1,6 @@
 [
   {
-      "id": "contraposition.pred_only",
+      "id": "propositional_logic.contraposition"",
       "premises": [
           "{A} -> {B}"
       ],
