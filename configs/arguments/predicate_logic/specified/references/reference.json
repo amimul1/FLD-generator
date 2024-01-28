@@ -1,9 +1,17 @@
 [
   {
-      "id": "reference.pred_arg",
+      "id": "universal_theorem.reference.pred_arg",
       "premises": [
-          "{A}{a}"
+          "(x): {A}x"
       ],
-      "conclusion": "{A}{a}"
+      "conclusion": "(x): {A}x"
+  },
+
+  {
+      "id": "existential_theorem.reference.pred_arg",
+      "premises": [
+          "(Ex): {A}x"
+      ],
+      "conclusion": "(Ex): {A}x"
   }
 ]
