@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.universal_theorem.dillemma",
+      "id": "predicate.universal_theorem.dilemmma",
       "premises": [
           "(x): {A}x -> ({B}x v {C}x)",
           "(x): {B}x -> {D}x",

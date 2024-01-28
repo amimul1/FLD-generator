@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.dillemma",
+      "id": "predicate.dilemmma",
       "premises": [
           "{A}{a} -> ({B}{b} v {C}{b})",
           "{B}{b} -> {D}{d}",
@@ -9,7 +9,7 @@
       "conclusion": "{A}{a} -> {D}{d}"
   },
   {
-      "id": "predicate.dillemma.shared_arg_0",
+      "id": "predicate.dilemmma.shared_arg_0",
       "premises": [
           "{A}{a} -> ({B}{a} v {C}{a})",
           "{B}{a} -> {D}{d}",
@@ -18,7 +18,7 @@
       "conclusion": "{A}{a} -> {D}{d}"
   },
   {
-      "id": "predicate.dillemma.shared_arg_1",
+      "id": "predicate.dilemmma.shared_arg_1",
       "premises": [
           "{A}{a} -> ({B}{a} v {C}{a})",
           "{B}{a} -> {D}{a}",

@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.dillemma",
+      "id": "propositional.dilemmma",
       "premises": [
           "{A} -> ({B} v {C})",
           "{B} -> {D}",
