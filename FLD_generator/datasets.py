@@ -9,6 +9,7 @@ import copy
 from collections import defaultdict
 from pprint import pprint, pformat
 
+from FLD_generator.argument import is_reference_argument
 from FLD_generator.proof_tree_generation_pipeline import ProofTreeGenerationPipeline
 from FLD_generator.formula import Formula
 from FLD_generator.proof import ProofTree, ProofNode
@@ -440,7 +441,7 @@ class NLProofSDataset:
                         if proof_stance == ProofStance.UNKNOWN:
                             proof_depth = None
                         else:
-                            if proof_tree_var.root_node.argument.id.startswith('reference'):
+                            if is_reference_argument(proof_tree_var.root_node.argument):
                                 proof_depth = 0
                             else:
                                 proof_depth = proof_tree_var.depth
