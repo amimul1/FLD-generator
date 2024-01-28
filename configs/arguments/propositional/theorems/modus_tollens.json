@@ -1,0 +1,10 @@
+[
+  {
+      "id": "propositional.modus_tollens",
+      "premises": [
+          "{A} -> {B}",
+          "¬{B}"
+      ],
+      "conclusion": "¬{A}"
+  }
+]
