@@ -1,0 +1,11 @@
+[
+  {
+      "id": "predicate.universal_theorem.dillemma",
+      "premises": [
+          "(x): {A}x -> ({B}x v {C}x)",
+          "(x): {B}x -> {D}x",
+          "(x): {C}x -> {D}x"
+      ],
+      "conclusion": "(x): {A}x -> {D}x"
+  }
+]

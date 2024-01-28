@@ -1,9 +1,19 @@
 [
   {
-      "id": "predicate.universal_theorem.syllogism_0",
+      "id": "predicate.universal_theorem.syllogism",
       "premises": [
           "(x): {A}x -> {B}x",
           "(x): {B}x -> {C}x"
+      ],
+      "conclusion": "(x): {A}x -> {C}x"
+  },
+
+
+  {
+      "id": "predicate.universal_theorem.disjunctive_syllogism",
+      "premises": [
+          "(x): {A}x -> ({B}x v {C}x)",
+          "(x): {A}x -> ¬{B}x"
       ],
       "conclusion": "(x): {A}x -> {C}x"
   }

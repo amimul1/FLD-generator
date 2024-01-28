@@ -1,0 +1,11 @@
+[
+  {
+      "id": "propositional.dillemma",
+      "premises": [
+          "{A} -> ({B} v {C})",
+          "{B} -> {D}",
+          "{C} -> {D}"
+      ],
+      "conclusion": "{A} -> {D}"
+  }
+]

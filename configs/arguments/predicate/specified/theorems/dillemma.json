@@ -1,0 +1,29 @@
+[
+  {
+      "id": "predicate.dillemma",
+      "premises": [
+          "{A}{a} -> ({B}{b} v {C}{b})",
+          "{B}{b} -> {D}{d}",
+          "{C}{b} -> {D}{d}"
+      ],
+      "conclusion": "{A}{a} -> {D}{d}"
+  },
+  {
+      "id": "predicate.dillemma.shared_arg_0",
+      "premises": [
+          "{A}{a} -> ({B}{a} v {C}{a})",
+          "{B}{a} -> {D}{d}",
+          "{C}{a} -> {D}{d}"
+      ],
+      "conclusion": "{A}{a} -> {D}{d}"
+  },
+  {
+      "id": "predicate.dillemma.shared_arg_1",
+      "premises": [
+          "{A}{a} -> ({B}{a} v {C}{a})",
+          "{B}{a} -> {D}{a}",
+          "{C}{a} -> {D}{a}"
+      ],
+      "conclusion": "{A}{a} -> {D}{a}"
+  }
+]

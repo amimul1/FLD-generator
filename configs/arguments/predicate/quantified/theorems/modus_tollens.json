@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.universal_theorem.modus_tollens.0",
+      "id": "predicate.universal_theorem.modus_tollens_0",
       "premises": [
           "(x): {A}x -> {B}x",
           "(x): ¬{B}x"
@@ -8,7 +8,7 @@
       "conclusion": "(x): ¬{A}x"
   },
   {
-      "id": "predicate.universal_theorem.modus_tollens.1",
+      "id": "predicate.universal_theorem.modus_tollens_1",
       "premises": [
           "(x): {A}x -> {B}x",
           "¬{B}{a}"

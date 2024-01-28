@@ -1,9 +1,19 @@
 [
   {
-      "id": "propositional.universal_theorem.syllogism_0",
+      "id": "propositional.universal_theorem.syllogism",
       "premises": [
           "{A} -> {B}",
           "{B} -> {C}"
+      ],
+      "conclusion": "{A} -> {C}"
+  },
+
+
+  {
+      "id": "propositional.universal_theorem.disjunctive_syllogism",
+      "premises": [
+          "{A} -> ({B} v {C})",
+          "{A} -> ¬{B}"
       ],
       "conclusion": "{A} -> {C}"
   }
