@@ -235,7 +235,7 @@ def generate_instances(size: int, *args):
 @click.argument('size', type=int)
 @click.option('--argument-config', '--ac',
               multiple=True,
-              default=['./configs/arguments/axioms'],
+              default=[],
               help='argument (deduction rule) configuration files')
 @click.option('--complex-formula-arguments-weight', type=float, default=0.0)
 @click.option('--quantifier-axiom-arguments-weight', type=float, default=0.0)

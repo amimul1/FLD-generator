@@ -19,25 +19,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-smpl__dist-0__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -72,25 +72,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-0__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -125,25 +125,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -176,25 +176,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-AA__frml-cmpl__dist-20__transl-nrrw__tree-1__dataset_size-30000': {
 
         'argument_configs': [
-            './configs/arguments/others/AACorpus.pred_arg.json',
+            './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            # './configs/arguments/axioms/axiom.pred_only.json',
-            # './configs/arguments/axioms/axiom.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            # './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.0,  # can not be used with AACorpus
 
@@ -231,25 +231,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -283,25 +283,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -335,25 +335,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -386,25 +386,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-100000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -449,25 +449,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-smpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -509,25 +509,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-0__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -559,25 +559,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-smpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -615,25 +615,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-5__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -665,27 +665,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -717,27 +717,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-8__dataset_size-30000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -769,27 +769,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000__dpth-RT.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -822,25 +822,25 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000__dpth-RT': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -874,27 +874,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -927,27 +927,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-wide__tree-5__dataset_size-30000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -982,27 +982,27 @@ _DATASET_SETTINGS = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-100000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1039,25 +1039,25 @@ _DATASET_SETTINGS = {
     '20221217.back_to_the_past__arg-FLNL__frml-cmpl__dist-10__transl-wide__tree-10__dataset_size-100000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1098,25 +1098,25 @@ _DATASET_SETTINGS = {
     '20230529.use_fixed_translation_for_LLM.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1149,25 +1149,25 @@ _DATASET_SETTINGS = {
     '20230529.use_fixed_translation_for_LLM.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1199,25 +1199,25 @@ _DATASET_SETTINGS = {
     '20230615.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            './configs/arguments/theorems/theorem.pred_only.json',
-            './configs/arguments/theorems/theorem.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/theorems/and_or.json',
+            './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1250,25 +1250,25 @@ _DATASET_SETTINGS = {
     '20230615.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1302,25 +1302,25 @@ _DATASET_SETTINGS = {
     '20230616.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1352,25 +1352,25 @@ _DATASET_SETTINGS = {
     '20230621.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1402,25 +1402,25 @@ _DATASET_SETTINGS = {
     '20230621.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems.wo_translation_dist': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1454,27 +1454,27 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000.G_MP': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            # './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            # './configs/arguments/axioms/axiom.negation.pred_only.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            # './configs/arguments/propositional_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
 
-            './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            './configs/arguments/predicate_logic/theorems/G_MP.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1512,25 +1512,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.plus_quantifiers': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1570,25 +1570,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1631,25 +1631,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.dist-trees': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1694,25 +1694,25 @@ _DATASET_SETTINGS = {
         'unknown_ratio': 0.1,
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1755,25 +1755,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.brnch-high': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1815,25 +1815,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.dist-neg-1.0': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1876,25 +1876,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.dist-neg-0.5': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -1937,25 +1937,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.dist-neg-0.0': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -2000,25 +2000,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D3.hard.dist-trees-only': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -2063,25 +2063,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D8.hard': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -2127,25 +2127,25 @@ _DATASET_SETTINGS = {
     '20230626.many_bugs_fixed.D8.hard.dist-trees': {
 
         'argument_configs': [
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
-            './configs/arguments/axioms/axiom.pred_only.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
 
-            './configs/arguments/axioms/axiom.and_or.pred_only.json',
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
 
-            './configs/arguments/axioms/axiom.implication_intro.pred_only.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
 
-            './configs/arguments/axioms/axiom.negation.pred_only.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
+            './configs/arguments/propositional_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
 
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/theorems/and_or.json',
         ],
         'quantifier_axiom_arguments_weight': 0.2,
 
@@ -5693,11 +5693,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -5741,11 +5741,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -5838,11 +5838,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -5887,11 +5887,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -5939,11 +5939,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -5990,11 +5990,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6364,11 +6364,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6422,11 +6422,11 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            # './configs/arguments/axioms/axiom.pred_arg.json',
-            # './configs/arguments/references/reference.pred_arg.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            # './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6472,11 +6472,11 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            # './configs/arguments/axioms/axiom.pred_arg.json',
-            # './configs/arguments/references/reference.pred_arg.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            # './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6523,11 +6523,11 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            # './configs/arguments/axioms/axiom.pred_arg.json',
-            # './configs/arguments/references/reference.pred_arg.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            # './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6574,11 +6574,11 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
 
-            # './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            # './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            # './configs/arguments/axioms/axiom.pred_arg.json',
-            # './configs/arguments/references/reference.pred_arg.json',
+            # './configs/arguments/predicate_logic/axioms/and_or.json',
+            # './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            # './configs/arguments/predicate_logic/axioms/negation.json',
+            # './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            # './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6632,11 +6632,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6682,11 +6682,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6733,11 +6733,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6784,11 +6784,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6843,11 +6843,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6893,11 +6893,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6944,11 +6944,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -6995,11 +6995,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7058,11 +7058,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7108,11 +7108,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7159,11 +7159,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7210,11 +7210,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7276,11 +7276,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7326,11 +7326,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7377,11 +7377,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -7429,11 +7429,11 @@ _DATASET_SETTINGS = {
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/axioms/and_or.json',
+            './configs/arguments/predicate_logic/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/axioms/negation.json',
+            './configs/arguments/predicate_logic/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',

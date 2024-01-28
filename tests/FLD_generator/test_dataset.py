@@ -92,36 +92,26 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
+            './configs/arguments/predicate_logic/specified/axioms/and_or.json',
+            './configs/arguments/predicate_logic/specified/axioms/implication_intro.json',
+            './configs/arguments/predicate_logic/specified/axioms/negation.json',
+            './configs/arguments/predicate_logic/specified/axioms/implication_elim.json',
+            './configs/arguments/predicate_logic/specified/references/reference.json',
 
 
             # # -- AACorpus --
-            # './configs/arguments/others/AACorpus.pred_arg.json',
+            # './configs/arguments/predicate_logic/others/AACorpus.json',
 
 
             # # -- we exclude the below for speed --
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/implication_elim.json',
+            # './configs/arguments/predicate_logic/specified/theorems/implication_elim.json',
 
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
+            # './configs/arguments/propositional_logic/theorems/and_or.json',
+            # './configs/arguments/predicate_logic/specified/theorems/and_or.json',
 
-            # './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
+            # './configs/arguments/predicate_logic/specified/theorems/G_MP.json',
 
-
-            # -- not tested. may not work --
-            # './configs/arguments/theorems/universal_theorem.axiom.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.theorem.pred_arg.json',
-
-            # not that important universal theorems
-            # './configs/arguments/theorems/universal_theorem.axiom.and_or.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.axiom.negation.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.theorem.and_or.pred_arg.json',
         ],
         elim_dneg=True,
         quantifier_axiom_arguments_weight=0.2,
