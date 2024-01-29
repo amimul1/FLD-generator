@@ -49,6 +49,7 @@ def test_generate_dataset_lang(lang: str,
     # word_bank = None
     word_bank = build_wordbank(lang, extra_vocab=extra_vocab)
 
+    knowledge_banks = None
     if lang == 'eng' and test_knolwedge_bank:
         # knowledge_bank = None
         knowledge_banks = [
@@ -65,8 +66,6 @@ def test_generate_dataset_lang(lang: str,
                 './res/knowledge_banks/DBpedia500/train1.txt',
             ),
         ]
-    elif lang == 'jpn':
-        knowledge_banks = None
 
     translator = build_translator(
         lang,
@@ -90,24 +89,48 @@ def test_generate_dataset_lang(lang: str,
 
     generator = build_generator(
         [
-            # './configs/arguments/axioms/',
-            # './configs/arguments/references/',
-
+            # ----------------------- axioms + references -----------------------
             './configs/arguments/predicate/specified/axioms/and_or.json',
+            './configs/arguments/predicate/specified/axioms/implication_elim.json',
             './configs/arguments/predicate/specified/axioms/implication_intro.json',
             './configs/arguments/predicate/specified/axioms/negation.json',
-            './configs/arguments/predicate/specified/axioms/implication_elim.json',
+
+            './configs/arguments/propositional/axioms/and_or.json',
+            './configs/arguments/propositional/axioms/implication_elim.json',
+            './configs/arguments/propositional/axioms/implication_intro.json',
+            './configs/arguments/propositional/axioms/negation.json',
+
             './configs/arguments/predicate/specified/references/reference.json',
+            './configs/arguments/propositional/references/reference.json',
+            './configs/arguments/predicate/quantified/references/references.json',
 
-
-            # # -- we exclude the below for speed --
-            # './configs/arguments/propositional/theorems/implication_elim.json',
-            # './configs/arguments/predicate/specified/theorems/implication_elim.json',
+            # ----------------------- theorems -----------------------
+            # './configs/arguments/predicate/specified/theorems/and_or.json',
+            # './configs/arguments/predicate/specified/theorems/contraposition.json',
+            # './configs/arguments/predicate/specified/theorems/dilemma.json',
+            # './configs/arguments/predicate/specified/theorems/material_implication.json',
+            # './configs/arguments/predicate/specified/theorems/modus_tollens.json',
+            # './configs/arguments/predicate/specified/theorems/syllogism.json',
 
             # './configs/arguments/propositional/theorems/and_or.json',
-            # './configs/arguments/predicate/specified/theorems/and_or.json',
+            # './configs/arguments/propositional/theorems/contraposition.json',
+            # './configs/arguments/propositional/theorems/dilemma.json',
+            # './configs/arguments/propositional/theorems/implication_elim.json',
+            # './configs/arguments/propositional/theorems/material_implication.json',
+            # './configs/arguments/propositional/theorems/modus_tollens.json',
+            # './configs/arguments/propositional/theorems/syllogism.json',
 
-            # './configs/arguments/predicate/specified/theorems/G_MP.json',
+            # './configs/arguments/predicate/quantified/theorems/axioms/and_or.json',
+            # './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
+            # './configs/arguments/predicate/quantified/theorems/axioms/implication_intro.json',
+            # './configs/arguments/predicate/quantified/theorems/axioms/negation.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/and_or.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/contraposition.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/dilemma.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/material_implication.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/modus_tollens.json',
+            # './configs/arguments/predicate/quantified/theorems/theorems/syllogism.json',
 
         ],
         elim_dneg=True,

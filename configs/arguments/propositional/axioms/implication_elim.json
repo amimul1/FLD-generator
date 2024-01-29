@@ -6,8 +6,5 @@
           "{A}"
       ],
       "conclusion": "{B}"
-  },
-  {
-      "id": "__propositional.implication_elim"__"
   }
 ]
