@@ -1,11 +1,50 @@
 [
   {
-      "id": "propositional.dilemmma",
+      "id": "propositional.dilemma",
       "premises": [
           "{A} -> ({B} v {C})",
           "{B} -> {D}",
           "{C} -> {D}"
       ],
       "conclusion": "{A} -> {D}"
+  },
+
+
+
+
+  {
+      "id": "propositional.constructive_dilemma",
+      "premises": [
+          "({A} v {B})",
+          "{A} -> {C}",
+          "{B} -> {D}"
+      ],
+      "conclusion": "({C} v {D})"
+  },
+
+
+
+
+  {
+      "id": "propositional.destructive_dilemma",
+      "premises": [
+          "(¬{C} v ¬{D})",
+          "{A} -> {C}",
+          "{B} -> {D}"
+      ],
+      "conclusion": "(¬{A} v ¬{B})"
+  },
+
+
+
+
+  {
+      "id": "propositional.bidirectional_dilemma",
+      "premises": [
+          "({A} v ¬{D})",
+          "{A} -> {C}",
+          "{B} -> {D}"
+      ],
+      "conclusion": "({C} v ¬{B})"
   }
 ]

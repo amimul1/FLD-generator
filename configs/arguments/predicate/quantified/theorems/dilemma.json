@@ -1,11 +1,50 @@
 [
   {
-      "id": "predicate.universal_theorem.dilemmma",
+      "id": "predicate.universal_theorem.dilemma",
       "premises": [
           "(x): {A}x -> ({B}x v {C}x)",
           "(x): {B}x -> {D}x",
           "(x): {C}x -> {D}x"
       ],
       "conclusion": "(x): {A}x -> {D}x"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.constructive_dilemma",
+      "premises": [
+          "(x): ({A}x v {B}x)",
+          "(x): {A}x -> {C}x",
+          "(x): {B}x -> {D}x"
+      ],
+      "conclusion": "(x): ({C}x v {D}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.destructive_dilemma",
+      "premises": [
+          "(x): (¬{C}x v ¬{D}x)",
+          "(x): {A}x -> {C}x",
+          "(x): {B}x -> {D}x"
+      ],
+      "conclusion": "(x): (¬{A}x v ¬{B}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.bidirectional_dilemma",
+      "premises": [
+          "(x): ({A}x v ¬{D}x)",
+          "(x): {A}x -> {C}x",
+          "(x): {B}x -> {D}x"
+      ],
+      "conclusion": "(x): ({C}x v ¬{B}x)"
   }
 ]
