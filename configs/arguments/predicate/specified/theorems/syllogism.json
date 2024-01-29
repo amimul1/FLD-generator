@@ -16,8 +16,31 @@
       "conclusion": "{A}{a} -> {C}{a}"
   },
 
+
+
+
   {
-      "id": "predicate.disjunctive_syllogism",
+      "id": "predicate.disjunctive_syllogism_0",
+      "premises": [
+          "({A}{a} v {B}{b})",
+          "¬{A}{a}"
+      ],
+      "conclusion": "{B}{b}"
+  },
+  {
+      "id": "predicate.disjunctive_syllogism_0.shared_arg",
+      "premises": [
+          "({A}{a} v {B}{a})",
+          "¬{A}{a}"
+      ],
+      "conclusion": "{B}{a}"
+  },
+
+
+
+
+  {
+      "id": "predicate.disjunctive_syllogism_1",
       "premises": [
           "{A}{a} -> ({B}{b} v {C}{b})",
           "{A}{a} -> ¬{B}{b}"
@@ -25,7 +48,7 @@
       "conclusion": "{A}{a} -> {C}{b}"
   },
   {
-      "id": "predicate.disjunctive_syllogism.shared_arg",
+      "id": "predicate.disjunctive_syllogism_1.shared_arg",
       "premises": [
           "{A}{a} -> ({B}{a} v {C}{a})",
           "{A}{a} -> ¬{B}{a}"

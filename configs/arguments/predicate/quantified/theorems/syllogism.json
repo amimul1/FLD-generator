@@ -9,8 +9,22 @@
   },
 
 
+
+
   {
-      "id": "predicate.universal_theorem.disjunctive_syllogism",
+      "id": "predicate.universal_theorem.disjunctive_syllogism_0",
+      "premises": [
+          "(x): ({A}x v {B}x)",
+          "(x): ¬{A}x"
+      ],
+      "conclusion": "(x): {B}x"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.disjunctive_syllogism_1",
       "premises": [
           "(x): {A}x -> ({B}x v {C}x)",
           "(x): {A}x -> ¬{B}x"
