@@ -7524,9 +7524,9 @@ _DATASET_SETTINGS = {
             },
         },
         'split_sizes': {
-            'test': 500,
+            # 'test': 500,
             # 'valid': 500,
-            # 'train': 300000,
+            'train': 300000,
         },
 
     },
@@ -7584,9 +7584,9 @@ _DATASET_SETTINGS = {
             },
         },
         'split_sizes': {
-            'test': 500,
+            # 'test': 500,
             # 'valid': 500,
-            # 'train': 300000,
+            'train': 300000,
         },
 
     },
@@ -7646,9 +7646,9 @@ _DATASET_SETTINGS = {
             },
         },
         'split_sizes': {
-            'test': 500,
+            # 'test': 500,
             # 'valid': 500,
-            # 'train': 300000,
+            'train': 300000,
         },
 
     }

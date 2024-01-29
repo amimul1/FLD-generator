@@ -70,7 +70,9 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/20230118.jpn.ICL')
 
-    output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+    # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+
+    output_top_dir = Path('./outputs/00.create_corpus/2024-01-29.enhance_arguments')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
