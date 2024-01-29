@@ -25,7 +25,6 @@ from .argument import (
     is_reference_argument,
     is_existential_argument,
     is_universal_argument,
-    is_universal_theorem_argument,
     is_universal_intro_argument,
     is_negation_elim_argument,
     is_negation_intro_argument,
@@ -148,7 +147,6 @@ class ProofTreeGenerator:
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
                  universal_arguments_factor=1.0,
-                 universal_theorem_argument_factor=1.0,
                  reference_argument_factor=3.0,  # reference argument is impotant
                  knowledge_argument_factor=1.0,
                  knowledge_banks: List[KnowledgeBankBase] = None,
@@ -176,7 +174,6 @@ class ProofTreeGenerator:
             or_arguments_factor=or_arguments_factor,
             existential_arguments_factor=existential_arguments_factor,
             universal_arguments_factor=universal_arguments_factor,
-            universal_theorem_argument_factor=universal_theorem_argument_factor,
             reference_argument_factor=reference_argument_factor,
             knowledge_argument_factor=knowledge_argument_factor,
             knowledge_banks=knowledge_banks,
@@ -204,7 +201,6 @@ class ProofTreeGenerator:
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
-                        universal_theorem_argument_factor: float,
                         reference_argument_factor: float,
                         knowledge_argument_factor: float,
                         knowledge_banks: List[KnowledgeBankBase],
@@ -317,13 +313,30 @@ class ProofTreeGenerator:
 
         def calc_argument_weight(argument: Argument) -> float:
             if argument in arguments:
-                return 1 / len(arguments) * (1 - complex_formula_arguments_weight - quantifier_arguments_weight - quantifier_axiom_arguments_weight) if len(arguments) > 0 else None
+                if len(arguments) == 0:
+                    return None
+                else:
+                    weight = (1 - complex_formula_arguments_weight - quantifier_arguments_weight - quantifier_axiom_arguments_weight)
+                    return 1 / len(arguments) * weight
+
             elif argument in complicated_arguments:
-                return 1 / len(complicated_arguments) * complex_formula_arguments_weight if len(complicated_arguments) > 0 else None
+                if len(complicated_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(complicated_arguments) * complex_formula_arguments_weight
+
             elif argument in quantified_arguments:
-                return 1 / len(quantified_arguments) * quantifier_arguments_weight if len(quantified_arguments) > 0 else None
+                if len(quantified_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(quantified_arguments) * quantifier_arguments_weight
+
             elif argument in quantifier_axiom_arguments:
-                return 1 / len(quantifier_axiom_arguments) * complex_formula_arguments_weight if len(quantifier_axiom_arguments) > 0 else None
+                if len(quantifier_axiom_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(quantifier_axiom_arguments) * quantifier_axiom_arguments_weight
+
             else:
                 raise NotImplementedError()
 
@@ -358,8 +371,6 @@ class ProofTreeGenerator:
                 weight *= existential_arguments_factor
             if is_universal_argument(argument):
                 weight *= universal_arguments_factor
-            if is_universal_theorem_argument(argument):
-                weight *= universal_theorem_argument_factor
             if is_reference_argument(argument):
                 weight *= reference_argument_factor
             if is_knowledge_argument(argument):

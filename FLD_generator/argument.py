@@ -89,19 +89,11 @@ def is_negation_intro_argument(arg: Argument) -> bool:
 
 
 def is_existential_argument(argument: Argument) -> bool:
-    return argument.id.find('existential') >= 0 and not is_existential_theorem_argument(argument)
-
-
-def is_existential_theorem_argument(argument: Argument) -> bool:
-    return argument.id.find('existential_theorem') >= 0
+    return argument.id.find('existential') >= 0
 
 
 def is_universal_argument(argument: Argument) -> bool:
-    return argument.id.find('universal') >= 0 and not is_universal_theorem_argument(argument)
-
-
-def is_universal_theorem_argument(argument: Argument) -> bool:
-    return argument.id.find('universal_theorem') >= 0
+    return argument.id.find('universal') >= 0
 
 
 def is_universal_intro_argument(argument: Argument) -> bool:
