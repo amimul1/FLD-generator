@@ -42,12 +42,14 @@ def generate_dataset(dataset: NLProofSDataset,
 
 
 @profile
-def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[str]]] = None):
+def test_generate_dataset_lang(lang: str,
+                               extra_vocab: Optional[Dict[str, List[str]]] = None,
+                               test_knolwedge_bank: bool = False):
 
     # word_bank = None
     word_bank = build_wordbank(lang, extra_vocab=extra_vocab)
 
-    if lang == 'eng':
+    if lang == 'eng' and test_knolwedge_bank:
         # knowledge_bank = None
         knowledge_banks = [
             build_knowledge_bank(
@@ -88,7 +90,6 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
 
     generator = build_generator(
         [
-
             # './configs/arguments/axioms/',
             # './configs/arguments/references/',
 
@@ -97,10 +98,6 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
             './configs/arguments/predicate/specified/axioms/negation.json',
             './configs/arguments/predicate/specified/axioms/implication_elim.json',
             './configs/arguments/predicate/specified/references/reference.json',
-
-
-            # # -- AACorpus --
-            # './configs/arguments/predicate/others/AACorpus.json',
 
 
             # # -- we exclude the below for speed --
