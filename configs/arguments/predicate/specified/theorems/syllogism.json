@@ -20,7 +20,7 @@
 
 
   {
-      "id": "predicate.disjunctive_syllogism_0",
+      "id": "__predicate.disjunctive_syllogism_0",
       "premises": [
           "({A}{a} v {B}{b})",
           "¬{A}{a}"

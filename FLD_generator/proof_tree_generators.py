@@ -22,12 +22,12 @@ from .formula_checkers import (
 )
 from .argument import (
     Argument,
+    is_theorem_argument,
     is_reference_argument,
     is_existential_argument,
     is_universal_argument,
     is_universal_intro_argument,
     is_negation_elim_argument,
-    is_negation_intro_argument,
 )
 from .argument_checkers import (
     is_trivial as is_argument_trivial,
@@ -144,6 +144,7 @@ class ProofTreeGenerator:
                  quantifier_axiom_arguments_weight=0.0,
                  quantifier_axioms: Optional[List[str]] = None,
                  quantification_degree: str = 'all_constants',
+                 theorem_arguments_factor=0.3,
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
                  universal_arguments_factor=1.0,
@@ -171,6 +172,7 @@ class ProofTreeGenerator:
             quantifier_axioms=quantifier_axioms,
             quantification_degree=quantification_degree,
             allow_generating_heterogeneous_arity_formulas=False,
+            theorem_arguments_factor=theorem_arguments_factor,
             or_arguments_factor=or_arguments_factor,
             existential_arguments_factor=existential_arguments_factor,
             universal_arguments_factor=universal_arguments_factor,
@@ -198,6 +200,7 @@ class ProofTreeGenerator:
                         quantifier_axioms: Optional[List[str]],
                         quantification_degree: str,
                         allow_generating_heterogeneous_arity_formulas: bool,
+                        theorem_arguments_factor: float,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
@@ -365,6 +368,8 @@ class ProofTreeGenerator:
 
         _argument_weights_with_factor: Dict[Argument, float] = {}
         for argument, weight in _argument_weights.items():
+            if is_theorem_argument(argument):
+                weight *= theorem_arguments_factor
             if is_or_argument(argument):
                 weight *= or_arguments_factor
             if is_existential_argument(argument):
