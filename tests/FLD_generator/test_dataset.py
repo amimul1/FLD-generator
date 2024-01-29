@@ -187,6 +187,9 @@ def test_generate_dataset_lang(lang: str,
 
         distractor_variants_per_tree=distractor_variants_per_tree,
         translation_variants_per_logic=translation_variants_per_logic,
+
+        allow_smaller_proofs=False,
+
         raise_if_translation_not_found=True,
     )
 

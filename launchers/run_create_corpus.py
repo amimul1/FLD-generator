@@ -181,25 +181,25 @@ def main():
         # ---------------------------------- 20230120.jpn.punipuni ------------------------------------
         # '20230120.jpn.wordnet.D3',
 
-        '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
-        '20230120.jpn.wordnet_repro_w_proposition.D1',
-        '20230120.jpn.wordnet_repro_w_proposition.D3',
-        '20230120.jpn.wordnet_repro_w_proposition.D8',
+        # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
+        # '20230120.jpn.wordnet_repro_w_proposition.D1',
+        # '20230120.jpn.wordnet_repro_w_proposition.D3',
+        # '20230120.jpn.wordnet_repro_w_proposition.D8',
 
-        '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
-        '20230120.jpn.wordnet_repro_wo_proposition.D1',
-        '20230120.jpn.wordnet_repro_wo_proposition.D3',
-        '20230120.jpn.wordnet_repro_wo_proposition.D8',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D1',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D3',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D8',
 
-        '20230120.jpn.BCCWJ.D1_wo_dist',
-        '20230120.jpn.BCCWJ.D1',
-        '20230120.jpn.BCCWJ.D3',
-        '20230120.jpn.BCCWJ.D8',
+        # '20230120.jpn.BCCWJ.D1_wo_dist',
+        # '20230120.jpn.BCCWJ.D1',
+        # '20230120.jpn.BCCWJ.D3',
+        # '20230120.jpn.BCCWJ.D8',
 
-        '20230120.jpn.punipuni.D1_wo_dist',
-        '20230120.jpn.punipuni.D1',
-        '20230120.jpn.punipuni.D3',
-        '20230120.jpn.punipuni.D8',
+        # '20230120.jpn.punipuni.D1_wo_dist',
+        # '20230120.jpn.punipuni.D1',
+        # '20230120.jpn.punipuni.D3',
+        # '20230120.jpn.punipuni.D8',
 
 
         # ---------------------------------- 20230122.jpn.ICL ------------------------------------
@@ -207,6 +207,12 @@ def main():
         # '20230122.jpn.ICL.punipuni.D1',
         # '20230122.jpn.ICL.punipuni.D3_wo_dist',
         # '20230122.jpn.ICL.punipuni.D3',
+
+
+        # ---------------------------------- 2024-01-29.enhance_argumentsL ------------------------------------
+        '2024-01-29.enhance_arguments.past_reproduce',
+        '2024-01-29.enhance_arguments.theorems',
+        '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
     ]
 
     # dataset_names = dataset_names[::-1]
@@ -349,6 +355,8 @@ def make_dataset(dataset_name: str,
 
             'quantifier_axioms',
 
+            'allow_smaller_proofs',
+
             'world_assump',
         ],
         save_params=True
@@ -447,6 +455,8 @@ def make_dataset(dataset_name: str,
 
                 maybe_option('--distractor-variants-per-tree', job_settings.get("distractor_variants_per_tree", None)),
                 maybe_option('--translation-variants-per-logic', job_settings.get("translation_variants_per_logic", None)),
+
+                '--allow-smaller-proofs' if job_settings.get('allow_smaller_proofs', False) else '',
 
                 f'--num-workers {job_settings["num_workers_per_job"]}',
                 f'--seed {job_settings["seed"]}',

@@ -205,10 +205,10 @@ class NLProofSDataset:
                  word_bank: Optional[WordBank] = None,
                  distractors_range: Optional[List[int]] = None,
                  translation_distractors_range: Optional[Tuple[int, int]] = None,
-                 allow_inconsistency=False,
-                 allow_smaller_proofs=False,
                  distractor_variants_per_tree=1,
                  translation_variants_per_logic=1,
+                 allow_inconsistency=False,
+                 allow_smaller_proofs=False,
                  version: str = '0.3',
                  log_stats=True,
                  raise_if_translation_not_found=True):

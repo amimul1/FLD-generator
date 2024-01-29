@@ -133,7 +133,6 @@ class FixIllegalIntermediateConstantImpossible(ProofTreeGenerationImpossible):
     pass
 
 
-
 class ProofTreeGenerator:
 
     @profile
