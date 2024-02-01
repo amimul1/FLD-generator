@@ -20,7 +20,15 @@ from .formula_checkers import (
     is_consistent_set as is_consistent_formula_set,
     is_new as is_formula_new,
 )
-from .argument import Argument
+from .argument import (
+    Argument,
+    is_theorem_argument,
+    is_reference_argument,
+    is_existential_argument,
+    is_universal_argument,
+    is_universal_intro_argument,
+    is_negation_elim_argument,
+)
 from .argument_checkers import (
     is_trivial as is_argument_trivial,
     is_nonsense as is_argument_nonsense,
@@ -78,8 +86,7 @@ _MAX_RETRY_DEFAULT = 50   # large to make sure the results meet the specificatio
 
 
 def _is_failure_loop_univ_intro_argument(argument: Argument) -> bool:
-    return argument.id.find('universal_intro') >= 0\
-        and argument.premises[0].rep.find(IMPLICATION) >= 0
+    return is_universal_intro_argument(argument) and argument.premises[0].rep.find(IMPLICATION) >= 0
 
 
 class ProofTreeGenerationFailure(FormalLogicExceptionBase):
@@ -126,22 +133,6 @@ class FixIllegalIntermediateConstantImpossible(ProofTreeGenerationImpossible):
     pass
 
 
-# _REFERENCE_ARGUMENTS = [
-#     Argument(
-#         [Formula('{A}')],
-#         Formula('{A}'),
-#         {},
-#         id='reference.pred_only',
-#     ),
-#     Argument(
-#         [Formula('{A}{a}')],
-#         Formula('{A}{a}'),
-#         {},
-#         id='reference.pred_arg',
-#     ),
-# ]
-
-
 class ProofTreeGenerator:
 
     @profile
@@ -152,10 +143,10 @@ class ProofTreeGenerator:
                  quantifier_axiom_arguments_weight=0.0,
                  quantifier_axioms: Optional[List[str]] = None,
                  quantification_degree: str = 'all_constants',
+                 theorem_arguments_factor=0.3,
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
                  universal_arguments_factor=1.0,
-                 universal_theorem_argument_factor=1.0,
                  reference_argument_factor=3.0,  # reference argument is impotant
                  knowledge_argument_factor=1.0,
                  knowledge_banks: List[KnowledgeBankBase] = None,
@@ -180,10 +171,10 @@ class ProofTreeGenerator:
             quantifier_axioms=quantifier_axioms,
             quantification_degree=quantification_degree,
             allow_generating_heterogeneous_arity_formulas=False,
+            theorem_arguments_factor=theorem_arguments_factor,
             or_arguments_factor=or_arguments_factor,
             existential_arguments_factor=existential_arguments_factor,
             universal_arguments_factor=universal_arguments_factor,
-            universal_theorem_argument_factor=universal_theorem_argument_factor,
             reference_argument_factor=reference_argument_factor,
             knowledge_argument_factor=knowledge_argument_factor,
             knowledge_banks=knowledge_banks,
@@ -208,10 +199,10 @@ class ProofTreeGenerator:
                         quantifier_axioms: Optional[List[str]],
                         quantification_degree: str,
                         allow_generating_heterogeneous_arity_formulas: bool,
+                        theorem_arguments_factor: float,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
-                        universal_theorem_argument_factor: float,
                         reference_argument_factor: float,
                         knowledge_argument_factor: float,
                         knowledge_banks: List[KnowledgeBankBase],
@@ -324,13 +315,30 @@ class ProofTreeGenerator:
 
         def calc_argument_weight(argument: Argument) -> float:
             if argument in arguments:
-                return 1 / len(arguments) * (1 - complex_formula_arguments_weight - quantifier_arguments_weight - quantifier_axiom_arguments_weight) if len(arguments) > 0 else None
+                if len(arguments) == 0:
+                    return None
+                else:
+                    weight = (1 - complex_formula_arguments_weight - quantifier_arguments_weight - quantifier_axiom_arguments_weight)
+                    return 1 / len(arguments) * weight
+
             elif argument in complicated_arguments:
-                return 1 / len(complicated_arguments) * complex_formula_arguments_weight if len(complicated_arguments) > 0 else None
+                if len(complicated_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(complicated_arguments) * complex_formula_arguments_weight
+
             elif argument in quantified_arguments:
-                return 1 / len(quantified_arguments) * quantifier_arguments_weight if len(quantified_arguments) > 0 else None
+                if len(quantified_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(quantified_arguments) * quantifier_arguments_weight
+
             elif argument in quantifier_axiom_arguments:
-                return 1 / len(quantifier_axiom_arguments) * complex_formula_arguments_weight if len(quantifier_axiom_arguments) > 0 else None
+                if len(quantifier_axiom_arguments) == 0:
+                    return None
+                else:
+                    return 1 / len(quantifier_axiom_arguments) * quantifier_axiom_arguments_weight
+
             else:
                 raise NotImplementedError()
 
@@ -351,17 +359,6 @@ class ProofTreeGenerator:
         def is_or_argument(argument: Argument) -> bool:
             return any(is_or_formula(formula) for formula in argument.all_formulas)
 
-        def is_existential_argument(argument: Argument) -> bool:
-            return argument.id.startswith('existential') and not argument.id.startswith('existential_theorem')
-
-        def is_universal_argument(argument: Argument) -> bool:
-            return argument.id.startswith('universal') and not argument.id.startswith('universal_theorem')
-
-        def is_universal_theorem_argument(argument: Argument) -> bool:
-            return argument.id.startswith('universal_theorem')
-
-        def is_reference_argument(argument: Argument) -> bool:
-            return argument.id.startswith('reference')
 
         def is_knowledge_argument(argument: Argument) -> bool:
             return any(knowledge_bank.is_formula_accepatable(formula)
@@ -370,14 +367,14 @@ class ProofTreeGenerator:
 
         _argument_weights_with_factor: Dict[Argument, float] = {}
         for argument, weight in _argument_weights.items():
+            if is_theorem_argument(argument):
+                weight *= theorem_arguments_factor
             if is_or_argument(argument):
                 weight *= or_arguments_factor
             if is_existential_argument(argument):
                 weight *= existential_arguments_factor
             if is_universal_argument(argument):
                 weight *= universal_arguments_factor
-            if is_universal_theorem_argument(argument):
-                weight *= universal_theorem_argument_factor
             if is_reference_argument(argument):
                 weight *= reference_argument_factor
             if is_knowledge_argument(argument):
@@ -685,7 +682,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                 + [conclusion_node]:
             proof_tree.add_node(node)
 
-    reference_arguments = [arg for arg in arguments if arg.id.startswith('reference')]
+    reference_arguments = [arg for arg in arguments if is_reference_argument(arg)]
 
     def argument_sampling_reference():
         for arg in _shuffle_arguments(reference_arguments, weights=argument_weights):
@@ -693,7 +690,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
 
     def argument_sampling_non_reference():
         for arg in _shuffle_arguments(arguments, weights=argument_weights):
-            if arg.id.startswith('reference'):
+            if is_reference_argument(arg):
                 continue
             yield arg
 
@@ -865,7 +862,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                                 rejection_stats['not _is_formulas_new(formulas_in_tree, all_new_formulas)'] += 1
                                 continue
 
-                            if _is_argument_negation_elim(next_arg_pulled):
+                            if is_negation_elim_argument(next_arg_pulled):
                                 # negation elim legally introduces inconsistency, and thus smaller proofs.
                                 pass
                             else:
@@ -1147,7 +1144,7 @@ def _extend_branches(proof_tree: ProofTree,
                     # is_leaf_node_done = True
                     break
 
-                if next_arg.id.startswith('reference') and (depth_limit != 1 or not allow_reference_arguments_when_depth_1):
+                if is_reference_argument(next_arg) and (depth_limit != 1 or not allow_reference_arguments_when_depth_1):
                     continue
 
                 log_traces.append(f'   |   | next_arg {next_arg}')
@@ -1217,7 +1214,7 @@ def _extend_branches(proof_tree: ProofTree,
                             rejection_stats['not _is_formulas_new(formulas_in_tree, all_new_formulas)'] += 1
                             continue
 
-                        if _is_argument_negation_elim(next_arg_pulled):
+                        if is_negation_elim_argument(next_arg_pulled):
                             # negation elim legally introduces inconsistency, and thus smaller proofs.
                             pass
                         else:
@@ -1653,13 +1650,6 @@ def load_arguments(config_paths: List[str]) -> List[Argument]:
                               if not json_obj['id'].startswith('__')])
     return arguments
 
-
-def _is_argument_negation_elim(arg: Argument) -> bool:
-    return arg.id.find('negation_elim') >= 0
-
-
-def _is_argument_negation_intro(arg: Argument) -> bool:
-    return arg.id.find('negation_intro') >= 0
 
 
 def build(config_paths: List[str],

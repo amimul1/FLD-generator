@@ -1,0 +1,10 @@
+[
+  {
+      "id": "predicate.universal_theorem.implication_elim",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "{A}{a}"
+      ],
+      "conclusion": "{B}{a}"
+  }
+]

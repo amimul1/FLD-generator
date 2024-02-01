@@ -1,0 +1,20 @@
+[
+  {
+      "id": "propositional.material_implication",
+      "premises": [
+          "{A} -> {B}"
+      ],
+      "conclusion": "(¬{A} v {B})"
+  },
+
+
+
+
+  {
+      "id": "propositional.material_implication_1",
+      "premises": [
+          "(¬{A} v {B})"
+      ],
+      "conclusion": "{A} -> {B}"
+  }
+]

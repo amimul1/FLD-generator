@@ -9,6 +9,7 @@ import copy
 from collections import defaultdict
 from pprint import pprint, pformat
 
+from FLD_generator.argument import is_reference_argument
 from FLD_generator.proof_tree_generation_pipeline import ProofTreeGenerationPipeline
 from FLD_generator.formula import Formula
 from FLD_generator.proof import ProofTree, ProofNode
@@ -204,10 +205,10 @@ class NLProofSDataset:
                  word_bank: Optional[WordBank] = None,
                  distractors_range: Optional[List[int]] = None,
                  translation_distractors_range: Optional[Tuple[int, int]] = None,
-                 allow_inconsistency=False,
-                 allow_smaller_proofs=False,
                  distractor_variants_per_tree=1,
                  translation_variants_per_logic=1,
+                 allow_inconsistency=False,
+                 allow_smaller_proofs=False,
                  version: str = '0.3',
                  log_stats=True,
                  raise_if_translation_not_found=True):
@@ -440,7 +441,7 @@ class NLProofSDataset:
                         if proof_stance == ProofStance.UNKNOWN:
                             proof_depth = None
                         else:
-                            if proof_tree_var.root_node.argument.id.startswith('reference'):
+                            if is_reference_argument(proof_tree_var.root_node.argument):
                                 proof_depth = 0
                             else:
                                 proof_depth = proof_tree_var.depth

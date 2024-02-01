@@ -1,0 +1,66 @@
+[
+  {
+      "id": "predicate.generalized_modus_ponens",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "{A}{a}"
+      ],
+      "conclusion": "{B}{a}"
+  },
+  {
+      "id": "predicate.generalized_contraposition",
+      "premises": [
+          "(x): {A}x -> ¬{B}x"
+      ],
+      "conclusion": "(x): {B}x -> ¬{A}x"
+  },
+  {
+      "id": "predicate.hypothetical_syllogism_1",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "(x): {B}x -> {C}x"
+      ],
+      "conclusion": "(x): {A}x -> {C}x"
+  },
+  {
+      "id": "predicate.hypothetical_syllogism_2",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "(x): ¬{C}x -> ¬{B}x"
+      ],
+      "conclusion": "(x): {A}x -> {C}x"
+  },
+  {
+      "id": "predicate.hypothetical_syllogism_3",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "(Ex): ({C}x & ¬{B}x)"
+      ],
+      "conclusion": "(Ex): ({C}x & ¬{A}x)"
+  },
+  {
+      "id": "predicate.generalized_modus_tollens",
+      "premises": [
+          "(x): {A}x -> {B}x",
+          "¬{B}{a}"
+      ],
+      "conclusion": "¬{A}{a}"
+  },
+  {
+      "id": "__predicate.disjunctive_syllogism",
+      "premises": [
+          "(x): {A}x -> ({B}x v {C}x)",
+          "(x): {A}x -> ¬{B}x"
+      ],
+      "conclusion": "(x): {A}x -> {C}x"
+  },
+  {
+      "id": "__predicate.generalized_dilemma",
+      "premises": [
+          "(x): {A}x -> ({B}x v {C}x)",
+          "(x): {B}x -> {D}x",
+          "(x): {C}x -> {D}x"
+      ],
+      "conclusion": "(x): {A}x -> {D}x"
+  }
+]

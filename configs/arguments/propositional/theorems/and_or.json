@@ -1,0 +1,32 @@
+[
+  {
+      "id": "propositional.and_interchangeability",
+      "premises": [
+          "({A} & {B})"
+      ],
+      "conclusion": "({B} & {A})"
+  },
+  {
+      "id": "propositional.De_Morgan_0",
+      "premises": [
+          "¬({A} & {B})"
+      ],
+      "conclusion": "(¬{A} v ¬{B})"
+  },
+
+
+  {
+      "id": "propositional.or_interchangeability",
+      "premises": [
+          "({A} v {B})"
+      ],
+      "conclusion": "({B} v {A})"
+  },
+  {
+      "id": "propositional.De_Morgan_1",
+      "premises": [
+          "¬({A} v {B})"
+      ],
+      "conclusion": "(¬{A} & ¬{B})"
+  }
+]

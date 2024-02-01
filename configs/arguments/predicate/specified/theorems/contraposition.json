@@ -1,0 +1,19 @@
+[
+  {
+      "id": "predicate.contraposition",
+      "premises": [
+          "{A}{a} -> {B}{b}"
+      ],
+      "conclusion": "¬{B}{b} -> ¬{A}{a}"
+  },
+
+
+
+  {
+      "id": "predicate.contraposition.shared_arg",
+      "premises": [
+          "{A}{a} -> {B}{a}"
+      ],
+      "conclusion": "¬{B}{a} -> ¬{A}{a}"
+  }
+]

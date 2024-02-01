@@ -1,0 +1,100 @@
+[
+  {
+      "id": "__predicate.and_intro",
+      "premises": [
+          "{A}{a}",
+          "{B}{b}"
+      ],
+      "conclusion": "({A}{a} & {B}{b})"
+  },
+  {
+      "id": "__predicate.and_elim_0",
+      "premises": [
+          "({A}{a} & {B}{b})"
+      ],
+      "conclusion": "{A}{a}"
+  },
+  {
+      "id": "__predicate.and_elim_1",
+      "premises": [
+          "({A}{a} & {B}{b})"
+      ],
+      "conclusion": "{B}{b}"
+  },
+
+
+  {
+      "id": "__predicate.or_intro_0",
+      "premises": [
+          "{A}{a}"
+      ],
+      "conclusion": "({A}{a} v {B}{b})"
+  },
+  {
+      "id": "__predicate.or_intro_1",
+      "premises": [
+          "{B}{b}"
+      ],
+      "conclusion": "({A}{a} v {B}{b})"
+  },
+  {
+      "id": "__predicate.or_elim",
+      "premises": [
+          "({A}{a} v {B}{b})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {C}{c}"
+      ],
+      "conclusion": "{C}{c}"
+  },
+
+
+
+
+  {
+      "id": "predicate.and_intro.shared_arg",
+      "premises": [
+          "{A}{a}",
+          "{B}{a}"
+      ],
+      "conclusion": "({A}{a} & {B}{a})"
+  },
+  {
+      "id": "predicate.and_elim_0.shared_arg",
+      "premises": [
+          "({A}{a} & {B}{a})"
+      ],
+      "conclusion": "{A}{a}"
+  },
+  {
+      "id": "predicate.and_elim_1.shared_arg",
+      "premises": [
+          "({A}{a} & {B}{a})"
+      ],
+      "conclusion": "{B}{a}"
+  },
+
+
+  {
+      "id": "predicate.or_intro_0.shared_arg",
+      "premises": [
+          "{A}{a}"
+      ],
+      "conclusion": "({A}{a} v {B}{a})"
+  },
+  {
+      "id": "predicate.or_intro_1.shared_arg",
+      "premises": [
+          "{B}{a}"
+      ],
+      "conclusion": "({A}{a} v {B}{a})"
+  },
+  {
+      "id": "predicate.or_elim.shared_arg",
+      "premises": [
+          "({A}{a} v {B}{a})",
+          "{A}{a} -> {C}{c}",
+          "{B}{a} -> {C}{c}"
+      ],
+      "conclusion": "{C}{c}"
+  }
+]

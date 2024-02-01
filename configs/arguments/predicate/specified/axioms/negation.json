@@ -1,0 +1,17 @@
+[
+  {
+      "id": "predicate.negation_elim",
+      "premises": [
+          "{A}{a}",
+          "¬{A}{a}"
+      ],
+      "conclusion": "#F#"
+  },
+  {
+      "id": "predicate.negation_intro",
+      "premises": [
+          "{A}{a} ⊢ #F#"
+      ],
+      "conclusion": "¬{A}{a}"
+  }
+]

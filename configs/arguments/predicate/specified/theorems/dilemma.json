@@ -1,0 +1,150 @@
+[
+  {
+      "id": "predicate.dilemma",
+      "premises": [
+          "{A}{a} -> ({B}{b} v {C}{b})",
+          "{B}{b} -> {D}{d}",
+          "{C}{b} -> {D}{d}"
+      ],
+      "conclusion": "{A}{a} -> {D}{d}"
+  },
+  {
+      "id": "predicate.dilemma.shared_arg_0",
+      "premises": [
+          "{A}{a} -> ({B}{a} v {C}{a})",
+          "{B}{a} -> {D}{d}",
+          "{C}{a} -> {D}{d}"
+      ],
+      "conclusion": "{A}{a} -> {D}{d}"
+  },
+  {
+      "id": "predicate.dilemma.shared_arg_1",
+      "premises": [
+          "{A}{a} -> ({B}{a} v {C}{a})",
+          "{B}{a} -> {D}{a}",
+          "{C}{a} -> {D}{a}"
+      ],
+      "conclusion": "{A}{a} -> {D}{a}"
+  },
+
+
+
+
+  {
+      "id": "__predicate.constructive_dilemma",
+      "premises": [
+          "({A}{a} v {B}{b})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {D}{d}"
+      ],
+      "conclusion": "({C}{c} v {D}{d})"
+  },
+  {
+      "id": "__predicate.constructive_dilemma.shared_arg_0",
+      "premises": [
+          "({A}{a} v {B}{a})",
+          "{A}{a} -> {C}{c}",
+          "{B}{a} -> {D}{d}"
+      ],
+      "conclusion": "({C}{c} v {D}{d})"
+  },
+  {
+      "id": "__predicate.constructive_dilemma.shared_arg_1",
+      "premises": [
+          "({A}{a} v {B}{a})",
+          "{A}{a} -> {C}{a}",
+          "{B}{a} -> {D}{d}"
+      ],
+      "conclusion": "({C}{a} v {D}{d})"
+  },
+  {
+      "id": "predicate.constructive_dilemma.shared_arg_2",
+      "premises": [
+          "({A}{a} v {B}{a})",
+          "{A}{a} -> {C}{a}",
+          "{B}{a} -> {D}{a}"
+      ],
+      "conclusion": "({C}{a} v {D}{a})"
+  },
+
+
+
+
+  {
+      "id": "__predicate.destructive_dilemma",
+      "premises": [
+          "(¬{C}{c} v ¬{D}{d})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {D}{d}"
+      ],
+      "conclusion": "(¬{A}{a} v ¬{B}{b})"
+  },
+  {
+      "id": "__predicate.destructive_dilemma.shared_arg_0",
+      "premises": [
+          "(¬{C}{c} v ¬{D}{c})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {D}{c}"
+      ],
+      "conclusion": "(¬{A}{a} v ¬{B}{b})"
+  },
+  {
+      "id": "__predicate.destructive_dilemma.shared_arg_1",
+      "premises": [
+          "(¬{C}{c} v ¬{D}{c})",
+          "{A}{c} -> {C}{c}",
+          "{B}{b} -> {D}{c}"
+      ],
+      "conclusion": "(¬{A}{c} v ¬{B}{b})"
+  },
+  {
+      "id": "predicate.destructive_dilemma.shared_arg_2",
+      "premises": [
+          "(¬{C}{c} v ¬{D}{c})",
+          "{A}{c} -> {C}{c}",
+          "{B}{c} -> {D}{c}"
+      ],
+      "conclusion": "(¬{A}{c} v ¬{B}{c})"
+  },
+
+
+
+
+  {
+      "id": "__predicate.bidirectional_dilemma",
+      "premises": [
+          "({A}{a} v ¬{D}{d})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {D}{d}"
+      ],
+      "conclusion": "({C}{c} v ¬{B}{b})"
+  },
+  {
+      "id": "__predicate.bidirectional_dilemma.shared_arg_0",
+      "premises": [
+          "({A}{a} v ¬{D}{a})",
+          "{A}{a} -> {C}{c}",
+          "{B}{b} -> {D}{a}"
+      ],
+      "conclusion": "({C}{c} v ¬{B}{b})"
+  },
+  {
+      "id": "__predicate.bidirectional_dilemma.shared_arg_1",
+      "premises": [
+          "({A}{a} v ¬{D}{a})",
+          "{A}{a} -> {C}{a}",
+          "{B}{b} -> {D}{a}"
+      ],
+      "conclusion": "({C}{a} v ¬{B}{b})"
+  },
+  {
+      "id": "predicate.bidirectional_dilemma.shared_arg_2",
+      "premises": [
+          "({A}{a} v ¬{D}{a})",
+          "{A}{a} -> {C}{a}",
+          "{B}{a} -> {D}{a}"
+      ],
+      "conclusion": "({C}{a} v ¬{B}{a})"
+  }
+
+]

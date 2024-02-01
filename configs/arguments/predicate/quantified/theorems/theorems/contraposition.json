@@ -1,0 +1,9 @@
+[
+  {
+      "id": "predicate.universal_theorem.contraposition",
+      "premises": [
+          "(x): {A}x -> {B}x"
+      ],
+      "conclusion": "(x): ¬{B}x -> ¬{A}x"
+  }
+]

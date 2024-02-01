@@ -1,9 +1,0 @@
-[
-  {
-      "id": "contraposition.pred_only",
-      "premises": [
-          "{A} -> {B}"
-      ],
-      "conclusion": "¬{B} -> ¬{A}"
-  }
-]
