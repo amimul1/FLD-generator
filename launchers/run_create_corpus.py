@@ -211,10 +211,12 @@ def main():
         # '20230122.jpn.ICL.punipuni.D3',
 
 
-        # ---------------------------------- 2024-01-29.enhance_argumentsL ------------------------------------
-        '2024-01-29.enhance_arguments.past_reproduce',
-        '2024-01-29.enhance_arguments.theorems',
-        '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
+        # ---------------------------------- 2024-01-29.enhance_arguments ------------------------------------
+        # '2024-01-29.enhance_arguments.past_reproduce',
+        # '2024-01-29.enhance_arguments.theorems',
+        # '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
+
+        '2024-01-29.enhance_arguments.past_reproduce.D8',
     ]
 
     # dataset_names = dataset_names[::-1]
