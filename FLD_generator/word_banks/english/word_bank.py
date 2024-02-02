@@ -5,7 +5,7 @@ from enum import Enum
 from typing import Optional
 
 from ordered_set import OrderedSet
-from lemminflect import getInflection
+from lemminflect import getInflection, getAllInflectionsOOV
 from FLD_generator.word_banks.base import WordBank, POS, UserWord
 from FLD_generator.utils import starts_with_vowel_sound
 from FLD_generator.person_names import get_person_names
@@ -267,7 +267,7 @@ class EnglishWordBank(WordBank):
             return [f'an {noun}' if starts_with_vowel_sound(noun) else f'a {noun}']
 
         elif form == self.NounForm.PLURAL:
-            raise NotImplementedError()
+            return [getAllInflectionsOOV(noun, upos='NOUN')['NNS'][0]]
 
         elif form == self.NounForm.ANTI:
             if noun in self._person_names:

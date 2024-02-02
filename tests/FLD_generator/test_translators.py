@@ -36,7 +36,7 @@ fix_seed(0)
 
 
 def _build_translator(lang,
-                      translation_config='thing',
+                      translation_config='thing_person.v2',
                       no_adj_verb_as_zeroary=False,
                       extra_vocab: Optional[Dict[POS, List[UserWord]]] = None,
                       knowledge_banks: Optional[List[KnowledgeBankBase]] = None,
@@ -94,7 +94,7 @@ def make_show_translation_func(translator):
 
 
 def test_templated_translator_lang(lang: str,
-                                   translation_config='thing',
+                                   translation_config='thing_person.v2',
                                    no_adj_verb_as_zeroary=False,
                                    extra_vocab: Optional[Dict[POS, List[UserWord]]] = None,
                                    knowledge_banks: Optional[List[KnowledgeBankBase]] = None):

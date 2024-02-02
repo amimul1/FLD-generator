@@ -70,7 +70,8 @@ class EnglishTranslator(TemplatedTranslator):
             pronoun = random.choice(['the one'])
             for pronoun in ['it', 'the thing']:
                translation = translation.replace(f' {pronoun}', ' the one')
-
+            for pronoun in ['they', 'the things']:
+               translation = translation.replace(f' {pronoun}', ' the ones')
 
         for mv0 in MODAL_VERBS:
             for mv1 in MODAL_VERBS:
