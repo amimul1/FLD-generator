@@ -238,6 +238,16 @@
       "__since"
     ],
 
+    "maybe_either": [
+      "either",
+      ""
+    ],
+
+    "maybe_then": [
+      "then",
+      ""
+    ],
+
     "the_fact_that": [
       "that",
       "the fact that"
@@ -312,58 +322,41 @@
        "there exists <<phrase::nothing>> such that"
     ],
 
+    "thing": [
+      "thing",
+
+      "__comment: we will convert to one in the postprocessing",
+      "__one"
+    ],
+
+    "things": [
+      "<<phrase::thing>>s"
+    ],
+
     "it": [
       "it",
-      "the thing",
-      "the one"
+      "the <<phrase::thing>>"
     ],
 
     "they": [
       "they",
-      "the things",
-      "the ones"
+      "the <<phrase::things>>"
     ],
 
     "something": [
       "something",
-      ["W_VOL_AVG__0.5", "someone"],
-      ["W_VOL_AVG__0.5", "somebody"]
+      ["W_VOL_AVG__0.5", "__someone"]
     ],
 
     "everything": [
       "everything",
-      ["W_VOL_AVG__0.5", "everyone"],
-      ["W_VOL_AVG__0.5", "everybody"]
+      ["W_VOL_AVG__0.5", "__everyone"]
     ],
 
     "nothing": [
       "nothing",
-      ["W_VOL_AVG__0.5", "no one"],
-      ["W_VOL_AVG__0.5", "nobody"]
-    ],
-
-    "thing": [
-      "thing",
-      "one",
-      "__people"
-    ],
-
-    "things": [
-      "things",
-      "ones",
-      "__people"
-    ],
-
-    "maybe_either": [
-      "either",
-      ""
-    ],
-
-    "maybe_then": [
-      "then",
-      ""
+      ["W_VOL_AVG__0.5", "__no one"]
     ]
-
   }
 
 }

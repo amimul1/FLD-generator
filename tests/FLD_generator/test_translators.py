@@ -106,60 +106,62 @@ def test_templated_translator_lang(lang: str,
     show_translations = make_show_translation_func(translator)
 
     if knowledge_banks is None:
-        show_translations(['{A}'], trial=30)
-        show_translations(['¬({A})'], trial=30)
 
-        show_translations(['({A} & {B})'], trial=30)
-        show_translations(['(¬{A} & {B})'], trial=30)
-        show_translations(['({A} & ¬{B})'], trial=30)
-        show_translations(['(¬{A} & ¬{B})'], trial=30)
+        show_translations(['{A}'], trial=100)
+        show_translations(['¬({A})'], trial=100)
 
-        show_translations(['({A} v {B})'], trial=30)
-        show_translations(['(¬{A} v {B})'], trial=30)
-        show_translations(['({A} v ¬{B})'], trial=30)
-        show_translations(['(¬{A} v ¬{B})'], trial=30)
+        show_translations(['({A} & {B})'], trial=100)
+        show_translations(['(¬{A} & {B})'], trial=100)
+        show_translations(['({A} & ¬{B})'], trial=100)
+        show_translations(['(¬{A} & ¬{B})'], trial=100)
 
-        show_translations(['{A} -> {B}'], trial=30)
-        show_translations(['¬{A} -> {B}'], trial=30)
-        show_translations(['{A} -> ¬{B}'], trial=30)
-        show_translations(['({A} & {B}) -> {C}'], trial=30)
-        show_translations(['({A} v {B}) -> {C}'], trial=30)
-        show_translations(['{A} -> ({B} & {C})'], trial=30)
-        show_translations(['{A} -> ({B} v {C})'], trial=30)
+        show_translations(['({A} v {B})'], trial=100)
+        show_translations(['(¬{A} v {B})'], trial=100)
+        show_translations(['({A} v ¬{B})'], trial=100)
+        show_translations(['(¬{A} v ¬{B})'], trial=100)
 
-        show_translations(['{A}{a}'], trial=30)
+        show_translations(['{A} -> {B}'], trial=100)
+        show_translations(['¬{A} -> {B}'], trial=100)
+        show_translations(['{A} -> ¬{B}'], trial=100)
+        show_translations(['({A} & {B}) -> {C}'], trial=100)
+        show_translations(['({A} v {B}) -> {C}'], trial=100)
+        show_translations(['{A} -> ({B} & {C})'], trial=100)
+        show_translations(['{A} -> ({B} v {C})'], trial=100)
 
-        show_translations(['({A}{a} & {B}{a})'], trial=30)
-        show_translations(['(¬{A}{a} & {B}{a})'], trial=30)
-        show_translations(['({A}{a} & ¬{B}{a})'], trial=30)
-        show_translations(['(¬{A}{a} & ¬{B}{a})'], trial=30)
+        show_translations(['{A}{a}'], trial=100)
 
-        show_translations(['({A}{a} v {B}{a})'], trial=30)
-        show_translations(['(¬{A}{a} v {B}{a})'], trial=30)
-        show_translations(['({A}{a} v ¬{B}{a})'], trial=30)
-        show_translations(['(¬{A}{a} v ¬{B}{a})'], trial=30)
+        show_translations(['({A}{a} & {B}{a})'], trial=100)
+        show_translations(['(¬{A}{a} & {B}{a})'], trial=100)
+        show_translations(['({A}{a} & ¬{B}{a})'], trial=100)
+        show_translations(['(¬{A}{a} & ¬{B}{a})'], trial=100)
 
-        show_translations(['({A}{a} -> {B}{a})'], trial=30)
-        show_translations(['(¬{A}{a} -> {B}{a})'], trial=30)
-        show_translations(['({A}{a} -> ¬{B}{a})'], trial=30)
-        show_translations(['({A}{a} & {B}{a}) -> {C}{c}'], trial=30)
-        show_translations(['({A}{a} v {B}{a}) -> {C}{c}'], trial=30)
-        show_translations(['{A}{a} -> ({B}{b} & {C}{b})'], trial=30)
-        show_translations(['{A}{a} -> ({B}{b} v {C}{b})'], trial=30)
+        show_translations(['({A}{a} v {B}{a})'], trial=100)
+        show_translations(['(¬{A}{a} v {B}{a})'], trial=100)
+        show_translations(['({A}{a} v ¬{B}{a})'], trial=100)
+        show_translations(['(¬{A}{a} v ¬{B}{a})'], trial=100)
 
-        show_translations(['(Ex): {A}x'], trial=30)
-        show_translations(['(Ex): (¬{A}x & {B}x)'], trial=30)
-        show_translations(['(Ex): (¬{A}x v {B}x)'], trial=30)
-        show_translations(['(Ex): {A}x -> {B}x'], trial=30)
-        show_translations(['(Ex): (¬{A}x & {B}x) -> {C}x'], trial=30)
-        show_translations(['(Ex): (¬{A}x v {B}x) -> {C}x'], trial=30)
+        show_translations(['({A}{a} -> {B}{a})'], trial=100)
+        show_translations(['(¬{A}{a} -> {B}{a})'], trial=100)
+        show_translations(['({A}{a} -> ¬{B}{a})'], trial=100)
+        show_translations(['({A}{a} & {B}{a}) -> {C}{c}'], trial=100)
+        show_translations(['({A}{a} v {B}{a}) -> {C}{c}'], trial=100)
+        show_translations(['{A}{a} -> ({B}{b} & {C}{b})'], trial=100)
+        show_translations(['{A}{a} -> ({B}{b} v {C}{b})'], trial=100)
 
-        show_translations(['(x): {A}x'], trial=30)
-        show_translations(['(x): (¬{A}x & {B}x)'], trial=30)
-        show_translations(['(x): (¬{A}x v {B}x)'], trial=30)
-        show_translations(['(x): {A}x -> {B}x'], trial=30)
-        show_translations(['(x): (¬{A}x & {B}x) -> {C}x'], trial=30)
-        show_translations(['(x): (¬{A}x v {B}x) -> {C}x'], trial=30)
+        show_translations(['(Ex): {A}x'], trial=100)
+        show_translations(['(Ex): (¬{A}x & {B}x)'], trial=100)
+        show_translations(['(Ex): (¬{A}x v {B}x)'], trial=100)
+        show_translations(['(Ex): {A}x -> {B}x'], trial=100)
+        show_translations(['(Ex): (¬{A}x & {B}x) -> {C}x'], trial=100)
+        show_translations(['(Ex): (¬{A}x v {B}x) -> {C}x'], trial=100)
+
+        show_translations(['(x): {A}x'], trial=100)
+        show_translations(['(x): (¬{A}x & {B}x)'], trial=100)
+        show_translations(['(x): ¬(¬{A}x & {B}x)'], trial=100)
+        show_translations(['(x): (¬{A}x v {B}x)'], trial=100)
+        show_translations(['(x): {A}x -> {B}x'], trial=100)
+        show_translations(['(x): (¬{A}x & {B}x) -> {C}x'], trial=100)
+        show_translations(['(x): (¬{A}x v {B}x) -> {C}x'], trial=100)
 
         # # multiple formulas
         show_translations(
@@ -237,7 +239,8 @@ def test_eng_with_knowledge():
         ),
     ]
 
-    test_templated_translator_lang('eng', knowledge_banks=knowledge_banks)
+    test_templated_translator_lang('eng',
+                                   knowledge_banks=knowledge_banks)
 
 
 def test_jpn():
@@ -642,11 +645,11 @@ def test_jpn_postprocess():
 if __name__ == '__main__':
     setup_logger(level=logging.DEBUG)
 
-    # test_eng()
+    test_eng()
     # test_eng_with_knowledge()
 
     # test_jpn()
     # test_jpn_with_user_vocab('punipuni')
     # test_jpn_with_user_vocab('BCCWJ')
 
-    test_jpn_postprocess()
+    # test_jpn_postprocess()
