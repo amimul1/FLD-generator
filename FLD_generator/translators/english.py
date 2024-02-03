@@ -155,17 +155,50 @@ class EnglishTranslator(TemplatedTranslator):
 
     def _randomly_convert_thing_to_person(self, translation: str) -> str:
         if random.random() < 0.5:
-            person_pronouns = ['he', 'she', 'he/she', 'she/he', 'the one', 'the person']
-            person_pronoun = random.choice(person_pronouns)
+            return translation
 
+        # convert appearance of thhing such as 'the thing' and 'something' into person nouns
+        person_postfix = random.choice(['one', 'body', 'person', 'man'])
+        if person_postfix == 'one':
+            translation = translation.replace('everything', 'everyone')
+            translation = translation.replace('something', 'someone')
+            translation = translation.replace('nothing', 'noone')
+            translation = translation.replace('things', 'ones')
             translation = translation.replace('thing', 'one')
-            translation = translation.replace('noone', 'no one')
 
-            # fix "it"
-            tokens = translation.split(' ')
-            tokens = [person_pronoun if token == 'it' else token
-                      for token in tokens]
-            translation = ' '.join(tokens)
+            translation = translation.replace('noone', random.choice(['no one', 'none']))
+
+        elif person_postfix == 'body':
+            translation = translation.replace('everything', 'everybody')
+            translation = translation.replace('something', 'somebody')
+            translation = translation.replace('nothing', 'nobody')
+            translation = translation.replace('things', 'ones')
+            translation = translation.replace('thing', 'one')
+
+        elif person_postfix == 'person':
+            translation = translation.replace('everything', 'every person')
+            translation = translation.replace('something', 'some person')
+            translation = translation.replace('nothing', 'no person')
+            translation = translation.replace('things', random.choice(['persons', 'people']))
+            translation = translation.replace('thing', 'person')
+
+        elif person_postfix == 'man':
+            translation = translation.replace('everything', 'every man')
+            translation = translation.replace('something', 'some man')
+            translation = translation.replace('nothing', 'no man')
+            translation = translation.replace('things', 'men')
+            translation = translation.replace('thing', 'man')
+        else:
+            raise ValueError()
+
+        # convert thing pronouns into person pronouns
+        # we have to handle only 'it', as 'they' is OK for person pronouns
+        person_pronouns = ['he', 'she', 'he/she', 'she/he', 'the one', 'the person']
+        person_pronoun = random.choice(person_pronouns)
+        tokens = translation.split(' ')
+        tokens = [person_pronoun if token == 'it' else token
+                  for token in tokens]
+        translation = ' '.join(tokens)
 
         return translation
 
