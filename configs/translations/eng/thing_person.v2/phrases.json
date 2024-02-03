@@ -179,6 +179,21 @@
       "__promotes"
     ],
 
+    "cause_verb.plural": [
+      "cause",
+      "result in",
+      "bring about",
+
+      "yield",
+      "lead to",
+      "trigger",
+
+      "__invoke",
+      "__give rise to",
+      "__accelerate",
+      "__promote"
+    ],
+
     "caused_verb": [
       "<<phrase::is>> caused by",
       "<<phrase::is>> brought about by",
@@ -188,6 +203,17 @@
       "__originates from",
       "__comes from",
       "__stems from"
+    ],
+
+    "caused_verb.plural": [
+      "<<phrase::are>> caused by",
+      "<<phrase::are>> brought about by",
+
+      "<<phrase::are>> triggered by",
+
+      "__originate from",
+      "__come from",
+      "__stem from"
     ],
 
     "prevent_verb": [
@@ -202,8 +228,44 @@
       "__suppresses"
     ],
 
+    "prevent_verb.plural": [
+      "prevent",
+
+      "__stop",
+      "__avoid",
+
+      "__hinder",
+      "__interfere with",
+      "__disturb",
+      "__suppress"
+    ],
+
     "prevented_verb": [
       "<<phrase::is>> prevented by"
+    ],
+
+    "prevented_verb.plural": [
+      "<<phrase::are>> prevented by"
+    ],
+
+    "occur": [
+      "occurs",
+      "happens",
+      "__takes its rise"
+    ],
+
+    "occur.plural": [
+      "occur",
+      "happen",
+      "__take their rise"
+    ],
+
+    "not_occur": [
+      "<<phrase::does>> <<phrase::not_pred>> <<phrase::occur>>"
+    ],
+
+    "not_occur.plural": [
+      "<<phrase::do>> <<phrase::not_pred>> <<phrase::occur>>"
     ],
 
     "is_a_kind_of": [
@@ -290,16 +352,6 @@
     "hold_verb": [
       "hold",
       "__apply"
-    ],
-
-    "occur": [
-      "occurs",
-      "happens",
-      "__takes its rise"
-    ],
-
-    "not_occur": [
-      "<<phrase::does>> <<phrase::not_pred>> <<phrase::occur>>"
     ],
 
     "there_is": [

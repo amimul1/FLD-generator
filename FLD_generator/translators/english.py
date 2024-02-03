@@ -115,7 +115,7 @@ class EnglishTranslator(TemplatedTranslator):
 
     def _postprocess_translation(self, translation: str) -> str:
         translation = self._correct_indefinite_particles(translation)
-        translation = self._pronoun_thing_to_person(translation)
+        # translation = self._pronoun_thing_to_person(translation)
         # translation = self._fix_pred_singularity(translation)   # we will handle singular/plural matter in the translation configs
         translation = self._randomly_convert_thing_to_person(translation)
         translation = self._reduce_degenerate_blanks(translation)
@@ -168,14 +168,14 @@ class EnglishTranslator(TemplatedTranslator):
 
         return translation
 
-    def _pronoun_thing_to_person(self, translation: str) -> str:
-        # thing_pronouns = ['it', 'the thing']
-        # person_pronouns = ['he', 'she', 'he/she', 'she/he', 'the one', 'the person']
-        # if translation.find('someone') >= 0 or translation.find('somebody') >= 0:
-        #     for thing_pronoun in thing_pronouns:
-        #         person_pronoun = random.choice(person_pronouns)
-        #         translation = translation.replace(f' {thing_pronoun} ', f' {person_pronoun} ')
-        return translation
+    # def _pronoun_thing_to_person(self, translation: str) -> str:
+    #     thing_pronouns = ['it', 'the thing']
+    #     person_pronouns = ['he', 'she', 'he/she', 'she/he', 'the one', 'the person']
+    #     if translation.find('someone') >= 0 or translation.find('somebody') >= 0:
+    #         for thing_pronoun in thing_pronouns:
+    #             person_pronoun = random.choice(person_pronouns)
+    #             translation = translation.replace(f' {thing_pronoun} ', f' {person_pronoun} ')
+    #     return translation
 
     # def _fix_pred_singularity(self, translation: str) -> str:
     #     # TODO: A and B {is, runs} => currently, we do not have ({A}{a} and {B}{a}) so that we do not this fix.
