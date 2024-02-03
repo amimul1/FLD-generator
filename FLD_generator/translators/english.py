@@ -223,7 +223,6 @@ class EnglishTranslator(TemplatedTranslator):
     #     return translation_fixed
 
     def _strip_the_from_named_entities(self, translation: str) -> str:
-        translation_org = translation
         tokens = translation.split(' ')
 
         NE_indices = [i for i, token in enumerate(tokens)
@@ -234,9 +233,6 @@ class EnglishTranslator(TemplatedTranslator):
         translation = ' '.join([token for i, token in enumerate(tokens)
                                 if i not in unwanted_the_indices])
 
-        if translation_org != translation:
-            logger.critical(translation_org)
-            logger.critical(translation)
         return translation
 
     def _reduce_degenerate_blanks(self, translation: str) -> str:
