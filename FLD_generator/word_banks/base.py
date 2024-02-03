@@ -41,6 +41,7 @@ class ATTR(Enum):
 
     can_be_event_noun = 'can_be_event_noun'
     can_be_entity_noun = 'can_be_entity_noun'
+    can_be_named_entity_noun = 'can_be_named_entity_noun'
     can_be_predicate_noun = 'can_be_predicate_noun'
 
 
@@ -54,6 +55,7 @@ class UserWord(BaseModel):
 
     can_be_event_noun: Optional[bool] = None
     can_be_entity_noun: Optional[bool] = None
+    can_be_named_entity_noun = 'can_be_named_entity_noun'
     can_be_predicate_noun: Optional[bool] = None
 
 
@@ -186,7 +188,7 @@ class WordBank(ABC):
         pass
 
     @lru_cache(1000000)
-    def get_attrs(self, word: str) -> List[ATTR]:
+    def get_attrs(self, word: str, pos_not_found_warning=True) -> List[ATTR]:
         attrs = []
 
         def has_attr(name: str) -> bool:
@@ -196,19 +198,22 @@ class WordBank(ABC):
             else:
                 return getattr(self, f'_{name}')(word)
 
-        if POS.VERB in self.get_pos(word):
+        if POS.VERB in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_intransitive_verb'):
                 attrs.append(ATTR.can_be_intransitive_verb)
-        if POS.VERB in self.get_pos(word):
+        if POS.VERB in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_transitive_verb'):
                 attrs.append(ATTR.can_be_transitive_verb)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_event_noun'):
                 attrs.append(ATTR.can_be_event_noun)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_entity_noun'):
                 attrs.append(ATTR.can_be_entity_noun)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
+            if has_attr('can_be_named_entity_noun'):
+                attrs.append(ATTR.can_be_named_entity_noun)
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_predicate_noun'):
                 attrs.append(ATTR.can_be_predicate_noun)
 
@@ -228,6 +233,10 @@ class WordBank(ABC):
 
     @abstractmethod
     def _can_be_entity_noun(self, noun: str) -> bool:
+        pass
+
+    @abstractmethod
+    def _can_be_named_entity_noun(self, noun: str) -> bool:
         pass
 
     @abstractmethod

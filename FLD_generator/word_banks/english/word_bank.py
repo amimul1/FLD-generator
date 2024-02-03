@@ -311,6 +311,15 @@ class EnglishWordBank(WordBank):
             return True
         return self._word_util.can_be_entity_noun(noun)
 
+    def _can_be_named_entity_noun(self, noun: str) -> bool:
+        if noun in self._person_names:
+            return True
+
+        # we do not use can_be_named_entity_noun(), as it is really low precision.
+        # return self._word_util.can_be_named_entity_noun(noun)
+
+        return False
+
     def _can_be_predicate_noun(self, noun: str) -> bool:
         return not self._can_be_entity_noun(noun) and not self._can_be_event_noun(noun)
 

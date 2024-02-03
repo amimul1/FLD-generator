@@ -5,7 +5,7 @@ from typing import Set, Optional
 
 from FLD_generator.formula import Formula
 from FLD_generator.utils import starts_with_vowel_sound
-from FLD_generator.word_banks import POS
+from FLD_generator.word_banks import POS, ATTR
 from FLD_generator.word_banks.english import MODAL_VERBS
 from FLD_generator.person_names import get_person_names
 from .templated import TemplatedTranslator
@@ -119,6 +119,7 @@ class EnglishTranslator(TemplatedTranslator):
         # translation = self._fix_pred_singularity(translation)   # we will handle singular/plural matter in the translation configs
         translation = self._randomly_convert_thing_to_person(translation)
         translation = self._reduce_degenerate_blanks(translation)
+        translation = self._strip_the_from_named_entities(translation)
 
         for mv0 in MODAL_VERBS:
             for mv1 in MODAL_VERBS:
@@ -220,6 +221,23 @@ class EnglishTranslator(TemplatedTranslator):
     #         logger.info('translation is fixed as:\norig : "%s"\nfixed: "%s"', translation, translation_fixed)
 
     #     return translation_fixed
+
+    def _strip_the_from_named_entities(self, translation: str) -> str:
+        translation_org = translation
+        tokens = translation.split(' ')
+
+        NE_indices = [i for i, token in enumerate(tokens)
+                      if ATTR.can_be_named_entity_noun in self._word_bank.get_attrs(token, pos_not_found_warning=False)]
+        unwanted_the_indices = [i - 1
+                                for i in NE_indices
+                                if i - 1 >= 0 and tokens[i - 1] == 'the']
+        translation = ' '.join([token for i, token in enumerate(tokens)
+                                if i not in unwanted_the_indices])
+
+        if translation_org != translation:
+            logger.critical(translation_org)
+            logger.critical(translation)
+        return translation
 
     def _reduce_degenerate_blanks(self, translation: str) -> str:
         return re.sub(r'\s+', ' ', translation).strip(' ')

@@ -21,6 +21,7 @@ class WN_POS(Enum):
 
 
 _ENTITY_SYNSETS_CACHE: Optional[Set[Synset]] = None
+_NAMED_ENTITY_SYNSETS_CACHE: Optional[Set[Synset]] = None
 _EVENT_SYNSETS_CACHE: Optional[Set[Synset]] = None
 
 
@@ -138,6 +139,31 @@ class SynsetOp:
                     self._descendants(root_synset))
             logger.info('loading entity nouns once ... done!')
         return _ENTITY_SYNSETS_CACHE
+
+    def is_named_entity(self, syn: Synset) -> bool:
+        return syn in self._get_named_entities()
+
+    def _get_named_entities(self) -> Set[Synset]:
+        # Run ./launchers/E00.show_wordnet_hypernyms.py to find named entity root synsets.
+        root_synset_names = [
+            # 'entity.n.01',  # too general, e.g., it includes "then", which is a time.
+            'person.n.01',
+            'location.n.01',
+            'organization.n.01',
+            # we could not find shared root for product names
+        ]
+
+        global _NAMED_ENTITY_SYNSETS_CACHE
+        if _NAMED_ENTITY_SYNSETS_CACHE is None:
+            logger.info('loading named entity nouns once ...')
+            _NAMED_ENTITY_SYNSETS_CACHE = set()
+            for root_synset_name in root_synset_names:
+                root_synset = self.from_word(root_synset_name, exact=True)[0]
+                _NAMED_ENTITY_SYNSETS_CACHE = _NAMED_ENTITY_SYNSETS_CACHE.union(
+                    self._descendants(root_synset))
+            logger.info('loading named entity nouns once ... done!')
+        return _NAMED_ENTITY_SYNSETS_CACHE
+
 
     def _ancestors(self, syn: Synset) -> Set[Synset]:
         ancestors = set()

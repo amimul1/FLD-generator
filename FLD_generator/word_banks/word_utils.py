@@ -158,6 +158,10 @@ class WordUtil:
         return any((self._syn_op.is_entity(syn)
                     for syn in self._syns_from_word(noun)))
 
+    def can_be_named_entity_noun(self, noun: str) -> bool:
+        return any((self._syn_op.is_named_entity(syn)
+                    for syn in self._syns_from_word(noun)))
+
     def get_synonyms(self, word: str) -> List[str]:
         return list({
             lemma.name()
