@@ -408,6 +408,70 @@
 
 
 
+      "{A}all_things": [
+        "<<phrase::all_things>> <<phrase::{A}predicate.plural>>"
+      ],
+      "¬{A}all_things": [
+        "<<phrase::all_things>> <<phrase::¬{A}predicate.plural>>"
+      ],
+
+
+      "({A}all_things & {B}all_things)": [
+          "<<phrase::all_things>> <<phrase::({A} & {B})predicate.plural>>",
+          "<<clause::verb::{A}all_things>> <<phrase::and>> <<clause::verb::{B}they>>",
+
+          "__"
+      ],
+      "(¬{A}all_things & {B}all_things)": [
+          "<<phrase::all_things>> <<phrase::(¬{A} & {B})predicate.plural>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::and>> <<clause::verb::{B}they>>",
+
+          "__"
+      ],
+      "({A}all_things & ¬{B}all_things)": [
+          "<<phrase::all_things>> <<phrase::({A} & ¬{B})predicate.plural>>",
+          "<<clause::verb::{A}all_things>> <<phrase::and>> <<clause::verb::¬{B}they>>",
+
+          "__"
+      ],
+      "(¬{A}all_things & ¬{B}all_things)": [
+          "<<phrase::all_things>> <<phrase::(¬{A} & ¬{B})predicate.plural>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::and>> <<clause::verb::¬{B}they>>",
+
+          "__"
+      ],
+
+
+      "({A}all_things v {B}all_things)": [
+          "<<phrase::all_things>> <<phrase::({A} v {B})predicate.plural>>",
+          "<<clause::verb::{A}all_things>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<phrase::maybe_either>> <<clause::verb::{A}all_things>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
+
+          "__"
+      ],
+      "(¬{A}all_things v {B}all_things)": [
+          "<<phrase::all_things>> <<phrase::(¬{A} v {B})predicate.plural>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}all_things>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
+
+          "__"
+      ],
+      "({A}all_things v ¬{B}all_things)": [
+          "<<phrase::all_things>> <<phrase::({A} v ¬{B})predicate.plural>>",
+          "<<clause::verb::{A}all_things>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<phrase::maybe_either>> <<clause::verb::{A}all_things>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
+
+          "__"
+      ],
+      "(¬{A}all_things v ¬{B}all_things)": [
+          "<<phrase::all_things>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}all_things>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
+
+          "__"
+      ],
+
+
 
 
       "{A}it": [

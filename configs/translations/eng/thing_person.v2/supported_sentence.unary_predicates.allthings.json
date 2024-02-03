@@ -1,0 +1,43 @@
+{
+
+  "sentence": {
+
+    "{A}all_things": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::{A}all_things>> <<phrase::is_true>>"]
+    ],
+    "¬{A}all_things": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::¬{A}all_things>> <<phrase::is_true>>"]
+    ],
+
+
+    "({A}all_things & {B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A}all_things & {B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "(¬{A}all_things & {B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things & {B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "({A}all_things & ¬{B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A}all_things & ¬{B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "(¬{A}all_things & ¬{B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things & ¬{B}all_things)>> <<phrase::is_true>>"]
+    ],
+
+
+    "({A}all_things v {B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A}all_things v {B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "(¬{A}all_things v {B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things v {B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "({A}all_things v ¬{B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A}all_things v ¬{B}all_things)>> <<phrase::is_true>>"]
+    ],
+    "(¬{A}all_things v ¬{B}all_things)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things v ¬{B}all_things)>> <<phrase::is_true>>"]
+    ]
+
+
+  }
+
+}

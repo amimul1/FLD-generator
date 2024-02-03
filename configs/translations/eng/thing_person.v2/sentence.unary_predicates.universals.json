@@ -3,82 +3,100 @@
   "sentence": {
 
     "(x): {A}x": [
-      "<<sentence::{A}everything>>"
+      "<<sentence::{A}everything>>",
+      "<<sentence::{A}all_things>>"
     ],
     "(x): ¬{A}x": [
-      "<<sentence::¬{A}everything>>"
+      "<<sentence::¬{A}everything>>",
+      "<<sentence::¬{A}all_things>>"
     ],
 
 
 
 
     "(x): ({A}x & {B}x)": [
-      "<<sentence::({A}everything & {B}everything)>>"
+      "<<sentence::({A}everything & {B}everything)>>",
+      "<<sentence::({A}all_things & {B}all_things)>>"
     ],
     "(x): (¬{A}x & {B}x)": [
-      "<<sentence::(¬{A}everything & {B}everything)>>"
+      "<<sentence::(¬{A}everything & {B}everything)>>",
+      "<<sentence::(¬{A}all_things & {B}all_things)>>"
     ],
     "(x): ({A}x & ¬{B}x)": [
-      "<<sentence::({A}everything & ¬{B}everything)>>"
+      "<<sentence::({A}everything & ¬{B}everything)>>",
+      "<<sentence::({A}all_things & ¬{B}all_things)>>"
     ],
     "(x): (¬{A}x & ¬{B}x)": [
-      "<<sentence::(¬{A}everything & ¬{B}everything)>>"
+      "<<sentence::(¬{A}everything & ¬{B}everything)>>",
+      "<<sentence::(¬{A}all_things & ¬{B}all_things)>>"
     ],
 
 
     "(x): ¬({A}x & {B}x)": [
       "__<<sentence::¬({A}everything & {B}everything)>>",
+      "__<<sentence::¬({A}all_things & {B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::({A}it & {B}it)>>",
       "<<phrase::there_is>> <<clause::noun::({A}nothing & {B}nothing)generic_obj>>"
     ],
     "(x): ¬(¬{A}x & {B}x)": [
       "__<<sentence::¬(¬{A}everything & {B}everything)>>",
+      "__<<sentence::¬(¬{A}all_things & {B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::(¬{A}it & {B}it)>>",
       "<<phrase::there_is>> <<clause::noun::(¬{A}nothing & {B}nothing)generic_obj>>"
     ],
     "(x): ¬({A}x & ¬{B}x)": [
       "__<<sentence::¬({A}everything & ¬{B}everything)>>",
+      "__<<sentence::¬({A}all_things & ¬{B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::({A}it & ¬{B}it)>>",
       "<<phrase::there_is>> <<clause::noun::({A}nothing & ¬{B}nothing)generic_obj>>"
     ],
     "(x): ¬(¬{A}x & ¬{B}x)": [
       "__<<sentence::¬(¬{A}everything & ¬{B}everything)>>",
+      "__<<sentence::¬(¬{A}all_things & ¬{B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::(¬{A}it & ¬{B}it)>>",
       "<<phrase::there_is>> <<clause::noun::(¬{A}nothing & ¬{B}nothing)generic_obj>>"
     ],
 
 
     "(x): ({A}x v {B}x)": [
-      "<<sentence::({A}everything v {B}everything)>>"
+      "<<sentence::({A}everything v {B}everything)>>",
+      "<<sentence::({A}all_things v {B}all_things)>>"
     ],
     "(x): (¬{A}x v {B}x)": [
-      "<<sentence::(¬{A}everything v {B}everything)>>"
+      "<<sentence::(¬{A}everything v {B}everything)>>",
+      "<<sentence::(¬{A}all_things v {B}all_things)>>"
     ],
     "(x): ({A}x v ¬{B}x)": [
-      "<<sentence::({A}everything v ¬{B}everything)>>"
+      "<<sentence::({A}everything v ¬{B}everything)>>",
+      "<<sentence::({A}all_things v ¬{B}all_things)>>"
     ],
     "(x): (¬{A}x v ¬{B}x)": [
-      "<<sentence::(¬{A}everything v ¬{B}everything)>>"
+      "<<sentence::(¬{A}everything v ¬{B}everything)>>",
+      "<<sentence::(¬{A}all_things v ¬{B}all_things)>>"
     ],
 
 
     "(x): ¬({A}x v {B}x)": [
       "__<<sentence::¬({A}everything v {B}everything)>>",
+      "__<<sentence::¬({A}all_things v {B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::({A}it v {B}it)>>",
       "<<phrase::there_is>> <<clause::noun::({A}nothing v {B}nothing)generic_obj>>"
     ],
     "(x): ¬(¬{A}x v {B}x)": [
       "__<<sentence::¬(¬{A}everything v {B}everything)>>",
+      "__<<sentence::¬(¬{A}all_things v {B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::(¬{A}it v {B}it)>>",
       "<<phrase::there_is>> <<clause::noun::(¬{A}nothing v {B}nothing)generic_obj>>"
     ],
     "(x): ¬({A}x v ¬{B}x)": [
       "__<<sentence::¬({A}everything v ¬{B}everything)>>",
+      "__<<sentence::¬({A}all_things v ¬{B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::({A}it v ¬{B}it)>>",
       "<<phrase::there_is>> <<clause::noun::({A}nothing v ¬{B}nothing)generic_obj>>"
     ],
     "(x): ¬(¬{A}x v ¬{B}x)": [
       "__<<sentence::¬(¬{A}everything v ¬{B}everything)>>",
+      "__<<sentence::¬(¬{A}all_things v ¬{B}all_things)>>",
       "<<phrase::there_is_nothing_such_that>> <<sentence::(¬{A}it v ¬{B}it)>>",
       "<<phrase::there_is>> <<clause::noun::(¬{A}nothing v ¬{B}nothing)generic_obj>>"
     ],
