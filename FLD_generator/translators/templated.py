@@ -574,17 +574,24 @@ class TemplatedTranslator(Translator):
 
         # fix grammers and other stufs
         translations = [
-            (self._postprocess_translation_all(translation, knowlege_type=knowlege_type) if translation is not None else None)
+            (self._all_postprocess_translation(translation, knowlege_type=knowlege_type) if translation is not None else None)
             for translation, knowlege_type in zip(translations, knowledge_types)
         ]
 
         for SO_swap_formula in SO_swap_formulas:
             if SO_swap_formula is not None and SO_swap_formula.translation is not None:
                 SO_swap_formula.translation = (
-                    self._postprocess_translation_all(SO_swap_formula.translation, knowlege_type=None)
+                    self._all_postprocess_translation(SO_swap_formula.translation, knowlege_type=None)
                     if SO_swap_formula.translation is not None
                     else None
                 )
+
+        all_translations = translations + [SO_swap_formula.translation if SO_swap_formula is not None else None for SO_swap_formula in SO_swap_formulas]
+        all_translations = self._postprocess_translations_at_once(all_translations)
+        translations = all_translations[:len(translations)]
+        for SO_swap_formula, translation in zip(SO_swap_formulas, all_translations[len(translations):]):
+            if SO_swap_formula is not None:
+                SO_swap_formula.translation = translation
 
         return list(zip(translation_names, translations, SO_swap_formulas, knowledge_types)), count_stats
 
@@ -1314,15 +1321,18 @@ class TemplatedTranslator(Translator):
     def _reset_assets(self) -> None:
         pass
 
-    def _postprocess_translation_all(self, translation: str, knowlege_type: Optional[str] = None) -> str:
+    def _all_postprocess_translation(self, translation: str, knowlege_type: Optional[str] = None) -> str:
         # We need to postprocess not only "knowlege_type" formulas but others,
         # because the translations can "spills" to other formulas.
         for knowledge_bank in self._knowledge_banks:
             translation = knowledge_bank.postprocess_translation(translation)
-
         translation = self._postprocess_translation(translation)
         return translation
 
     @abstractmethod
     def _postprocess_translation(self, translation: str) -> str:
+        pass
+
+    @abstractmethod
+    def _postprocess_translations_at_once(self, translations: List[str]) -> List[str]:
         pass

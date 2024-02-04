@@ -101,14 +101,15 @@
 
     "the": [
       "the",
-      "this",
-      "that"
+      "__comment: we will do this augmentation in the postprocessing",
+      "__this",
+      "__that"
     ],
 
     "the.plural": [
       "the",
-      "these",
-      "those"
+      "__these",
+      "__those"
     ],
 
     "a": [
@@ -325,7 +326,10 @@
 
     "the_fact_that": [
       "that",
-      "the fact that"
+      ["W_VOL_AVG__0.3", "the fact that"],
+      ["W_VOL_AVG__0.1", "the claim that"],
+      ["W_VOL_AVG__0.1", "the statement that"],
+      ["W_VOL_AVG__0.1", "the proposition that"]
     ],
 
     "is_true": [
@@ -404,12 +408,17 @@
 
     "it": [
       "it",
-      "<<phrase::the>> <<phrase::thing>>"
+      "__comment: we will augment pronouns this in the postsprocessing",
+      "__this",
+      "__that",
+      "__<<phrase::the>> <<phrase::thing>>"
     ],
 
     "they": [
       "they",
-      "<<phrase::the.plural>> <<phrase::things>>"
+      "__these",
+      "__those",
+      "__<<phrase::the.plural>> <<phrase::things>>"
     ],
 
     "something": [
