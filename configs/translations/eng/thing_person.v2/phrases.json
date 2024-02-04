@@ -265,13 +265,13 @@
     "occur": [
       "occurs",
       "happens",
-      "__takes its rise"
+      "takes place"
     ],
 
     "occur.plural": [
       "occur",
       "happen",
-      "__take their rise"
+      "take place"
     ],
 
     "not_occur": [
@@ -284,26 +284,32 @@
 
     "is_a_kind_of": [
       "<<phrase::is>>",
-      "<<phrase::is>> a kind of",
-      "__<<phrase::is>> an example of"
+      ["W_VOL_AVG__0.2", "<<phrase::is>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::categorized_verb>>"]
     ],
 
     "is_a_kind_of.plural": [
       "<<phrase::are>>",
-      "<<phrase::are>> a kind of",
-      "__<<phrase::are>> an example of"
+      ["W_VOL_AVG__0.2", "<<phrase::are>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::categorized_verb>>"]
     ],
 
     "is_not_a_kind_of": [
       "<<phrase::is>> not",
-      "<<phrase::is>> <<phrase::not_pred>> a kind of",
-      "__<<phrase::is>> <<phrase::not_pred>> an example of"
+      ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> <<phrase::categorized_verb>>"]
     ],
 
     "is_not_a_kind_of.plural": [
       "<<phrase::are>> not",
-      "<<phrase::are>> <<phrase::not_pred>> a kind of",
-      "__<<phrase::are>> <<phrase::not_pred>> an example of"
+      ["W_VOL_AVG__0.2", "<<phrase::are>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> <<phrase::categorized_verb>>"]
+    ],
+
+    "categorized_verb": [
+      "categorized as",
+      "classed as",
+      "classified as"
     ],
 
     "if_conjunction": [
@@ -317,6 +323,14 @@
     "maybe_either": [
       "either",
       ""
+    ],
+
+    "neither": [
+      "neither"
+    ],
+
+    "nor": [
+      "nor"
     ],
 
     "maybe_then": [
@@ -341,14 +355,14 @@
     "is_not_true": [
       "<<phrase::is>> <<phrase::incorrect_adj>>",
       ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> <<phrase::correct_adj>>"],
-      "<<phrase::does>> <<phrase::not_pred>> <<phrase::hold_verb>>"
+      "<<phrase::not_hold_verb>>"
     ],
 
     "correct_adj": [
       "correct",
       "right",
       "true",
-      "__valid",
+      "valid",
       "__the case",
       "__comment: 'not the case' is mostly used as 'That is not the case'",
 
@@ -360,20 +374,25 @@
       "incorrect",
       "wrong",
       "false",
-      "__invalid",
+      "invalid",
       "__",
 
       "__"
     ],
 
     "hold_verb": [
-      "hold",
-      "__apply"
+      "holds",
+      "stands"
+    ],
+
+    "not_hold_verb": [
+      "does not hold",
+      "does not stand"
     ],
 
     "there_is": [
        "there is",
-       "there exists"
+       ["W_VOL_AVG__0.3", "there exists"]
     ],
 
     "there_are": [
@@ -383,12 +402,12 @@
     "there_is_something_such_that": [
        "__for <<phrase::something>>",
        "there is <<phrase::something>> such that",
-       "there exists <<phrase::something>> such that"
+       ["W_VOL_AVG__0.3", "there exists <<phrase::something>> such that"]
     ],
 
     "there_is_nothing_such_that" : [
        "there is <<phrase::nothing>> such that",
-       "there exists <<phrase::nothing>> such that"
+       ["W_VOL_AVG__0.3", "there exists <<phrase::nothing>> such that"]
     ],
 
     "thing": [

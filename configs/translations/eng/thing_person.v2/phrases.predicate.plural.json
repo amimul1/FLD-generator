@@ -106,6 +106,7 @@
     "(¬{A} & ¬{B})predicate.plural": [
       "<<phrase::¬{A}predicate.plural>> <<phrase::and>> <<phrase::¬{B}predicate.plural>>",
       "__both <<phrase::¬{A}predicate.plural>> <<phrase::and>> <<phrase::¬{B}predicate.plural>>",
+      "<<phrase::neither>> <<phrase::{A}predicate.plural>> <<phrase::nor>> <<phrase::{B}predicate.plural>>",
 
       ["W_VOL_AVG__0.2", "<<phrase::is.plural>> <<phrase::¬{A}is_tgt.plural>> <<phrase::and>> <<phrase::¬{B}is_tgt.plural>>"],
       ["W_VOL_AVG__0.2", "<<phrase::is.plural>> <<phrase::not_pred>> <<phrase::¬{A}is_not_tgt.plural>> <<phrase::but>> <<phrase::¬{B}is_tgt.plural>>"],

@@ -106,6 +106,7 @@
     "(¬{A} & ¬{B})predicate": [
       "<<phrase::¬{A}predicate>> <<phrase::and>> <<phrase::¬{B}predicate>>",
       "__both <<phrase::¬{A}predicate>> <<phrase::and>> <<phrase::¬{B}predicate>>",
+      "<<phrase::neither>> <<phrase::{A}predicate>> <<phrase::nor>> <<phrase::{B}predicate>>",
 
       ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::¬{A}is_tgt>> <<phrase::and>> <<phrase::¬{B}is_tgt>>"],
       ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> <<phrase::¬{A}is_not_tgt>> <<phrase::but>> <<phrase::¬{B}is_tgt>>"],
