@@ -517,28 +517,28 @@
 
     "if_conjunction": [
       "if",
-      ["W_VOL_AVG__0.1", "whenever"],
-      ["W_VOL_AVG__0.1", "when"],
+      ["W_VOL_AVG__0.05", "whenever"],
+      ["W_VOL_AVG__0.05", "when"],
 
       "__comment: the followings are not acceptable, as they imply that, in a sentences like '{A}, therefore {B}', {A} is true.",
-      ["W_VOL_AVG__0.1", "__as"],
-      ["W_VOL_AVG__0.1", "__because"],
-      ["W_VOL_AVG__0.1", "__since"],
-      ["W_VOL_AVG__0.1", "__given that"]
+      ["W_VOL_AVG__0.05", "__as"],
+      ["W_VOL_AVG__0.05", "__because"],
+      ["W_VOL_AVG__0.05", "__since"],
+      ["W_VOL_AVG__0.05", "__given that"]
     ],
 
     "__thus_conjunction": [
       "__comment: we do not used thus, because it implies that, in a sentences like '{A}, therefore {B}', {A} is true.",
       "thus",
-      ["W_VOL_AVG__0.1", "therefore"],
-      ["W_VOL_AVG__0.1", "hence"],
-      ["W_VOL_AVG__0.1", "consequently"],
-      ["W_VOL_AVG__0.1", "as a result"],
-      ["W_VOL_AVG__0.1", "accordingly"],
-      ["W_VOL_AVG__0.1", "so"],
-      ["W_VOL_AVG__0.1", "for this reason"],
-      ["W_VOL_AVG__0.1", "because of this"],
-      ["W_VOL_AVG__0.1", "due to this"]
+      ["W_VOL_AVG__0.05", "therefore"],
+      ["W_VOL_AVG__0.05", "hence"],
+      ["W_VOL_AVG__0.05", "consequently"],
+      ["W_VOL_AVG__0.05", "as a result"],
+      ["W_VOL_AVG__0.05", "accordingly"],
+      ["W_VOL_AVG__0.05", "so"],
+      ["W_VOL_AVG__0.05", "for this reason"],
+      ["W_VOL_AVG__0.05", "because of this"],
+      ["W_VOL_AVG__0.05", "due to this"]
     ],
 
     "maybe_either": [
@@ -561,10 +561,10 @@
 
     "the_fact_that": [
       "that",
-      ["W_VOL_AVG__0.3", "the fact that"],
-      ["W_VOL_AVG__0.1", "the claim that"],
-      ["W_VOL_AVG__0.1", "the statement that"],
-      ["W_VOL_AVG__0.1", "the proposition that"]
+      ["W_VOL_AVG__0.5", "the fact that"],
+      ["W_VOL_AVG__0.05", "the claim that"],
+      ["W_VOL_AVG__0.05", "the statement that"],
+      ["W_VOL_AVG__0.05", "the proposition that"]
     ],
 
     "is_true": [
