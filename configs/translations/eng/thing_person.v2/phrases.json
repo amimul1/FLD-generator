@@ -126,19 +126,32 @@
     ],
 
     "and_pred": [
-      "and"
+      "and",
+      ["W_VOL_AVG__0.05", "also"],
+      ["W_VOL_AVG__0.05", "and also"],
+      ["W_VOL_AVG__0.05", "and moreover"],
+      ["W_VOL_AVG__0.05", "and in addition"],
+      ["W_VOL_AVG__0.05", "and further"],
+      ["W_VOL_AVG__0.05", "and furthermore"],
+      ["W_VOL_AVG__0.05", "and besides"],
+      ["W_VOL_AVG__0.05", "and additionally"],
+      ["W_VOL_AVG__0.05", "and as well"]
     ],
 
     "and_noun": [
       "and"
     ],
 
-    "or": [
-      "or"
+    "andOr_noun": [
+      "and/or"
     ],
 
-    "andOr": [
+    "andOr_pred": [
       "and/or"
+    ],
+
+    "or": [
+      "or"
     ],
 
     "but_pred": [

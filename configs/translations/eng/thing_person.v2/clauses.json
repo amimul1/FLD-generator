@@ -55,37 +55,37 @@
 
 
       "({A} v {B})": [
-          "<<clause::verb::{A}>> <<phrase::andOr>> <<clause::verb::{B}>>",
+          "<<clause::verb::{A}>> <<phrase::andOr_pred>> <<clause::verb::{B}>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}>> <<phrase::or>> <<clause::verb::{B}>> <<phrase::or>> both",
 
-          "<<phrase::{A}event_noun>> <<phrase::andOr>> <<phrase::{B}event_noun>> <<phrase::occur>>",
+          "<<phrase::{A}event_noun>> <<phrase::andOr_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>",
           "<<phrase::maybe_either>> <<phrase::{A}event_noun>> <<phrase::or>> <<phrase::{B}event_noun>> <<phrase::or>> both <<phrase::occur>>",
 
           "__"
       ],
       "(¬{A} v {B})": [
-          "<<clause::verb::¬{A}>> <<phrase::andOr>> <<clause::verb::{B}>>",
+          "<<clause::verb::¬{A}>> <<phrase::andOr_pred>> <<clause::verb::{B}>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}>> <<phrase::or>> <<clause::verb::{B}>> <<phrase::or>> both",
 
-          "<<phrase::¬{A}event_noun>> <<phrase::andOr>> <<phrase::{B}event_noun>> <<phrase::occur>>",
+          "<<phrase::¬{A}event_noun>> <<phrase::andOr_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>",
           "<<phrase::maybe_either>> <<phrase::¬{A}event_noun>> <<phrase::or>> <<phrase::{B}event_noun>> <<phrase::or>> both <<phrase::occur>>",
 
           "__"
       ],
       "({A} v ¬{B})": [
-          "<<clause::verb::{A}>> <<phrase::andOr>> <<clause::verb::¬{B}>>",
+          "<<clause::verb::{A}>> <<phrase::andOr_pred>> <<clause::verb::¬{B}>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}>> <<phrase::or>> <<clause::verb::¬{B}>> <<phrase::or>> both",
 
-          "<<phrase::{A}event_noun>> <<phrase::andOr>> <<phrase::¬{B}event_noun>> <<phrase::occur>>",
+          "<<phrase::{A}event_noun>> <<phrase::andOr_noun>> <<phrase::¬{B}event_noun>> <<phrase::occur>>",
           "<<phrase::maybe_either>> <<phrase::{A}event_noun>> <<phrase::or>> <<phrase::¬{B}event_noun>> <<phrase::or>> both <<phrase::occur>>",
 
           "__"
       ],
       "(¬{A} v ¬{B})": [
-          "<<clause::verb::¬{A}>> <<phrase::andOr>> <<clause::verb::¬{B}>>",
+          "<<clause::verb::¬{A}>> <<phrase::andOr_pred>> <<clause::verb::¬{B}>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}>> <<phrase::or>> <<clause::verb::¬{B}>> <<phrase::or>> both",
 
-          "<<phrase::¬{A}event_noun>> <<phrase::andOr>> <<phrase::¬{B}event_noun>> <<phrase::occur>>",
+          "<<phrase::¬{A}event_noun>> <<phrase::andOr_noun>> <<phrase::¬{B}event_noun>> <<phrase::occur>>",
           "<<phrase::maybe_either>> <<phrase::¬{A}event_noun>> <<phrase::or>> <<phrase::¬{B}event_noun>> <<phrase::or>> both <<phrase::occur>>",
 
           "__"
@@ -130,25 +130,25 @@
 
       "({A}{a} v {B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::({A} v {B})predicate>>",
-          "<<clause::verb::{A}{a}generic_subj>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::{A}{a}generic_subj>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}{a}generic_subj>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v {B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::(¬{A} v {B})predicate>>",
-          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}generic_subj>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "({A}{a} v ¬{B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::({A} v ¬{B})predicate>>",
-          "<<clause::verb::{A}{a}generic_subj>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}{a}generic_subj>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}{a}generic_subj>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v ¬{B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::(¬{A} v ¬{B})predicate>>",
-          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}generic_subj>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
@@ -192,25 +192,25 @@
 
       "({A}{a} v {B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::({A} v {B})predicate.plural>>",
-          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
 
           "<<phrase::maybe_etheyher>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v {B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::(¬{A} v {B})predicate.plural>>",
-          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
 
           "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
       ],
       "({A}{a} v ¬{B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::({A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
 
           "<<phrase::maybe_etheyher>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v ¬{B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
 
           "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
       ],
@@ -254,25 +254,25 @@
 
       "({A}{a} v {B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::({A} v {B})predicate>>",
-          "<<clause::verb::{A}{a}specific_subj>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::{A}{a}specific_subj>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}{a}specific_subj>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v {B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::(¬{A} v {B})predicate>>",
-          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}specific_subj>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "({A}{a} v ¬{B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::({A} v ¬{B})predicate>>",
-          "<<clause::verb::{A}{a}specific_subj>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}{a}specific_subj>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}{a}specific_subj>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v ¬{B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::(¬{A} v ¬{B})predicate>>",
-          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}specific_subj>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
@@ -318,25 +318,25 @@
 
       "({A}something v {B}something)": [
           "<<phrase::something>> <<phrase::({A} v {B})predicate>>",
-          "<<clause::verb::{A}something>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::{A}something>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}something>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}something v {B}something)": [
           "<<phrase::something>> <<phrase::(¬{A} v {B})predicate>>",
-          "<<clause::verb::¬{A}something>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}something>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}something>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both"
       ],
       "({A}something v ¬{B}something)": [
           "<<phrase::something>> <<phrase::({A} v ¬{B})predicate>>",
-          "<<clause::verb::{A}something>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}something>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::{A}something>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
       "(¬{A}something v ¬{B}something)": [
           "<<phrase::something>> <<phrase::(¬{A} v ¬{B})predicate>>",
-          "<<clause::verb::¬{A}something>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::¬{A}something>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
 
           "<<phrase::maybe_either>> <<clause::verb::¬{A}something>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both"
       ],
@@ -380,28 +380,28 @@
 
       "({A}everything v {B}everything)": [
           "<<phrase::everything>> <<phrase::({A} v {B})predicate>>",
-          "<<clause::verb::{A}everything>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::{A}everything>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}everything>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}everything v {B}everything)": [
           "<<phrase::everything>> <<phrase::(¬{A} v {B})predicate>>",
-          "<<clause::verb::¬{A}everything>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}everything>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}everything>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "({A}everything v ¬{B}everything)": [
           "<<phrase::everything>> <<phrase::({A} v ¬{B})predicate>>",
-          "<<clause::verb::{A}everything>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}everything>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}everything>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}everything v ¬{B}everything)": [
           "<<phrase::everything>> <<phrase::(¬{A} v ¬{B})predicate>>",
-          "<<clause::verb::¬{A}everything>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::¬{A}everything>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}everything>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both",
 
           "__"
@@ -446,28 +446,28 @@
 
       "({A}all_things v {B}all_things)": [
           "<<phrase::all_things>> <<phrase::({A} v {B})predicate.plural>>",
-          "<<clause::verb::{A}all_things>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::{A}all_things>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}all_things>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}all_things v {B}all_things)": [
           "<<phrase::all_things>> <<phrase::(¬{A} v {B})predicate.plural>>",
-          "<<clause::verb::¬{A}all_things>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}all_things>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "({A}all_things v ¬{B}all_things)": [
           "<<phrase::all_things>> <<phrase::({A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::{A}all_things>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::{A}all_things>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}all_things>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}all_things v ¬{B}all_things)": [
           "<<phrase::all_things>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::¬{A}all_things>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::¬{A}all_things>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}all_things>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
@@ -512,28 +512,28 @@
 
       "({A}it v {B}it)": [
           "<<phrase::it>> <<phrase::({A} v {B})predicate>>",
-          "<<clause::verb::{A}it>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::{A}it>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}it>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}it v {B}it)": [
           "<<phrase::it>> <<phrase::(¬{A} v {B})predicate>>",
-          "<<clause::verb::¬{A}it>> <<phrase::andOr>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}it>> <<phrase::andOr_pred>> <<clause::verb::{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}it>> <<phrase::or>> <<clause::verb::{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "({A}it v ¬{B}it)": [
           "<<phrase::it>> <<phrase::({A} v ¬{B})predicate>>",
-          "<<clause::verb::{A}it>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}it>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::{A}it>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}it v ¬{B}it)": [
           "<<phrase::it>> <<phrase::(¬{A} v ¬{B})predicate>>",
-          "<<clause::verb::¬{A}it>> <<phrase::andOr>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::¬{A}it>> <<phrase::andOr_pred>> <<clause::verb::¬{B}it>>",
           "<<phrase::maybe_either>> <<clause::verb::¬{A}it>> <<phrase::or>> <<clause::verb::¬{B}it>> <<phrase::or>> both",
 
           "__"
@@ -579,28 +579,28 @@
 
       "({A}they v {B}they)": [
           "<<phrase::they>> <<phrase::({A} v {B})predicate.plural>>",
-          "<<clause::verb::{A}they>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::{A}they>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
           "<<phrase::maybe_etheyher>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}they v {B}they)": [
           "<<phrase::they>> <<phrase::(¬{A} v {B})predicate.plural>>",
-          "<<clause::verb::¬{A}they>> <<phrase::andOr>> <<clause::verb::{B}they>>",
+          "<<clause::verb::¬{A}they>> <<phrase::andOr_pred>> <<clause::verb::{B}they>>",
           "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "({A}they v ¬{B}they)": [
           "<<phrase::they>> <<phrase::({A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::{A}they>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::{A}they>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
           "<<phrase::maybe_etheyher>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}they v ¬{B}they)": [
           "<<phrase::they>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
-          "<<clause::verb::¬{A}they>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::¬{A}they>> <<phrase::andOr_pred>> <<clause::verb::¬{B}they>>",
           "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
@@ -685,7 +685,7 @@
       "({A} v {B}).event_occurrence": [
           "that <<clause::verb::({A} v {B})>>",
 
-          "<<clause::noun::{A}.event_occurrence>> <<phrase::andOr>> <<clause::noun::{B}.event_occurrence>>",
+          "<<clause::noun::{A}.event_occurrence>> <<phrase::andOr_noun>> <<clause::noun::{B}.event_occurrence>>",
           "<<phrase::maybe_either>> <<clause::noun::{A}.event_occurrence>> <<phrase::or>> <<clause::noun::{B}.event_occurrence>> <<phrase::or>> both",
 
           ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<clause::noun::({A} v {B}).event_occurrence>> <<phrase::is_true>>"]
@@ -693,7 +693,7 @@
       "(¬{A} v {B}).event_occurrence": [
           "that <<clause::verb::(¬{A} v {B})>>",
 
-          "<<clause::noun::¬{A}.event_occurrence>> <<phrase::andOr>> <<clause::noun::{B}.event_occurrence>>",
+          "<<clause::noun::¬{A}.event_occurrence>> <<phrase::andOr_noun>> <<clause::noun::{B}.event_occurrence>>",
           "<<phrase::maybe_either>> <<clause::noun::¬{A}.event_occurrence>> <<phrase::or>> <<clause::noun::{B}.event_occurrence>> <<phrase::or>> both",
 
           ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<clause::noun::(¬{A} v {B}).event_occurrence>> <<phrase::is_true>>"]
@@ -701,7 +701,7 @@
       "({A} v ¬{B}).event_occurrence": [
           "that <<clause::verb::({A} v ¬{B})>>",
 
-          "<<clause::noun::{A}.event_occurrence>> <<phrase::andOr>> <<clause::noun::¬{B}.event_occurrence>>",
+          "<<clause::noun::{A}.event_occurrence>> <<phrase::andOr_noun>> <<clause::noun::¬{B}.event_occurrence>>",
           "<<phrase::maybe_either>> <<clause::noun::{A}.event_occurrence>> <<phrase::or>> <<clause::noun::¬{B}.event_occurrence>> <<phrase::or>> both",
 
           ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<clause::noun::({A} v ¬{B}).event_occurrence>> <<phrase::is_true>>"]
@@ -709,7 +709,7 @@
       "(¬{A} v ¬{B}).event_occurrence": [
           "that <<clause::verb::(¬{A} v ¬{B})>>",
 
-          "<<clause::noun::¬{A}.event_occurrence>> <<phrase::andOr>> <<clause::noun::¬{B}.event_occurrence>>",
+          "<<clause::noun::¬{A}.event_occurrence>> <<phrase::andOr_noun>> <<clause::noun::¬{B}.event_occurrence>>",
           "<<phrase::maybe_either>> <<clause::noun::¬{A}.event_occurrence>> <<phrase::or>> <<clause::noun::¬{B}.event_occurrence>> <<phrase::or>> both",
 
           ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<clause::noun::(¬{A} v ¬{B}).event_occurrence>> <<phrase::is_true>>"]
