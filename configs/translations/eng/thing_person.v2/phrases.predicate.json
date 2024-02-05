@@ -30,7 +30,7 @@
       "<<phrase::is>> <<phrase::not_pred>> <<phrase::¬{A}is_not_tgt>>",
       "<<phrase::is_not_a_kind_of>> <<phrase::{A}a_noun>>",
 
-      "<<phrase::does>> <<phrase::not_pred>> {A}[VERB]"
+      "<<phrase::does_not>> {A}[VERB]"
     ],
 
     "¬{A}is_tgt": [

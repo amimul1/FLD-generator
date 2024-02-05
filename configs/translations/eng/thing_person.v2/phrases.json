@@ -167,15 +167,37 @@
     ],
 
     "does": [
-      "does"
+      "does",
+      ["W_VOL_AVG__0.05", "will"]
     ],
 
     "does.plural": [
-      "<<phrase::do>>"
+      "do",
+      ["W_VOL_AVG__0.05", "will"]
     ],
 
-    "do": [
-      "do"
+    "does_not": [
+      "doesn't",
+      ["W_VOL_AVG__0.05", "does <<phrase::not_pred>>"],
+      ["W_VOL_AVG__0.05", "won't"],
+      ["W_VOL_AVG__0.05", "will not"],
+      ["W_VOL_AVG__0.05", "never"],
+      ["W_VOL_AVG__0.05", "fails to"],
+      ["W_VOL_AVG__0.05", "__cannot"],
+      ["W_VOL_AVG__0.05", "__is not unable to"],
+      ["W_VOL_AVG__0.05", "__is unable to"]
+    ],
+
+    "does_not.plural": [
+      "don't",
+      ["W_VOL_AVG__0.05", "do <<phrase::not_pred>>"],
+      ["W_VOL_AVG__0.05", "won't"],
+      ["W_VOL_AVG__0.05", "will not"],
+      ["W_VOL_AVG__0.05", "never"],
+      ["W_VOL_AVG__0.05", "fail to"],
+      ["W_VOL_AVG__0.05", "__cannot"],
+      ["W_VOL_AVG__0.05", "__are not unable to"],
+      ["W_VOL_AVG__0.05", "__are unable to"]
     ],
 
     "cause_verb": [
@@ -398,15 +420,14 @@
     ],
 
     "not_occur": [
-      "<<phrase::does>> <<phrase::not_pred>> <<phrase::occur>>",
-      ["W_VOL_AVG__0.05", "fails to materialize"],
+      "<<phrase::does_not>> <<phrase::occur>>",
       ["W_VOL_AVG__0.05", "remains unrealized"],
       ["W_VOL_AVG__0.05", "falls through"]
     ],
 
+
     "not_occur.plural": [
-      "<<phrase::do>> <<phrase::not_pred>> <<phrase::occur>>",
-      ["W_VOL_AVG__0.05", "fail to materialize"],
+      "<<phrase::does.plural>> <<phrase::not_pred>> <<phrase::occur>>",
       ["W_VOL_AVG__0.05", "remain unrealized"],
       ["W_VOL_AVG__0.05", "fall through"]
     ],
@@ -430,27 +451,27 @@
     ],
 
     "is_not_a_kind_of": [
-      "<<phrase::is>> not",
+      "<<phrase::is>> <<phrase::not_pred>>",
       ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> <<phrase::categorized_verb>>"],
 
       ["W_VOL_AVG__0.05", "<<phrase::is>> distinct from"],
 
-      ["W_VOL_AVG__0.05", "does not belong to"],
-      ["W_VOL_AVG__0.05", "does not qualify as"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not>> belong to"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not>> qualify as"],
       ["W_VOL_AVG__0.05", "differs from"]
 
     ],
 
     "is_not_a_kind_of.plural": [
-      "<<phrase::are>> not",
+      "<<phrase::are>> <<phrase::not_pred>>",
       ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> <<phrase::categorized_verb>>"],
 
       ["W_VOL_AVG__0.05", "<<phrase::are>> distinct from"],
 
-      ["W_VOL_AVG__0.05", "do not belong to"],
-      ["W_VOL_AVG__0.05", "do not qualify as"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not.plural>> belong to"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not.plural>> qualify as"],
       ["W_VOL_AVG__0.05", "differ from"]
     ],
 
@@ -555,8 +576,8 @@
     ],
 
     "not_hold_verb": [
-      "does not hold",
-      "does not stand"
+      "<<phrase::does>> <<phrase::not>> hold",
+      "<<phrase::does>> <<phrase::not>> stand"
     ],
 
     "there_is": [

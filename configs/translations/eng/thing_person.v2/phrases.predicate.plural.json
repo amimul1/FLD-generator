@@ -30,7 +30,7 @@
       "<<phrase::is.plural>> <<phrase::not_pred>> <<phrase::¬{A}is_not_tgt.plural>>",
       "<<phrase::is_not_a_kind_of.plural>> <<phrase::{A}noun.plural>>",
 
-      "<<phrase::does.plural>> <<phrase::not_pred>> {A}[VERB]"
+      "<<phrase::does_not.plural>> {A}[VERB]"
     ],
 
     "¬{A}is_tgt.plural": [
