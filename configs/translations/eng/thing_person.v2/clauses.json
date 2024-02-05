@@ -24,22 +24,22 @@
           "__"
       ],
       "(¬{A} & {B})": [
-          "<<clause::verb::¬{A}>> <<phrase::but_and>> <<clause::verb::{B}>>",
+          "<<clause::verb::¬{A}>> <<phrase::but_and_pred>> <<clause::verb::{B}>>",
           "__both <<clause::verb::¬{A}>> <<phrase::and>> <<clause::verb::{B}>>",
 
           "<<phrase::¬{A}event_noun>> <<phrase::and>> <<phrase::{B}event_noun>> <<phrase::occur.plural>>",
           "both <<phrase::¬{A}event_noun>> <<phrase::and>> <<phrase::{B}event_noun>> <<phrase::occur.plural>>",
 
-          "<<phrase::not_noun>> <<phrase::{A}event_noun>> <<phrase::but>> <<phrase::{B}event_noun>> <<phrase::occur>>"
+          "<<phrase::not_noun>> <<phrase::{A}event_noun>> <<phrase::but_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>"
       ],
       "({A} & ¬{B})": [
-          "<<clause::verb::{A}>> <<phrase::but_and>> <<clause::verb::¬{B}>>",
+          "<<clause::verb::{A}>> <<phrase::but_and_pred>> <<clause::verb::¬{B}>>",
           "__both <<clause::verb::{A}>> <<phrase::and>> <<clause::verb::¬{B}>>",
 
           "<<phrase::{A}event_noun>> <<phrase::and>> <<phrase::¬{B}event_noun>> <<phrase::occur.plural>>",
           "both <<phrase::{A}event_noun>> <<phrase::and>> <<phrase::¬{B}event_noun>> <<phrase::occur.plural>>",
 
-          "<<phrase::{A}event_noun>> <<phrase::but>> <<phrase::not_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>"
+          "<<phrase::{A}event_noun>> <<phrase::but_noun>> <<phrase::not_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>"
       ],
       "(¬{A} & ¬{B})": [
           "<<clause::verb::¬{A}>> <<phrase::and>> <<clause::verb::¬{B}>>",
@@ -110,13 +110,13 @@
       ],
       "(¬{A}{a} & {B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::(¬{A} & {B})predicate>>",
-          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::but_and>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}{a}generic_subj>> <<phrase::but_and_pred>> <<clause::verb::{B}it>>",
 
           "__"
       ],
       "({A}{a} & ¬{B}{a})generic_subj": [
           "<<phrase::a>> <<phrase::{a}noun>> <<phrase::({A} & ¬{B})predicate>>",
-          "<<clause::verb::{A}{a}generic_subj>> <<phrase::but_and>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}{a}generic_subj>> <<phrase::but_and_pred>> <<clause::verb::¬{B}it>>",
 
           "__"
       ],
@@ -172,13 +172,13 @@
       ],
       "(¬{A}{a} & {B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::(¬{A} & {B})predicate.plural>>",
-          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::but_and>> <<clause::verb::{B}they>>",
+          "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::but_and_pred>> <<clause::verb::{B}they>>",
 
           "__"
       ],
       "({A}{a} & ¬{B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::({A} & ¬{B})predicate.plural>>",
-          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::but_and>> <<clause::verb::¬{B}they>>",
+          "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::but_and_pred>> <<clause::verb::¬{B}they>>",
 
           "__"
       ],
@@ -234,13 +234,13 @@
       ],
       "(¬{A}{a} & {B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::(¬{A} & {B})predicate>>",
-          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::but>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}{a}specific_subj>> <<phrase::but_pred>> <<clause::verb::{B}it>>",
 
           "__"
       ],
       "({A}{a} & ¬{B}{a})specific_subj": [
           "<<phrase::the>> <<phrase::{a}noun>> <<phrase::({A} & ¬{B})predicate>>",
-          "<<clause::verb::{A}{a}specific_subj>> <<phrase::but>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}{a}specific_subj>> <<phrase::but_pred>> <<clause::verb::¬{B}it>>",
 
           "__"
       ],
@@ -298,13 +298,13 @@
       ],
       "(¬{A}something & {B}something)": [
           "<<phrase::something>> <<phrase::(¬{A} & {B})predicate>>",
-          "<<clause::verb::¬{A}something>> <<phrase::but>> <<clause::verb::{B}it>>",
+          "<<clause::verb::¬{A}something>> <<phrase::but_pred>> <<clause::verb::{B}it>>",
 
           "__"
       ],
       "({A}something & ¬{B}something)": [
           "<<phrase::something>> <<phrase::({A} & ¬{B})predicate>>",
-          "<<clause::verb::{A}something>> <<phrase::but>> <<clause::verb::¬{B}it>>",
+          "<<clause::verb::{A}something>> <<phrase::but_pred>> <<clause::verb::¬{B}it>>",
 
           "__"
       ],

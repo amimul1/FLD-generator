@@ -137,13 +137,27 @@
       "and/or"
     ],
 
-    "but": [
-      "but"
+    "but_pred": [
+      "but",
+      ["W_VOL_AVG__0.05", "however"],
+      ["W_VOL_AVG__0.05", "although"],
+      ["W_VOL_AVG__0.05", "though"],
+      ["W_VOL_AVG__0.05", "nevertheless"],
+      ["W_VOL_AVG__0.05", "however"],
+      ["W_VOL_AVG__0.05", "instead"],
+      ["W_VOL_AVG__0.05", "nontheless"],
+      ["W_VOL_AVG__0.05", "whereas"],
+      ["W_VOL_AVG__0.05", "despite"],
+      ["W_VOL_AVG__0.05", "even though"]
     ],
 
-    "but_and": [
-      "but",
+    "but_and_pred": [
+      "<<phrase::but>>",
       "and"
+    ],
+
+    "but_noun": [
+      "but"
     ],
 
     "not_noun": [
