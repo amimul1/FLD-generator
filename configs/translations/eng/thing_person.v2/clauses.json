@@ -30,7 +30,7 @@
           "<<phrase::¬{A}event_noun>> <<phrase::and>> <<phrase::{B}event_noun>> <<phrase::occur.plural>>",
           "both <<phrase::¬{A}event_noun>> <<phrase::and>> <<phrase::{B}event_noun>> <<phrase::occur.plural>>",
 
-          "<<phrase::not_noun>><<phrase::{A}event_noun>> <<phrase::but>> <<phrase::{B}event_noun>> <<phrase::occur>>"
+          "<<phrase::not_noun>> <<phrase::{A}event_noun>> <<phrase::but>> <<phrase::{B}event_noun>> <<phrase::occur>>"
       ],
       "({A} & ¬{B})": [
           "<<clause::verb::{A}>> <<phrase::but_and>> <<clause::verb::¬{B}>>",
@@ -39,7 +39,7 @@
           "<<phrase::{A}event_noun>> <<phrase::and>> <<phrase::¬{B}event_noun>> <<phrase::occur.plural>>",
           "both <<phrase::{A}event_noun>> <<phrase::and>> <<phrase::¬{B}event_noun>> <<phrase::occur.plural>>",
 
-          "<<phrase::{A}event_noun>> <<phrase::but>> <<phrase::not_noun>><<phrase::{B}event_noun>> <<phrase::occur>>"
+          "<<phrase::{A}event_noun>> <<phrase::but>> <<phrase::not_noun>> <<phrase::{B}event_noun>> <<phrase::occur>>"
       ],
       "(¬{A} & ¬{B})": [
           "<<clause::verb::¬{A}>> <<phrase::and>> <<clause::verb::¬{B}>>",
