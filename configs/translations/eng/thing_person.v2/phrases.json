@@ -125,7 +125,11 @@
       ""
     ],
 
-    "and": [
+    "and_pred": [
+      "and"
+    ],
+
+    "and_noun": [
       "and"
     ],
 
@@ -152,7 +156,7 @@
     ],
 
     "but_and_pred": [
-      "<<phrase::but>>",
+      "<<phrase::but_pred>>",
       "and"
     ],
 
