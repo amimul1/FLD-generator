@@ -607,8 +607,8 @@
     ],
 
     "not_hold_verb": [
-      "<<phrase::does>> <<phrase::not>> hold",
-      "<<phrase::does>> <<phrase::not>> stand"
+      "<<phrase::does>> <<phrase::not_pred>> hold",
+      "<<phrase::does>> <<phrase::not_pred>> stand"
     ],
 
     "there_is": [
