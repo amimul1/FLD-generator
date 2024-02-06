@@ -55,7 +55,7 @@ class UserWord(BaseModel):
 
     can_be_event_noun: Optional[bool] = None
     can_be_entity_noun: Optional[bool] = None
-    can_be_named_entity_noun = 'can_be_named_entity_noun'
+    can_be_named_entity_noun: Optional[bool] = 'can_be_named_entity_noun'
     can_be_predicate_noun: Optional[bool] = None
 
 
