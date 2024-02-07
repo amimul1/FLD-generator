@@ -250,12 +250,12 @@
       ["W_VOL_AVG__0.05", "accelerates"],
 
 
-      ["W_VOL_AVG__0.05", "<phrase::is>> the cause of"],
-      ["W_VOL_AVG__0.05", "<phrase::is>> the reason for"],
-      ["W_VOL_AVG__0.05", "<phrase::is>> the origin of"],
-      ["W_VOL_AVG__0.05", "<phrase::is>> the source of"],
-      ["W_VOL_AVG__0.05", "<phrase::is>> the root of"],
-      ["W_VOL_AVG__0.05", "<phrase::is>> responsible for"]
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the cause of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the reason for"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the origin of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the source of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the root of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> responsible for"]
     ],
 
     "cause_verb.plural": [
