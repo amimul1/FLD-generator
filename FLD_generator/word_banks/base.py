@@ -145,6 +145,7 @@ class WordBank(ABC):
         else:
             raise NotImplementedError()
 
+    @profile
     def change_word_form(self,
                          word: str,
                          pos: POS,
@@ -155,7 +156,7 @@ class WordBank(ABC):
         #     raise ValueError(f'The worf {word} do not have pos={pos.value}')
 
         if pos == POS.VERB:
-            return self._change_verb_form(word, self.VerbForm(form), force=force)
+            return self._change_verb_form(word, self.VerbForm(form), force=force)   # SLOW
         elif pos in [POS.ADJ, POS.ADJ_SAT]:
             return self._change_adj_form(word, self.AdjForm(form), force=force)
         elif pos == POS.NOUN:

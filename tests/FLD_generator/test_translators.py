@@ -4,6 +4,7 @@ import sys
 import json
 from collections import defaultdict
 import re
+import time
 
 from FLD_generator.formula import Formula, negate, eliminate_double_negation
 from FLD_generator.translators import build as build_translator, TemplatedTranslator
@@ -106,14 +107,15 @@ def test_templated_translator_lang(lang: str,
     show_translations = make_show_translation_func(translator)
 
     if knowledge_banks is None:
+        start = time.time()
 
-        # show_translations(['{A}'], trial=100)
-        # show_translations(['¬({A})'], trial=100)
+        show_translations(['{A}'], trial=100)
+        show_translations(['¬({A})'], trial=100)
 
-        # show_translations(['({A} & {B})'], trial=100)
-        # show_translations(['(¬{A} & {B})'], trial=100)
-        # show_translations(['({A} & ¬{B})'], trial=100)
-        # show_translations(['(¬{A} & ¬{B})'], trial=100)
+        show_translations(['({A} & {B})'], trial=100)
+        show_translations(['(¬{A} & {B})'], trial=100)
+        show_translations(['({A} & ¬{B})'], trial=100)
+        show_translations(['(¬{A} & ¬{B})'], trial=100)
 
         # show_translations(['({A} v {B})'], trial=100)
         # show_translations(['(¬{A} v {B})'], trial=100)
@@ -128,90 +130,94 @@ def test_templated_translator_lang(lang: str,
         # show_translations(['{A} -> ({B} & {C})'], trial=100)
         # show_translations(['{A} -> ({B} v {C})'], trial=100)
 
-        show_translations(['{A}{a}'], trial=100)
+        # show_translations(['{A}{a}'], trial=100)
 
-        show_translations(['({A}{a} & {B}{a})'], trial=100)
-        show_translations(['(¬{A}{a} & {B}{a})'], trial=100)
-        show_translations(['({A}{a} & ¬{B}{a})'], trial=100)
-        show_translations(['(¬{A}{a} & ¬{B}{a})'], trial=100)
+        # show_translations(['({A}{a} & {B}{a})'], trial=100)
+        # show_translations(['(¬{A}{a} & {B}{a})'], trial=100)
+        # show_translations(['({A}{a} & ¬{B}{a})'], trial=100)
+        # show_translations(['(¬{A}{a} & ¬{B}{a})'], trial=100)
 
-        show_translations(['({A}{a} v {B}{a})'], trial=100)
-        show_translations(['(¬{A}{a} v {B}{a})'], trial=100)
-        show_translations(['({A}{a} v ¬{B}{a})'], trial=100)
-        show_translations(['(¬{A}{a} v ¬{B}{a})'], trial=100)
+        # show_translations(['({A}{a} v {B}{a})'], trial=100)
+        # show_translations(['(¬{A}{a} v {B}{a})'], trial=100)
+        # show_translations(['({A}{a} v ¬{B}{a})'], trial=100)
+        # show_translations(['(¬{A}{a} v ¬{B}{a})'], trial=100)
 
-        show_translations(['({A}{a} -> {B}{a})'], trial=100)
-        show_translations(['(¬{A}{a} -> {B}{a})'], trial=100)
-        show_translations(['({A}{a} -> ¬{B}{a})'], trial=100)
-        show_translations(['({A}{a} & {B}{a}) -> {C}{c}'], trial=100)
-        show_translations(['({A}{a} v {B}{a}) -> {C}{c}'], trial=100)
-        show_translations(['{A}{a} -> ({B}{b} & {C}{b})'], trial=100)
-        show_translations(['{A}{a} -> ({B}{b} v {C}{b})'], trial=100)
+        # show_translations(['({A}{a} -> {B}{a})'], trial=100)
+        # show_translations(['(¬{A}{a} -> {B}{a})'], trial=100)
+        # show_translations(['({A}{a} -> ¬{B}{a})'], trial=100)
+        # show_translations(['({A}{a} & {B}{a}) -> {C}{c}'], trial=100)
+        # show_translations(['({A}{a} v {B}{a}) -> {C}{c}'], trial=100)
+        # show_translations(['{A}{a} -> ({B}{b} & {C}{b})'], trial=100)
+        # show_translations(['{A}{a} -> ({B}{b} v {C}{b})'], trial=100)
 
-        show_translations(['(Ex): {A}x'], trial=100)
-        show_translations(['(Ex): (¬{A}x & {B}x)'], trial=100)
-        show_translations(['(Ex): (¬{A}x v {B}x)'], trial=100)
-        show_translations(['(Ex): {A}x -> {B}x'], trial=100)
-        show_translations(['(Ex): (¬{A}x & {B}x) -> {C}x'], trial=100)
-        show_translations(['(Ex): (¬{A}x v {B}x) -> {C}x'], trial=100)
+        # show_translations(['(Ex): {A}x'], trial=100)
+        # show_translations(['(Ex): (¬{A}x & {B}x)'], trial=100)
+        # show_translations(['(Ex): (¬{A}x v {B}x)'], trial=100)
+        # show_translations(['(Ex): {A}x -> {B}x'], trial=100)
+        # show_translations(['(Ex): (¬{A}x & {B}x) -> {C}x'], trial=100)
+        # show_translations(['(Ex): (¬{A}x v {B}x) -> {C}x'], trial=100)
 
-        show_translations(['(x): {A}x'], trial=100)
-        show_translations(['(x): (¬{A}x & {B}x)'], trial=100)
-        show_translations(['(x): ¬(¬{A}x & {B}x)'], trial=100)
-        show_translations(['(x): (¬{A}x v {B}x)'], trial=100)
-        show_translations(['(x): {A}x -> {B}x'], trial=100)
-        show_translations(['(x): (¬{A}x & {B}x) -> {C}x'], trial=100)
-        show_translations(['(x): (¬{A}x v {B}x) -> {C}x'], trial=100)
+        # show_translations(['(x): {A}x'], trial=100)
+        # show_translations(['(x): (¬{A}x & {B}x)'], trial=100)
+        # show_translations(['(x): ¬(¬{A}x & {B}x)'], trial=100)
+        # show_translations(['(x): (¬{A}x v {B}x)'], trial=100)
+        # show_translations(['(x): {A}x -> {B}x'], trial=100)
+        # show_translations(['(x): (¬{A}x & {B}x) -> {C}x'], trial=100)
+        # show_translations(['(x): (¬{A}x v {B}x) -> {C}x'], trial=100)
 
-        # # multiple formulas
-        show_translations(
-            [
-                '{A}{a} -> {B}{b}',
-                '{B}{b} -> {C}{c}',
-                '{C}{c} -> {D}{d}',
-            ],
-            5
-        )
+        # # # multiple formulas
+        # show_translations(
+        #     [
+        #         '{A}{a} -> {B}{b}',
+        #         '{B}{b} -> {C}{c}',
+        #         '{C}{c} -> {D}{d}',
+        #     ],
+        #     5
+        # )
 
-        show_translations(
-            [
-                '{A}',
-                '{B}',
-                '{C}',
-                '{D}{d}',
-                '{E}{e}',
-                '{F}{f}',
-            ],
-            5,
-        )
+        # show_translations(
+        #     [
+        #         '{A}',
+        #         '{B}',
+        #         '{C}',
+        #         '{D}{d}',
+        #         '{E}{e}',
+        #         '{F}{f}',
+        #     ],
+        #     5,
+        # )
 
-        show_translations(
-            [
-                '(x): {A}x -> {B}x',
-                '(x): {B}x -> {C}x',
-                '(x): {C}x -> {D}x',
-            ],
-            5,
-        )
+        # show_translations(
+        #     [
+        #         '(x): {A}x -> {B}x',
+        #         '(x): {B}x -> {C}x',
+        #         '(x): {C}x -> {D}x',
+        #     ],
+        #     5,
+        # )
 
-        show_translations(
-            [
-                '{A}{a} -> {B}{b}',
-                '{C}{b} -> {D}{d}',
-            ],
-            5,
-            intermediate_constant_formula_reps=['{b}', '{d}'],
-        )
+        # show_translations(
+        #     [
+        #         '{A}{a} -> {B}{b}',
+        #         '{C}{b} -> {D}{d}',
+        #     ],
+        #     5,
+        #     intermediate_constant_formula_reps=['{b}', '{d}'],
+        # )
 
-        show_translations(
-            [
-                '{A}{a} -> {B}{b}',
-                '{C}{c} -> {D}{d}',
-                '{F}{f} -> {G}{g}',
-            ],
-            5,
-            intermediate_constant_formula_reps=['{a}', '{d}'],
-        )
+        # show_translations(
+        #     [
+        #         '{A}{a} -> {B}{b}',
+        #         '{C}{c} -> {D}{d}',
+        #         '{F}{f} -> {G}{g}',
+        #     ],
+        #     5,
+        #     intermediate_constant_formula_reps=['{a}', '{d}'],
+        # )
+
+        end = time.time()
+        print(f'elapsed time: {end - start:.2f} sec')
+
     else:
         show_translations(['{A}{a}'], trial=100, knowledge_injection_idxs=[0], do_negation=False)
         show_translations(['{A} -> {B}'], trial=100, knowledge_injection_idxs=[0], do_negation=False)
@@ -643,7 +649,8 @@ def test_jpn_postprocess():
 
 
 if __name__ == '__main__':
-    setup_logger(level=logging.DEBUG)
+    # setup_logger(level=logging.DEBUG)
+    setup_logger(level=logging.INFO)
 
     test_eng()
     # test_eng_with_knowledge()
