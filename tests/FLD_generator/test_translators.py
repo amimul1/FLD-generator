@@ -109,13 +109,13 @@ def test_templated_translator_lang(lang: str,
     if knowledge_banks is None:
         start = time.time()
 
-        show_translations(['{A}'], trial=100)
-        show_translations(['¬({A})'], trial=100)
+        # show_translations(['{A}'], trial=100)
+        # show_translations(['¬({A})'], trial=100)
 
-        show_translations(['({A} & {B})'], trial=100)
-        show_translations(['(¬{A} & {B})'], trial=100)
-        show_translations(['({A} & ¬{B})'], trial=100)
-        show_translations(['(¬{A} & ¬{B})'], trial=100)
+        # show_translations(['({A} & {B})'], trial=100)
+        # show_translations(['(¬{A} & {B})'], trial=100)
+        # show_translations(['({A} & ¬{B})'], trial=100)
+        # show_translations(['(¬{A} & ¬{B})'], trial=100)
 
         # show_translations(['({A} v {B})'], trial=100)
         # show_translations(['(¬{A} v {B})'], trial=100)
@@ -125,7 +125,7 @@ def test_templated_translator_lang(lang: str,
         # show_translations(['{A} -> {B}'], trial=100)
         # show_translations(['¬{A} -> {B}'], trial=100)
         # show_translations(['{A} -> ¬{B}'], trial=100)
-        # show_translations(['({A} & {B}) -> {C}'], trial=100)
+        show_translations(['({A} & {B}) -> {C}'], trial=100)
         # show_translations(['({A} v {B}) -> {C}'], trial=100)
         # show_translations(['{A} -> ({B} & {C})'], trial=100)
         # show_translations(['{A} -> ({B} v {C})'], trial=100)

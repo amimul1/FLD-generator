@@ -374,25 +374,25 @@
     "prevent_verb.plural": [
       "prevent",
 
-      ["W_VOL_AVG__0.05", "stop"],
-      ["W_VOL_AVG__0.05", "avoid"],
-      ["W_VOL_AVG__0.05", "hinder"],
-      ["W_VOL_AVG__0.05", "interfere with"],
-      ["W_VOL_AVG__0.05", "disturb"],
-      ["W_VOL_AVG__0.05", "suppress"],
-      ["W_VOL_AVG__0.05", "obstruct"],
-      ["W_VOL_AVG__0.05", "deter"],
-      ["W_VOL_AVG__0.05", "block"],
-      ["W_VOL_AVG__0.05", "avert"],
-      ["W_VOL_AVG__0.05", "impede"],
-      ["W_VOL_AVG__0.05", "inhibit"],
+      ["W_VOL_AVG__0.05", "__stop"],
+      ["W_VOL_AVG__0.05", "__avoid"],
+      ["W_VOL_AVG__0.05", "__hinder"],
+      ["W_VOL_AVG__0.05", "__interfere with"],
+      ["W_VOL_AVG__0.05", "__disturb"],
+      ["W_VOL_AVG__0.05", "__suppress"],
+      ["W_VOL_AVG__0.05", "__obstruct"],
+      ["W_VOL_AVG__0.05", "__deter"],
+      ["W_VOL_AVG__0.05", "__block"],
+      ["W_VOL_AVG__0.05", "__avert"],
+      ["W_VOL_AVG__0.05", "__impede"],
+      ["W_VOL_AVG__0.05", "__inhibit"],
 
-      ["W_VOL_AVG__0.05", "<<phrase::are>> preventative of"],
-      ["W_VOL_AVG__0.05", "<<phrase::are>> obstructive to"],
-      ["W_VOL_AVG__0.05", "<<phrase::are>> a barrier to"],
-      ["W_VOL_AVG__0.05", "<<phrase::are>> inhibitive of"],
-      ["W_VOL_AVG__0.05", "<<phrase::are>> a deterrent to"],
-      ["W_VOL_AVG__0.05", "<<phrase::are>> a block to"]
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> preventative of"],
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> obstructive to"],
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> a barrier to"],
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> inhibitive of"],
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> a deterrent to"],
+      ["W_VOL_AVG__0.05", "__<<phrase::are>> a block to"]
     ],
 
     "prevented_verb": [

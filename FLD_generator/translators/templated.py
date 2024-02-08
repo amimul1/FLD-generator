@@ -43,8 +43,9 @@ logger = logging.getLogger(__name__)
 
 _SENTENCE_TRANSLATION_PREFIX = 'sentence'
 _DEBUG = False
+# _DEBUG = True
 
-_CONSTANT_NLS: Set[str] = set()
+_CONSTANT_NL_GENERATORS: Dict = {}
 
 
 # XXX these "global" functions are for line profiling, as local functions can not profiled.
@@ -426,6 +427,9 @@ class TemplatedTranslator(Translator):
         collapsed_knowledge_idxs = collapsed_knowledge_idxs or []
         self._reset_assets()
 
+        # from pprint import pformat
+        # logger.critical('\n' + pformat(formulas))
+
         def raise_or_warn(msg: str) -> None:
             if raise_if_translation_not_found:
                 raise TranslationNotFoundError(msg)
@@ -631,6 +635,7 @@ class TemplatedTranslator(Translator):
             print()
             print(' ' * log_indent + '**** _sample_interpret_mapping_consistent_nl() ****')
             print(' ' * log_indent + '    sentence_key:', sentence_key)
+            print(' ' * log_indent + '    pos_mapping:', pformat(pos_mapping))
 
         iterators = []
         weight_types: List[str] = []
@@ -741,9 +746,8 @@ class TemplatedTranslator(Translator):
                                            log_indent=0) -> Tuple[Iterable[NLAndCondition], float]:
         if nl.startswith('__'):
             return iter([]), 0
-        if nl in _CONSTANT_NLS:
-            def generate():
-                yield nl, set()
+        if nl in _CONSTANT_NL_GENERATORS:
+            generate = _CONSTANT_NL_GENERATORS[nl]
             return generate(), 1
 
         condition = self._get_condition_from_nl(nl)
@@ -762,16 +766,26 @@ class TemplatedTranslator(Translator):
         if len(templates) == 0:
             volume = 1
 
-            if len(condition) == 0:
-                # something like nl=<<phrase::is>>, which redirect just to "is"
-                _CONSTANT_NLS.add(nl)
-
             def generate():
                 yield nl, condition
+
+            if len(condition) == 0:
+                # something like nl=<<phrase::is>>, which redirect just to "is"
+                _CONSTANT_NL_GENERATORS[nl] = generate
 
             return generate(), volume
 
         else:
+
+            def num_possible_conditions(template: str) -> int:
+                formula = Formula(template)
+                constants = formula.constants
+                predicates = formula.predicates
+                return len(constants) + len(predicates)
+
+            # sorted_templates = templates
+            sorted_templates = sorted(templates, key=num_possible_conditions)[::-1]
+
             template_resolve_generators = [
                 GlobalResolveTemplateGenerator(
                     self,
@@ -785,7 +799,7 @@ class TemplatedTranslator(Translator):
                     check_condition,
                     log_indent,
                 )
-                for template in templates
+                for template in sorted_templates
             ]
 
             volumes = [generator.volume for generator in template_resolve_generators]
@@ -798,7 +812,7 @@ class TemplatedTranslator(Translator):
                     template_resolve_generators,
                     condition,
                     nl,
-                    templates,
+                    sorted_templates,
                     self,
                 ),
                 volume,
@@ -829,11 +843,19 @@ class TemplatedTranslator(Translator):
         if template_key is None:
             raise Exception(f'template for {template} not found.')
 
+        # print('\n\n')
+        # print(f'-------------------------------- {template} --------------------------------')
+        # print('ancestor_nls:')
+        # for ancestor_nl in ancestor_nls:
+        #     print('    ' + ancestor_nl)
+
         iterators = []
         weight_types: List[str] = []
         volumes: List[int] = []
         for weight, template_nl in template_nls:
             if template_nl in ancestor_nls:
+                # print('\n')
+                # print('!!!!!!!!!!!!!!!!!!!!!!!! rejected:\n    ' + template_nl)
                 continue
 
             iterator_with_volume = self._make_resolved_translation_sampler(template_nl,

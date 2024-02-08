@@ -37,7 +37,7 @@
 
 
 
-    "({A} & {B}) -> {C}": [["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A} & {B}) -> {C}>> <<phrase::is_true>>"]],
+    "({A} & {B}) -> {C}": [["W_VOL_AVG__0.05", "__<<phrase::the_fact_that>> <<sentence::({A} & {B}) -> {C}>> <<phrase::is_true>>"]],
     "(¬{A} & {B}) -> {C}": [["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::(¬{A} & {B}) -> {C}>> <<phrase::is_true>>"]],
     "({A} & ¬{B}) -> {C}": [["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A} & ¬{B}) -> {C}>> <<phrase::is_true>>"]],
     "({A} & {B}) -> ¬{C}": [["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::({A} & {B}) -> ¬{C}>> <<phrase::is_true>>"]],
