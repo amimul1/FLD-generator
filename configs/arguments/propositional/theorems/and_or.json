@@ -6,13 +6,8 @@
       ],
       "conclusion": "({B} & {A})"
   },
-  {
-      "id": "propositional.De_Morgan_0",
-      "premises": [
-          "¬({A} & {B})"
-      ],
-      "conclusion": "(¬{A} v ¬{B})"
-  },
+
+
 
 
   {
@@ -21,12 +16,5 @@
           "({A} v {B})"
       ],
       "conclusion": "({B} v {A})"
-  },
-  {
-      "id": "propositional.De_Morgan_1",
-      "premises": [
-          "¬({A} v {B})"
-      ],
-      "conclusion": "(¬{A} & ¬{B})"
   }
 ]

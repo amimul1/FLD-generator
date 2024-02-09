@@ -1,0 +1,20 @@
+[
+  {
+      "id": "propositional.duality_and",
+      "premises": [
+          "¬({A} & {B})"
+      ],
+      "conclusion": "(¬{A} v ¬{B})"
+  },
+
+
+
+  
+  {
+      "id": "propositional.duality_or",
+      "premises": [
+          "¬({A} v {B})"
+      ],
+      "conclusion": "(¬{A} & ¬{B})"
+  }
+]

@@ -6,13 +6,8 @@
       ],
       "conclusion": "(x): ({B}x & {A}x)"
   },
-  {
-      "id": "predicate.universal_theorem.De_Morgan_0",
-      "premises": [
-          "(x): ¬({A}x & {B}x)"
-      ],
-      "conclusion": "(x): (¬{A}x v ¬{B}x)"
-  },
+
+
 
 
   {
@@ -21,12 +16,5 @@
           "(x): ({A}x v {B}x)"
       ],
       "conclusion": "(x): ({B}x v {A}x)"
-  },
-  {
-      "id": "predicate.universal_theorem.De_Morgan_1",
-      "premises": [
-          "(x): ¬({A}x v {B}x)"
-      ],
-      "conclusion": "(x): (¬{A}x & ¬{B}x)"
   }
 ]

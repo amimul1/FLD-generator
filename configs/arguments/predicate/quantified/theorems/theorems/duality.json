@@ -1,0 +1,66 @@
+[
+  {
+      "id": "predicate.universal_theorem.duality_and",
+      "premises": [
+          "(x): ¬({A}x & {B}x)"
+      ],
+      "conclusion": "(x): (¬{A}x v ¬{B}x)"
+  },
+
+
+
+  
+  {
+      "id": "predicate.universal_theorem.duality_or",
+      "premises": [
+          "(x): ¬({A}x v {B}x)"
+      ],
+      "conclusion": "(x): (¬{A}x & ¬{B}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.existential_theorem.duality_and",
+      "premises": [
+          "(Ex): ¬({A}x & {B}x)"
+      ],
+      "conclusion": "(Ex): (¬{A}x v ¬{B}x)"
+  },
+
+
+
+  
+  {
+      "id": "predicate.existential_theorem.duality_or",
+      "premises": [
+          "(Ex): ¬({A}x v {B}x)"
+      ],
+      "conclusion": "(Ex): (¬{A}x & ¬{B}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.duality_universal_to_existential",
+      "premises": [
+          "¬((x): {A}x)"
+      ],
+      "conclusion": "(Ex): ¬{A}x"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.duality_existential_to_universal",
+      "premises": [
+          "¬((Ex): {A}x)"
+      ],
+      "conclusion": "(x): ¬{A}x"
+  }
+
+
+]
