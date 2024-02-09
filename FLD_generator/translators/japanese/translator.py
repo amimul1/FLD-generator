@@ -1,6 +1,6 @@
 import random
 import re
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 from FLD_generator.word_banks.base import WordBank, UserWord
 from FLD_generator.translators.templated import TemplatedTranslator
@@ -67,3 +67,6 @@ class JapaneseTranslator(TemplatedTranslator):
         translation = self._postprocessor.apply(translation)
 
         return translation
+
+    def _postprocess_translations_at_once(self, translations: List[str]) -> List[str]:
+        return translations

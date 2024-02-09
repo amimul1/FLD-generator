@@ -32,6 +32,10 @@ def _get_config_paths(name_or_path: Union[str, List[str], Tuple[str]], lang: str
         if lang == 'eng':
             if name_or_path in ['thing', 'thing.v1']:
                 return _get_config_paths('./configs/translations/eng/thing_person.v0/', lang)
+            elif name_or_path == 'thing_person.v2':
+                return _get_config_paths('./configs/translations/eng/thing_person.v2/', lang)
+            elif name_or_path == 'thing_person.v3':
+                return _get_config_paths('./configs/translations/eng/thing_person.v3/', lang)
             else:
                 raise ValueError(f'Unsupported config name {name_or_path}')
 

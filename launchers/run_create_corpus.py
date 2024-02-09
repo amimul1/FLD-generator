@@ -72,7 +72,18 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
 
-    output_top_dir = Path('./outputs/00.create_corpus/2024-01-29.enhance_arguments')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-01-29.enhance_arguments')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.translation-augmentation.timeout_test')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.echo_ld')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.is_are_no_recursion')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--10')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--20')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.sorted_templates')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -215,8 +226,10 @@ def main():
         # '2024-01-29.enhance_arguments.past_reproduce',
         # '2024-01-29.enhance_arguments.theorems',
         # '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
+        # '2024-01-29.enhance_arguments.past_reproduce.D8',
 
-        '2024-01-29.enhance_arguments.past_reproduce.D8',
+        # ---------------------------------- 2024-02-25.translation-augmentation ------------------------------------
+        '2024-02-25.translation-augmentation.timeout_test',
     ]
 
     # dataset_names = dataset_names[::-1]
@@ -405,6 +418,9 @@ def make_dataset(dataset_name: str,
             save_params(job_settings, job_output_dir)
 
             command = ' '.join([
+                'export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH &&',
+                # 'echo $LD_LIBRARY_PATH',
+
                 'python ./scripts/create_corpus.py',
 
                 f'{job_output_path}',

@@ -43,6 +43,9 @@ logger = logging.getLogger(__name__)
 
 _SENTENCE_TRANSLATION_PREFIX = 'sentence'
 _DEBUG = False
+# _DEBUG = True
+
+_CONSTANT_NL_GENERATORS: Dict = {}
 
 
 # XXX these "global" functions are for line profiling, as local functions can not profiled.
@@ -424,6 +427,7 @@ class TemplatedTranslator(Translator):
         collapsed_knowledge_idxs = collapsed_knowledge_idxs or []
         self._reset_assets()
 
+
         def raise_or_warn(msg: str) -> None:
             if raise_if_translation_not_found:
                 raise TranslationNotFoundError(msg)
@@ -490,7 +494,7 @@ class TemplatedTranslator(Translator):
                     logger.info('\n'.join(msgs))
                     continue
 
-                pos_mapping.update(_pos_mapping)  # HONOKA
+                pos_mapping.update(_pos_mapping)
 
                 chosen_nl_pushed = interpret_formula(Formula(chosen_nl), push_mapping).rep
 
@@ -574,17 +578,24 @@ class TemplatedTranslator(Translator):
 
         # fix grammers and other stufs
         translations = [
-            (self._postprocess_translation_all(translation, knowlege_type=knowlege_type) if translation is not None else None)
+            (self._all_postprocess_translation(translation, knowlege_type=knowlege_type) if translation is not None else None)
             for translation, knowlege_type in zip(translations, knowledge_types)
         ]
 
         for SO_swap_formula in SO_swap_formulas:
             if SO_swap_formula is not None and SO_swap_formula.translation is not None:
                 SO_swap_formula.translation = (
-                    self._postprocess_translation_all(SO_swap_formula.translation, knowlege_type=None)
+                    self._all_postprocess_translation(SO_swap_formula.translation, knowlege_type=None)
                     if SO_swap_formula.translation is not None
                     else None
                 )
+
+        all_translations = translations + [SO_swap_formula.translation if SO_swap_formula is not None else None for SO_swap_formula in SO_swap_formulas]
+        all_translations = self._postprocess_translations_at_once(all_translations)
+        translations = all_translations[:len(translations)]
+        for SO_swap_formula, translation in zip(SO_swap_formulas, all_translations[len(translations):]):
+            if SO_swap_formula is not None:
+                SO_swap_formula.translation = translation
 
         return list(zip(translation_names, translations, SO_swap_formulas, knowledge_types)), count_stats
 
@@ -622,6 +633,7 @@ class TemplatedTranslator(Translator):
             print()
             print(' ' * log_indent + '**** _sample_interpret_mapping_consistent_nl() ****')
             print(' ' * log_indent + '    sentence_key:', sentence_key)
+            print(' ' * log_indent + '    pos_mapping:', pformat(pos_mapping))
 
         iterators = []
         weight_types: List[str] = []
@@ -732,6 +744,9 @@ class TemplatedTranslator(Translator):
                                            log_indent=0) -> Tuple[Iterable[NLAndCondition], float]:
         if nl.startswith('__'):
             return iter([]), 0
+        if nl in _CONSTANT_NL_GENERATORS:
+            generate = _CONSTANT_NL_GENERATORS[nl]
+            return generate(), 1
 
         condition = self._get_condition_from_nl(nl)
         _constraint_pos_mapping = copy(constraint_pos_mapping)
@@ -752,42 +767,25 @@ class TemplatedTranslator(Translator):
             def generate():
                 yield nl, condition
 
+            if len(condition) == 0:
+                # something like nl=<<phrase::is>>, which redirect just to "is"
+                if len(_CONSTANT_NL_GENERATORS) > 1000000:
+                    _CONSTANT_NL_GENERATORS.clear()
+                _CONSTANT_NL_GENERATORS[nl] = generate
+
+            return generate(), volume
+
         else:
 
-            # class ResolveTemplateGenerator:
+            def num_possible_conditions(template: str) -> int:
+                formula = Formula(template)
+                constants = formula.constants
+                predicates = formula.predicates
+                return len(constants) + len(predicates)
 
-            #     @profile
-            #     def __init__(self, parent_translator: TemplatedTranslator, template: str):
-            #         self._template = template
-            #         self._parent_translator = parent_translator
-            #         self._gen_cache = None
-            #         self._gen_cache, self.volume = self._resolve()
+            # sorted_templates = templates
+            sorted_templates = sorted(templates, key=num_possible_conditions)[::-1]
 
-            #     @profile
-            #     def __call__(self) -> Iterable[NLAndCondition]:
-            #         return self._resolve()[0]
-
-            #     @profile
-            #     def _resolve(self) -> Tuple[Iterable[NLAndCondition], float]:
-            #         if self._gen_cache is not None:
-            #             gen_cache = self._gen_cache
-            #             self._gen_cache = None
-            #             return gen_cache, self.volume
-            #         else:
-            #             return self._parent_translator._make_resolved_template_sampler(
-            #                 self._template,
-            #                 # ancestor_keys,
-            #                 ancestor_nls,
-            #                 constraint_interpret_mapping=constraint_interpret_mapping,
-            #                 constraint_pos_mapping=_constraint_pos_mapping,
-            #                 constraint_push_mapping=constraint_push_mapping,
-            #                 shuffle=block_shuffle,
-            #                 volume_to_weight=volume_to_weight,
-            #                 check_condition=check_condition,
-            #                 log_indent = log_indent + 4
-            #             )
-
-            # template_resolve_generators = [ResolveTemplateGenerator(self, template) for template in templates]
             template_resolve_generators = [
                 GlobalResolveTemplateGenerator(
                     self,
@@ -801,7 +799,7 @@ class TemplatedTranslator(Translator):
                     check_condition,
                     log_indent,
                 )
-                for template in templates
+                for template in sorted_templates
             ]
 
             volumes = [generator.volume for generator in template_resolve_generators]
@@ -809,31 +807,14 @@ class TemplatedTranslator(Translator):
             for _volume in volumes:
                 volume *= _volume
 
-            # @profile
-            # def generate():
-            #     for combination in make_combination(template_resolve_generators):
-            #         template_updated_condition = condition.copy()
-            #         template_resolved_nl = nl
-
-            #         for template, (resolved_template, template_condition) in zip(templates, combination):
-            #             template_resolved_nl = template_resolved_nl.replace(
-            #                 f'{self._TEMPLATE_BRACES[0]}{template}{self._TEMPLATE_BRACES[1]}',
-            #                 resolved_template,
-            #                 1,
-            #             )
-            #             template_updated_condition = self._merge_condition(template_updated_condition, template_condition)
-            #         yield template_resolved_nl, template_updated_condition
-
-        # return generate(), volume
-        if len(templates) == 0:
-            return generate(), volume
-        else:
             return (
-                global_generate(template_resolve_generators,
-                         condition,
-                         nl,
-                         templates,
-                         self),
+                global_generate(
+                    template_resolve_generators,
+                    condition,
+                    nl,
+                    sorted_templates,
+                    self,
+                ),
                 volume,
             )
 
@@ -866,8 +847,6 @@ class TemplatedTranslator(Translator):
         weight_types: List[str] = []
         volumes: List[int] = []
         for weight, template_nl in template_nls:
-            if template_nl in ancestor_nls:
-                continue
 
             iterator_with_volume = self._make_resolved_translation_sampler(template_nl,
                                                                            # ancestor_keys.union(set([template_key])),
@@ -887,14 +866,8 @@ class TemplatedTranslator(Translator):
             volume_weights = [volume_to_weight(volume) for volume in volumes]
             weights = [self._get_weight_factor_func(weight_type)(volume_weights, i_iterator)
                        for i_iterator, weight_type in enumerate(weight_types)]
-
-            # @profile
-            # def generate():
-            #     for resolved_template_nl, condition in chained_sampling_from_weighted_iterators(
-            #         iterators,
-            #         weights,
-            #     ):
-            #         yield resolved_template_nl, condition
+            volume_sum = sum(volumes)
+            return global_generate_1(iterators, weights), volume_sum
 
         else:
             weights = [1.0] * len(volumes)
@@ -905,11 +878,7 @@ class TemplatedTranslator(Translator):
                     for resolved_template_nl, condition in iterator:
                         yield resolved_template_nl, condition
 
-        volume_sum = sum(volumes)
-        # return generate(), volume_sum
-        if shuffle:
-            return global_generate_1(iterators, weights), volume_sum
-        else:
+            volume_sum = sum(volumes)
             return generate(), volume_sum
 
     @profile
@@ -918,7 +887,7 @@ class TemplatedTranslator(Translator):
                                                         interpret_mapping: Dict[str, Phrase],
                                                         push_mapping: Dict[str, str],
                                                         pos_mapping: Optional[Dict[str, POS]] = None) -> Tuple[bool, Dict[str, POS]]:
-        if len(condition) == 0:
+        if len(condition) == 0:   # SLOW
             return True, pos_mapping
         _pos_mapping = copy(pos_mapping)
         condition_is_consistent = True
@@ -927,19 +896,19 @@ class TemplatedTranslator(Translator):
             phrase = interpret_mapping[interprand_rep_pushed]
             forced_pos = _pos_mapping.get(interprand_rep_pushed, None)
 
-            allowed_pos = [forced_pos] if forced_pos is not None else self._get_pos(phrase)  # HONOKA
+            allowed_pos = [forced_pos] if forced_pos is not None else self._get_pos(phrase)  # SLOW
             # allowed_pos = self._get_pos(phrase)
 
             if pos not in allowed_pos:
                 condition_is_consistent = False
                 break
 
-            inflated_phrases = self._get_inflated_phrases(phrase, pos, form)
+            inflated_phrases = self._get_inflated_phrases(phrase, pos, form)  # SLOW
             if len(inflated_phrases) == 0:
                 condition_is_consistent = False
                 break
 
-            _pos_mapping[interprand_rep_pushed] = pos  # HONOKA: interprand_rep_pushed, interprand_rep, which?
+            _pos_mapping[interprand_rep_pushed] = pos
 
         if condition_is_consistent:
             return True, _pos_mapping
@@ -1209,7 +1178,6 @@ class TemplatedTranslator(Translator):
             samples = list(samples)
         return samples
 
-    # HONOKA
     @profile
     def _make_phrase_inflated_interpret_mapping(self,
                                                 interpret_mapping: Dict[str, Phrase],
@@ -1278,7 +1246,7 @@ class TemplatedTranslator(Translator):
         else:
             raise ValueError()
 
-        inflated_words = self._word_bank.change_word_form(_word, pos, form, force=False)
+        inflated_words = self._word_bank.change_word_form(_word, pos, form, force=False)   # SLOW
         if len(inflated_words) == 0 and force:
             inflated_words = self._word_bank.change_word_form(_word, pos, form, force=True)
 
@@ -1314,15 +1282,18 @@ class TemplatedTranslator(Translator):
     def _reset_assets(self) -> None:
         pass
 
-    def _postprocess_translation_all(self, translation: str, knowlege_type: Optional[str] = None) -> str:
+    def _all_postprocess_translation(self, translation: str, knowlege_type: Optional[str] = None) -> str:
         # We need to postprocess not only "knowlege_type" formulas but others,
         # because the translations can "spills" to other formulas.
         for knowledge_bank in self._knowledge_banks:
             translation = knowledge_bank.postprocess_translation(translation)
-
         translation = self._postprocess_translation(translation)
         return translation
 
     @abstractmethod
     def _postprocess_translation(self, translation: str) -> str:
+        pass
+
+    @abstractmethod
+    def _postprocess_translations_at_once(self, translations: List[str]) -> List[str]:
         pass

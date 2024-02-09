@@ -1,11 +1,11 @@
 import re
 import random
 import logging
-from typing import Set, Optional
+from typing import Set, Optional, List, Any, Dict
 
 from FLD_generator.formula import Formula
 from FLD_generator.utils import starts_with_vowel_sound
-from FLD_generator.word_banks import POS
+from FLD_generator.word_banks import POS, ATTR
 from FLD_generator.word_banks.english import MODAL_VERBS
 from FLD_generator.person_names import get_person_names
 from .templated import TemplatedTranslator
@@ -18,6 +18,51 @@ logger = logging.getLogger(__name__)
 
 
 class EnglishTranslator(TemplatedTranslator):
+
+    _IDENTIFIERS = [
+        'the',
+        'this',
+        'that',
+    ]
+    _IDENTIFIERS_PLURAL = [
+        'the',
+        'these',
+        'those',
+    ]
+
+    _THING_PRONOUNS = [
+        'it',
+        'this',
+        'that',
+    ] + [
+        f'{identifier} thing' for identifier in _IDENTIFIERS
+    ]
+
+    _THING_PRONOUNS_PLURAL = [
+        'they',
+        'these',
+        'those',
+    ] + [
+        f'{identifier} things' for identifier in _IDENTIFIERS_PLURAL
+    ]
+
+    _PERSON_PRONOUNS = [
+        'he', 'she', 'he/she', 'she/he',
+    ] + [
+        f'{identifier} one' for identifier in _IDENTIFIERS
+    ] + [
+        f'{identifier} person' for identifier in _IDENTIFIERS
+    ]
+
+    _PERSON_PRONOUNS_PLURAL = [
+        'they',
+    ] + [
+        f'{identifier} ones' for identifier in _IDENTIFIERS_PLURAL
+    ] + [
+        f'{identifier} persons' for identifier in _IDENTIFIERS_PLURAL
+    ] + [
+        f'{identifier} people' for identifier in _IDENTIFIERS_PLURAL
+    ]
 
     def __init__(self,
                  *args,
@@ -36,7 +81,7 @@ class EnglishTranslator(TemplatedTranslator):
                 self._female_names.add(person['name'])
 
     def _postprocess_template(self, template: str) -> str:
-        return self._add_the_or_it_to_successive_appearance(template)
+        return template
 
     def _reset_assets(self) -> None:
         pass
@@ -50,12 +95,13 @@ class EnglishTranslator(TemplatedTranslator):
         return rep
 
     def _make_predicate_phrase_str(self, pred: PredicatePhrase) -> str:
-        rep = pred.predicate 
+        rep = pred.predicate
         if pred.left_modifier is not None:
             rep = f'{pred.left_modifier} ' + rep
 
         if pred.object is not None and pred.right_modifier is not None:
-            raise Exception('Can not determine the order of these phrases. We do not expect to pass this code, therefore, might be a bug.')
+            raise Exception(
+                'Can not determine the order of these phrases. We do not expect to pass this code, therefore, might be a bug.')
         if pred.object is not None and not self._no_transitive_object:
             rep += f' {pred.object}'
         if pred.right_modifier is not None:
@@ -64,13 +110,9 @@ class EnglishTranslator(TemplatedTranslator):
 
     def _postprocess_translation(self, translation: str) -> str:
         translation = self._correct_indefinite_particles(translation)
-        translation = self._fix_pred_singularity(translation)
+        translation = self._arugment_thing_vs_person_and_pronouns(translation)
         translation = self._reduce_degenerate_blanks(translation)
-        if translation.find('someone') >= 0 or translation.find('somebody') >= 0:
-            pronoun = random.choice(['the one'])
-            for pronoun in ['it', 'the thing']:
-               translation = translation.replace(f' {pronoun}', ' the one')
-
+        translation = self._strip_the_from_named_entities(translation)
 
         for mv0 in MODAL_VERBS:
             for mv1 in MODAL_VERBS:
@@ -83,48 +125,47 @@ class EnglishTranslator(TemplatedTranslator):
         translation = self._add_ending_period(translation)
         return translation
 
-    @profile
-    def _add_the_or_it_to_successive_appearance(self, sentence_with_templates: str) -> str:
-        constants = [c.rep for c in Formula(sentence_with_templates).constants]
+    def _postprocess_translations_at_once(self, translations: List[Optional[str]]) -> List[Optional[str]]:
+        translations = self._augment_pronouns_at_once(translations)
+        return translations
 
-        if len(constants) >= 2:
-            # If we have many constants, replacing one with pronoun may induce ambiguity
-            return sentence_with_templates
+    def _augment_pronouns_at_once(self, translations: List[Optional[str]]) -> List[Optional[str]]:
 
-        with_definite = sentence_with_templates
-        for constant in constants:
-            if with_definite.count(constant) < 2:  # have two appearance
+        ng_list = [
+            # replacement of pronouns is done in _arugment_thing_vs_person_and_pronouns
+            'the thing',
+            'the one', 'the body', 'the person', 'the man',
+
+            'the fact', 'the claim', 'the statement', 'the proposition',
+        ]
+        string_concat = ' '.join([t for t in translations if t is not None])
+        entities_with_the = re.findall(r'\bthe \w+\b', string_concat)
+
+        # we first make replacement, such as 'the apple' to 'that apple',
+        # which is used for all the translations for consistnecy.
+        identifiers = ['this', 'that']
+        replace_entities: Dict[str, str] = {}
+        for entity_with_the in entities_with_the:
+            if entity_with_the in ng_list:
+                continue
+            if random.random() < 0.5:
+                identifier = random.choice(identifiers)
+                entity = re.sub(r'^the ', '', entity_with_the)
+                replace_entities[entity_with_the] = f'{identifier} {entity}'
+
+        translations_processed: List[Optional[str]] = []
+        for translation in translations:
+            if translation is None:
+                translations_processed.append(None)
                 continue
 
-            first_pos = with_definite.find(constant)
+            for entity, replacement in replace_entities.items():
+                translation = translation.replace(entity, replacement)
 
-            until_first = with_definite[:first_pos + len(constant)]
-            from_second = with_definite[first_pos + len(constant):]
+            translations_processed.append(translation)
 
-            if re.match(f'.*a {constant} is.*', from_second):
-                replace_with_it = random.random() >= 0.5
-            else:
-                replace_with_it = False
+        return translations_processed
 
-            if replace_with_it:
-                from_second_with_definite = re.sub(
-                    f'a {constant} is',
-                    'it is',
-                    from_second,
-                )
-            else:
-                from_second_with_definite = re.sub(
-                    f'(.*)a (.*){constant}',
-                    f'\g<1>the \g<2>{constant}',
-                    from_second,
-                )
-            with_definite = until_first + from_second_with_definite
-        if sentence_with_templates != with_definite:
-            logger.info('particles "a (...) %s" are modified as:    "%s"    ->    "%s"',
-                        constant,
-                        sentence_with_templates,
-                        with_definite)
-        return with_definite
 
     @profile
     def _correct_indefinite_particles(self, sentence_wo_templates: str) -> str:
@@ -147,47 +188,101 @@ class EnglishTranslator(TemplatedTranslator):
         corrected_sentence = ' '.join(corrected_words)
         return corrected_sentence
 
-    def _fix_pred_singularity(self, translation: str) -> str:
-        # TODO: A and B {is, runs} => currently, we do not have ({A}{a} and {B}{a}) so that we do not this fix.
-        translation_fixed = translation
+    def _arugment_thing_vs_person_and_pronouns(self, translation: str) -> str:
+        is_person = random.random() < 0.5
 
-        def fix_all_thing_is(translation: str, src_pred: str, dst_pred: str) -> str:
-            if re.match(f'.*all .*things? {src_pred}.*', translation):
-                translation_fixed = re.sub(f'(.*)all (.*)things? {src_pred}(.*)', '\g<1>all \g<2>things ' + dst_pred + '\g<3>', translation)
-                return translation_fixed
+        if is_person:
+            # convert appearance of thing such as 'the thing' and 'something' into person nouns
+            person_postfix = random.choice(['one', 'body', 'person', 'man'])
+            if person_postfix == 'one':
+                translation = translation.replace('everything', 'everyone')
+                translation = translation.replace('something', 'someone')
+                translation = translation.replace('nothing', 'noone')
+                translation = translation.replace('things', 'ones')
+                translation = translation.replace('thing', 'one')
+
+                translation = translation.replace('noone', random.choice(['no one', 'none']))
+
+            elif person_postfix == 'body':
+                translation = translation.replace('everything', 'everybody')
+                translation = translation.replace('something', 'somebody')
+                translation = translation.replace('nothing', 'nobody')
+                translation = translation.replace('things', 'ones')
+                translation = translation.replace('thing', 'one')
+
+            elif person_postfix == 'person':
+                translation = translation.replace('everything', 'every person')
+                translation = translation.replace('something', 'some person')
+                translation = translation.replace('nothing', 'no person')
+                translation = translation.replace('things', random.choice(['persons', 'people']))
+                translation = translation.replace('thing', 'person')
+
+            elif person_postfix == 'man':
+                translation = translation.replace('everything', 'every man')
+                translation = translation.replace('something', 'some man')
+                translation = translation.replace('nothing', 'no man')
+                translation = translation.replace('things', 'men')
+                translation = translation.replace('thing', 'man')
+
             else:
-                return translation
+                raise ValueError()
 
-        translation_fixed = fix_all_thing_is(translation_fixed, 'is an', 'are')
-        translation_fixed = fix_all_thing_is(translation_fixed, 'is a', 'are')
-        translation_fixed = fix_all_thing_is(translation_fixed, 'is', 'are')
+        translation = self._augment_pronouns(translation, is_person=is_person)
 
-        translation_fixed = fix_all_thing_is(translation_fixed, 'was an', 'were')
-        translation_fixed = fix_all_thing_is(translation_fixed, 'was a', 'were')
-        translation_fixed = fix_all_thing_is(translation_fixed, 'was', 'wer')
+        return translation
 
-        translation_fixed = fix_all_thing_is(translation_fixed, 'does', 'do')
+    def _augment_pronouns(self,
+                          translation: str,
+                          is_person=False) -> str:
+        tokens = translation.split(' ')
 
-        # all kind thing squashes apple -> all kind thing squash apple
-        if re.match('(.*)all (.*)things? ([^ ]*)(.*)', translation_fixed):
-            word_after_things = re.sub('(.*)all (.*)things? ([^ ]*)(.*)', '\g<3>', translation_fixed)
-            if POS.VERB in self._word_bank.get_pos(word_after_things):
-                verb_normal = self._word_bank.change_word_form(word_after_things, POS.VERB, 'normal')[0]
-                translation_fixed = re.sub('(.*)all (.*)things? ([^ ]*)(.*)', '\g<1>all \g<2>things ' + verb_normal + '\g<4>', translation_fixed)
+        if is_person:
+            pronoun_src = 'it'
+            if random.random() < 0.5:
+                pronouns_dst = random.choice(self._PERSON_PRONOUNS)
+            else:
+                pronouns_dst = pronoun_src
+            tokens = self._replace_list(tokens, pronoun_src, pronouns_dst)
 
-        # target   : A and B causes C -> A and B cause C
-        # negagive : A runs and it is also kind
-        # def fix_A_and_B_is(translation: str, src_pred: str, dst_pred: str) -> str:
-        #     if re.match(f'.*[^ ]* and [^ ]* {src_pred}.*', translation):
-        #         translation_fixed = re.sub('.*([^ ]*) and ([^ ]*) {src_pred}(.*)', '\g<1>all \g<2>things ' + dst_pred + '\g<3>', translation)
-        #         return translation_fixed
-        #     else:
-        #         return translation
+            pronoun_src = 'they'
+            if random.random() < 0.5:
+                pronouns_dst = random.choice(self._PERSON_PRONOUNS_PLURAL)
+            else:
+                pronouns_dst = pronoun_src
+            tokens = self._replace_list(tokens, pronoun_src, pronouns_dst)
 
-        if translation_fixed != translation:
-            logger.info('translation is fixed as:\norig : "%s"\nfixed: "%s"', translation, translation_fixed)
+        else:
+            pronoun_src = 'it'
+            if random.random() < 0.5:
+                pronouns_dst = random.choice(self._THING_PRONOUNS)
+            else:
+                pronouns_dst = pronoun_src
+            tokens = self._replace_list(tokens, pronoun_src, pronouns_dst)
 
-        return translation_fixed
+            pronoun_src = 'they'
+            if random.random() < 0.5:
+                pronouns_dst = random.choice(self._THING_PRONOUNS_PLURAL)
+            else:
+                pronouns_dst = pronoun_src
+            tokens = self._replace_list(tokens, pronoun_src, pronouns_dst)
+
+        return ' '.join(tokens)
+
+    def _strip_the_from_named_entities(self, translation: str) -> str:
+        tokens = translation.split(' ')
+
+        NE_indices = [i for i, token in enumerate(tokens)
+                      if ATTR.can_be_named_entity_noun in self._word_bank.get_attrs(token, pos_not_found_warning=False)]
+        unwanted_the_indices = [
+            i - 1
+            for i in NE_indices
+            # we do not replace "that" here do prevent replcing "that" of other uses, e.g., "that Alice is red is .."
+            if i - 1 >= 0 and tokens[i - 1] in ['the', 'this']
+        ]
+        translation = ' '.join([token for i, token in enumerate(tokens)
+                                if i not in unwanted_the_indices])
+
+        return translation
 
     def _reduce_degenerate_blanks(self, translation: str) -> str:
         return re.sub(r'\s+', ' ', translation).strip(' ')
@@ -200,3 +295,6 @@ class EnglishTranslator(TemplatedTranslator):
             return translation + '.'
         else:
             return translation
+
+    def _replace_list(self, items: List[Any], src: Any, dst: Any) -> List[Any]:
+        return [dst if item == src else item for item in items]

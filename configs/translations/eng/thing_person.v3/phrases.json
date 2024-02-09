@@ -1,0 +1,680 @@
+{
+
+  "phrase": {
+
+    "{a}noun": [
+      "{a}[NOUN]"
+    ],
+
+    "{a}noun.plural": [
+      "__comment: not implemented",
+      "{a}[NOUN.p]"
+    ],
+
+
+
+
+    "{A}noun": [
+      "{A}[NOUN]",
+      "__{A}[ADJ.ness]", 
+      "__{A}[ADJ_SAT.ness]", 
+      "__{A}[VERB.ing]"
+    ],
+
+    "¬{A}noun": [
+      "__{A}[NOUN]",
+      "__{A}[ADJ.neg]ness", "__non-{A}[ADJ.ness]",
+      "__{A}[ADJ_SAT.neg]ness", "__non-{A}[ADJ_SAT.ness]",
+      "__<<phrase::not_pred>> {A}[VERB.ing]"
+    ],
+
+
+    "{A}a_noun": [
+      "__comment: We eliminate ADJ and VERB otherwise the semantic of translations will diverge like (i) is [ADJ] (ii) is [ADJ.ness].",
+      "<<phrase::a>> {A}[NOUN]",
+      "__{A}[ADJ.ness]",
+      "__{A}[ADJ_SAT.ness]",
+      "__{A}[VERB.ing]"
+    ],
+
+    "¬{A}a_noun": [
+      "__<<phrase::a>> {A}[NOUN]",
+      "__{A}[ADJ.neg]ness", "__non-{A}[ADJ.ness]",
+      "__{A}[ADJ_SAT.neg]ness", "__non-{A}[ADJ_SAT.ness]",
+      "__<<phrase::not_pred>> {A}[VERB.ing]"
+    ],
+
+
+    "{A}noun.plural": [
+      "__comment: not implemented",
+      "{A}[NOUN.p]",
+      "__{A}[ADJ.ness]",
+      "__{A}[ADJ_SAT.ness]",
+      "__{A}[VERB.ing]"
+    ],
+
+    "¬{A}noun.plural": [
+      "__a {A}[NOUN.p]",
+      "__{A}[ADJ.neg]ness", "__non-{A}[ADJ.ness]",
+      "__{A}[ADJ_SAT.neg]ness", "__non-{A}[ADJ_SAT.ness]",
+      "__<<phrase::not_pred>> {A}[VERB.ing]"
+    ],
+
+
+
+
+    "{A}a_event_noun": [
+      "a {A}[NOUN]",
+      "{A}[ADJ.ness]",
+      "{A}[ADJ_SAT.ness]",
+      "{A}[VERB.ing]",
+
+      "__comment: We wanted to exclude [ADJ.ness] because it is not an event. However excluding it will leads to translation not found error."
+    ],
+
+    "¬{A}a_event_noun": [
+      "__a {A}[NOUN]",
+      "{A}[ADJ.neg]ness", "non-{A}[ADJ.ness]",
+      "{A}[ADJ_SAT.neg]ness", "non-{A}[ADJ_SAT.ness]",
+      "__<<phrase::not_pred>> {A}[VERB.ing]"
+    ],
+
+
+    "{A}event_noun": [
+      "{A}[NOUN]",
+      "{A}[ADJ.ness]",
+      "{A}[ADJ_SAT.ness]",
+      "{A}[VERB.ing]",
+
+      "__comment: We wanted to exclude [ADJ.ness] because it is not an event. However excluding it will leads to translation not found error."
+    ],
+
+    "¬{A}event_noun": [
+      "__{A}[NOUN]",
+      "{A}[ADJ.neg]ness", "non-{A}[ADJ.ness]",
+      "{A}[ADJ_SAT.neg]ness", "non-{A}[ADJ_SAT.ness]",
+      "__<<phrase::not_pred>> {A}[VERB.ing]"
+    ],
+
+
+
+
+    "the": [
+      "the",
+      "__comment: we will do this augmentation in the postprocessing",
+      "__this",
+      "__that"
+    ],
+
+    "the.plural": [
+      "the",
+      "__these",
+      "__those"
+    ],
+
+    "a": [
+      "a"
+    ],
+
+    "all": [
+      "all"
+    ],
+
+    "maybe_all": [
+      "all",
+      ""
+    ],
+
+    "and_pred": [
+      "and",
+      ["W_VOL_AVG__0.05", "also"],
+      ["W_VOL_AVG__0.05", "and also"],
+      ["W_VOL_AVG__0.05", "and moreover"],
+      ["W_VOL_AVG__0.05", "and in addition"],
+      ["W_VOL_AVG__0.05", "and further"],
+      ["W_VOL_AVG__0.05", "and furthermore"],
+      ["W_VOL_AVG__0.05", "and besides"],
+      ["W_VOL_AVG__0.05", "and additionally"],
+      ["W_VOL_AVG__0.05", "and as well"]
+    ],
+
+    "and_noun": [
+      "and"
+    ],
+
+    "andOr_noun": [
+      "and/or"
+    ],
+
+    "andOr_pred": [
+      "and/or"
+    ],
+
+    "or": [
+      "or"
+    ],
+
+    "but_pred": [
+      "but",
+      ["W_VOL_AVG__0.05", "however"],
+      ["W_VOL_AVG__0.05", "although"],
+      ["W_VOL_AVG__0.05", "though"],
+      ["W_VOL_AVG__0.05", "nevertheless"],
+      ["W_VOL_AVG__0.05", "however"],
+      ["W_VOL_AVG__0.05", "instead"],
+      ["W_VOL_AVG__0.05", "nontheless"],
+      ["W_VOL_AVG__0.05", "whereas"],
+      ["W_VOL_AVG__0.05", "despite"],
+      ["W_VOL_AVG__0.05", "even though"]
+    ],
+
+    "but_and_pred": [
+      "<<phrase::but_pred>>",
+      "and"
+    ],
+
+    "but_noun": [
+      "but"
+    ],
+
+    "not_noun": [
+      "not"
+    ],
+
+    "not_pred": [
+      "not"
+    ],
+
+    "is": [
+      "is"
+    ],
+
+    "is.plural": [
+      "<<phrase::are>>"
+    ],
+
+    "are": [
+      "are"
+    ],
+
+    "does": [
+      "does",
+      ["W_VOL_AVG__0.05", "will"]
+    ],
+
+    "does.plural": [
+      "do",
+      ["W_VOL_AVG__0.05", "will"]
+    ],
+
+    "does_not": [
+      "doesn't",
+      ["W_VOL_AVG__0.05", "does <<phrase::not_pred>>"],
+      ["W_VOL_AVG__0.05", "won't"],
+      ["W_VOL_AVG__0.05", "will not"],
+      ["W_VOL_AVG__0.05", "never"],
+      ["W_VOL_AVG__0.05", "fails to"],
+      ["W_VOL_AVG__0.05", "__cannot"],
+      ["W_VOL_AVG__0.05", "__is not unable to"],
+      ["W_VOL_AVG__0.05", "__is unable to"]
+    ],
+
+    "does_not.plural": [
+      "don't",
+      ["W_VOL_AVG__0.05", "do <<phrase::not_pred>>"],
+      ["W_VOL_AVG__0.05", "won't"],
+      ["W_VOL_AVG__0.05", "will not"],
+      ["W_VOL_AVG__0.05", "never"],
+      ["W_VOL_AVG__0.05", "fail to"],
+      ["W_VOL_AVG__0.05", "__cannot"],
+      ["W_VOL_AVG__0.05", "__are not unable to"],
+      ["W_VOL_AVG__0.05", "__are unable to"]
+    ],
+
+    "cause_verb": [
+      "causes",
+      "results in",
+      "brings about",
+
+      "yields",
+      "leads to",
+      "triggers",
+
+      ["W_VOL_AVG__0.05", "invokes"],
+      ["W_VOL_AVG__0.05", "gives rise to"],
+      ["W_VOL_AVG__0.05", "accelerates"],
+      ["W_VOL_AVG__0.05", "promotes"],
+      ["W_VOL_AVG__0.05", "induces"],
+      ["W_VOL_AVG__0.05", "brings about"],
+      ["W_VOL_AVG__0.05", "promotes"],
+      ["W_VOL_AVG__0.05", "accelerates"],
+
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the cause of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the reason for"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the origin of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the source of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the root of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> responsible for"]
+    ],
+
+    "cause_verb.plural": [
+      "cause",
+      "result in",
+      "bring about",
+
+      "yield",
+      "lead to",
+      "trigger",
+
+      ["W_VOL_AVG__0.05", "invoke"],
+      ["W_VOL_AVG__0.05", "give rise to"],
+      ["W_VOL_AVG__0.05", "accelerate"],
+      ["W_VOL_AVG__0.05", "promote"],
+      ["W_VOL_AVG__0.05", "induce"],
+      ["W_VOL_AVG__0.05", "bring about"],
+      ["W_VOL_AVG__0.05", "promote"],
+      ["W_VOL_AVG__0.05", "accelerate"],
+
+
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the cause of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the reason for"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the origin of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the source of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the root of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> responsible for"]
+    ],
+
+    "caused_verb": [
+      "<<phrase::is>> caused by",
+      "<<phrase::is>> brought about by",
+
+      "<<phrase::is>> triggered by",
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> invoked by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> given rise to by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> accelerated by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> promoted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> induced by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> brought about by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> promoted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> accelerated by"],
+
+
+      ["W_VOL_AVG__0.05", "originates from"],
+      ["W_VOL_AVG__0.05", "comes from"],
+      ["W_VOL_AVG__0.05", "stems from"],
+      ["W_VOL_AVG__0.05", "arisies from"],
+      ["W_VOL_AVG__0.05", "results from"],
+      ["W_VOL_AVG__0.05", "derives from"],
+      ["W_VOL_AVG__0.05", "follows from"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> due to"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a consequence of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> an effect of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the result of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> the attributed to"]
+    ],
+
+    "caused_verb.plural": [
+      "<<phrase::are>> caused by",
+      "<<phrase::are>> brought about by",
+
+      "<<phrase::are>> triggered by",
+
+      ["W_VOL_AVG__0.05", "<<phrase::are>> invoked by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> given rise to by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> accelerated by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> promoted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> induced by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> brought about by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> promoted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> accelerated by"],
+
+      ["W_VOL_AVG__0.05", "originate from"],
+      ["W_VOL_AVG__0.05", "come from"],
+      ["W_VOL_AVG__0.05", "stem from"],
+      ["W_VOL_AVG__0.05", "arisie from"],
+      ["W_VOL_AVG__0.05", "result from"],
+      ["W_VOL_AVG__0.05", "derive from"],
+      ["W_VOL_AVG__0.05", "follow from"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::are>> due to"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a consequence of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> an effect of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the result of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> the attributed to"]
+    ],
+
+    "prevent_verb": [
+      "prevents",
+
+      ["W_VOL_AVG__0.05", "stops"],
+      ["W_VOL_AVG__0.05", "avoids"],
+      ["W_VOL_AVG__0.05", "hinders"],
+      ["W_VOL_AVG__0.05", "interferes with"],
+      ["W_VOL_AVG__0.05", "disturbs"],
+      ["W_VOL_AVG__0.05", "suppresses"],
+      ["W_VOL_AVG__0.05", "obstructs"],
+      ["W_VOL_AVG__0.05", "deters"],
+      ["W_VOL_AVG__0.05", "blocks"],
+      ["W_VOL_AVG__0.05", "averts"],
+      ["W_VOL_AVG__0.05", "impedes"],
+      ["W_VOL_AVG__0.05", "inhibits"],
+
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> preventative of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> obstructive to"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a barrier to"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> inhibitive of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a deterrent to"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a block to"]
+    ],
+
+    "prevent_verb.plural": [
+      "prevent",
+
+      ["W_VOL_AVG__0.05", "stop"],
+      ["W_VOL_AVG__0.05", "avoid"],
+      ["W_VOL_AVG__0.05", "hinder"],
+      ["W_VOL_AVG__0.05", "interfere with"],
+      ["W_VOL_AVG__0.05", "disturb"],
+      ["W_VOL_AVG__0.05", "suppress"],
+      ["W_VOL_AVG__0.05", "obstruct"],
+      ["W_VOL_AVG__0.05", "deter"],
+      ["W_VOL_AVG__0.05", "block"],
+      ["W_VOL_AVG__0.05", "avert"],
+      ["W_VOL_AVG__0.05", "impede"],
+      ["W_VOL_AVG__0.05", "inhibit"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::are>> preventative of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> obstructive to"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a barrier to"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> inhibitive of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a deterrent to"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a block to"]
+    ],
+
+    "prevented_verb": [
+      "<<phrase::is>> prevented by",
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> stopped by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> avoided by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> hindered by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> interfered with by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> disturbed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> suppressed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> obstructed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> deterred by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> blocked by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> averted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> impeded by"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> inhibited by"]
+    ],
+
+    "prevented_verb.plural": [
+      "<<phrase::are>> prevented by",
+      
+      ["W_VOL_AVG__0.05", "<<phrase::are>> stopped by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> avoided by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> hindered by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> interfered with by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> disturbed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> suppressed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> obstructed by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> deterred by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> blocked by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> averted by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> impeded by"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> inhibited by"]
+    ],
+
+    "occur": [
+      "occurs",
+      "happens",
+      "takes place",
+
+      ["W_VOL_AVG__0.05", "transpires"],
+      ["W_VOL_AVG__0.05", "arises"],
+      ["W_VOL_AVG__0.05", "comes about"],
+      ["W_VOL_AVG__0.05", "unfolds"]
+    ],
+
+    "occur.plural": [
+      "occur",
+      "happen",
+      "take place",
+      ["W_VOL_AVG__0.05", "transpire"],
+      ["W_VOL_AVG__0.05", "arise"],
+      ["W_VOL_AVG__0.05", "come about"],
+      ["W_VOL_AVG__0.05", "unfold"]
+    ],
+
+    "not_occur": [
+      "<<phrase::does_not>> <<phrase::occur>>",
+      ["W_VOL_AVG__0.05", "remains unrealized"],
+      ["W_VOL_AVG__0.05", "falls through"]
+    ],
+
+
+    "not_occur.plural": [
+      "<<phrase::does.plural>> <<phrase::not_pred>> <<phrase::occur>>",
+      ["W_VOL_AVG__0.05", "remain unrealized"],
+      ["W_VOL_AVG__0.05", "fall through"]
+    ],
+
+    "is_a_kind_of": [
+      "<<phrase::is>>",
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::categorized_verb>>"],
+
+      ["W_VOL_AVG__0.05", "belongs to"],
+      ["W_VOL_AVG__0.05", "qualifies as"]
+    ],
+
+    "is_a_kind_of.plural": [
+      "<<phrase::are>>",
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::categorized_verb>>"],
+
+      ["W_VOL_AVG__0.05", "belong to"],
+      ["W_VOL_AVG__0.05", "qualify as"]
+    ],
+
+    "is_not_a_kind_of": [
+      "<<phrase::is>> <<phrase::not_pred>>",
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> <<phrase::categorized_verb>>"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::is>> distinct from"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::does_not>> belong to"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not>> qualify as"],
+      ["W_VOL_AVG__0.05", "differs from"]
+
+    ],
+
+    "is_not_a_kind_of.plural": [
+      "<<phrase::are>> <<phrase::not_pred>>",
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> <<phrase::categorized_verb>>"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::are>> distinct from"],
+
+      ["W_VOL_AVG__0.05", "<<phrase::does_not.plural>> belong to"],
+      ["W_VOL_AVG__0.05", "<<phrase::does_not.plural>> qualify as"],
+      ["W_VOL_AVG__0.05", "differ from"]
+    ],
+
+    "categorized_verb": [
+      "categorized as",
+      "classed as",
+      "classified as",
+      "grouped as",
+      "typed as",
+      "defined as"
+    ],
+
+    "if_conjunction": [
+      "if",
+      ["W_VOL_AVG__0.05", "whenever"],
+      ["W_VOL_AVG__0.05", "when"],
+
+      "__comment: the followings are not acceptable, as they imply that, in a sentences like '{A}, therefore {B}', {A} is true.",
+      ["W_VOL_AVG__0.05", "__as"],
+      ["W_VOL_AVG__0.05", "__because"],
+      ["W_VOL_AVG__0.05", "__since"],
+      ["W_VOL_AVG__0.05", "__given that"]
+    ],
+
+    "__thus_conjunction": [
+      "__comment: we do not used thus, because it implies that, in a sentences like '{A}, therefore {B}', {A} is true.",
+      "thus",
+      ["W_VOL_AVG__0.05", "therefore"],
+      ["W_VOL_AVG__0.05", "hence"],
+      ["W_VOL_AVG__0.05", "consequently"],
+      ["W_VOL_AVG__0.05", "as a result"],
+      ["W_VOL_AVG__0.05", "accordingly"],
+      ["W_VOL_AVG__0.05", "so"],
+      ["W_VOL_AVG__0.05", "for this reason"],
+      ["W_VOL_AVG__0.05", "because of this"],
+      ["W_VOL_AVG__0.05", "due to this"]
+    ],
+
+    "maybe_either": [
+      "either",
+      ""
+    ],
+
+    "neither": [
+      "neither"
+    ],
+
+    "nor": [
+      "nor"
+    ],
+
+    "maybe_then": [
+      "then",
+      ""
+    ],
+
+    "the_fact_that": [
+      "that",
+      ["W_VOL_AVG__0.20", "the fact that"],
+      ["W_VOL_AVG__0.05", "the claim that"],
+      ["W_VOL_AVG__0.05", "the statement that"],
+      ["W_VOL_AVG__0.05", "the proposition that"]
+    ],
+
+    "is_true": [
+      "<<phrase::is>> <<phrase::correct_adj>>",
+      ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> <<phrase::incorrect_adj>>"],
+      "<<phrase::hold_verb>>"
+    ],
+
+    "is_not_true": [
+      "<<phrase::is>> <<phrase::incorrect_adj>>",
+      ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> <<phrase::correct_adj>>"],
+      "<<phrase::not_hold_verb>>"
+    ],
+
+    "correct_adj": [
+      "correct",
+      "right",
+      "true",
+      "valid",
+      "__the case",
+      "__comment: 'not the case' is mostly used as 'That is not the case'",
+
+      "__the fact",
+      "__comment: this 'the fact' is confusing with 'the fact that'"
+    ],
+
+    "incorrect_adj": [
+      "incorrect",
+      "wrong",
+      "false",
+      "invalid",
+      "__",
+
+      "__"
+    ],
+
+    "hold_verb": [
+      "holds",
+      "stands"
+    ],
+
+    "not_hold_verb": [
+      "<<phrase::does>> <<phrase::not_pred>> hold",
+      "<<phrase::does>> <<phrase::not_pred>> stand"
+    ],
+
+    "there_is": [
+       "there is",
+       ["W_VOL_AVG__0.2", "there exists"]
+    ],
+
+    "there_are": [
+       "there are"
+    ],
+
+    "there_is_something_such_that": [
+       "__for <<phrase::something>>",
+       "there is <<phrase::something>> such that",
+       ["W_VOL_AVG__0.2", "there exists <<phrase::something>> such that"]
+    ],
+
+    "there_is_nothing_such_that" : [
+       "there is <<phrase::nothing>> such that",
+       ["W_VOL_AVG__0.2", "there exists <<phrase::nothing>> such that"]
+    ],
+
+    "thing": [
+      "thing",
+
+      "__comment: we will convert to one in the postprocessing",
+      "__one"
+    ],
+
+    "things": [
+      "<<phrase::thing>>s"
+    ],
+
+    "all_things": [
+      "<<phrase::all>> <<phrase::things>>"
+    ],
+
+    "it": [
+      "it",
+      "__comment: we will augment pronouns this in the postsprocessing",
+      "__this",
+      "__that",
+      "__<<phrase::the>> <<phrase::thing>>"
+    ],
+
+    "they": [
+      "they",
+      "__these",
+      "__those",
+      "__<<phrase::the.plural>> <<phrase::things>>"
+    ],
+
+    "something": [
+      "something",
+      ["W_VOL_AVG__0.5", "__someone"]
+    ],
+
+    "everything": [
+      "everything",
+      ["W_VOL_AVG__0.5", "__everyone"]
+    ],
+
+    "nothing": [
+      "nothing",
+      ["W_VOL_AVG__0.5", "__no one"]
+    ]
+  }
+
+}

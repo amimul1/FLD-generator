@@ -277,13 +277,24 @@ class ProofTreeGenerationPipeline:
             leaf_nodes, leaf_formulas = proof_tree.leaf_nodes, [node.formula for node in proof_tree.leaf_nodes]
             assump_formula_indices = [i for i, node in enumerate(tree_nodes) if node.is_assump]
 
-            all_formulas = tree_formulas + [root_negation_formula]  + formula_distractors
-            other_formulas = []
+            negative_tree_formulas = []
+            negative_formula_to_tree = {}
             all_negative_tree_attrs = [val for name, val in misc.items()
                                        if name.find('negative_tree') >= 0]
             for negative_tree_attrs in all_negative_tree_attrs:
-                other_formulas += [node.formula for node in negative_tree_attrs['tree'].nodes]
-            all_formulas = all_formulas + [formula for formula in other_formulas if formula not in all_formulas]
+                negative_tree = negative_tree_attrs['tree']
+                for node in negative_tree.nodes:
+                    negative_tree_formulas.append(node.formula)
+                    negative_formula_to_tree[node.formula] = negative_tree
+
+            all_formulas = tree_formulas + [root_negation_formula] + formula_distractors + negative_tree_formulas
+            all_formula_reps = {formula.rep for formula in all_formulas}
+            # we remove deduplicated formulas to avoid (i) multiple translations for identical formula, and (ii) slowness of self._translator.translate()
+            # The effect of (ii) is large
+            all_unique_formulas: List[Formula] = []
+            for formula in all_formulas:
+                if formula.rep not in all_formula_reps:
+                    all_unique_formulas.append(formula)
 
             knowledge_idxs: List[int] = []
             collapsed_knowledge_idxs: List[int] = []
@@ -320,7 +331,7 @@ class ProofTreeGenerationPipeline:
 
             try:
                 named_translations, translator_stats = self.translator.translate(
-                    all_formulas,
+                    all_unique_formulas,
                     list(proof_tree.intermediate_constants),
                     knowledge_idxs=knowledge_idxs,
                     collapsed_knowledge_idxs=collapsed_knowledge_idxs,
@@ -331,38 +342,47 @@ class ProofTreeGenerationPipeline:
             except TranslationImpossible as e:
                 raise ProofTreeGenerationPipelineImpossible(str(e))
 
-            for i_formula, (formula, (translation_name, translation, SO_swap_formula, knowledge_type)) in enumerate(zip(all_formulas, named_translations)):
-
-                formula.translation_name = translation_name
-                if i_formula in assump_formula_indices:
-                    translation_prefix = self.assumption_prefix
-                else:
-                    translation_prefix = ''
-
-                if translation is not None:
-                    if translation_prefix:
-                        formula.translation = translation_prefix + translation[0] + translation[1:]
-                    else:
-                        try:
-                            formula.translation = translation[0].upper() + translation[1:]
-                        except IndexError as e:
-                            logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                            logger.critical('translation: %s', translation)
-                            if translation == "":
-                                logger.warning('translation is "", which is not expected. Should be debugged.'
-                                               'Currently we leave it and is just using other successful samples.')
-                            else:
-                                raise 
-
-                    if knowledge_type is not None:
-                        knowledge_injected_node = [node for node in proof_tree.nodes if node.formula == formula][0]
-                        knowledge_injected_node.knowledge_type = knowledge_type
-                        logger.info('%s is injected to a node: %s', knowledge_type, str(knowledge_injected_node))
+            for i_formula, (formula, (translation_name, translation, SO_swap_formula, knowledge_type)) in enumerate(zip(all_unique_formulas, named_translations)):
 
                 if self.add_subj_obj_swapped_distractor and formula in leaf_formulas and SO_swap_formula is not None:
                     logger.info('adding subj obj swapped distractor: "%s"', SO_swap_formula.translation)
-
                     formula_distractors.append(SO_swap_formula)
+
+                def update_formula_tree(formula: Formula, proof_tree: ProofTree) -> None:
+                    formula.translation_name = translation_name
+                    if i_formula in assump_formula_indices:
+                        translation_prefix = self.assumption_prefix
+                    else:
+                        translation_prefix = ''
+
+                    if translation is not None:
+                        if translation_prefix:
+                            formula.translation = translation_prefix + translation[0] + translation[1:]
+                        else:
+                            try:
+                                formula.translation = translation[0].upper() + translation[1:]
+                            except IndexError as e:
+                                logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                                logger.critical('translation: %s', translation)
+                                if translation == "":
+                                    logger.warning('translation is "", which is not expected. Should be debugged.'
+                                                   'Currently we leave it and is just using other successful samples.')
+                                else:
+                                    raise 
+
+                        if knowledge_type is not None:
+                            knowledge_injected_node = [node for node in proof_tree.nodes if node.formula == formula][0]
+                            knowledge_injected_node.knowledge_type = knowledge_type
+                            logger.info('%s is injected to a node: %s', knowledge_type, str(knowledge_injected_node))
+
+                for _formula in all_unique_formulas:
+                    if _formula.rep != formula.rep:
+                        continue
+
+                    if _formula in negative_tree_formulas:
+                        update_formula_tree(_formula, negative_formula_to_tree[_formula])
+                    else:
+                        update_formula_tree(_formula, proof_tree)
 
             logger.info(self._make_pretty_log('generate translations', 'finish'))
 
