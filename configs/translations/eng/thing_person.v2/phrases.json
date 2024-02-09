@@ -284,25 +284,25 @@
 
     "is_a_kind_of": [
       "<<phrase::is>>",
-      ["W_VOL_AVG__0.2", "<<phrase::is>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::categorized_verb>>"]
     ],
 
     "is_a_kind_of.plural": [
       "<<phrase::are>>",
-      ["W_VOL_AVG__0.2", "<<phrase::are>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::categorized_verb>>"]
     ],
 
     "is_not_a_kind_of": [
       "<<phrase::is>> not",
-      ["W_VOL_AVG__0.2", "<<phrase::is>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::is>> <<phrase::not_pred>> <<phrase::categorized_verb>>"]
     ],
 
     "is_not_a_kind_of.plural": [
       "<<phrase::are>> not",
-      ["W_VOL_AVG__0.2", "<<phrase::are>> <<phrase::not_pred>> a kind of"],
+      ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> a kind of"],
       ["W_VOL_AVG__0.05", "<<phrase::are>> <<phrase::not_pred>> <<phrase::categorized_verb>>"]
     ],
 
@@ -340,10 +340,10 @@
 
     "the_fact_that": [
       "that",
-      ["W_VOL_AVG__0.3", "the fact that"],
-      ["W_VOL_AVG__0.1", "the claim that"],
-      ["W_VOL_AVG__0.1", "the statement that"],
-      ["W_VOL_AVG__0.1", "the proposition that"]
+      ["W_VOL_AVG__0.20", "the fact that"],
+      ["W_VOL_AVG__0.05", "the claim that"],
+      ["W_VOL_AVG__0.05", "the statement that"],
+      ["W_VOL_AVG__0.05", "the proposition that"]
     ],
 
     "is_true": [
@@ -402,12 +402,12 @@
     "there_is_something_such_that": [
        "__for <<phrase::something>>",
        "there is <<phrase::something>> such that",
-       ["W_VOL_AVG__0.3", "there exists <<phrase::something>> such that"]
+       ["W_VOL_AVG__0.2", "there exists <<phrase::something>> such that"]
     ],
 
     "there_is_nothing_such_that" : [
        "there is <<phrase::nothing>> such that",
-       ["W_VOL_AVG__0.3", "there exists <<phrase::nothing>> such that"]
+       ["W_VOL_AVG__0.2", "there exists <<phrase::nothing>> such that"]
     ],
 
     "thing": [
