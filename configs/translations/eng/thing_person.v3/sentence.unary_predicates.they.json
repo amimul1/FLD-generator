@@ -1,0 +1,44 @@
+{
+
+  "sentence": {
+
+    "{A}they": [
+      "<<clause::verb::{A}they>>",
+      ["W_VOL_AVG__0.05", "<<sentence::¬(¬{A}they)>>"]
+    ],
+    "¬{A}they": [
+      "<<clause::verb::¬{A}they>>",
+      ["W_VOL_AVG__0.05", "<<sentence::¬({A}they)>>"]
+    ],
+
+
+    "({A}they & {B}they)": [
+      "<<clause::verb::({A}they & {B}they)>>"
+    ],
+    "(¬{A}they & {B}they)": [
+      "<<clause::verb::(¬{A}they & {B}they)>>"
+    ],
+    "({A}they & ¬{B}they)": [
+      "<<clause::verb::({A}they & ¬{B}they)>>"
+    ],
+    "(¬{A}they & ¬{B}they)": [
+      "<<clause::verb::(¬{A}they & ¬{B}they)>>"
+    ],
+
+
+    "({A}they v {B}they)": [
+      "<<clause::verb::({A}they v {B}they)>>"
+    ],
+    "(¬{A}they v {B}they)": [
+      "<<clause::verb::(¬{A}they v {B}they)>>"
+    ],
+    "({A}they v ¬{B}they)": [
+      "<<clause::verb::({A}they v ¬{B}they)>>"
+    ],
+    "(¬{A}they v ¬{B}they)": [
+      "<<clause::verb::(¬{A}they v ¬{B}they)>>"
+    ]
+
+  }
+
+}

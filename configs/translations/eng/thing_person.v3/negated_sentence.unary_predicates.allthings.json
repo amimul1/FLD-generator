@@ -1,0 +1,42 @@
+{
+
+  "sentence": {
+
+    "¬({A}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::{A}all_things>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::¬({A}all_things)>> <<phrase::is_not_true>>"
+    ],
+
+
+    "¬({A}all_things & {B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}all_things & {B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}all_things & {B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things & {B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬({A}all_things & ¬{B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}all_things & ¬{B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}all_things & ¬{B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things & ¬{B}all_things)>> <<phrase::is_not_true>>"
+    ],
+
+
+    "¬({A}all_things v {B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}all_things v {B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}all_things v {B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things v {B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬({A}all_things v ¬{B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}all_things v ¬{B}all_things)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}all_things v ¬{B}all_things)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}all_things v ¬{B}all_things)>> <<phrase::is_not_true>>"
+    ]
+
+  }
+
+}
