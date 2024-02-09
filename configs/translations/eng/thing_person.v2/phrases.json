@@ -561,7 +561,7 @@
 
     "the_fact_that": [
       "that",
-      ["W_VOL_AVG__0.5", "the fact that"],
+      ["W_VOL_AVG__0.20", "the fact that"],
       ["W_VOL_AVG__0.05", "the claim that"],
       ["W_VOL_AVG__0.05", "the statement that"],
       ["W_VOL_AVG__0.05", "the proposition that"]
@@ -623,12 +623,12 @@
     "there_is_something_such_that": [
        "__for <<phrase::something>>",
        "there is <<phrase::something>> such that",
-       ["W_VOL_AVG__0.3", "there exists <<phrase::something>> such that"]
+       ["W_VOL_AVG__0.2", "there exists <<phrase::something>> such that"]
     ],
 
     "there_is_nothing_such_that" : [
        "there is <<phrase::nothing>> such that",
-       ["W_VOL_AVG__0.3", "there exists <<phrase::nothing>> such that"]
+       ["W_VOL_AVG__0.2", "there exists <<phrase::nothing>> such that"]
     ],
 
     "thing": [
