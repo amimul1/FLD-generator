@@ -7676,7 +7676,7 @@ _DATASET_SETTINGS = {
         'complex_formula_arguments_weight': 0.5,
 
 
-        'depth_range': (1, 3),
+        'depth_range': (1, 8),
         'depth_distrib': 'flat',
         'branch_extensions_range': (0, 5),
 

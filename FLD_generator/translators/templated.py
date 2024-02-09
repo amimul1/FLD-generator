@@ -427,8 +427,6 @@ class TemplatedTranslator(Translator):
         collapsed_knowledge_idxs = collapsed_knowledge_idxs or []
         self._reset_assets()
 
-        # from pprint import pformat
-        # logger.critical('\n' + pformat(formulas))
 
         def raise_or_warn(msg: str) -> None:
             if raise_if_translation_not_found:
@@ -771,6 +769,8 @@ class TemplatedTranslator(Translator):
 
             if len(condition) == 0:
                 # something like nl=<<phrase::is>>, which redirect just to "is"
+                if len(_CONSTANT_NL_GENERATORS) > 1000000:
+                    _CONSTANT_NL_GENERATORS.clear()
                 _CONSTANT_NL_GENERATORS[nl] = generate
 
             return generate(), volume

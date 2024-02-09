@@ -22,9 +22,7 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
 
 
 ## Installation
-The code has been tested on pypy3.10-7.3.12, which is a faster alternative to CPython.
 The code has been also tested on Python 3.11.5,
-however the program may timeout due to the slow translator.
 ```console
 pip install -r ./requirements/requrements.txt
 export PYTHONPATH=`pwd -P`:$PYTHONPATH

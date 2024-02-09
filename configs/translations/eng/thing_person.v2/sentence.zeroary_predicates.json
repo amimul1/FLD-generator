@@ -84,14 +84,14 @@
 
 
     "({A} & {B}) -> {C}": [
-      "__<<phrase::if_conjunction>> <<sentence::({A} & {B})>> <<phrase::maybe_then>> <<sentence::{C}>>",
-      "__<<sentence::{C}>> <<phrase::if_conjunction>> <<sentence::({A} & {B})>>",
+      "<<phrase::if_conjunction>> <<sentence::({A} & {B})>> <<phrase::maybe_then>> <<sentence::{C}>>",
+      "<<sentence::{C}>> <<phrase::if_conjunction>> <<sentence::({A} & {B})>>",
 
-      "__<<clause::noun::({A} & {B}).event_occurrence>> <<phrase::cause_verb.plural>> <<clause::noun::{C}.event_occurrence>>",
-      "__<<clause::noun::{C}.event_occurrence>> <<phrase::caused_verb>> <<clause::noun::({A} & {B}).event_occurrence>>",
+      "<<clause::noun::({A} & {B}).event_occurrence>> <<phrase::cause_verb.plural>> <<clause::noun::{C}.event_occurrence>>",
+      "<<clause::noun::{C}.event_occurrence>> <<phrase::caused_verb>> <<clause::noun::({A} & {B}).event_occurrence>>",
 
       "<<clause::noun::({A} & {B}).event_occurrence>> <<phrase::prevent_verb.plural>> <<clause::noun::¬{C}.event_occurrence>>",
-      "__<<clause::noun::¬{C}.event_occurrence>> <<phrase::prevented_verb>> <<clause::noun::({A} & {B}).event_occurrence>>"
+      "<<clause::noun::¬{C}.event_occurrence>> <<phrase::prevented_verb>> <<clause::noun::({A} & {B}).event_occurrence>>"
     ],
     "(¬{A} & {B}) -> {C}": [
       "<<phrase::if_conjunction>> <<sentence::(¬{A} & {B})>> <<phrase::maybe_then>> <<sentence::{C}>>",

@@ -77,12 +77,13 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.translation-augmentation.timeout_test')
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.echo_ld')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.is_are_no_recursion')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--10')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--20')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.is_are_no_recursion')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--10')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--20')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.sorted_templates')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
