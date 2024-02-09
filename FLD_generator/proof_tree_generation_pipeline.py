@@ -341,9 +341,6 @@ class ProofTreeGenerationPipeline:
                 raise ProofTreeGenerationPipelineFailure(str(e))
             except TranslationImpossible as e:
                 raise ProofTreeGenerationPipelineImpossible(str(e))
-            except:
-                logger.critical('--------------- exception in add_translations() ---------------')
-                logger.critical(all_unique_formulas)
 
             for i_formula, (formula, (translation_name, translation, SO_swap_formula, knowledge_type)) in enumerate(zip(all_unique_formulas, named_translations)):
 

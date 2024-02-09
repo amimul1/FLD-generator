@@ -843,20 +843,10 @@ class TemplatedTranslator(Translator):
         if template_key is None:
             raise Exception(f'template for {template} not found.')
 
-        # print('\n\n')
-        # print(f'-------------------------------- {template} --------------------------------')
-        # print('ancestor_nls:')
-        # for ancestor_nl in ancestor_nls:
-        #     print('    ' + ancestor_nl)
-
         iterators = []
         weight_types: List[str] = []
         volumes: List[int] = []
         for weight, template_nl in template_nls:
-            if template_nl in ancestor_nls:
-                # print('\n')
-                # print('!!!!!!!!!!!!!!!!!!!!!!!! rejected:\n    ' + template_nl)
-                continue
 
             iterator_with_volume = self._make_resolved_translation_sampler(template_nl,
                                                                            # ancestor_keys.union(set([template_key])),
