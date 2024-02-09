@@ -3,6 +3,7 @@ from typing import Optional, Iterable, List, Dict, Set, Tuple
 import logging
 from enum import Enum
 from typing import Optional
+from functools import lru_cache
 
 from ordered_set import OrderedSet
 from lemminflect import getInflection, getAllInflectionsOOV
@@ -120,6 +121,8 @@ class EnglishWordBank(WordBank):
             return [POS.NOUN]
         return self._word_util.get_pos(word)
 
+    @lru_cache(maxsize=1000000)
+    @profile
     def _change_verb_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
         if form in [self.VerbForm.NORMAL, self.VerbForm.ING, self.VerbForm.S]:
@@ -129,7 +132,7 @@ class EnglishWordBank(WordBank):
             else:
                 verb = self._word_util.get_lemma(verb)
 
-            results = getInflection(verb, tag=self._verb_inflation_mapping[form])
+            results = getInflection(verb, tag=self._verb_inflation_mapping[form])   # SLOW
 
             if results is not None:
                 return [results[0]]
@@ -178,6 +181,8 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
+    @lru_cache(maxsize=1000000)
+    @profile
     def _change_adj_form(self, adj: str, form: Enum, force=False) -> List[str]:
 
         if form == self.AdjForm.NORMAL:
@@ -222,6 +227,8 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError(f'Unknown form {form}')
 
+    @lru_cache(maxsize=1000000)
+    @profile
     def _change_present_particle_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
         if form in [self.PresentForm.NORMAL]:
@@ -229,6 +236,8 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
+    @lru_cache(maxsize=1000000)
+    @profile
     def _change_past_particle_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
         if form in [self.PastForm.NORMAL]:
@@ -236,6 +245,8 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
+    @lru_cache(maxsize=1000000)
+    @profile
     def _change_noun_form(self, noun: str, form: Enum, force=False) -> List[str]:
 
         if form == self.NounForm.NORMAL:

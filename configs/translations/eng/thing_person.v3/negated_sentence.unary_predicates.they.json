@@ -1,0 +1,44 @@
+{
+
+  "sentence": {
+
+    "¬({A}they)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::{A}they>> <<phrase::is_not_true>>"],
+      "<<sentence::¬{A}they>>"
+    ],
+    "¬(¬{A}they)": [
+      ["W_VOL_AVG__0.05", "<<phrase::the_fact_that>> <<sentence::¬{A}they>> <<phrase::is_not_true>>"],
+      "<<sentence::{A}they>>"
+    ],
+
+
+    "¬({A}they & {B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}they & {B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}they & {B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}they & {B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬({A}they & ¬{B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}they & ¬{B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}they & ¬{B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}they & ¬{B}they)>> <<phrase::is_not_true>>"
+    ],
+
+
+    "¬({A}they v {B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}they v {B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}they v {B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}they v {B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬({A}they v ¬{B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::({A}they v ¬{B}they)>> <<phrase::is_not_true>>"
+    ],
+    "¬(¬{A}they v ¬{B}they)": [
+      "<<phrase::the_fact_that>> <<sentence::(¬{A}they v ¬{B}they)>> <<phrase::is_not_true>>"
+    ]
+
+  }
+
+}

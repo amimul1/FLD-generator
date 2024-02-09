@@ -4,6 +4,7 @@ import sys
 import json
 from collections import defaultdict
 import re
+import time
 
 from FLD_generator.formula import Formula, negate, eliminate_double_negation
 from FLD_generator.translators import build as build_translator, TemplatedTranslator
@@ -106,27 +107,28 @@ def test_templated_translator_lang(lang: str,
     show_translations = make_show_translation_func(translator)
 
     if knowledge_banks is None:
+        start = time.time()
 
-        # show_translations(['{A}'], trial=100)
-        # show_translations(['¬({A})'], trial=100)
+        show_translations(['{A}'], trial=100)
+        show_translations(['¬({A})'], trial=100)
 
-        # show_translations(['({A} & {B})'], trial=100)
-        # show_translations(['(¬{A} & {B})'], trial=100)
-        # show_translations(['({A} & ¬{B})'], trial=100)
-        # show_translations(['(¬{A} & ¬{B})'], trial=100)
+        show_translations(['({A} & {B})'], trial=100)
+        show_translations(['(¬{A} & {B})'], trial=100)
+        show_translations(['({A} & ¬{B})'], trial=100)
+        show_translations(['(¬{A} & ¬{B})'], trial=100)
 
-        # show_translations(['({A} v {B})'], trial=100)
-        # show_translations(['(¬{A} v {B})'], trial=100)
-        # show_translations(['({A} v ¬{B})'], trial=100)
-        # show_translations(['(¬{A} v ¬{B})'], trial=100)
+        show_translations(['({A} v {B})'], trial=100)
+        show_translations(['(¬{A} v {B})'], trial=100)
+        show_translations(['({A} v ¬{B})'], trial=100)
+        show_translations(['(¬{A} v ¬{B})'], trial=100)
 
-        # show_translations(['{A} -> {B}'], trial=100)
-        # show_translations(['¬{A} -> {B}'], trial=100)
-        # show_translations(['{A} -> ¬{B}'], trial=100)
-        # show_translations(['({A} & {B}) -> {C}'], trial=100)
-        # show_translations(['({A} v {B}) -> {C}'], trial=100)
-        # show_translations(['{A} -> ({B} & {C})'], trial=100)
-        # show_translations(['{A} -> ({B} v {C})'], trial=100)
+        show_translations(['{A} -> {B}'], trial=100)
+        show_translations(['¬{A} -> {B}'], trial=100)
+        show_translations(['{A} -> ¬{B}'], trial=100)
+        show_translations(['({A} & {B}) -> {C}'], trial=100)
+        show_translations(['({A} v {B}) -> {C}'], trial=100)
+        show_translations(['{A} -> ({B} & {C})'], trial=100)
+        show_translations(['{A} -> ({B} v {C})'], trial=100)
 
         show_translations(['{A}{a}'], trial=100)
 
@@ -212,6 +214,10 @@ def test_templated_translator_lang(lang: str,
             5,
             intermediate_constant_formula_reps=['{a}', '{d}'],
         )
+
+        end = time.time()
+        print(f'elapsed time: {end - start:.2f} sec')
+
     else:
         show_translations(['{A}{a}'], trial=100, knowledge_injection_idxs=[0], do_negation=False)
         show_translations(['{A} -> {B}'], trial=100, knowledge_injection_idxs=[0], do_negation=False)
@@ -643,7 +649,8 @@ def test_jpn_postprocess():
 
 
 if __name__ == '__main__':
-    setup_logger(level=logging.DEBUG)
+    # setup_logger(level=logging.DEBUG)
+    setup_logger(level=logging.INFO)
 
     test_eng()
     # test_eng_with_knowledge()

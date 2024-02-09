@@ -69,7 +69,7 @@ def test_generate_dataset_lang(lang: str,
 
     translator = build_translator(
         lang,
-        'thing.v1',
+        'thing_person.v2',
         word_bank,
         no_transitive_object=False,
         use_fixed_translation=False,
