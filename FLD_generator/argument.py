@@ -100,5 +100,9 @@ def is_universal_intro_argument(argument: Argument) -> bool:
     return argument.id.find('universal_intro') >= 0
 
 
+def is_propositional_argument(argument: Argument) -> bool:
+    return argument.id.find('propositional') >= 0
+
+
 def is_theorem_argument(argument: Argument) -> bool:
     return argument.id.find('theorem') >= 0

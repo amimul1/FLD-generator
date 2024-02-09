@@ -84,6 +84,7 @@ def weighted_sampling(weights: List[float]) -> int:
     weight_sum = sum(weights)
     if weight_sum == 0.0:
         raise ValueError()
+
     normalized_weights = [weight / weight_sum for weight in weights]
     r = random.random()
     cum = min(1e-7, min(normalized_weights))  # start from positive value in order to ensure that cum reached 1.0 at the end of the for loop

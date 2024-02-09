@@ -44,6 +44,7 @@ def load_dataset(argument_config: List[str],
                  quantifier_axiom_arguments_weight: float,
                  quantifier_axioms: Optional[List[str]],
                  quantification_degree: str,
+                 propositional_arguments_factor: float,
                  knowledge_argument_factor: float,
                  keep_dneg: bool,
                  distractor: str,
@@ -109,6 +110,7 @@ def load_dataset(argument_config: List[str],
         quantifier_axiom_arguments_weight=quantifier_axiom_arguments_weight,
         quantifier_axioms=quantifier_axioms,
         quantification_degree=quantification_degree,
+        propositional_arguments_factor=propositional_arguments_factor,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -243,6 +245,7 @@ def generate_instances(size: int, *args):
 @click.option('--quantifier-axiom-arguments-weight', type=float, default=0.0)
 @click.option('--quantifier-axiom', multiple=True, default=None)
 @click.option('--quantification-degree', type=str, default='all_constants')
+@click.option('--propositional-arguments-factor', type=float, default=1.0)
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
 @click.option('--depth-range', type=str, default=json.dumps([1, 5]))
@@ -325,6 +328,7 @@ def main(output_path,
          quantifier_axiom_arguments_weight,
          quantifier_axiom,
          quantification_degree,
+         propositional_arguments_factor,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -411,6 +415,7 @@ def main(output_path,
                         quantifier_axiom_arguments_weight,
                         quantifier_axiom,
                         quantification_degree,
+                        propositional_arguments_factor,
                         knowledge_argument_factor,
                         keep_dneg,
                         distractor,

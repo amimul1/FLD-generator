@@ -435,6 +435,7 @@ def make_dataset(dataset_name: str,
                 f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
                 _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
                 maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
+                maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
 
                 maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                 _make_multiple_value_option('--translation-config', job_settings['translation_configs']),

@@ -22,6 +22,7 @@ from .formula_checkers import (
 )
 from .argument import (
     Argument,
+    is_propositional_argument,
     is_theorem_argument,
     is_reference_argument,
     is_existential_argument,
@@ -143,6 +144,7 @@ class ProofTreeGenerator:
                  quantifier_axiom_arguments_weight=0.0,
                  quantifier_axioms: Optional[List[str]] = None,
                  quantification_degree: str = 'all_constants',
+                 propositional_arguments_factor=1.0,
                  theorem_arguments_factor=0.3,
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
@@ -171,6 +173,7 @@ class ProofTreeGenerator:
             quantifier_axioms=quantifier_axioms,
             quantification_degree=quantification_degree,
             allow_generating_heterogeneous_arity_formulas=False,
+            propositional_arguments_factor=propositional_arguments_factor,
             theorem_arguments_factor=theorem_arguments_factor,
             or_arguments_factor=or_arguments_factor,
             existential_arguments_factor=existential_arguments_factor,
@@ -199,6 +202,7 @@ class ProofTreeGenerator:
                         quantifier_axioms: Optional[List[str]],
                         quantification_degree: str,
                         allow_generating_heterogeneous_arity_formulas: bool,
+                        propositional_arguments_factor: float,
                         theorem_arguments_factor: float,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
@@ -314,11 +318,23 @@ class ProofTreeGenerator:
                             quantifier_axiom_arguments.append(quantifier_axiom_argument)
 
         def calc_argument_weight(argument: Argument) -> float:
+
+            if not (0 <= complex_formula_arguments_weight <= 1):
+                raise ValueError()
+            if not (0 <= quantifier_arguments_weight <= 1):
+                raise ValueError()
+            if not (0 <= quantifier_axiom_arguments_weight <= 1):
+                raise ValueError()
+
+            some_others = complex_formula_arguments_weight + quantifier_arguments_weight + quantifier_axiom_arguments_weight
+            if not (0 <= some_others <= 1):
+                raise ValueError()
+
             if argument in arguments:
                 if len(arguments) == 0:
                     return None
                 else:
-                    weight = (1 - complex_formula_arguments_weight - quantifier_arguments_weight - quantifier_axiom_arguments_weight)
+                    weight = (1 - some_others)
                     return 1 / len(arguments) * weight
 
             elif argument in complicated_arguments:
@@ -367,6 +383,8 @@ class ProofTreeGenerator:
 
         _argument_weights_with_factor: Dict[Argument, float] = {}
         for argument, weight in _argument_weights.items():
+            if is_propositional_argument(argument):
+                weight *= propositional_arguments_factor
             if is_theorem_argument(argument):
                 weight *= theorem_arguments_factor
             if is_or_argument(argument):
