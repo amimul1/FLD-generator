@@ -8,7 +8,7 @@
   },
 
   {
-      "id": "__predicate.material_implication.shared_arg",
+      "id": "predicate.material_implication.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}"
       ],
