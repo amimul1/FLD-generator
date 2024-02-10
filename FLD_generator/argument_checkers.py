@@ -16,8 +16,8 @@ def is_trivial(arg: Argument) -> bool:
     return _is_conclusion_in_premises(arg)
 
 
-def is_nonsense(arg: Argument, allow_detect_tautology_contradiction=False) -> bool:
-    return any(is_formula_nonsense(formula, allow_detect_tautology_contradiction=allow_detect_tautology_contradiction)
+def is_nonsense(arg: Argument) -> bool:
+    return any(is_formula_nonsense(formula)
                for formula in arg.all_formulas
                if not has_contradiction_symbol(formula))
 

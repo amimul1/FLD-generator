@@ -649,8 +649,8 @@ def test_jpn_postprocess():
 
 
 if __name__ == '__main__':
-    # setup_logger(level=logging.DEBUG)
-    setup_logger(level=logging.INFO)
+    setup_logger(level=logging.DEBUG)
+    # setup_logger(level=logging.INFO)
 
     test_eng()
     # test_eng_with_knowledge()

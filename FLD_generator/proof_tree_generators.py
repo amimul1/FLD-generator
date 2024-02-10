@@ -865,8 +865,8 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                                 rejection_stats['is_argument_trivial(next_arg_pulled)'] += 1
                                 continue
 
-                            if is_argument_nonsense(next_arg_pulled, allow_detect_tautology_contradiction=True):
-                                # is_argument_nonsense(next_arg_pulled, allow_detect_tautology_contradiction=True)
+                            if is_argument_nonsense(next_arg_pulled):
+                                # is_argument_nonsense(next_arg_pulled)
                                 rejection_stats['is_argument_nonsense(next_arg_pulled)'] += 1
                                 continue
 
@@ -1219,7 +1219,7 @@ def _extend_branches(proof_tree: ProofTree,
                             rejection_stats['is_argument_trivial(next_arg_pulled)'] += 1
                             continue
 
-                        if is_argument_nonsense(next_arg_pulled, allow_detect_tautology_contradiction=True):
+                        if is_argument_nonsense(next_arg_pulled):
                             rejection_stats['is_argument_nonsense(next_arg_pulled)'] += 1
                             continue
 
