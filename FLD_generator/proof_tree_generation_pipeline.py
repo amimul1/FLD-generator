@@ -15,7 +15,6 @@ from FLD_generator.proof_tree_generators import ProofTreeGenerationFailure, Proo
 from FLD_generator.formula_distractors import FormulaDistractorGenerationFailure, FormulaDistractorGenerationImpossible, NegativeTreeDistractor
 from FLD_generator.translation_distractors import TranslationDistractor, TranslationDistractorGenerationFailure, TranslationDistractorGenerationImpossible
 from FLD_generator.translators import TranslationFailure, TranslationImpossible
-from FLD_generator.translators.base import TranslationNotFoundError
 from FLD_generator.utils import make_pretty_msg
 import line_profiling
 
@@ -292,9 +291,11 @@ class ProofTreeGenerationPipeline:
             # we remove deduplicated formulas to avoid (i) multiple translations for identical formula, and (ii) slowness of self._translator.translate()
             # The effect of (ii) is large
             all_unique_formulas: List[Formula] = []
+            all_unique_formula_reps: Set[str] = set()
             for formula in all_formulas:
-                if formula.rep not in all_formula_reps:
+                if formula.rep not in all_unique_formula_reps:
                     all_unique_formulas.append(formula)
+                    all_unique_formula_reps.add(formula.rep)
 
             knowledge_idxs: List[int] = []
             collapsed_knowledge_idxs: List[int] = []
@@ -375,7 +376,7 @@ class ProofTreeGenerationPipeline:
                             knowledge_injected_node.knowledge_type = knowledge_type
                             logger.info('%s is injected to a node: %s', knowledge_type, str(knowledge_injected_node))
 
-                for _formula in all_unique_formulas:
+                for _formula in all_formulas:
                     if _formula.rep != formula.rep:
                         continue
 

@@ -46,7 +46,7 @@ from .interpretation import (
     generate_quantifier_axiom_arguments,
 )
 # from .utils import DelayedLogger
-from .proof import ProofTree, ProofNode
+from .proof import ProofTree, ProofNode, MultipleParentError
 from .exception import FormalLogicExceptionBase
 from .utils import (
     weighted_shuffle,
@@ -687,8 +687,20 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                argument: Argument,
                proof_tree: ProofTree):
 
-        for premise_node in premise_nodes:
-            conclusion_node.add_child(premise_node)
+        try:
+            for premise_node in premise_nodes:
+                conclusion_node.add_child(premise_node)
+        except MultipleParentError as e:
+            logger.critical('premise_nodes')
+            for premise_node in premise_nodes:
+                logger.critical(premise_node)
+
+            logger.critical('conclusion_node')
+            logger.critical(conclusion_node)
+
+            logger.critical('argument')
+            logger.critical(argument)
+            raise
 
         for assumption_node in assumption_nodes:
             conclusion_node.add_assump_child(assumption_node)
@@ -948,6 +960,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                        next_conclusion_node,
                        next_arg_pulled,
                        proof_tree)
+
 
                 cur_conclusion_node = next_conclusion_node
                 cur_premise_nodes = next_premise_nodes

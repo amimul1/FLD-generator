@@ -474,6 +474,7 @@ class TemplatedTranslator(Translator):
                 found_keys += 1
 
                 # Choose a translation
+                # logger.critical(translation_key)
                 chosen_nl, _pos_mapping = self._sample_interpret_mapping_consistent_nl(
                     translation_key,
                     interpret_mapping,
@@ -785,6 +786,9 @@ class TemplatedTranslator(Translator):
 
             # sorted_templates = templates
             sorted_templates = sorted(templates, key=num_possible_conditions)[::-1]
+
+            # from pprint import pformat
+            # logger.critical(pformat(sorted_templates))
 
             template_resolve_generators = [
                 GlobalResolveTemplateGenerator(
