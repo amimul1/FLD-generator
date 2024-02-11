@@ -4,6 +4,7 @@ from typing import Dict, List, Any, Iterable, Tuple, Optional, Union, Set
 import copy
 from itertools import permutations
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 from re import Match
 
 from .formula import (
@@ -573,7 +574,7 @@ def _expand_op(rep: str) -> str:
     return rep
 
 
-@lru_cache(maxsize=10000000)
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
 def _get_expand_op_match(rep: str) -> Optional[Match]:
     return _EXPAND_OP_REGEXP.search(rep)
 

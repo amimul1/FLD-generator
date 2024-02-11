@@ -2,6 +2,7 @@ from typing import List, Dict, Optional, Tuple, Union
 from abc import abstractmethod, ABC
 import logging
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 from pydantic import BaseModel
 from dataclasses import dataclass
 

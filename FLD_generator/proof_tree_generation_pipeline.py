@@ -3,6 +3,7 @@ import logging
 from collections import defaultdict
 import random
 import copy
+from pprint import pformat
 
 from FLD_generator.formula import Formula, NEGATION, eliminate_double_negation, negate
 from FLD_generator.proof import ProofTree, ProofNode

@@ -7,6 +7,7 @@ import random
 import logging
 from pprint import pformat, pprint
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import math
 from copy import deepcopy, copy
 
@@ -694,7 +695,7 @@ class TemplatedTranslator(Translator):
 
         return None, None
 
-    @lru_cache(maxsize=100000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _get_weight_factor_func(self, type_: str) -> Callable[[List[float], float], float]:
         """
@@ -770,7 +771,7 @@ class TemplatedTranslator(Translator):
 
             if len(condition) == 0:
                 # something like nl=<<phrase::is>>, which redirect just to "is"
-                if len(_CONSTANT_NL_GENERATORS) > 1000000:
+                if len(_CONSTANT_NL_GENERATORS) > DEFAULT_CACHE_SIZE:
                     _CONSTANT_NL_GENERATORS.clear()
                 _CONSTANT_NL_GENERATORS[nl] = generate
 
@@ -778,17 +779,24 @@ class TemplatedTranslator(Translator):
 
         else:
 
-            def num_possible_conditions(template: str) -> int:
-                formula = Formula(template)
-                constants = formula.constants
-                predicates = formula.predicates
-                return len(constants) + len(predicates)
+            # いや，これだと({A}{a} & {B}{a})における{A}が２回カウントされてしまう．
+            # しかし，ここはめちゃくちゃ多数回呼ばれるので，ここでの計算量は極力減らしたい．
+            # sorted_templates = sorted(templates, key=lambda template: template.count('{'))[::-1]
 
-            # sorted_templates = templates
-            sorted_templates = sorted(templates, key=num_possible_conditions)[::-1]
+            # XXX: this sorting is VERY important for speed
+            # We sort the template so that template wich more conditions, such as [A.VERB] or [a.NOUN] comes first.
+            # The templates will be eventually input into make_combination() function.
+            # This function will make combination of input iterators where first ones will be expanded first.
+            # Therefore, if one of the iten in such a iterator does not meet the POS conditoin,
+            # it will be rejected and the other iterators will not be expanded.
 
-            # from pprint import pformat
-            # logger.critical(pformat(sorted_templates))
+            sorted_templates = sorted(templates, key=_num_possible_conditions)[::-1]
+
+            # logger.critical('-------------------------- _make_resolved_translation_sampler -----------------------------')
+            # logger.critical('---- nl')
+            # logger.critical(nl)
+            # logger.critical('---- sorted_templates')
+            # logger.critical('    ' + str(sorted_templates))
 
             template_resolve_generators = [
                 GlobalResolveTemplateGenerator(
@@ -922,7 +930,7 @@ class TemplatedTranslator(Translator):
             # raise Exception('is it OK to pass here?')
             return False, {}
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _find_template_nls(self,
                            template: str,
@@ -995,7 +1003,7 @@ class TemplatedTranslator(Translator):
     def _merge_condition(self, this: _PosFormConditionSet, that: _PosFormConditionSet) -> _PosFormConditionSet:
         return this.union(that)
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _extract_templates(self, nl: str) -> List[str]:
         return [
@@ -1003,7 +1011,7 @@ class TemplatedTranslator(Translator):
             for match in re.finditer(f'{self._TEMPLATE_BRACES[0]}((?!{self._TEMPLATE_BRACES[1]}).)*{self._TEMPLATE_BRACES[1]}', nl)
         ]
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     def _get_condition_from_nl(self, nl: str) -> _PosFormConditionSet:
         formula = Formula(nl)
         interprands = formula.predicates + formula.constants
@@ -1237,7 +1245,7 @@ class TemplatedTranslator(Translator):
 
         return POS[pos_str], form
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _get_inflated_phrases(self, phrase: Phrase, pos: POS, form: str) -> Union[Tuple[str, ...], Tuple[Phrase, ...]]:
         if pos in [POS.ADJ, POS.ADJ_SAT]:
@@ -1267,7 +1275,7 @@ class TemplatedTranslator(Translator):
         else:
             raise ValueError()
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     def _get_pos(self, phrase: Phrase) -> List[POS]:
         if isinstance(phrase, PredicatePhrase):
             POSs = self._word_bank.get_pos(phrase.predicate)
