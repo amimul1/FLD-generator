@@ -51,6 +51,14 @@ _CONSTANT_NL_GENERATORS: Dict = {}
 
 # XXX these "global" functions are for line profiling, as local functions can not profiled.
 
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
+def _num_possible_conditions(template: str) -> int:
+    formula = Formula(template)
+
+    # we to not need to consider constans, as their condition, that is they all should be noun, is always met.
+    return len(formula.predicates)
+
+
 @profile
 def global_generate(template_resolve_generators,
                     condition,
@@ -103,6 +111,10 @@ def _decompress_nls(binary: bytes) -> List[str]:
     return decompress(binary).split('<<SEP>>')
 
 
+_VOLUMES_CACHE: Dict[Tuple[int, str], int] = {}
+
+# _DO_CACHE_VOLUME_ONCE = False
+_DO_CACHE_VOLUME_ONCE = True
 
 
 class GlobalResolveTemplateGenerator:
@@ -119,7 +131,6 @@ class GlobalResolveTemplateGenerator:
                  volume_to_weight,
                  check_condition,
                  log_indent):
-
         self.ancestor_nls = ancestor_nls
         self.constraint_interpret_mapping = constraint_interpret_mapping
         self.constraint_pos_mapping = constraint_pos_mapping
@@ -131,32 +142,64 @@ class GlobalResolveTemplateGenerator:
 
         self._template = template
         self._parent_translator = parent_translator
+
         self._gen_cache = None
-        self._gen_cache, self.volume = self._resolve()
+
+        if len(_VOLUMES_CACHE) > DEFAULT_CACHE_SIZE:
+            _VOLUMES_CACHE.clear()
+        self._volume_cache = _VOLUMES_CACHE
 
     @profile
     def __call__(self) -> Iterable[NLAndCondition]:
-        return self._resolve()[0]
+        if self._gen_cache is not None:
+            gen = self._gen_cache
+            self._gen_cache = None   # generator should be new every time it is used by an user
+            return gen
+        else:
+            gen, _ = self._resolve()
+            return gen
+
+    @property
+    @profile
+    def volume(self) -> int:
+        if _DO_CACHE_VOLUME_ONCE:
+            cache_key = (id(self.volume_to_weight), self._template)
+            if cache_key not in self._volume_cache:
+                volume = self._calculate_volume_once()
+                self._volume_cache[cache_key] = volume
+            return self._volume_cache[cache_key]
+        else:
+            gen, volume = self._resolve()
+            self._gen_cache = gen
+            return volume
 
     @profile
     def _resolve(self) -> Tuple[Iterable[NLAndCondition], float]:
-        if self._gen_cache is not None:
-            gen_cache = self._gen_cache
-            self._gen_cache = None
-            return gen_cache, self.volume
-        else:
-            return self._parent_translator._make_resolved_template_sampler(
-                self._template,
-                # ancestor_keys,
-                self.ancestor_nls,
-                constraint_interpret_mapping=self.constraint_interpret_mapping,
-                constraint_pos_mapping=self.constraint_pos_mapping,
-                constraint_push_mapping=self.constraint_push_mapping,
-                shuffle=self.block_shuffle,
-                volume_to_weight=self.volume_to_weight,
-                check_condition=self.check_condition,
-                log_indent=self.log_indent + 4
-            )
+        return self._parent_translator._make_resolved_template_sampler(
+            self._template,
+            self.ancestor_nls,
+            constraint_interpret_mapping=self.constraint_interpret_mapping,
+            constraint_pos_mapping=self.constraint_pos_mapping,
+            constraint_push_mapping=self.constraint_push_mapping,
+            shuffle=self.block_shuffle,
+            volume_to_weight=self.volume_to_weight,
+            check_condition=self.check_condition,
+            log_indent=self.log_indent + 4
+        )
+
+    @profile
+    def _calculate_volume_once(self) -> float:
+        return self._parent_translator._make_resolved_template_sampler(
+            self._template,
+            self.ancestor_nls,
+            constraint_interpret_mapping=self.constraint_interpret_mapping,
+            constraint_pos_mapping=self.constraint_pos_mapping,
+            constraint_push_mapping=self.constraint_push_mapping,
+            shuffle=self.block_shuffle,
+            volume_to_weight=self.volume_to_weight,
+            check_condition=False,
+            log_indent=self.log_indent + 4
+        )[1]
 
 
 class TemplatedTranslator(Translator):
