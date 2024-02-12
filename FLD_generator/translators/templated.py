@@ -403,7 +403,7 @@ class TemplatedTranslator(Translator):
                     random_cycle = RandomCycle(_words)
                 _cyclic_words.append(random_cycle)
                 _weights.append(weight)
-            return chained_sampling_from_weighted_iterators(_cyclic_words, _weights)
+            return weighted_chained_sampling(_cyclic_words, _weights)
 
         if self._no_adj_verb_as_zeroary:
             zeroary_words = (event_nouns,)
