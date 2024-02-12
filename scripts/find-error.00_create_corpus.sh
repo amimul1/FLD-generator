@@ -20,7 +20,7 @@ find ${INPUT_DIR}/ -type f\
 
   # file ends with Traceback
   tmp=$(mktemp)
-  tail -n 100 ${input_file} > ${tmp}
+  tail -n 1000 ${input_file} > ${tmp}
 
   # we use grep instead of ack, which somehow exits the for loop (why??)
   # found=`ack -l 'Traceback|Kill|ERROR|Exception' ${tmp}` 

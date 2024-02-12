@@ -69,7 +69,8 @@ def test_generate_dataset_lang(lang: str,
 
     translator = build_translator(
         lang,
-        'thing_person.v2',
+        # 'thing_person.v2',
+        'thing_person.v3',
         word_bank,
         no_transitive_object=False,
         use_fixed_translation=False,
@@ -193,7 +194,7 @@ def test_generate_dataset_lang(lang: str,
         raise_if_translation_not_found=True,
     )
 
-    num_dataset = 20
+    num_dataset = 100
     generate_dataset(dataset, num_dataset=num_dataset)
 
 

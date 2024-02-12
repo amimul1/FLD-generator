@@ -1,8 +1,8 @@
-from typing import Optional, Callable, List, Iterable, Any, Tuple, Optional, Union, Iterator
+from typing import Optional, Callable, List, Iterator, Any, Tuple, Optional, Union, Iterator, Generator
 from pprint import pprint
 from collections import defaultdict
 import math
-from typing import Dict, Any, List, Iterable, Set
+from typing import Dict, Any, List, Iterator, Set
 import random
 import logging
 import zlib
@@ -56,7 +56,7 @@ def shuffle(elems: List[Any]) -> List[Any]:
 _shuffle_func = shuffle
 
 
-def weighted_shuffle(weights: List[float]) -> Iterable[int]:
+def weighted_shuffle(weights: List[float]) -> Iterator[int]:
     """ Weighted shuffle = sampling elements in accordance with the their weights. The sampling sequence is made without replacement.   """
     done_indexes = set()
     for _ in range(0, len(weights)):
@@ -222,34 +222,34 @@ def decompress(binary: bytes) -> str:
     return zlib.decompress(binary).decode('utf-8')
 
 
-def make_combination(elem_generators: List[Callable[[], Iterable[Any]]]) -> Iterable[List[Any]]:
-    head_elem_generator = elem_generators[0]
-    tail_elem_generators = elem_generators[1:]
+def generate_combinations(iterators: List[Iterator[Any]]) -> Iterator[List[Any]]:
+    head_iterator = iterators[0]
+    tail_iterator = iterators[1:]
 
-    if len(tail_elem_generators) == 0:
-        for elem in head_elem_generator():
+    if len(tail_iterator) == 0:
+        for elem in head_iterator:
             yield [elem]
     else:
-        for head_elem in head_elem_generator():
-            for tail_elems in make_combination(tail_elem_generators):
+        for head_elem in head_iterator:
+            for tail_elems in generate_combinations(tail_iterator):
                 yield [head_elem] + tail_elems
 
 
-def make_combination_from_iter(elem_generators: List[Iterable[Any]]) -> Iterable[List[Any]]:
-    head_elem_generator = elem_generators[0]
-    tail_elem_generators = elem_generators[1:]
+def generate_combinations_from_generators(generators: List[Generator]) -> Iterator[List[Any]]:
+    head_generator = generators[0]
+    tail_generators = generators[1:]
 
-    if len(tail_elem_generators) == 0:
-        for elem in head_elem_generator:
+    if len(tail_generators) == 0:
+        for elem in head_generator():
             yield [elem]
     else:
-        for head_elem in head_elem_generator:
-            for tail_elems in make_combination_from_iter(tail_elem_generators):
+        for head_elem in head_generator():
+            for tail_elems in generate_combinations_from_generators(tail_generators):
                 yield [head_elem] + tail_elems
 
 
 @profile
-def chained_sampling_from_weighted_iterators(iterators: List[Iterable[Any]], weights: List[float]) -> Iterable[Any]:
+def weighted_chained_sampling(iterators: List[Iterator[Any]], weights: List[float]) -> Iterator[Any]:
     sum_weights = sum(weights)
     if math.isclose(sum_weights, 0):
         return
@@ -398,7 +398,7 @@ def disprovable_from_incomplete_facts(fact_formulas: List[Formula],
     return False, None
 
 
-def _drop_one_element(elems: List[Any]) -> Iterable[Tuple[List[Any], Any]]:
+def _drop_one_element(elems: List[Any]) -> Iterator[Tuple[List[Any], Any]]:
     for i_drop in range(len(elems)):
         dropped_elem = elems[i_drop]
         remaining_elems = elems[:i_drop] + elems[i_drop + 1:]
@@ -507,7 +507,7 @@ def fix_seed(seed: int) -> None:
 class RandomCycle:
 
     def __init__(self,
-                 base_elems: Union[Callable[[], Iterator[Any]], Iterable[Any]],
+                 base_elems: Union[Callable[[], Iterator[Any]], Iterator[Any]],
                  shuffle=True):
         self._cached_list: Optional[List[Any]] = None
         self._base_elems = base_elems
@@ -571,7 +571,7 @@ class RandomCycle:
 
 
 @profile
-def down_sample_streaming(elems: Iterable[Any],
+def down_sample_streaming(elems: Iterator[Any],
                           elem2type_func: Callable[[Any], Any],
                           distrib='sqrl',
                           min_sampling_prob=0.1,  # to prevent too many rejections

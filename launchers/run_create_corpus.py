@@ -76,14 +76,26 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.translation-augmentation.timeout_test')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.echo_ld')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.is_are_no_recursion')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--10')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.wo_cause.constant_nl_cache.timeout--20')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.debug.sorted_templates')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-1')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5.pypy')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.all_unique_formula_reps_fixed')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed.pypy')
+
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort.timeout-10')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.log')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-5')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-3')
+
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -229,13 +241,20 @@ def main():
         # '2024-01-29.enhance_arguments.past_reproduce.D8',
 
         # ---------------------------------- 2024-02-25.translation-augmentation ------------------------------------
-        '2024-02-25.translation-augmentation.timeout_test',
+        # '2024-02-25.translation-augmentation.timeout_test',
+
+        # ---------------------------------- 2024-02-25.enhance_translation ------------------------------------
+        # '2024-02-09.enhance_translation.propositional-0.2',
+        # '2024-02-09.enhance_translation.theorems',
+        # '2024-02-09.enhance_translation.theorems.allow_smaller_proofs',
+        # '2024-02-09.enhance_translation.translation-v2',
+        '2024-02-09.enhance_translation.translation-v3',
     ]
 
     # dataset_names = dataset_names[::-1]
 
-    num_jobs_for_datasets = 3
-    num_jobs_per_dataset = 60
+    num_jobs_for_datasets = 4
+    num_jobs_per_dataset = 35
 
     # num_jobs_for_datasets = 2
     # num_jobs_per_dataset = 80
@@ -258,7 +277,7 @@ def main():
     engine = QsubEngine('ABCI', 'rt_C.small')
 
     # ---------------------------- fixed settings --------------------------
-    num_workers_per_job = 5
+    num_workers_per_job = 1
     delete_logs_when_done = False
 
     if num_jobs_for_datasets * num_jobs_per_dataset > 180:
@@ -495,7 +514,8 @@ def make_dataset(dataset_name: str,
 
             if delete_logs_when_done and i_job >= 5:
                 # remove large log files.
-                command += f'; rm {str(job_log_path)}; rm {str(job_output_dir)}/*.stats.json'
+                # command += f'; rm {str(job_log_path)}; rm {str(job_output_dir)}/*.stats.json'
+                pass
 
             job_hours = math.floor(timeout_per_job / 3600)
             jobs.append(

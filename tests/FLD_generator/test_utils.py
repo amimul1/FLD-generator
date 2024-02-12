@@ -8,8 +8,8 @@ from FLD_generator.utils import (
     weighted_sampling,
     weighted_shuffle,
     nested_merge,
-    make_combination,
-    chained_sampling_from_weighted_iterators,
+    generate_combinations_from_generators,
+    weighted_chained_sampling,
     down_sample_streaming,
 )
 
@@ -93,8 +93,8 @@ def test_nested_merge():
     assert merged['B']['b'] == [2, 3]
 
 
-def test_make_combination():
-    print('\n\ntest_make_combination()')
+def test_generate_combination():
+    print('\n\ntest_generate_combination()')
 
     def int_generator():
         for i in range(0, 3):
@@ -110,7 +110,7 @@ def test_make_combination():
         for rep in ['hoge', 'fuga', 'piyo']:
             yield rep
 
-    combs = make_combination([
+    combs = generate_combinations_from_generators([
         int_generator,
         str_generator1,
         str_generator2,
@@ -122,7 +122,7 @@ def test_make_combination():
     assert(len(combs) == 3**3)
 
 
-def test_chained_sampling_from_weighted_iterators():
+def test_weighted_chained_sampling():
 
     def generator_large():
         for i in range(0, 100):
@@ -135,7 +135,7 @@ def test_chained_sampling_from_weighted_iterators():
     def show_sampling(weights: List[float]) -> None:
         print('\n\n')
         print(f'==== show_sampling (weights={weights} ====')
-        for item in chained_sampling_from_weighted_iterators(
+        for item in weighted_chained_sampling(
             [generator_large(), generator_small()],
             weights,
         ):
@@ -207,6 +207,6 @@ if __name__ == '__main__':
     # test_weighted_sampling()
     # test_weighted_shuffle()
     # test_nested_merge()
-    # test_make_combination()
-    # test_chained_sampling_from_weighted_iterators()
+    # test_generate_combination()
+    # test_weighted_chained_sampling()
     test_down_sample()
