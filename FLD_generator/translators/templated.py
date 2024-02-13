@@ -43,6 +43,8 @@ import line_profiling
 
 logger = logging.getLogger(__name__)
 
+logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! templated.py loaded !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
 _SENTENCE_TRANSLATION_PREFIX = 'sentence'
 _DEBUG = False
 # _DEBUG = True
@@ -50,15 +52,12 @@ _DEBUG = False
 _CONSTANT_NL_GENERATORS: Dict = {}
 
 
-# XXX these "global" functions are for line profiling, as local functions can not profiled.
+class ResolveTranslationTimeoutError(Exception):
+    pass
 
-@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
-def _num_possible_conditions(template: str) -> int:
-    formula = Formula(template)
 
-    # we to not need to consider constans, as their condition, that is they all should be noun, is always met.
-    return len(formula.predicates)
-
+# We define the following functions in global domain to be profiles by line-profiler,
+# as local functions can not be profiled.
 
 @profile
 def generate_template_combinations(template_resolve_generators: List[Generator],
@@ -82,11 +81,8 @@ def generate_template_combinations(template_resolve_generators: List[Generator],
 
 
 @profile
-def generate_weighted_chained_samples(iterators: List[Iterator], weights) -> Iterator:
-    for resolved_template_nl, condition in weighted_chained_sampling(
-        iterators,
-        weights,
-    ):
+def generate_weighted_chained_samples(iterators: List[Iterator], weights, log=False) -> Iterator:
+    for resolved_template_nl, condition in weighted_chained_sampling(iterators, weights, log=log):
         yield resolved_template_nl, condition
 
 
@@ -114,12 +110,10 @@ def _decompress_nls(binary: bytes) -> List[str]:
 
 _VOLUMES_CACHE: Dict[Tuple[int, str], int] = {}
 
-# _DO_CACHE_VOLUME_ONCE = False
-_DO_CACHE_VOLUME_ONCE = True
-
 
 class ResolvedTemplateGenerator:
 
+    # HONOKA: 無限回呼ばれる，遅い．
     @profile
     def __init__(self,
                  parent_translator: 'TemplatedTranslator',
@@ -130,6 +124,7 @@ class ResolvedTemplateGenerator:
                  constraint_push_mapping,
                  block_shuffle,
                  volume_to_weight,
+                 compute_volume,
                  check_condition,
                  log_indent):
         self.ancestor_nls = ancestor_nls
@@ -138,70 +133,70 @@ class ResolvedTemplateGenerator:
         self.constraint_push_mapping = constraint_push_mapping
         self.block_shuffle = block_shuffle
         self.volume_to_weight = volume_to_weight
+        self._compute_volume = compute_volume
         self.check_condition = check_condition
         self.log_indent = log_indent
 
         self._template = template
         self._parent_translator = parent_translator
 
-        self._gen_cache = None
-
         if len(_VOLUMES_CACHE) > DEFAULT_CACHE_SIZE:
             _VOLUMES_CACHE.clear()
         self._volume_cache = _VOLUMES_CACHE
-        self._volume_cache_key = id(self.volume_to_weight), self._template
+        self._volume_cache_key = (id(self.volume_to_weight), tuple(ancestor_nls), self._template)
 
     @profile
     def __call__(self) -> Iterator[NLAndCondition]:
-        if self._gen_cache is not None:
-            gen = self._gen_cache
-            self._gen_cache = None   # generator should be new every time it is used by an user
-            return gen
-        else:
-            gen, volume = self._resolve()
-            if volume is not None:
-                self._volume_cache[self._volume_cache_key] = volume
-            return gen
+        return self._make_conditioned_iterator()
+
+    @profile
+    def _make_conditioned_iterator(self) -> Iterator[NLAndCondition]:
+        """
+        Invokes recursive computation to resolve the template.
+
+        Note that this iterator is conditioned by constraints.
+        """
+        return self._parent_translator._make_resolved_template_sampler(
+            self._template,
+            self.ancestor_nls,
+            constraint_interpret_mapping=self.constraint_interpret_mapping,
+            constraint_pos_mapping=self.constraint_pos_mapping,
+            constraint_push_mapping=self.constraint_push_mapping,
+            shuffle=self.block_shuffle,
+            volume_to_weight=self.volume_to_weight,
+            compute_volume=self._compute_volume,
+            check_condition=self.check_condition,
+            log_indent=self.log_indent + 4
+        )[0]
 
     @property
     @profile
-    def volume(self) -> int:
-        if _DO_CACHE_VOLUME_ONCE:
-            if self._volume_cache_key not in self._volume_cache:
-                volume = self._calculate_volume_once()
-                if volume is not None:
-                    self._volume_cache[self._volume_cache_key] = volume
+    def unconditioned_volume(self) -> int:
+        if not self._compute_volume or self._volume_cache_key in self._volume_cache:
             return self._volume_cache.get(self._volume_cache_key, None)
         else:
-            gen, volume = self._resolve()
-            self._gen_cache = gen
+            volume = self._calculate_unconditioned_volume()
+            if volume is not None:
+                self._volume_cache[self._volume_cache_key] = volume
             return volume
 
     @profile
-    def _resolve(self) -> Tuple[Iterator[NLAndCondition], float]:
-        return self._parent_translator._make_resolved_template_sampler(
-            self._template,
-            self.ancestor_nls,
-            constraint_interpret_mapping=self.constraint_interpret_mapping,
-            constraint_pos_mapping=self.constraint_pos_mapping,
-            constraint_push_mapping=self.constraint_push_mapping,
-            shuffle=self.block_shuffle,
-            volume_to_weight=self.volume_to_weight,
-            check_condition=self.check_condition,
-            log_indent=self.log_indent + 4
-        )
+    # XXX: adding the timeout decorator here makes the code hangs, possible because of the too many timeout signals from recursive executions.
+    # @timeout_decorator.timeout(0.01, use_signals=True, timeout_exception=VolumeCalculationTimeoutError)
+    def _calculate_unconditioned_volume(self) -> float:
+        """
+        Invokes recursive computation to calculate the volumes.
 
-    @profile
-    # @timeout_decorator.timeout(0.01, use_signals=True, timeout_exception=TimeoutError)
-    def _calculate_volume_once(self) -> float:
+        !!! XXX !!!
+        Note that this iterator is NOT conditioned by constraints.
+        Therefore, the Iterator created here can not be used for the sampling.
+        """
         return self._parent_translator._make_resolved_template_sampler(
             self._template,
-            self.ancestor_nls,
-            constraint_interpret_mapping=self.constraint_interpret_mapping,
-            constraint_pos_mapping=self.constraint_pos_mapping,
-            constraint_push_mapping=self.constraint_push_mapping,
-            shuffle=self.block_shuffle,
+            self.ancestor_nls,   # should include ancestor_nls to avoid infinite loop
+            shuffle=self.block_shuffle,   # should shuffle if specified to do random search
             volume_to_weight=self.volume_to_weight,
+            compute_volume=True,
             check_condition=False,
             log_indent=self.log_indent + 4
         )[1]
@@ -472,6 +467,36 @@ class TemplatedTranslator(Translator):
                    knowledge_idxs: Optional[List[int]] = None,
                    collapsed_knowledge_idxs: Optional[List[int]] = None,
                    raise_if_translation_not_found=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
+        return self._my_translate(formulas,
+                                  intermediate_constant_formulas,
+                                  knowledge_idxs=knowledge_idxs,
+                                  collapsed_knowledge_idxs=collapsed_knowledge_idxs,
+                                  raise_if_translation_not_found=raise_if_translation_not_found,
+                                  compute_volume=True)
+
+    @profile
+    def _translate_fast(self,
+                        formulas: List[Formula],
+                        intermediate_constant_formulas: List[Formula],
+                        knowledge_idxs: Optional[List[int]] = None,
+                        collapsed_knowledge_idxs: Optional[List[int]] = None,
+                        raise_if_translation_not_found=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
+        return self._my_translate(formulas,
+                                  intermediate_constant_formulas,
+                                  knowledge_idxs=knowledge_idxs,
+                                  collapsed_knowledge_idxs=collapsed_knowledge_idxs,
+                                  raise_if_translation_not_found=raise_if_translation_not_found,
+                                  compute_volume=False)
+
+    @profile
+    def _my_translate(self,
+                      formulas: List[Formula],
+                      intermediate_constant_formulas: List[Formula],
+                      knowledge_idxs: Optional[List[int]] = None,
+                      collapsed_knowledge_idxs: Optional[List[int]] = None,
+                      raise_if_translation_not_found=True,
+                      compute_volume=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
+
         knowledge_idxs = knowledge_idxs or []
         collapsed_knowledge_idxs = collapsed_knowledge_idxs or []
         self._reset_assets()
@@ -515,21 +540,25 @@ class TemplatedTranslator(Translator):
         pos_mapping = knowledge_pos_mapping
 
         for formula in formulas:
-            # find translation key
             found_keys = 0
             is_found = False
+
             # logger.critical('=========================== formula: %s', formula.rep)
-            for translation_key, push_mapping in self._find_translation_key(formula):
+            key_push_mappings = list(self._find_translation_key(formula))
+            if not self.use_fixed_translation:
+                random.shuffle(key_push_mappings)
+
+            for translation_key, push_mapping in key_push_mappings:
                 found_keys += 1
 
                 # Choose a translation
-                # logger.critical('--------------------------- translation_key: %s', translation_key)
                 chosen_nl, _pos_mapping = self._sample_interpret_mapping_consistent_nl(
                     translation_key,
                     interpret_mapping,
                     push_mapping,
                     pos_mapping=pos_mapping,
                     block_shuffle=not self.use_fixed_translation,
+                    compute_volume=compute_volume,
                     volume_to_weight=self._volume_to_weight_func,
                 )
                 if chosen_nl is None:
@@ -677,6 +706,7 @@ class TemplatedTranslator(Translator):
                                                 pos_mapping: Optional[Dict[str, str]] = None,
                                                 block_shuffle=True,
                                                 volume_to_weight = lambda weight: weight,
+                                                compute_volume=True,
                                                 log_indent=0) -> Tuple[Optional[str], Optional[Dict[str, POS]]]:
         """ Find translations the pos and nflations of which are consistent with interpret_mapping """
         if _DEBUG:
@@ -685,11 +715,16 @@ class TemplatedTranslator(Translator):
             print(' ' * log_indent + '    sentence_key:', sentence_key)
             print(' ' * log_indent + '    pos_mapping:', pformat(pos_mapping))
 
+        weights_and_translations = self._translations[sentence_key]
+        if block_shuffle:
+            random.shuffle(self._translations[sentence_key])
+
         iterators = []
         weight_types: List[str] = []
         volumes: List[int] = []
-        for weight_type, transl_nl in self._translations[sentence_key]:
-            iterator_with_volume = self._make_resolved_translation_sampler(
+
+        def _make_resolved_translation_sampler(weight_type: str, transl_nl: str, compute_volume) -> Tuple[Iterator, Optional[int]]:
+            return self._make_resolved_translation_sampler(
                 transl_nl,
                 # set(['::'.join([_SENTENCE_TRANSLATION_PREFIX, sentence_key])]),
                 set([transl_nl]),
@@ -698,36 +733,59 @@ class TemplatedTranslator(Translator):
                 constraint_push_mapping=push_mapping,
                 block_shuffle=block_shuffle,
                 volume_to_weight=volume_to_weight,
+                compute_volume=compute_volume,
                 log_indent = log_indent + 4,
             )
 
-            iterators.append(iterator_with_volume[0])
+        # XXX use_signals=True interfere with the run_with_timeout_retry() and leads to hangup.
+        # @timeout_decorator.timeout(3, use_signals=False, timeout_exception=ResolveTranslationTimeoutError)
+        # @timeout_decorator.timeout(3, use_signals=True, timeout_exception=ResolveTranslationTimeoutError)
+        # @timeout_decorator.timeout(10, use_signals=False, timeout_exception=ResolveTranslationTimeoutError)
+        # @timeout_decorator.timeout(10, use_signals=True, timeout_exception=ResolveTranslationTimeoutError)
+        def _make_resolved_template_sampler_with_volume_compute(weight_type: str, transl_nl: str) -> Tuple[Iterator, Optional[int]]:
+            return _make_resolved_translation_sampler(weight_type, transl_nl, compute_volume)
+
+        def _make_resolved_template_sampler_without_volume_compute(weight_type: str, transl_nl: str) -> Iterator:
+            return _make_resolved_translation_sampler(weight_type, transl_nl, False)
+
+        for weight_type, transl_nl in weights_and_translations:
+            # logger.critical('!!!!!!!!!!!!!!!!!!!! start from tansl_nl: %s', transl_nl)
+            logger.critical('computing volume for "%s"', transl_nl)
+            logger.critical('volume cache lengths: %d', len(_VOLUMES_CACHE))
+
+            try:
+                iterator, volume = _make_resolved_template_sampler_with_volume_compute(weight_type, transl_nl)    # HONOKA: ここのvolumeの計算は，最終的には一瞬で終わるようになる．おそらく，volume_cacheによる．
+            except ResolveTranslationTimeoutError:
+                # compute_volume=True not to compute volumes of branches that we have failed to be compute due to timeout.
+                # Instead, we estimate such volumes heuristically.
+                logger.warning('ResolveTranslationTimeoutError for "%s".  We will estimate the volumes heuristically', transl_nl)
+                iterator, _ = _make_resolved_template_sampler_without_volume_compute(weight_type, transl_nl)
+                volume = None
+
+            iterators.append(iterator)
             weight_types.append(weight_type)
-            volumes.append(iterator_with_volume[1])
+            volumes.append(volume)
+            # raise
+
+        logger.critical('! finished computing volumes')
 
         if block_shuffle:
             weights = self._calc_weights(volumes, weight_types, volume_to_weight)
-
-            # @profile
-            def generate():
-                return generate_weighted_chained_samples(iterators, weights)
-
+            nl_and_conditions = (item for item in generate_weighted_chained_samples(iterators, weights))   # HONOKA SLOW 最終的にここが唯一のボトルネックになる．
         else:
-            # @profile
-            def generate():
-                for iterator in iterators:
-                    for resolved_nl, condition in iterator:
-                        yield resolved_nl, condition
+            nl_and_conditions = (item for iterator in iterators for item in iterator)
 
-        for resolved_nl, condition in generate():
-
+        for resolved_nl, condition in nl_and_conditions:
+            logger.critical('got one item, start pos matching')    # HONOKA: ここに到達しない．
             condition_is_consistent, _pos_mapping = self._interpret_mapping_is_consistent_with_condition(
                 condition,
                 interpret_mapping,
                 push_mapping,
                 pos_mapping=pos_mapping,
             )
+            logger.critical('pos matching done')
             if not condition_is_consistent:
+                logger.critical('condition is not consistent')
                 continue
 
             # pos_mapping_updated = deepcopy(pos_mapping)
@@ -740,40 +798,45 @@ class TemplatedTranslator(Translator):
     def _calc_weights(self,
                       volumes: List[Optional[float]],
                       weight_types: List[str],
-                      volume_to_weight) -> List[float]:
-
-        not_null_volumes = [volume for volume in volumes if volume is not None]
-        if len(not_null_volumes) == 0:
-            return [1 / len(volumes)] * len(volumes)
-
-        # We set the "None" volume, which came from TimeoutError, to the max weight.
-        # "optimistic under uncertainty" search of reinforcement learning.
-        # By setting as the max weight, we can explore such branches.
-        # Then, the volumes under such branches will be cached and cached,
-        # and eventually we can calculate the accurate volume of such branches.
-        max_volume = max(1, max(not_null_volumes))
-        optimistic_volumes = [volume if volume is not None else max_volume
-                              for volume in volumes]
+                      volume_to_weight,
+                      template_nls=None,
+                      interpret_mapping={}) -> List[float]:
+        estimated_volume = self._estimate_volume(volumes)
+        estimated_volumes = [volume
+                             if volume is not None else estimated_volume
+                             for volume in volumes]
 
         volume_weights = [volume_to_weight(volume)
-                          for volume in optimistic_volumes]
+                          for volume in estimated_volumes]
 
         weights = [self._get_weight_factor_func(weight_type)(volume_weights, i_iterator)
                    for i_iterator, weight_type in enumerate(weight_types)]
 
-        # if all(weight == 0.0 for weight in weights):
-        #     import pudb; pudb.set_trace()
-
-        # for i_iterator, weight_type in enumerate(weight_types):
-        #     weight = self._get_weight_factor_func(weight_type)(volume_weights, i_iterator)
-        #     if volume_weights[i_iterator] > 0.0 and weight == 0.0:
-        #         weight = self._get_weight_factor_func(weight_type)(volume_weights, i_iterator)
-
-        # if all(weight == 0.0 for weight in weights):
-        #     import pudb; pudb.set_trace()
-        #     weights = [1] * len(volumes)
-
         return weights
+
+    def _estimate_volume(self, volumes: List[Optional[float]]) -> float:
+        # volume = None comes from VolumeCalculationTimeoutError.
+        # For such cases, we take RL strategy of "optimistic under uncertainty".
+        # By setting as the max weight, we can explore such branches.
+        # Then, the volumes under such branches will be cached and cached,
+        # and eventually we can calculate the accurate volume of such branches.
+
+        not_null_volumes = [volume for volume in volumes if volume is not None]
+
+        if len(not_null_volumes) > 0:
+            # the slowest, always hangs.
+            # The reason should be that, the volume of timeout branches are often 'hopeless' branches that will not meet the condition.
+            # Assigning large volume to this will lead to hopeless exploration forever.
+            optim = max(not_null_volumes)
+
+            # 726.64s user 278.27s system 183% cpu 9:07.72 total
+            # optim = statistics.mean(not_null_volumes)
+
+            # optim = min(not_null_volumes)
+
+            return max(optim, 1)
+        else:
+            return 1
 
     @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
@@ -801,6 +864,7 @@ class TemplatedTranslator(Translator):
                 else:
                     other_avg = statistics.mean(volume_weights[j] for j in range(len(volume_weights))
                                                 if j != i)
+
                     if other_avg == 0.0:
                         return volume_weights[i]
                     else:
@@ -825,6 +889,7 @@ class TemplatedTranslator(Translator):
                                            constraint_push_mapping: Optional[Dict[str, str]] = None,
                                            block_shuffle=True,
                                            volume_to_weight=lambda volume: volume,
+                                           compute_volume=True,
                                            check_condition=True,
                                            log_indent=0) -> Tuple[Iterator[NLAndCondition], float]:
         if nl.startswith('__'):
@@ -873,16 +938,18 @@ class TemplatedTranslator(Translator):
             # Therefore, if one of the iten in such a iterator does not meet the POS conditoin,
             # it will be rejected and the other iterators will not be expanded.
 
-            sorted_templates = sorted(templates, key=_num_possible_conditions)[::-1]
+            sorted_templates = sorted(templates, key=self._num_conditions)[::-1]
 
-            # logger.critical('-------------------------- _make_resolved_translation_sampler -----------------------------')
-            # logger.critical('---- nl')
-            # logger.critical(nl)
-            # logger.critical('---- sorted_templates')
-            # logger.critical('    ' + str(sorted_templates))
+            # if len(_VOLUMES_CACHE) > 5000:
+            #     logger.critical('-------------------------- _make_resolved_translation_sampler -----------------------------')
+            #     logger.critical('---- nl')
+            #     logger.critical(nl)
+            #     logger.critical('---- sorted_templates')
+            #     logger.critical('    ' + str(sorted_templates))
 
-            template_resolve_generators = [
+            template_resolved_generators = [
                 ResolvedTemplateGenerator(
+                    # HONOKA: SLOW
                     self,
                     template,
                     ancestor_nls,
@@ -891,34 +958,36 @@ class TemplatedTranslator(Translator):
                     constraint_push_mapping,
                     block_shuffle,
                     volume_to_weight,
+                    compute_volume,
                     check_condition,
                     log_indent,
                 )
                 for template in sorted_templates
             ]
 
-            try:
-                volumes = [generator.volume for generator in template_resolve_generators]
-                volume = 1
-                for _volume in volumes:
-                    volume *= _volume
-            except TimeoutError:
-                logger.critical(
-                    'TimeoutError occurred in generator.volume(), will return volume None, which will invoke the optimistic search')
-                volume = None
+            total_volume = 1
+            for generator, tempalte in zip(template_resolved_generators, sorted_templates):
+                try:
+                    volume = generator.unconditioned_volume
+                except ResolveTranslationTimeoutError:
+                    logger.critical('VolumeCalculationTimeoutError occurred in for template "%s", will return volume None, which will invoke the optimistic search', tempalte)
+                    total_volume = None
+                    break
+                if volume is None:
+                    total_volume = None
+                    break
 
             return (
                 generate_template_combinations(
-                    template_resolve_generators,
+                    template_resolved_generators,
                     condition,
                     nl,
                     sorted_templates,
                     self,
                 ),
-                volume,
+                total_volume,
             )
 
-    # 再帰元2
     @profile
     def _make_resolved_template_sampler(self,
                                         template: str,
@@ -929,6 +998,7 @@ class TemplatedTranslator(Translator):
                                         constraint_push_mapping: Optional[Dict[str, str]] = None,
                                         shuffle=True,
                                         volume_to_weight=lambda volume: volume,
+                                        compute_volume=True,
                                         check_condition=True,
                                         log_indent=0) -> Tuple[Iterator[NLAndCondition], float]:
         if _DEBUG:
@@ -944,6 +1014,9 @@ class TemplatedTranslator(Translator):
         if template_key is None:
             raise Exception(f'template for {template} not found.')
 
+        if shuffle:
+            random.shuffle(template_nls)
+
         iterators = []
         weight_types: List[str] = []
         volumes: List[int] = []
@@ -951,7 +1024,7 @@ class TemplatedTranslator(Translator):
             if template_nl in ancestor_nls:
                 continue
 
-            iterator_with_volume = self._make_resolved_translation_sampler(
+            iterator, volume = self._make_resolved_translation_sampler(
                 template_nl,
                 # ancestor_keys.union(set([template_key])),
                 ancestor_nls.union(set([template_nl])),
@@ -960,32 +1033,33 @@ class TemplatedTranslator(Translator):
                 constraint_push_mapping=constraint_push_mapping,
                 block_shuffle=shuffle,
                 volume_to_weight=volume_to_weight,
+                compute_volume=compute_volume,
                 check_condition=check_condition,
                 log_indent=log_indent + 4,
             )
-            iterators.append(iterator_with_volume[0])
+            iterators.append(iterator)
             weight_types.append(weight)
-            volumes.append(iterator_with_volume[1])
+            volumes.append(volume)
 
         if shuffle:
-            weights = self._calc_weights(volumes, weight_types, volume_to_weight)
+            weights = self._calc_weights(volumes,
+                                         weight_types,
+                                         volume_to_weight,
+                                         template_nls=template_nls,
+                                         interpret_mapping=constraint_interpret_mapping)
 
-            # @profile
             def generate():
                 return generate_weighted_chained_samples(iterators, weights)
 
-            volume_sum = sum(volume for volume in volumes if volume is not None)
-
         else:
-
-            weights = [1.0] * len(volumes)
-
-            # @profile
             def generate():
                 for iterator in iterators:
                     for resolved_template_nl, condition in iterator:
                         yield resolved_template_nl, condition
 
+        if any(volume is None for volume in volumes):
+            volume_sum = None
+        else:
             volume_sum = sum(volumes)
 
         return generate(), volume_sum
@@ -1006,7 +1080,6 @@ class TemplatedTranslator(Translator):
             forced_pos = _pos_mapping.get(interprand_rep_pushed, None)
 
             allowed_pos = [forced_pos] if forced_pos is not None else self._get_pos(phrase)  # SLOW
-            # allowed_pos = self._get_pos(phrase)
 
             if pos not in allowed_pos:
                 condition_is_consistent = False
@@ -1072,6 +1145,12 @@ class TemplatedTranslator(Translator):
             '::'.join([template_prefix, found_template_key]) if found_template_key is not None else None,
             found_template_nls,
         )
+
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
+    def _num_conditions(self, template: str) -> int:
+        formula = Formula(template)
+        # we to not need to consider constants, as their condition, that is they all should be noun, is always met.
+        return len(formula.predicates)
 
     def _make_phrase_str_mapping(self, mapping: Dict[str, Phrase]) -> Dict[str, str]:
         return {

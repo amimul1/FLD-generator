@@ -94,7 +94,21 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes')
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-5')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-3')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-3')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-None')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-max')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=True')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=False')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--mean')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--min')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--no')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v2')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v1')
 
 
     dataset_names = [
@@ -244,11 +258,11 @@ def main():
         # '2024-02-25.translation-augmentation.timeout_test',
 
         # ---------------------------------- 2024-02-25.enhance_translation ------------------------------------
-        # '2024-02-09.enhance_translation.propositional-0.2',
+        '2024-02-09.enhance_translation.propositional-0.2',
         # '2024-02-09.enhance_translation.theorems',
         # '2024-02-09.enhance_translation.theorems.allow_smaller_proofs',
         # '2024-02-09.enhance_translation.translation-v2',
-        '2024-02-09.enhance_translation.translation-v3',
+        # '2024-02-09.enhance_translation.translation-v3',
     ]
 
     # dataset_names = dataset_names[::-1]

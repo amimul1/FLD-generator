@@ -222,6 +222,7 @@ def decompress(binary: bytes) -> str:
     return zlib.decompress(binary).decode('utf-8')
 
 
+@profile
 def generate_combinations(iterators: List[Iterator[Any]]) -> Iterator[List[Any]]:
     head_iterator = iterators[0]
     tail_iterator = iterators[1:]
@@ -235,6 +236,7 @@ def generate_combinations(iterators: List[Iterator[Any]]) -> Iterator[List[Any]]
                 yield [head_elem] + tail_elems
 
 
+@profile
 def generate_combinations_from_generators(generators: List[Generator]) -> Iterator[List[Any]]:
     head_generator = generators[0]
     tail_generators = generators[1:]
@@ -249,7 +251,7 @@ def generate_combinations_from_generators(generators: List[Generator]) -> Iterat
 
 
 @profile
-def weighted_chained_sampling(iterators: List[Iterator[Any]], weights: List[float]) -> Iterator[Any]:
+def weighted_chained_sampling(iterators: List[Iterator[Any]], weights: List[float], log=False) -> Iterator[Any]:
     sum_weights = sum(weights)
     if math.isclose(sum_weights, 0):
         return
