@@ -1008,15 +1008,12 @@ class TemplatedTranslator(Translator):
 
             total_volume = 1
             for generator, tempalte in zip(template_resolved_generators, sorted_templates):
-                try:
-                    volume = generator.compute_unconditioned_volume()
-                except ResolveTranslationTimeoutError:
-                    # logger.critical('VolumeCalculationTimeoutError occurred in for template "%s", will return volume None, which will invoke the optimistic search', tempalte)
-                    total_volume = None
-                    break
+                volume = generator.compute_unconditioned_volume()
                 if volume is None:
                     total_volume = None
                     break
+                else:
+                    total_volume *= volume
 
             return (
                 generate_resolved_template_combinations(
