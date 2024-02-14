@@ -453,7 +453,7 @@ class TemplatedTranslator(Translator):
 
     @property
     def translation_names(self) -> List[str]:
-        return [self._translation_name(sentence_key, weighted_templated_nl[1])
+        return [self._translation_name(sentence_key, weighted_nl[1])
                 for sentence_key, templated_nls in self._translations.items()
                 for weighted_nl in templated_nls]
 
