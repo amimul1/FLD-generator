@@ -1,6 +1,6 @@
 from typing import Optional, Callable, List, Iterator, Any, Tuple, Optional, Union, Iterator, Generator
 from pprint import pprint
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import math
 from typing import Dict, Any, List, Iterator, Set
 import random
@@ -18,6 +18,7 @@ import timeout_decorator
 from .exception import FormalLogicExceptionBase
 from FLD_generator.formula import Formula
 from FLD_generator.formula_checkers import is_provable, is_disprovable, is_consistent_set as is_consistent_formula_set
+from .settings import DEFAULT_CACHE_SIZE
 import line_profiling
 
 utils_logger = logging.getLogger(__name__)
@@ -251,7 +252,7 @@ def generate_combinations_from_generators(generators: List[Generator]) -> Iterat
 
 
 @profile
-def weighted_chained_sampling(iterators: List[Iterator[Any]], weights: List[float], log=False) -> Iterator[Any]:
+def weighted_chained_sampling(iterators: List[Iterator[Any]], weights: List[float]) -> Iterator[Any]:
     sum_weights = sum(weights)
     if math.isclose(sum_weights, 0):
         return
@@ -673,3 +674,42 @@ def down_sample_streaming(elems: Iterator[Any],
             yield elem
         # else:
         #     logger.critical('rejected sample %s', str(elem))
+
+
+class LRUCache:
+    """ XXX: slower than built-in dict as implemented in pure python!! """
+
+    def __init__(self, capacity=DEFAULT_CACHE_SIZE):
+        super().__init__()
+        self.capacity = capacity
+        self.real = OrderedDict()
+
+    @profile
+    def __len__(self):
+        return len(self.real)
+
+    @profile
+    def __contains__(self, key):
+        return self.real.__contains__(key)
+
+    @profile
+    def __getitem__(self, key):
+        if key not in self.real:
+            raise KeyError(f"{key} not found")
+        self.real.move_to_end(key)  # Mark as recently used
+        return self.real.__getitem__(key)
+
+    @profile
+    def __setitem__(self, key, value):
+        if key in self.real:
+            self.real.move_to_end(key)
+        self.real.__setitem__(key, value)
+        if len(self.real) > self.capacity:
+            self.real.popitem(last=False)
+
+    @profile
+    def get(self, key, default=None):
+        if key not in self.real:
+            return default
+        self.real.move_to_end(key)
+        return self.real.__getitem__(key)

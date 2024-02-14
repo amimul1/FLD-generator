@@ -11,6 +11,7 @@ from FLD_generator.utils import (
     generate_combinations_from_generators,
     weighted_chained_sampling,
     down_sample_streaming,
+    LRUCache,
 )
 
 
@@ -203,10 +204,26 @@ def test_down_sample():
     _test_sampling(second_weight, 'log10')
 
 
+def test_lru_cache():
+    cache = LRUCache(capacity=2)
+
+    cache['a'] = 1
+    cache['b'] = 2
+    assert cache['a'] == 1
+    assert cache['b'] == 2
+
+    cache['a']  # touch a to make it the most recently used
+    cache['c'] = 3
+
+    assert cache['a'] == 1
+    assert 'b' not in cache
+    assert cache['c'] == 3
+
 if __name__ == '__main__':
     # test_weighted_sampling()
     # test_weighted_shuffle()
     # test_nested_merge()
     # test_generate_combination()
     # test_weighted_chained_sampling()
-    test_down_sample()
+    # test_down_sample()
+    test_lru_cache()

@@ -7,10 +7,10 @@ import random
 import logging
 from pprint import pformat, pprint
 from functools import lru_cache
-from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import math
 from copy import deepcopy, copy
 
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import timeout_decorator
 from FLD_generator.formula import Formula, PREDICATES, CONSTANTS, remove_outer_brace
 from FLD_generator.word_banks.base import WordBank, ATTR
@@ -29,6 +29,7 @@ from FLD_generator.utils import (
     generate_combinations_from_generators,
     shuffle,
     RandomCycle,
+    LRUCache,
 )
 from FLD_generator.knowledge_banks.base import KnowledgeBankBase
 from .base import (
@@ -52,9 +53,11 @@ _LOGS_FOR_DEBUG = False
 _PREFER_CONDITION_MATCHING_BRANCHES = False
 
 # leaf nl to generator such as "is", "are".
-_LEAF_NL_GENERATOR_CACHE: Dict[str, Generator] = {}
+# _LEAF_NL_GENERATOR_CACHE = LRUCache(DEFAULT_CACHE_SIZE)   # LRUCache is slower!
+_LEAF_NL_GENERATOR_CACHE = {}
 
-_UNCONDITIONED_VOLUME_CACHE: Dict[Tuple[int, str], int] = {}
+# _UNCONDITIONED_VOLUME_CACHE = LRUCache(DEFAULT_CACHE_SIZE)  # LRUCache is slower!
+_UNCONDITIONED_VOLUME_CACHE = {}
 
 # For each nl, we store "possible" conditions.
 # "Possible" means that we can have other conditions not stored in the cache.
@@ -70,6 +73,7 @@ class _PosFormConditionSet(set):
             raise Exception(f'Duplicated condition for found in {elems}')
         unique_elems = set(elems)
         return super().__new__(cls, unique_elems)
+
 
 TemplatedNLAndCondition = Iterator[Tuple[str, _PosFormConditionSet]]
 
@@ -132,8 +136,6 @@ class ResolvedTemplateGenerator:
         self._template = template
         self._parent_translator = parent_translator
 
-        if len(_UNCONDITIONED_VOLUME_CACHE) > DEFAULT_CACHE_SIZE:
-            _UNCONDITIONED_VOLUME_CACHE.clear()
         self._volume_cache = _UNCONDITIONED_VOLUME_CACHE
         self._volume_cache_key = (id(self.volume_to_weight), tuple(ancestor_templated_nls), self._template)
 
@@ -401,20 +403,22 @@ class TemplatedTranslator(Translator):
             zeorary_weights = (1.0,)
         else:
             zeroary_words = (adjs, intransitive_verbs, build_transitive_verb_PASs, event_nouns)
-            zeorary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3, adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
+            zeorary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3,
+                               adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
         zeroary_predicates = make_chained_sampling_from_weighted_iterators(zeroary_words, zeorary_weights)
 
         unary_words = (adjs, intransitive_verbs, build_transitive_verb_PASs, predicate_nouns)
-        unary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3, adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
+        unary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3,
+                         adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
         unary_predicates = make_chained_sampling_from_weighted_iterators(unary_words, unary_weights)
 
         constants = entity_nouns
 
         return (
             (PredicatePhrase(predicate=pred[0], object=pred[1]) if isinstance(pred, tuple) else PredicatePhrase(predicate=pred)
-             for pred in  zeroary_predicates),
+             for pred in zeroary_predicates),
             (PredicatePhrase(predicate=pred[0], object=pred[1]) if isinstance(pred, tuple) else PredicatePhrase(predicate=pred)
-             for pred in  unary_predicates),
+             for pred in unary_predicates),
             [ConstantPhrase(constant=constant) for constant in constants],
         )
 
@@ -472,6 +476,12 @@ class TemplatedTranslator(Translator):
                          collapsed_knowledge_idxs: Optional[List[int]] = None,
                          raise_if_translation_not_found=True,
                          compute_volume=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
+        if len(_UNCONDITIONED_VOLUME_CACHE) > DEFAULT_CACHE_SIZE:
+            _UNCONDITIONED_VOLUME_CACHE.clear()
+        if len(_LEAF_NL_GENERATOR_CACHE) > DEFAULT_CACHE_SIZE:
+            _LEAF_NL_GENERATOR_CACHE.clear()
+        if len(_POSSIBLE_CONDITIONS_CACHE) > DEFAULT_CACHE_SIZE:
+            _POSSIBLE_CONDITIONS_CACHE.clear()
         logger.info('translation start with volume cache = %d', len(_UNCONDITIONED_VOLUME_CACHE))
 
         knowledge_idxs = knowledge_idxs or []
@@ -567,14 +577,16 @@ class TemplatedTranslator(Translator):
 
                 # do interpretation using predicates and constants using interpret_mapping
                 if self._do_translate_to_nl:
-                    interpret_templated_translation_pushed_with_the_or_it = self._postprocess_template(interpret_templated_translation_pushed)
+                    interpret_templated_translation_pushed_with_the_or_it = self._postprocess_template(
+                        interpret_templated_translation_pushed)
                     translation = interpret_formula(Formula(interpret_templated_translation_pushed_with_the_or_it),
                                                     self._make_phrase_str_mapping(inflated_mapping)).rep
                 else:
                     translation = interpret_templated_translation_pushed
 
                 SO_swap_formula: Optional[Formula] = None
-                if len(formula.unary_PASs) == 1 and len(formula.predicates) == 1 and len(formula.constants) == 1:  # something like {A}{a}
+                # something like {A}{a}
+                if len(formula.unary_PASs) == 1 and len(formula.predicates) == 1 and len(formula.constants) == 1:
                     constant = formula.constants[0].rep
                     predicate = formula.predicates[0].rep
 
@@ -595,7 +607,8 @@ class TemplatedTranslator(Translator):
                             SO_swap_interpret_mapping,
                             chosen_nl_pushed,
                         )
-                        interpret_templated_translation_pushed_with_the_or_it = self._postprocess_template(interpret_templated_translation_pushed)
+                        interpret_templated_translation_pushed_with_the_or_it = self._postprocess_template(
+                            interpret_templated_translation_pushed)
                         SO_swap_translation = interpret_formula(Formula(interpret_templated_translation_pushed_with_the_or_it),
                                                                 self._make_phrase_str_mapping(SO_swap_inflated_mapping)).rep
 
@@ -611,7 +624,8 @@ class TemplatedTranslator(Translator):
                         unused_constant = sorted(set(CONSTANTS) - set(used_constants))[0]
 
                         if self._do_translate_to_nl:
-                            SO_swap_formula = interpret_formula(formula, {predicate: unused_predicate, constant: unused_constant})
+                            SO_swap_formula = interpret_formula(
+                                formula, {predicate: unused_predicate, constant: unused_constant})
                             SO_swap_formula.translation = SO_swap_translation
                             logger.debug('make subj obj swapped translation: %s', SO_swap_translation)
 
@@ -627,7 +641,8 @@ class TemplatedTranslator(Translator):
                 if found_keys == 0:
                     raise_or_warn(f'translation not found for "{formula.rep}", since the translation_key was not found.')
                 else:
-                    raise_or_warn(f'translation not found for "{formula.rep}" due to the reasons stated the above: (i) or (ii).')
+                    raise_or_warn(
+                        f'translation not found for "{formula.rep}" due to the reasons stated the above: (i) or (ii).')
                 translations.append(None)
                 translation_names.append(None)
 
@@ -644,7 +659,8 @@ class TemplatedTranslator(Translator):
                     else None
                 )
 
-        all_translations = translations + [SO_swap_formula.translation if SO_swap_formula is not None else None for SO_swap_formula in SO_swap_formulas]
+        all_translations = translations + \
+            [SO_swap_formula.translation if SO_swap_formula is not None else None for SO_swap_formula in SO_swap_formulas]
         all_translations = self._postprocess_translations_at_once(all_translations)
         translations = all_translations[:len(translations)]
         for SO_swap_formula, translation in zip(SO_swap_formulas, all_translations[len(translations):]):
@@ -734,7 +750,8 @@ class TemplatedTranslator(Translator):
 
             entity_noun_size = int(math.ceil(len(constants) * 1.0))   # since all the constants have pos=NOUN, x 1.0 is enough
             while True:
-                entity_nouns = [noun for noun in obj_nouns if noun in self._constant_set][: int(entity_noun_size * self.reused_object_nouns_max_factor)]
+                entity_nouns = [noun for noun in obj_nouns if noun in self._constant_set][: int(
+                    entity_noun_size * self.reused_object_nouns_max_factor)]
                 if len(entity_nouns) > 0:
                     logger.info('the following object nouns may be reused as as entity nouns: %s', str(entity_nouns))
 
@@ -789,7 +806,6 @@ class TemplatedTranslator(Translator):
 
             return interpret_mapping
 
-
     @profile
     def _sample_condition_match_nl(self,
                                    sentence_key: str,
@@ -797,7 +813,7 @@ class TemplatedTranslator(Translator):
                                    push_mapping: Dict[str, str],
                                    pos_mapping: Optional[Dict[str, str]] = None,
                                    block_shuffle=True,
-                                   volume_to_weight = lambda weight: weight,
+                                   volume_to_weight=lambda weight: weight,
                                    compute_volume=True,
                                    log_indent=0) -> Tuple[Optional[str], Optional[Dict[str, POS]]]:
         """ Find templated NL that matches the conditions given by interpret_mapping, push_mapping and pos_mapping. """
@@ -827,7 +843,7 @@ class TemplatedTranslator(Translator):
                 block_shuffle=block_shuffle,
                 volume_to_weight=volume_to_weight,
                 compute_volume=compute_volume,
-                log_indent = log_indent + 4,
+                log_indent=log_indent + 4,
             )
 
             iterators.append(iterator)
@@ -836,7 +852,7 @@ class TemplatedTranslator(Translator):
 
         if block_shuffle:
             weights = self._get_weights(volumes, weight_types, volume_to_weight)
-            nl_and_conditions = (item for item in generate_weighted_chained_samples(iterators, weights))   # HONOKA SLOW 最終的にここが唯一のボトルネックになる．
+            nl_and_conditions = (item for item in generate_weighted_chained_samples(iterators, weights))
         else:
             nl_and_conditions = (item for iterator in iterators for item in iterator)
 
@@ -941,7 +957,7 @@ class TemplatedTranslator(Translator):
         if templated_nl.startswith('__'):
             return iter([]), 0
         if templated_nl in _LEAF_NL_GENERATOR_CACHE:
-            return _LEAF_NL_GENERATOR_CACHE[templated_nl], 1
+            return _LEAF_NL_GENERATOR_CACHE[templated_nl](), 1
 
         condition = self._extract_condition(templated_nl)
         if _PREFER_CONDITION_MATCHING_BRANCHES:
@@ -951,9 +967,9 @@ class TemplatedTranslator(Translator):
         _constraint_pos_mapping = copy(constraint_pos_mapping)
         if check_condition and (constraint_push_mapping or _constraint_pos_mapping):
             have_consistent, _pos_mapping = self._is_mapping_and_condition_match(condition,
-                                                                                                 constraint_interpret_mapping,
-                                                                                                 constraint_push_mapping,
-                                                                                                 pos_mapping=_constraint_pos_mapping)
+                                                                                 constraint_interpret_mapping,
+                                                                                 constraint_push_mapping,
+                                                                                 pos_mapping=_constraint_pos_mapping)
             if not have_consistent:
                 return iter([]), 0
             else:
@@ -967,30 +983,20 @@ class TemplatedTranslator(Translator):
                 yield templated_nl, condition
 
             if len(condition) == 0:
-                if len(_LEAF_NL_GENERATOR_CACHE) > DEFAULT_CACHE_SIZE:
-                    _LEAF_NL_GENERATOR_CACHE.clear()
                 _LEAF_NL_GENERATOR_CACHE[templated_nl] = generate_leaf_nl
 
             return generate_leaf_nl(), volume
 
         else:
-
-            # いや，これだと({A}{a} & {B}{a})における{A}が２回カウントされてしまう．
-            # しかし，ここはめちゃくちゃ多数回呼ばれるので，ここでの計算量は極力減らしたい．
-            # sorted_templates = sorted(templates, key=lambda template: template.count('{'))[::-1]
-
-            # XXX: this sorting is VERY important for speed
-            # We sort the template so that template wich more conditions, such as [A.VERB] or [a.NOUN] comes first.
-            # The templates will be eventually input into generate_combination() function.
-            # This function will make combination of input iterators where first ones will be expanded first.
-            # Therefore, if one of the iten in such a iterator does not meet the POS conditoin,
-            # it will be rejected and the other iterators will not be expanded.
-
+            # This sorting is VERY important for speed.
+            # These templates will be input to generate_combination() function, which expand the generators in the order of the input.
+            # So, if we place first the generators with more conditions such as [A.VERB] or [a.NOUN], which could be rejected due to condition mismatch,
+            # we can reject the combination earlier.
+            # Note that the inverse order will be much much slower, as only when we reach the last generators, can we reject the combination.
             sorted_templates = sorted(templates, key=self._condition_coeff)[::-1]
 
             template_resolved_generators = [
                 ResolvedTemplateGenerator(
-                    # HONOKA: SLOW
                     self,
                     template,
                     ancestor_templated_nls,
@@ -1007,7 +1013,7 @@ class TemplatedTranslator(Translator):
             ]
 
             total_volume = 1
-            for generator, tempalte in zip(template_resolved_generators, sorted_templates):
+            for generator in template_resolved_generators:
                 volume = generator.compute_unconditioned_volume()
                 if volume is None:
                     total_volume = None
@@ -1045,7 +1051,7 @@ class TemplatedTranslator(Translator):
             print(' ' * log_indent + '-- _make_resolved_template_sampler() --')
             print(' ' * log_indent + '    template:', template)
             print(' ' * log_indent + '    ancestor_nls:', ancestor_templated_nls)
-        template_key, templated_nls = self._find_templated_nls_from_config(template, log_indent = log_indent + 4)
+        template_key, templated_nls = self._find_templated_nls_from_config(template, log_indent=log_indent + 4)
         if template_key is None:
             raise Exception(f'template for {template} not found.')
 
@@ -1100,10 +1106,10 @@ class TemplatedTranslator(Translator):
 
         if shuffle:
             weights = self._get_weights(volumes,
-                                         weight_types,
-                                         volume_to_weight,
-                                         templated_nls=templated_nls,
-                                         interpret_mapping=constraint_interpret_mapping)
+                                        weight_types,
+                                        volume_to_weight,
+                                        templated_nls=templated_nls,
+                                        interpret_mapping=constraint_interpret_mapping)
             weights = [weight * exploitation_bonus_factor
                        for weight, exploitation_bonus_factor in zip(weights, condition_match_bonus_factors)]
 
@@ -1125,10 +1131,10 @@ class TemplatedTranslator(Translator):
 
     @profile
     def _is_mapping_and_condition_match(self,
-                                       condition: _PosFormConditionSet,
-                                       interpret_mapping: Dict[str, Phrase],
-                                       push_mapping: Dict[str, str],
-                                       pos_mapping: Optional[Dict[str, POS]] = None) -> Tuple[bool, Dict[str, POS]]:
+                                        condition: _PosFormConditionSet,
+                                        interpret_mapping: Dict[str, Phrase],
+                                        push_mapping: Dict[str, str],
+                                        pos_mapping: Optional[Dict[str, POS]] = None) -> Tuple[bool, Dict[str, POS]]:
         if len(condition) == 0:
             return True, pos_mapping
 
@@ -1234,7 +1240,7 @@ class TemplatedTranslator(Translator):
     @profile
     def _extract_templates(self, templated_nl: str) -> List[str]:
         return [
-            templated_nl[match.span()[0] + len(self._TEMPLATE_BRACES[0]) : match.span()[1] - len(self._TEMPLATE_BRACES[1])]
+            templated_nl[match.span()[0] + len(self._TEMPLATE_BRACES[0]): match.span()[1] - len(self._TEMPLATE_BRACES[1])]
             for match in re.finditer(f'{self._TEMPLATE_BRACES[0]}((?!{self._TEMPLATE_BRACES[1]}).)*{self._TEMPLATE_BRACES[1]}', templated_nl)
         ]
 
@@ -1312,9 +1318,11 @@ class TemplatedTranslator(Translator):
             interprand_rep = interprand_formula.rep
             if interprand_templated_translation_pushed.find(f'{interprand_rep}[') >= 0:
                 phrase = interpret_mapping[interprand_rep]
-                pos_form = self._get_interprand_condition_from_template(interprand_rep, interprand_templated_translation_pushed)
+                pos_form = self._get_interprand_condition_from_template(
+                    interprand_rep, interprand_templated_translation_pushed)
                 if pos_form is None:
-                    raise ValueError(f'Could not extract pos and form information about "{interprand_rep}" from "{interprand_templated_translation_pushed}"')
+                    raise ValueError(
+                        f'Could not extract pos and form information about "{interprand_rep}" from "{interprand_templated_translation_pushed}"')
                 pos, form = pos_form
                 if self.log_stats:
                     stats[f'{pos.value}.{form}'] += 1

@@ -2,7 +2,6 @@ from typing import List, Dict, Optional, Tuple, Union
 from abc import abstractmethod, ABC
 import logging
 from functools import lru_cache
-from FLD_generator.settings import DEFAULT_CACHE_SIZE
 from pydantic import BaseModel
 from dataclasses import dataclass
 
@@ -66,10 +65,6 @@ class Translator(ABC):
                   ) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
         min_timeout = 10
         timeout_per_trial = min_timeout + int(timeout_per_trial or len(formulas) * 3.0)
-
-        # min_timeout = 1
-        # timeout_per_trial = min_timeout + int(timeout_per_trial or len(formulas) * 1.0)
-
         TRY_TWO_PASS = True
 
         try:
