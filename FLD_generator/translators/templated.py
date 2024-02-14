@@ -49,7 +49,10 @@ _SENTENCE_TRANSLATION_PREFIX = 'sentence'
 _DEBUG = False
 # _DEBUG = True
 
-_CONSTANT_NL_GENERATORS: Dict = {}
+_CONSTANT_NL_GENERATORS: Dict[str, Generator] = {}
+
+# _USE_BONUS = True   # True slows downs!
+_USE_BONUS = False
 
 
 class ResolveTranslationTimeoutError(Exception):
@@ -98,6 +101,10 @@ class _PosFormConditionSet(set):
 
 
 NLAndCondition = Iterator[Tuple[str, _PosFormConditionSet]]
+# store possible conditions. note that the possible conditions are are only posible,
+# meaning that we might have other conditions.
+_NL_TO_POSSIBLE_CONDITIONS: Dict[str, Set[_PosFormConditionSet]] = defaultdict(set)
+
 
 
 def _compress_nls(texts: List[str]) -> bytes:
@@ -892,6 +899,7 @@ class TemplatedTranslator(Translator):
                                            compute_volume=True,
                                            check_condition=True,
                                            log_indent=0) -> Tuple[Iterator[NLAndCondition], float]:
+        """ resolve nl such as "<<phrase::thing>> is <<phrase::{A}predicate>>" """
         if nl.startswith('__'):
             return iter([]), 0
         if nl in _CONSTANT_NL_GENERATORS:
@@ -899,6 +907,10 @@ class TemplatedTranslator(Translator):
             return generate(), 1
 
         condition = self._get_condition_from_nl(nl)
+        if _USE_BONUS:
+            for ancestor_nl in ancestor_nls:
+                _NL_TO_POSSIBLE_CONDITIONS[ancestor_nl].add(tuple(condition))
+
         _constraint_pos_mapping = copy(constraint_pos_mapping)
         if check_condition and (constraint_push_mapping or _constraint_pos_mapping):
             have_consistent, _pos_mapping = self._interpret_mapping_is_consistent_with_condition(condition,
@@ -988,6 +1000,7 @@ class TemplatedTranslator(Translator):
                 total_volume,
             )
 
+    # 再帰元2
     @profile
     def _make_resolved_template_sampler(self,
                                         template: str,
@@ -1001,6 +1014,7 @@ class TemplatedTranslator(Translator):
                                         compute_volume=True,
                                         check_condition=True,
                                         log_indent=0) -> Tuple[Iterator[NLAndCondition], float]:
+        """ resolve template such as "<<phrase::thing>>" """
         if _DEBUG:
             print()
             print(' ' * log_indent + '-- _make_resolved_template_sampler() --')
@@ -1020,9 +1034,34 @@ class TemplatedTranslator(Translator):
         iterators = []
         weight_types: List[str] = []
         volumes: List[int] = []
+        exploitatoin_bonus_factors: List[float] = []
         for weight, template_nl in template_nls:
             if template_nl in ancestor_nls:
                 continue
+
+            exploitation_bonus_factor = 1.0
+            if _USE_BONUS:
+                # bonus_multiplier = 1  # 659s
+                bonus_multiplier = 3  # 590sec
+                # bonus_multiplier = 10   #  646.15s
+                if constraint_interpret_mapping is not None\
+                        and constraint_push_mapping is not None\
+                        and constraint_pos_mapping is not None:
+                    for possible_condition in _NL_TO_POSSIBLE_CONDITIONS[template_nl]:
+                        have_consistent, _ = self._interpret_mapping_is_consistent_with_condition(
+                            set(possible_condition),
+                            constraint_interpret_mapping,
+                            constraint_push_mapping,
+                            pos_mapping=constraint_pos_mapping,
+                        )
+                        if have_consistent:
+                            exploitation_bonus_factor * bonus_multiplier
+                            # logger.warning('add exploitation_bonus_factor %d for template_nl: %s', bonus_multiplier, template_nl)
+                            # logger.warning('the original interpret mapping is the following:\n%s', pformat(constraint_interpret_mapping))
+                            # logger.warning('the push mapping is the following:\n%s', pformat(constraint_push_mapping))
+                        else:
+                            # note that we can not reject the template_nl here, as we can have conditions other than possible_condition
+                            pass
 
             iterator, volume = self._make_resolved_translation_sampler(
                 template_nl,
@@ -1040,6 +1079,7 @@ class TemplatedTranslator(Translator):
             iterators.append(iterator)
             weight_types.append(weight)
             volumes.append(volume)
+            exploitatoin_bonus_factors.append(exploitation_bonus_factor)
 
         if shuffle:
             weights = self._calc_weights(volumes,
@@ -1047,6 +1087,8 @@ class TemplatedTranslator(Translator):
                                          volume_to_weight,
                                          template_nls=template_nls,
                                          interpret_mapping=constraint_interpret_mapping)
+            weights = [weight * exploitation_bonus_factor
+                       for weight, exploitation_bonus_factor in zip(weights, exploitatoin_bonus_factors)]
 
             def generate():
                 return generate_weighted_chained_samples(iterators, weights)
@@ -1079,13 +1121,13 @@ class TemplatedTranslator(Translator):
             phrase = interpret_mapping[interprand_rep_pushed]
             forced_pos = _pos_mapping.get(interprand_rep_pushed, None)
 
-            allowed_pos = [forced_pos] if forced_pos is not None else self._get_pos(phrase)  # SLOW
+            allowed_pos = [forced_pos] if forced_pos is not None else self._get_pos(phrase)
 
             if pos not in allowed_pos:
                 condition_is_consistent = False
                 break
 
-            inflated_phrases = self._get_inflated_phrases(phrase, pos, form)  # SLOW
+            inflated_phrases = self._get_inflated_phrases(phrase, pos, form)
             if len(inflated_phrases) == 0:
                 condition_is_consistent = False
                 break

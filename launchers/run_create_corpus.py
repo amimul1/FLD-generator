@@ -108,8 +108,13 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--no')
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v2')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v1')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v1')
 
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-3')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-10')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-no')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-3')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -262,7 +267,7 @@ def main():
         # '2024-02-09.enhance_translation.theorems',
         # '2024-02-09.enhance_translation.theorems.allow_smaller_proofs',
         # '2024-02-09.enhance_translation.translation-v2',
-        # '2024-02-09.enhance_translation.translation-v3',
+        '2024-02-09.enhance_translation.translation-v3',
     ]
 
     # dataset_names = dataset_names[::-1]
@@ -291,7 +296,7 @@ def main():
     engine = QsubEngine('ABCI', 'rt_C.small')
 
     # ---------------------------- fixed settings --------------------------
-    num_workers_per_job = 1
+    num_workers_per_job = 5
     delete_logs_when_done = False
 
     if num_jobs_for_datasets * num_jobs_per_dataset > 180:
