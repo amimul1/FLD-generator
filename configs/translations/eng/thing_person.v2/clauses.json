@@ -194,25 +194,25 @@
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::({A} v {B})predicate.plural>>",
           "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::{B}they>>",
 
-          "<<phrase::maybe_etheyher>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
+          "<<phrase::maybe_either>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v {B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::(¬{A} v {B})predicate.plural>>",
           "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::{B}they>>",
 
-          "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both"
       ],
       "({A}{a} v ¬{B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::({A} v ¬{B})predicate.plural>>",
           "<<clause::verb::{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
 
-          "<<phrase::maybe_etheyher>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
+          "<<phrase::maybe_either>> <<clause::verb::{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
       ],
       "(¬{A}{a} v ¬{B}{a})generic_subj.plural": [
           "<<phrase::maybe_all>> <<phrase::{a}noun.plural>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
           "<<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
 
-          "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}{a}generic_subj.plural>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both"
       ],
 
 
@@ -580,28 +580,28 @@
       "({A}they v {B}they)": [
           "<<phrase::they>> <<phrase::({A} v {B})predicate.plural>>",
           "<<clause::verb::{A}they>> <<phrase::andOr>> <<clause::verb::{B}they>>",
-          "<<phrase::maybe_etheyher>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
+          "<<phrase::maybe_either>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}they v {B}they)": [
           "<<phrase::they>> <<phrase::(¬{A} v {B})predicate.plural>>",
           "<<clause::verb::¬{A}they>> <<phrase::andOr>> <<clause::verb::{B}they>>",
-          "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "({A}they v ¬{B}they)": [
           "<<phrase::they>> <<phrase::({A} v ¬{B})predicate.plural>>",
           "<<clause::verb::{A}they>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
-          "<<phrase::maybe_etheyher>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
+          "<<phrase::maybe_either>> <<clause::verb::{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
       ],
       "(¬{A}they v ¬{B}they)": [
           "<<phrase::they>> <<phrase::(¬{A} v ¬{B})predicate.plural>>",
           "<<clause::verb::¬{A}they>> <<phrase::andOr>> <<clause::verb::¬{B}they>>",
-          "<<phrase::maybe_etheyher>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
+          "<<phrase::maybe_either>> <<clause::verb::¬{A}they>> <<phrase::or>> <<clause::verb::¬{B}they>> <<phrase::or>> both",
 
           "__"
       ]
