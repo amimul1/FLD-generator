@@ -64,7 +64,9 @@ class Translator(ABC):
                   timeout_per_trial: Optional[int] = None,
                   ) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
         min_timeout = 10
-        timeout_per_trial = min_timeout + int(timeout_per_trial or len(formulas) * 3.0)  # NG
+        timeout_per_trial = min_timeout + int(timeout_per_trial or len(formulas) * 3.0)
+        TRY_TWO_PASS = True
+
         try:
             transls = run_with_timeout_retry(
                 self._translate,
@@ -80,11 +82,40 @@ class Translator(ABC):
                 logger=logger,
                 log_title='_translate()',
             )
+
             if len(transls) == 0:
                 raise TranslationFailure()
-            return transls[-1]
+            else:
+                return transls[-1]
+
         except RetryAndTimeoutFailure as e:
-            raise TranslationFailure(str(e))
+            if not TRY_TWO_PASS:
+                raise TranslationFailure(str(e))
+
+        if TRY_TWO_PASS:
+            try:
+                logger.warning(f'[!] self._translate() failed with timeout. Retrying with self._translate_fast()...')
+                transls = run_with_timeout_retry(
+                    self._translate_fast,
+                    func_args=[formulas, intermediate_constant_formulas],
+                    func_kwargs={
+                        'knowledge_idxs': knowledge_idxs,
+                        'collapsed_knowledge_idxs': collapsed_knowledge_idxs,
+                        'raise_if_translation_not_found': raise_if_translation_not_found,
+                    },
+                    should_retry_exception=TranslationFailure,
+                    max_retry=max_retry,
+                    timeout_per_trial=timeout_per_trial,
+                    logger=logger,
+                    log_title='_translate_fast()',
+                )
+                if len(transls) == 0:
+                    raise TranslationFailure()
+                else:
+                    return transls[-1]
+
+            except RetryAndTimeoutFailure as e:
+                raise TranslationFailure(str(e))
 
     @abstractmethod
     def _translate(self,
@@ -93,6 +124,15 @@ class Translator(ABC):
                    knowledge_idxs: Optional[List[int]] = None,
                    collapsed_knowledge_idxs: Optional[List[int]] = None,
                    raise_if_translation_not_found=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
+        pass
+
+    @abstractmethod
+    def _translate_fast(self,
+                        formulas: List[Formula],
+                        intermediate_constant_formulas: List[Formula],
+                        knowledge_idxs: Optional[List[int]] = None,
+                        collapsed_knowledge_idxs: Optional[List[int]] = None,
+                        raise_if_translation_not_found=True) -> Tuple[List[Tuple[Optional[str], Optional[str], Optional[Formula], Optional[str]]], Dict[str, int]]:
         pass
 
     @abstractmethod

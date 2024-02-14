@@ -1,6 +1,7 @@
 from typing import Optional, Tuple, Any, Union, List, Dict, Iterable
 import logging
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 
 from z3.z3types import Z3Exception
 from FLD_generator.formula import (
@@ -87,7 +88,7 @@ def _raise_with_contradiction(formula: Formula) -> None:
         raise Exception(f'The formula with the contradiction symbol ("{CONTRADICTION}") is not supported: "{formula.rep}"')
 
 
-@lru_cache(maxsize=1000000)
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
 def parse(rep: str):
     _raise_with_contradiction(Formula(rep))
 

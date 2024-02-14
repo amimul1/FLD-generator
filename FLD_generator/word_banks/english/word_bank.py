@@ -3,6 +3,7 @@ from typing import Optional, Iterable, List, Dict, Set, Tuple
 import logging
 from enum import Enum
 from typing import Optional
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 from functools import lru_cache
 
 from ordered_set import OrderedSet
@@ -121,7 +122,7 @@ class EnglishWordBank(WordBank):
             return [POS.NOUN]
         return self._word_util.get_pos(word)
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _change_verb_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
@@ -181,7 +182,7 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _change_adj_form(self, adj: str, form: Enum, force=False) -> List[str]:
 
@@ -227,7 +228,7 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError(f'Unknown form {form}')
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _change_present_particle_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
@@ -236,7 +237,7 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _change_past_particle_form(self, verb: str, form: Enum, force=False) -> List[str]:
 
@@ -245,7 +246,7 @@ class EnglishWordBank(WordBank):
         else:
             raise ValueError()
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     @profile
     def _change_noun_form(self, noun: str, form: Enum, force=False) -> List[str]:
 

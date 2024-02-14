@@ -3,6 +3,7 @@ import logging
 from collections import defaultdict
 import random
 import copy
+from pprint import pformat
 
 from FLD_generator.formula import Formula, NEGATION, eliminate_double_negation, negate
 from FLD_generator.proof import ProofTree, ProofNode
@@ -331,6 +332,8 @@ class ProofTreeGenerationPipeline:
                             collapsed_knowledge_idxs.append(idx)
 
             try:
+                # logger.critical('================================ all_unique_formulas =================================')
+                # logger.critical(pformat(all_unique_formulas))
                 named_translations, translator_stats = self.translator.translate(
                     all_unique_formulas,
                     list(proof_tree.intermediate_constants),
@@ -363,8 +366,8 @@ class ProofTreeGenerationPipeline:
                             try:
                                 formula.translation = translation[0].upper() + translation[1:]
                             except IndexError as e:
-                                logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                                logger.critical('translation: %s', translation)
+                                # logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                                # logger.critical('translation: %s', translation)
                                 if translation == "":
                                     logger.warning('translation is "", which is not expected. Should be debugged.'
                                                    'Currently we leave it and is just using other successful samples.')

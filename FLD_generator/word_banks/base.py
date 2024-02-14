@@ -4,6 +4,7 @@ from string import ascii_uppercase
 from abc import ABC, abstractmethod
 from itertools import chain
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import logging
 from ordered_set import OrderedSet
 from pydantic import BaseModel
@@ -188,7 +189,7 @@ class WordBank(ABC):
     def _change_noun_form(self, noun: str, form: Enum, force=False) -> List[str]:
         pass
 
-    @lru_cache(1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     def get_attrs(self, word: str, pos_not_found_warning=True) -> List[ATTR]:
         attrs = []
 

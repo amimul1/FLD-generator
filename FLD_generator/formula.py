@@ -1,6 +1,7 @@
 import re
 from typing import List, Optional
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 
 from FLD_generator.exception import FormalLogicExceptionBase
 import line_profiling
@@ -316,6 +317,6 @@ def has_contradiction_symbol(formula: Formula) -> bool:
     return formula.rep.find(CONTRADICTION) >= 0
 
 
-@lru_cache(maxsize=10000000)
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
 def strip_quantifier(rep: str) -> str:
     return _QUANTIFIER_INTRO_REGEXP.sub('', rep)

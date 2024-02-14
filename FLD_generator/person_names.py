@@ -1,11 +1,12 @@
 from typing import Optional, List, Union, Dict
 from names_dataset import NameDataset, NameWrapper
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 
 _ND: Optional[NameDataset] = None
 
 
-@lru_cache(maxsize=100)
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
 def get_person_names(country='US',
                      details=False) -> Union[List[str], Dict[str, str]]:
     top_n=1000  # we do not allow users to specify top_n to manage this parameter only here
