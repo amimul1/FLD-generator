@@ -23,7 +23,7 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
 
 ## Installation
 The code has been tested with Python 3.11.5 and PyPy 3.10-7.3.12.
-The latter executes the code about 2 times faster the former.
+The latter can be faster.
 ```console
 pip install -r ./requirements/requrements.txt
 export PYTHONPATH=`pwd -P`:$PYTHONPATH
