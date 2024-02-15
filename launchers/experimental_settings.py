@@ -8516,7 +8516,7 @@ _DATASET_SETTINGS = {
             },
         },
         'split_sizes': {
-            # 'test': 2000,
+            'test': 2000,
             # 'valid': 500,
             'train': 300000,
         },
