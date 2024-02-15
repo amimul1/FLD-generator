@@ -274,12 +274,12 @@ def main():
         # '2024-02-09.enhance_translation.translation-v3',
 
         # ---------------------------------- 2024-02-14.translation_speedup ------------------------------------
-        '2024-02-14.translation_speedup.past_reproduce',
-        # '2024-02-14.translation_speedup.D8',
+        # '2024-02-14.translation_speedup.past_reproduce',
+        '2024-02-14.translation_speedup.D8',
         # '2024-02-14.translation_speedup.propositional-0.2',
-        # '2024-02-14.translation_speedup.theorems',
+        '2024-02-14.translation_speedup.theorems',
         # '2024-02-14.translation_speedup.theorems.allow_smaller_proofs',
-        # '2024-02-14.translation_speedup.translation-v2',
+        '2024-02-14.translation_speedup.translation-v2',
         # '2024-02-14.translation_speedup.translation-v3',
     ]
 
