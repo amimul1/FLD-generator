@@ -275,18 +275,19 @@ def main():
 
         # ---------------------------------- 2024-02-14.translation_speedup ------------------------------------
         # '2024-02-14.translation_speedup.past_reproduce',
-        '2024-02-14.translation_speedup.D8',
+        # '2024-02-14.translation_speedup.D8',
         # '2024-02-14.translation_speedup.propositional-0.2',
-        '2024-02-14.translation_speedup.theorems',
+        # '2024-02-14.translation_speedup.theorems',
         # '2024-02-14.translation_speedup.theorems.allow_smaller_proofs',
-        '2024-02-14.translation_speedup.translation-v2',
+        # '2024-02-14.translation_speedup.translation-v2',
         # '2024-02-14.translation_speedup.translation-v3',
+        '2024-02-14.translation_speedup.translation-v3.propositional-0.2',
     ]
 
     # dataset_names = dataset_names[::-1]
 
-    num_jobs_for_datasets = 4
-    num_jobs_per_dataset = 35
+    num_jobs_for_datasets = 1
+    num_jobs_per_dataset = 180
 
     # num_jobs_for_datasets = 2
     # num_jobs_per_dataset = 80

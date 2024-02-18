@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.universal_theorem.reference",
+      "id": "predicate.universal.reference",
       "premises": [
           "(x): {A}x"
       ],
@@ -8,7 +8,7 @@
   },
 
   {
-      "id": "predicate.existential_theorem.reference",
+      "id": "predicate.existential.reference",
       "premises": [
           "(Ex): {A}x"
       ],
