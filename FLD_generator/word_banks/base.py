@@ -4,6 +4,7 @@ from string import ascii_uppercase
 from abc import ABC, abstractmethod
 from itertools import chain
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import logging
 from ordered_set import OrderedSet
 from pydantic import BaseModel
@@ -41,6 +42,7 @@ class ATTR(Enum):
 
     can_be_event_noun = 'can_be_event_noun'
     can_be_entity_noun = 'can_be_entity_noun'
+    can_be_named_entity_noun = 'can_be_named_entity_noun'
     can_be_predicate_noun = 'can_be_predicate_noun'
 
 
@@ -54,6 +56,7 @@ class UserWord(BaseModel):
 
     can_be_event_noun: Optional[bool] = None
     can_be_entity_noun: Optional[bool] = None
+    can_be_named_entity_noun: Optional[bool] = 'can_be_named_entity_noun'
     can_be_predicate_noun: Optional[bool] = None
 
 
@@ -143,6 +146,7 @@ class WordBank(ABC):
         else:
             raise NotImplementedError()
 
+    @profile
     def change_word_form(self,
                          word: str,
                          pos: POS,
@@ -153,7 +157,7 @@ class WordBank(ABC):
         #     raise ValueError(f'The worf {word} do not have pos={pos.value}')
 
         if pos == POS.VERB:
-            return self._change_verb_form(word, self.VerbForm(form), force=force)
+            return self._change_verb_form(word, self.VerbForm(form), force=force)   # SLOW
         elif pos in [POS.ADJ, POS.ADJ_SAT]:
             return self._change_adj_form(word, self.AdjForm(form), force=force)
         elif pos == POS.NOUN:
@@ -185,8 +189,8 @@ class WordBank(ABC):
     def _change_noun_form(self, noun: str, form: Enum, force=False) -> List[str]:
         pass
 
-    @lru_cache(1000000)
-    def get_attrs(self, word: str) -> List[ATTR]:
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
+    def get_attrs(self, word: str, pos_not_found_warning=True) -> List[ATTR]:
         attrs = []
 
         def has_attr(name: str) -> bool:
@@ -196,19 +200,22 @@ class WordBank(ABC):
             else:
                 return getattr(self, f'_{name}')(word)
 
-        if POS.VERB in self.get_pos(word):
+        if POS.VERB in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_intransitive_verb'):
                 attrs.append(ATTR.can_be_intransitive_verb)
-        if POS.VERB in self.get_pos(word):
+        if POS.VERB in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_transitive_verb'):
                 attrs.append(ATTR.can_be_transitive_verb)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_event_noun'):
                 attrs.append(ATTR.can_be_event_noun)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_entity_noun'):
                 attrs.append(ATTR.can_be_entity_noun)
-        if POS.NOUN in self.get_pos(word):
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
+            if has_attr('can_be_named_entity_noun'):
+                attrs.append(ATTR.can_be_named_entity_noun)
+        if POS.NOUN in self.get_pos(word, not_found_warning=pos_not_found_warning):
             if has_attr('can_be_predicate_noun'):
                 attrs.append(ATTR.can_be_predicate_noun)
 
@@ -228,6 +235,10 @@ class WordBank(ABC):
 
     @abstractmethod
     def _can_be_entity_noun(self, noun: str) -> bool:
+        pass
+
+    @abstractmethod
+    def _can_be_named_entity_noun(self, noun: str) -> bool:
         pass
 
     @abstractmethod

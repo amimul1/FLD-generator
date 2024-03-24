@@ -1,0 +1,17 @@
+[
+  {
+      "id": "predicate.universal.reference",
+      "premises": [
+          "(x): {A}x"
+      ],
+      "conclusion": "(x): {A}x"
+  },
+
+  {
+      "id": "predicate.existential.reference",
+      "premises": [
+          "(Ex): {A}x"
+      ],
+      "conclusion": "(Ex): {A}x"
+  }
+]

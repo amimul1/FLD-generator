@@ -1,0 +1,18 @@
+[
+  {
+      "id": "predicate.modus_tollens",
+      "premises": [
+          "{A}{a} -> {B}{b}",
+          "¬{B}{b}"
+      ],
+      "conclusion": "¬{A}{a}"
+  },
+  {
+      "id": "predicate.modus_tollens.shared_arg",
+      "premises": [
+          "{A}{a} -> {B}{a}",
+          "¬{B}{a}"
+      ],
+      "conclusion": "¬{A}{a}"
+  }
+]

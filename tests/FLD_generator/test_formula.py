@@ -1,5 +1,11 @@
 from typing import List, Set
-from FLD_generator.formula import Formula, negate, _require_outer_brace
+from FLD_generator.formula import (
+    Formula,
+    negate,
+    _require_outer_brace,
+    eliminate_total_negation,
+    eliminate_double_negation,
+)
 
 
 def test_formula():
@@ -107,8 +113,28 @@ def test_negate():
     assert _test_negate('({C}{c} & {B}{c})', '¬({C}{c} & {B}{c})')
 
 
+def test_eliminate_total_negation():
+
+    def _test(rep: str, gold: str) -> bool:
+        return eliminate_total_negation(Formula(rep)).rep == gold
+
+    assert _test('¬{A}', '{A}')
+    assert _test('¬¬{A}', '¬{A}')
+
+    assert _test('¬({A})', '{A}')
+    assert _test('(¬{A})', '(¬{A})')  # should we eliminate this?
+
+    assert _test('¬(¬({A}))', '¬({A})')
+
+    assert _test('¬{A} & {B}', '¬{A} & {B}')
+    assert _test('¬({A} & {B})', '({A} & {B})')
+
+
 if __name__ == '__main__':
-    test_formula()
-    test_wo_quantifier()
-    test_require_outer_brace()
-    test_negate()
+    # test_formula()
+    # test_wo_quantifier()
+    # test_require_outer_brace()
+    # test_negate()
+
+    test_eliminate_total_negation()
+

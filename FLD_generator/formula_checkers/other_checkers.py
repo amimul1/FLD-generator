@@ -4,6 +4,7 @@ import logging
 
 from FLD_generator.formula import (
     Formula,
+    eliminate_total_negation,
     eliminate_double_negation,
     IMPLICATION,
     CONJUNCTION,
@@ -151,8 +152,7 @@ _is_nonsense_cache_size = 10000000
 
 
 @profile
-def is_nonsense(formula: Formula,
-                allow_detect_tautology_contradiction=False) -> bool:
+def is_nonsense(formula: Formula) -> bool:
     """ Detect fomula which is nonsense.
 
     "Nonsense" means that, in the sense of human knowledge of natural language, the formula is not that useful.
@@ -163,7 +163,8 @@ def is_nonsense(formula: Formula,
             ({A} -> {A})
             (¬{A} -> ¬{A})
 
-    XXX: By historical reasons, this module also detect contradiction or tautology as follows:
+    (2024-02-10) HONOKA: I deleted the following functionalities.
+    For historical reasons, this module also detect contradiction or tautology as follows:
     (i) contradiction
         {A} -> ¬{A},
         ¬{A} -> {A}
@@ -172,9 +173,6 @@ def is_nonsense(formula: Formula,
         (¬{A} v ¬{A})
 
     """
-    if not allow_detect_tautology_contradiction:
-        raise NotImplementedError()
-
     rep = formula.rep
 
     cache = _is_nonsense_cache
@@ -188,29 +186,35 @@ def is_nonsense(formula: Formula,
 
     formula = eliminate_double_negation(formula)
 
-    if formula.premise is None and _is_inconsistent_set([formula]):
-        cache[cache_key] = True
-        return True
+    # if formula.premise is None and _is_inconsistent_set([formula]):
+    #     cache[cache_key] = True
+    #     return True
 
     # detect fromulas like: {A} -> ¬{A}
-    if formula.premise is not None:
-        premise, conclusion = formula.premise, formula.conclusion
-        for PAS in conclusion.PASs:
-            bool_in_conclusion = _get_boolean_values(conclusion, PAS)
-            bool_in_premise = _get_boolean_values(premise, PAS)
-            if ('T' in bool_in_conclusion and 'F' in bool_in_premise)\
-                    or ('F' in bool_in_conclusion and 'T' in bool_in_premise):
-                # this block means "contradiction getween premise and conclusion"
-                cache[cache_key] = True
-                return True
+    # if formula.premise is not None:
+    #     premise, conclusion = formula.premise, formula.conclusion
+    #     for PAS in conclusion.PASs:
+    #         bool_in_conclusion = _get_boolean_values(conclusion, PAS)
+    #         bool_in_premise = _get_boolean_values(premise, PAS)
 
-            # this block is like "A -> A", "A -> (A & B)" -> This is OK, for example, &
-            if ('T' in bool_in_conclusion and 'T' in bool_in_premise)\
-                    or ('F' in bool_in_conclusion and 'F' in bool_in_premise):
-                cache[cache_key] = True
-                return True
-    else:
-        pass
+    #         # (2024-02-10) HONOKA: I think we do not need the following two blocks any more,
+    #         # since argument_checkers.is_trivial() will do the same job better.
+    #         # Specifically, is_nonsense() is called only by argument_checkers.is_nonsense(),
+    #         # but args.is_nonsense() is always called with argument_checkers.is_trivial().
+
+    #         # if ('T' in bool_in_conclusion and 'F' in bool_in_premise)\
+    #         #         or ('F' in bool_in_conclusion and 'T' in bool_in_premise):
+    #         #     # this block means "contradiction getween premise and conclusion"
+    #         #     cache[cache_key] = True
+    #         #     return True
+
+    #         # this block is like "A -> A", "A -> (A & B)" -> This is OK, for example, &
+    #         # if ('T' in bool_in_conclusion and 'T' in bool_in_premise)\
+    #         #         or ('F' in bool_in_conclusion and 'F' in bool_in_premise):
+    #         #     cache[cache_key] = True
+    #         #     return True
+    # else:
+    #     pass
 
     # detect fromulas like: ({A} v {A})
     for op in [CONJUNCTION, DISJUNCTION, IMPLICATION]:
@@ -331,20 +335,34 @@ def _get_boolean_values(formula: Formula, PAS: Formula) -> Set[str]:
 
         if not is_decidable_or:
             values.add('Unknown')
+
     elif rep.startswith(f'{NEGATION}(('):
         # something like ¬((x): {A}x)
         values.add('Unknown')
+
     else:
         if re.match(f'^{PAS_rep}$', rep):
             values.add('T')
         elif re.match(f'^{NEGATION}{PAS_rep}$', rep):
             values.add('F')
 
+    # This method is just WRONG.
+    # "formula -> PAS=T" does not mean "^formula -> PAS=F"
+    # formula_wo_negation = eliminate_total_negation(formula)
+    # if formula_wo_negation.rep != formula.rep:
+    #     _values = _get_boolean_values(formula_wo_negation, PAS)
+    #     if 'T' in _values:
+    #         values.add('F')
+    #     if 'F' in _values:
+    #         values.add('T')
+    #     if 'Unknown' in _values:
+    #         values.add('Unknown')
+
     if len(values) == 0:
         logger.warning('Could not determine the boolean appearance of "%s" in "%s". Please implement logic to handle the pattern.',
                        PAS_rep,
                        rep)
-        # raise NotImplementedError(f'Please add patterns to handle {rep}')
+        raise NotImplementedError(f'Please add patterns to handle {rep}')
 
     cache[cache_key] = values
     return values

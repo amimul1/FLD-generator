@@ -19,14 +19,16 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
     - This is version 2.0 of FLD corpora. See the Appendix H of [our paper](https://arxiv.org/abs/2308.07336) for details.
 
 
+
+
 ## Installation
-The code has been tested on Python 3.11.5.
+The code has been tested with Python 3.11.5.
 ```console
 pip install -r ./requirements/requrements.txt
 export PYTHONPATH=`pwd -P`:$PYTHONPATH
 ```
 
-
+[!] (2024-02-14) Do not use PyPy, as it may cause the program to hang.
 
 
 ## Additional Resources Required

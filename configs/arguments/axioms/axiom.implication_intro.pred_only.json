@@ -1,9 +1,0 @@
-[
-  {
-      "id": "implication_intro.pred_only",
-      "premises": [
-          "{A} ⊢ {B}"
-      ],
-      "conclusion": "{A} -> {B}"
-  }
-]

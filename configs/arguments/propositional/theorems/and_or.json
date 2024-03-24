@@ -1,0 +1,20 @@
+[
+  {
+      "id": "propositional.and_interchangeability",
+      "premises": [
+          "({A} & {B})"
+      ],
+      "conclusion": "({B} & {A})"
+  },
+
+
+
+
+  {
+      "id": "propositional.or_interchangeability",
+      "premises": [
+          "({A} v {B})"
+      ],
+      "conclusion": "({B} v {A})"
+  }
+]

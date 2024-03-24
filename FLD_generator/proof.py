@@ -7,7 +7,7 @@ from enum import Enum
 from .formula import Formula
 from .argument import Argument
 from .exception import FormalLogicExceptionBase
-from FLD_generator.utils import make_combination_from_iter
+from FLD_generator.utils import generate_combinations
 
 logger = logging.getLogger(__name__)
 

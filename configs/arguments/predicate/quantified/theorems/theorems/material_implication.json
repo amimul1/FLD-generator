@@ -1,0 +1,20 @@
+[
+  {
+      "id": "predicate.universal_theorem.material_implication",
+      "premises": [
+          "(x): {A}x -> {B}x"
+      ],
+      "conclusion": "(x): (¬{A}x v {B}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.material_implication_1",
+      "premises": [
+          "(x): (¬{A}x v {B}x)"
+      ],
+      "conclusion": "(x): {A}x -> {B}x"
+  }
+]

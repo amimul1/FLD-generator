@@ -1,0 +1,20 @@
+[
+  {
+      "id": "predicate.universal_theorem.and_interchangeability",
+      "premises": [
+          "(x): ({A}x & {B}x)"
+      ],
+      "conclusion": "(x): ({B}x & {A}x)"
+  },
+
+
+
+
+  {
+      "id": "predicate.universal_theorem.or_interchangeability",
+      "premises": [
+          "(x): ({A}x v {B}x)"
+      ],
+      "conclusion": "(x): ({B}x v {A}x)"
+  }
+]

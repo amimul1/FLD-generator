@@ -1,0 +1,10 @@
+[
+  {
+      "id": "propositional.implication_elim",
+      "premises": [
+          "{A} -> {B}",
+          "{A}"
+      ],
+      "conclusion": "{B}"
+  }
+]

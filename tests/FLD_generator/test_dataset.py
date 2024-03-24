@@ -42,12 +42,15 @@ def generate_dataset(dataset: NLProofSDataset,
 
 
 @profile
-def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[str]]] = None):
+def test_generate_dataset_lang(lang: str,
+                               extra_vocab: Optional[Dict[str, List[str]]] = None,
+                               test_knolwedge_bank: bool = False):
 
     # word_bank = None
     word_bank = build_wordbank(lang, extra_vocab=extra_vocab)
 
-    if lang == 'eng':
+    knowledge_banks = None
+    if lang == 'eng' and test_knolwedge_bank:
         # knowledge_bank = None
         knowledge_banks = [
             build_knowledge_bank(
@@ -63,12 +66,11 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
                 './res/knowledge_banks/DBpedia500/train1.txt',
             ),
         ]
-    elif lang == 'jpn':
-        knowledge_banks = None
 
     translator = build_translator(
         lang,
-        'thing.v1',
+        # 'thing_person.v2',
+        'thing_person.v3',
         word_bank,
         no_transitive_object=False,
         use_fixed_translation=False,
@@ -88,45 +90,24 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
 
     generator = build_generator(
         [
+            # ----------------------- axioms + references -----------------------
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
 
-            # './configs/arguments/axioms/',
-            # './configs/arguments/references/',
+            # ----------------------- theorems -----------------------
+            './configs/arguments/predicate/specified/theorems/',
+            './configs/arguments/predicate/quantified/theorems',
+            './configs/arguments/propositional/theorems/',
 
-            './configs/arguments/axioms/axiom.and_or.pred_arg.json',
-            './configs/arguments/axioms/axiom.implication_intro.pred_arg.json',
-            './configs/arguments/axioms/axiom.negation.pred_arg.json',
-            './configs/arguments/axioms/axiom.pred_arg.json',
-            './configs/arguments/references/reference.pred_arg.json',
-
-
-            # # -- AACorpus --
-            # './configs/arguments/others/AACorpus.pred_arg.json',
-
-
-            # # -- we exclude the below for speed --
-            # './configs/arguments/theorems/theorem.pred_only.json',
-            # './configs/arguments/theorems/theorem.pred_arg.json',
-
-            # './configs/arguments/theorems/theorem.and_or.pred_only.json',
-            # './configs/arguments/theorems/theorem.and_or.pred_arg.json',
-
-            # './configs/arguments/theorems/theorem.G_MP.pred_arg.json',
-
-
-            # -- not tested. may not work --
-            # './configs/arguments/theorems/universal_theorem.axiom.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.theorem.pred_arg.json',
-
-            # not that important universal theorems
-            # './configs/arguments/theorems/universal_theorem.axiom.and_or.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.axiom.implication_intro.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.axiom.negation.pred_arg.json',
-            # './configs/arguments/theorems/universal_theorem.theorem.and_or.pred_arg.json',
         ],
         elim_dneg=True,
         quantifier_axiom_arguments_weight=0.2,
         # complex_formula_arguments_weight=0.5,
         complex_formula_arguments_weight=0.1,
+        theorem_arguments_factor=0.3,
         knowledge_argument_factor=5.0,
         knowledge_banks=knowledge_banks,
         quantifier_axioms=[
@@ -207,10 +188,13 @@ def test_generate_dataset_lang(lang: str, extra_vocab: Optional[Dict[str, List[s
 
         distractor_variants_per_tree=distractor_variants_per_tree,
         translation_variants_per_logic=translation_variants_per_logic,
+
+        allow_smaller_proofs=False,
+
         raise_if_translation_not_found=True,
     )
 
-    num_dataset = 20
+    num_dataset = 100
     generate_dataset(dataset, num_dataset=num_dataset)
 
 

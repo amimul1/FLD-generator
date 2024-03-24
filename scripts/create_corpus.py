@@ -44,6 +44,7 @@ def load_dataset(argument_config: List[str],
                  quantifier_axiom_arguments_weight: float,
                  quantifier_axioms: Optional[List[str]],
                  quantification_degree: str,
+                 propositional_arguments_factor: float,
                  knowledge_argument_factor: float,
                  keep_dneg: bool,
                  distractor: str,
@@ -69,6 +70,7 @@ def load_dataset(argument_config: List[str],
                  branch_extensions_range: Tuple[int, int],
                  distractor_variants_per_tree: int,
                  translation_variants_per_logic: int,
+                 allow_smaller_proofs: bool,
                  knowledge_range: float,
                  collapsed_knowledge_range: float,
                  knowledge_no_shuffle: bool,
@@ -108,6 +110,7 @@ def load_dataset(argument_config: List[str],
         quantifier_axiom_arguments_weight=quantifier_axiom_arguments_weight,
         quantifier_axioms=quantifier_axioms,
         quantification_degree=quantification_degree,
+        propositional_arguments_factor=propositional_arguments_factor,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -208,7 +211,8 @@ def load_dataset(argument_config: List[str],
                            swap_ng_words=swap_ng_words,
                            word_bank = word_bank if use_collapsed_translation_nodes_for_unknown_tree else None,
                            distractor_variants_per_tree=distractor_variants_per_tree,
-                           translation_variants_per_logic=translation_variants_per_logic)
+                           translation_variants_per_logic=translation_variants_per_logic,
+                           allow_smaller_proofs=allow_smaller_proofs)
 
 
 def generate_instances(size: int, *args):
@@ -235,12 +239,13 @@ def generate_instances(size: int, *args):
 @click.argument('size', type=int)
 @click.option('--argument-config', '--ac',
               multiple=True,
-              default=['./configs/arguments/axioms'],
+              default=[],
               help='argument (deduction rule) configuration files')
 @click.option('--complex-formula-arguments-weight', type=float, default=0.0)
 @click.option('--quantifier-axiom-arguments-weight', type=float, default=0.0)
 @click.option('--quantifier-axiom', multiple=True, default=None)
 @click.option('--quantification-degree', type=str, default='all_constants')
+@click.option('--propositional-arguments-factor', type=float, default=1.0)
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
 @click.option('--depth-range', type=str, default=json.dumps([1, 5]))
@@ -293,6 +298,8 @@ def generate_instances(size: int, *args):
 @click.option('--distractor-variants-per-tree', type=int, default=1)
 @click.option('--translation-variants-per-logic', type=int, default=1)
 #
+@click.option('--allow-smaller-proofs', is_flag=True, default=False)
+#
 @click.option('--num-workers', type=int, default=1)
 @click.option('--min-size-per-worker', type=int,
               default=10,
@@ -321,6 +328,7 @@ def main(output_path,
          quantifier_axiom_arguments_weight,
          quantifier_axiom,
          quantification_degree,
+         propositional_arguments_factor,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -348,6 +356,7 @@ def main(output_path,
          swap_ng_words_config,
          distractor_variants_per_tree,
          translation_variants_per_logic,
+         allow_smaller_proofs,
          num_workers,
          min_size_per_worker,
          batch_size_per_worker,
@@ -406,6 +415,7 @@ def main(output_path,
                         quantifier_axiom_arguments_weight,
                         quantifier_axiom,
                         quantification_degree,
+                        propositional_arguments_factor,
                         knowledge_argument_factor,
                         keep_dneg,
                         distractor,
@@ -431,6 +441,7 @@ def main(output_path,
                         branch_extensions_range,
                         distractor_variants_per_tree,
                         translation_variants_per_logic,
+                        allow_smaller_proofs,
                         knowledge_range,
                         collapsed_knowledge_range,
                         knowledge_no_shuffle,

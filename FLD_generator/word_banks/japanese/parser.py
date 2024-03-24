@@ -2,6 +2,7 @@ from enum import Enum
 from typing import List, Optional, Iterable, Any, Dict
 from pathlib import Path
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 import logging
 import re
 from abc import ABC, abstractmethod
@@ -209,7 +210,7 @@ class MorphemeParser:
 
         return morphemes_with_user_words
 
-    @lru_cache(maxsize=1000000)
+    @lru_cache(maxsize=DEFAULT_CACHE_SIZE)
     def get_lemma(self, word: str) -> str:
         return self.parse(word)[0].base
 

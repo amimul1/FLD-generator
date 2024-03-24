@@ -74,3 +74,35 @@ class Argument:
             ],
             'conclusion': self.conclusion.rep,
         }
+
+
+def is_reference_argument(arg: Argument) -> bool:
+    return arg.id.find('reference') >= 0
+
+
+def is_negation_elim_argument(arg: Argument) -> bool:
+    return arg.id.find('negation_elim') >= 0
+
+
+def is_negation_intro_argument(arg: Argument) -> bool:
+    return arg.id.find('negation_intro') >= 0
+
+
+def is_existential_argument(argument: Argument) -> bool:
+    return argument.id.find('existential') >= 0
+
+
+def is_universal_argument(argument: Argument) -> bool:
+    return argument.id.find('universal') >= 0
+
+
+def is_universal_intro_argument(argument: Argument) -> bool:
+    return argument.id.find('universal_intro') >= 0
+
+
+def is_propositional_argument(argument: Argument) -> bool:
+    return argument.id.find('propositional') >= 0
+
+
+def is_theorem_argument(argument: Argument) -> bool:
+    return argument.id.find('theorem') >= 0

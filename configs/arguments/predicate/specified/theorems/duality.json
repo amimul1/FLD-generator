@@ -1,0 +1,34 @@
+[
+  {
+      "id": "__predicate.duality_and",
+      "premises": [
+          "¬({A}{a} & {B}{b})"
+      ],
+      "conclusion": "(¬{A}{a} v ¬{B}{b})"
+  },
+  {
+      "id": "__predicate.duality_or",
+      "premises": [
+          "¬({A}{a} v {B}{b})"
+      ],
+      "conclusion": "(¬{A}{a} & ¬{B}{b})"
+  },
+
+
+
+
+  {
+      "id": "predicate.duality_and.shared_arg",
+      "premises": [
+          "¬({A}{a} & {B}{a})"
+      ],
+      "conclusion": "(¬{A}{a} v ¬{B}{a})"
+  },
+  {
+      "id": "predicate.duality_or.shared_arg",
+      "premises": [
+          "¬({A}{a} v {B}{a})"
+      ],
+      "conclusion": "(¬{A}{a} & ¬{B}{a})"
+  }
+]

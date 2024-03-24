@@ -1,6 +1,7 @@
 import re
 from typing import List, Optional
 from functools import lru_cache
+from FLD_generator.settings import DEFAULT_CACHE_SIZE
 
 from FLD_generator.exception import FormalLogicExceptionBase
 import line_profiling
@@ -214,7 +215,26 @@ class Formula:
         return sorted(set(regexp.findall(self.rep)))
 
 
+def eliminate_total_negation(formula: Formula) -> Formula:
+    rep = formula.rep
+    if not rep.startswith(NEGATION):
+        return formula
+
+    formula_wo_negation = Formula(rep[1:])
+    if _require_outer_brace(formula_wo_negation):
+        # the formula should have been something like "¬{A} & {B}",
+        # and we have wrongly elimineated ¬ of ¬{A}
+        return formula
+    else:
+        formula_wo_brace = remove_outer_brace(formula_wo_negation)
+        if _require_outer_brace(formula_wo_brace):
+            return formula_wo_negation
+        else:
+            return formula_wo_brace
+
+
 def eliminate_double_negation(formula: Formula) -> Formula:
+    # eliminate all the double negations in a formula.
     return Formula(re.sub(f'{NEGATION}{NEGATION}', '', formula.rep))
 
 
@@ -297,6 +317,6 @@ def has_contradiction_symbol(formula: Formula) -> bool:
     return formula.rep.find(CONTRADICTION) >= 0
 
 
-@lru_cache(maxsize=10000000)
+@lru_cache(maxsize=DEFAULT_CACHE_SIZE)
 def strip_quantifier(rep: str) -> str:
     return _QUANTIFIER_INTRO_REGEXP.sub('', rep)

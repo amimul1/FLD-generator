@@ -72,7 +72,51 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
 
-    output_top_dir = Path('./outputs/00.create_corpus/20230122.past_FLD')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-01-29.enhance_arguments')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.translation-augmentation.timeout_test')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-1')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5.pypy')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.all_unique_formula_reps_fixed')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed.pypy')
+
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort.timeout-10')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.log')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-5')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-3')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-None')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-max')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=True')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=False')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--mean')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--min')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--no')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v2')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v1')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-3')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-10')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-no')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-3')
+
+    output_top_dir = Path('./outputs/00.create_corpus/2024-02-14.translation_speedup')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -211,18 +255,43 @@ def main():
         # '20230122.jpn.ICL.punipuni.D3',
 
 
-        # ---------------------------------- 20230122.past_FLD ------------------------------------
-        '20240322.past_FLD.20230729.case_study_finalize.D3',
-        # '20240322.past_FLD.20230729.case_study_finalize.D8',
+        # ---------------------------------- 2024-01-29.enhance_arguments ------------------------------------
+        # '2024-01-29.enhance_arguments.past_reproduce',
+        # '2024-01-29.enhance_arguments.theorems',
+        # '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
+        # '2024-01-29.enhance_arguments.past_reproduce.D8',
+
+        # ---------------------------------- 2024-02-25.translation-augmentation ------------------------------------
+        # '2024-02-25.translation-augmentation.timeout_test',
+
+        # ---------------------------------- 2024-02-25.enhance_translation ------------------------------------
+        # '2024-02-09.enhance_translation.past_reproduce',
+        # '2024-02-09.enhance_translation.D8',
+        # '2024-02-09.enhance_translation.propositional-0.2',
+        # '2024-02-09.enhance_translation.theorems',
+        # '2024-02-09.enhance_translation.theorems.allow_smaller_proofs',
+        # '2024-02-09.enhance_translation.translation-v2',
+        # '2024-02-09.enhance_translation.translation-v3',
+
+        # ---------------------------------- 2024-02-14.translation_speedup ------------------------------------
+        # '2024-02-14.translation_speedup.past_reproduce',
+        # '2024-02-14.translation_speedup.D8',
+        # '2024-02-14.translation_speedup.propositional-0.2',
+        # '2024-02-14.translation_speedup.theorems',
+        # '2024-02-14.translation_speedup.theorems.allow_smaller_proofs',
+        # '2024-02-14.translation_speedup.translation-v2',
+        # '2024-02-14.translation_speedup.translation-v3',
+        # '2024-02-14.translation_speedup.translation-v3.propositional-0.2',
+        '2024-02-14.translation_speedup.translation-v3.propositional-0.5'
     ]
 
     # dataset_names = dataset_names[::-1]
 
-    # num_jobs_for_datasets = 3
-    # num_jobs_per_dataset = 60
-
     num_jobs_for_datasets = 1
     num_jobs_per_dataset = 180
+
+    # num_jobs_for_datasets = 2
+    # num_jobs_per_dataset = 80
 
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
     min_dataset_size_per_job = 150
@@ -230,8 +299,7 @@ def main():
     # min_dataset_size_per_job = 50
     # min_dataset_size_per_job = 10
 
-    # timeout_per_job = 3600  # for the case some jobs hangs
-    timeout_per_job = 3600 * 3  # for the case some jobs hangs
+    timeout_per_job = 3600  # for the case some jobs hangs
 
     # skip_if_exists = False
     skip_if_exists = True
@@ -357,6 +425,8 @@ def make_dataset(dataset_name: str,
 
             'quantifier_axioms',
 
+            'allow_smaller_proofs',
+
             'world_assump',
         ],
         save_params=True
@@ -401,6 +471,9 @@ def make_dataset(dataset_name: str,
             save_params(job_settings, job_output_dir)
 
             command = ' '.join([
+                'export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH &&',
+                # 'echo $LD_LIBRARY_PATH',
+
                 'python ./scripts/create_corpus.py',
 
                 f'{job_output_path}',
@@ -415,6 +488,7 @@ def make_dataset(dataset_name: str,
                 f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
                 _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
                 maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
+                maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
 
                 maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                 _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
@@ -456,6 +530,8 @@ def make_dataset(dataset_name: str,
                 maybe_option('--distractor-variants-per-tree', job_settings.get("distractor_variants_per_tree", None)),
                 maybe_option('--translation-variants-per-logic', job_settings.get("translation_variants_per_logic", None)),
 
+                '--allow-smaller-proofs' if job_settings.get('allow_smaller_proofs', False) else '',
+
                 f'--num-workers {job_settings["num_workers_per_job"]}',
                 f'--seed {job_settings["seed"]}',
 
@@ -472,7 +548,8 @@ def make_dataset(dataset_name: str,
 
             if delete_logs_when_done and i_job >= 5:
                 # remove large log files.
-                command += f'; rm {str(job_log_path)}; rm {str(job_output_dir)}/*.stats.json'
+                # command += f'; rm {str(job_log_path)}; rm {str(job_output_dir)}/*.stats.json'
+                pass
 
             job_hours = math.floor(timeout_per_job / 3600)
             jobs.append(

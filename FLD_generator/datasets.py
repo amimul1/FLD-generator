@@ -9,6 +9,7 @@ import copy
 from collections import defaultdict
 from pprint import pprint, pformat
 
+from FLD_generator.argument import is_reference_argument
 from FLD_generator.proof_tree_generation_pipeline import ProofTreeGenerationPipeline
 from FLD_generator.formula import Formula
 from FLD_generator.proof import ProofTree, ProofNode
@@ -141,6 +142,11 @@ class _DistractorFakeNode(ABC):
         return None
 
 
+def _validate_translation(formula: Formula) -> None:
+    if formula.translation is None:
+        raise ValueError(f'translation is None for {formula.rep}')
+
+
 class _FormulaDistractorNode(_DistractorFakeNode):
 
     def __init__(self, distractor: Formula):
@@ -152,7 +158,8 @@ class _FormulaDistractorNode(_DistractorFakeNode):
 
     @property
     def translation(self) -> str:
-        return self.formula.translation or self.formula.rep
+        _validate_translation(self.formula)
+        return self.formula.translation
 
 
 class _TranslationDistractorNode(_DistractorFakeNode):
@@ -204,10 +211,10 @@ class NLProofSDataset:
                  word_bank: Optional[WordBank] = None,
                  distractors_range: Optional[List[int]] = None,
                  translation_distractors_range: Optional[Tuple[int, int]] = None,
-                 allow_inconsistency=False,
-                 allow_smaller_proofs=False,
                  distractor_variants_per_tree=1,
                  translation_variants_per_logic=1,
+                 allow_inconsistency=False,
+                 allow_smaller_proofs=False,
                  version: str = '0.3',
                  log_stats=True,
                  raise_if_translation_not_found=True):
@@ -336,7 +343,9 @@ class NLProofSDataset:
                                 hypothesis = self._get_sent_from_node(proof_tree_var.root_node)
                             else:
                                 hypothesis_formula = root_negation_formula_var
-                                hypothesis = root_negation_formula_var.translation or root_negation_formula_var.rep
+
+                                _validate_translation(root_negation_formula_var)
+                                hypothesis = root_negation_formula_var.translation
 
                             if any(self._is_collapsed_knowledge(node) for node in proof_tree_var.leaf_nodes):
                                 dead_leaf_nodes = [node for node in proof_tree_var.leaf_nodes
@@ -371,7 +380,8 @@ class NLProofSDataset:
 
                         elif proof_stance == ProofStance.DISPROVED:
                             hypothesis_formula = root_negation_formula_var
-                            hypothesis = root_negation_formula_var.translation or root_negation_formula_var.rep
+                            _validate_translation(root_negation_formula_var)
+                            hypothesis = root_negation_formula_var.translation
                             dead_leaf_nodes, missing_leaf_nodes, collapsed_leaf_nodes = [], [], []
 
                         alive_leaf_nodes = [node for node in proof_tree_var.leaf_nodes
@@ -440,7 +450,7 @@ class NLProofSDataset:
                         if proof_stance == ProofStance.UNKNOWN:
                             proof_depth = None
                         else:
-                            if proof_tree_var.root_node.argument.id.startswith('reference'):
+                            if is_reference_argument(proof_tree_var.root_node.argument):
                                 proof_depth = 0
                             else:
                                 proof_depth = proof_tree_var.depth
@@ -659,7 +669,7 @@ class NLProofSDataset:
                 if self.pipeline.translator is not None:
                     random_sentence = _generate_random_sentence(self.pipeline.translator)
                 random_sentence = random_sentence or _DUMMY_SENTENCE
-                transformed_proof_and_distractor_nodes = [_FormulaDistractorNode(Formula(random_sentence))]
+                transformed_proof_and_distractor_nodes = [_FormulaDistractorNode(Formula('fake_formula', translation=random_sentence))]
                 logger.info('Adding a random sentence into context because context have no sentence. The random sentence is: "%s"', random_sentence)
             else:
                 raise NotImplementedError('We must add something to context because null context will lead to error in NLProofS learning.')
@@ -1016,7 +1026,8 @@ class NLProofSDataset:
 
     def _get_sent_from_node(self, node: Node) -> str:
         if isinstance(node, ProofNode):
-            text = node.formula.translation or node.formula.rep
+            _validate_translation(node.formula)
+            text = node.formula.translation
         else:
             text = node.translation
         return text

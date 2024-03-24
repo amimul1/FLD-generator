@@ -1,0 +1,42 @@
+{
+
+  "sentence": {
+
+    "{A}all_things": [
+      "<<clause::verb::{A}all_things>>"
+    ],
+    "¬{A}all_things": [
+      "<<clause::verb::¬{A}all_things>>"
+    ],
+
+
+    "({A}all_things & {B}all_things)": [
+      "<<clause::verb::({A}all_things & {B}all_things)>>"
+    ],
+    "(¬{A}all_things & {B}all_things)": [
+      "<<clause::verb::(¬{A}all_things & {B}all_things)>>"
+    ],
+    "({A}all_things & ¬{B}all_things)": [
+      "<<clause::verb::({A}all_things & ¬{B}all_things)>>"
+    ],
+    "(¬{A}all_things & ¬{B}all_things)": [
+      "<<clause::verb::(¬{A}all_things & ¬{B}all_things)>>"
+    ],
+
+
+    "({A}all_things v {B}all_things)": [
+      "<<clause::verb::({A}all_things v {B}all_things)>>"
+    ],
+    "(¬{A}all_things v {B}all_things)": [
+      "<<clause::verb::(¬{A}all_things v {B}all_things)>>"
+    ],
+    "({A}all_things v ¬{B}all_things)": [
+      "<<clause::verb::({A}all_things v ¬{B}all_things)>>"
+    ],
+    "(¬{A}all_things v ¬{B}all_things)": [
+      "<<clause::verb::(¬{A}all_things v ¬{B}all_things)>>"
+    ]
+
+  }
+
+}
