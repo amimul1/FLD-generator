@@ -70,7 +70,9 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/20230118.jpn.ICL')
 
-    output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+    # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+
+    output_top_dir = Path('./outputs/00.create_corpus/20230122.past_FLD')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -181,25 +183,25 @@ def main():
         # ---------------------------------- 20230120.jpn.punipuni ------------------------------------
         # '20230120.jpn.wordnet.D3',
 
-        '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
-        '20230120.jpn.wordnet_repro_w_proposition.D1',
-        '20230120.jpn.wordnet_repro_w_proposition.D3',
-        '20230120.jpn.wordnet_repro_w_proposition.D8',
+        # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
+        # '20230120.jpn.wordnet_repro_w_proposition.D1',
+        # '20230120.jpn.wordnet_repro_w_proposition.D3',
+        # '20230120.jpn.wordnet_repro_w_proposition.D8',
 
-        '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
-        '20230120.jpn.wordnet_repro_wo_proposition.D1',
-        '20230120.jpn.wordnet_repro_wo_proposition.D3',
-        '20230120.jpn.wordnet_repro_wo_proposition.D8',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D1',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D3',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D8',
 
-        '20230120.jpn.BCCWJ.D1_wo_dist',
-        '20230120.jpn.BCCWJ.D1',
-        '20230120.jpn.BCCWJ.D3',
-        '20230120.jpn.BCCWJ.D8',
+        # '20230120.jpn.BCCWJ.D1_wo_dist',
+        # '20230120.jpn.BCCWJ.D1',
+        # '20230120.jpn.BCCWJ.D3',
+        # '20230120.jpn.BCCWJ.D8',
 
-        '20230120.jpn.punipuni.D1_wo_dist',
-        '20230120.jpn.punipuni.D1',
-        '20230120.jpn.punipuni.D3',
-        '20230120.jpn.punipuni.D8',
+        # '20230120.jpn.punipuni.D1_wo_dist',
+        # '20230120.jpn.punipuni.D1',
+        # '20230120.jpn.punipuni.D3',
+        # '20230120.jpn.punipuni.D8',
 
 
         # ---------------------------------- 20230122.jpn.ICL ------------------------------------
@@ -207,15 +209,20 @@ def main():
         # '20230122.jpn.ICL.punipuni.D1',
         # '20230122.jpn.ICL.punipuni.D3_wo_dist',
         # '20230122.jpn.ICL.punipuni.D3',
+
+
+        # ---------------------------------- 20230122.past_FLD ------------------------------------
+        '20240322.past_FLD.20230729.case_study_finalize.D3',
+        # '20240322.past_FLD.20230729.case_study_finalize.D8',
     ]
 
     # dataset_names = dataset_names[::-1]
 
-    num_jobs_for_datasets = 3
-    num_jobs_per_dataset = 60
+    # num_jobs_for_datasets = 3
+    # num_jobs_per_dataset = 60
 
-    # num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 80
+    num_jobs_for_datasets = 1
+    num_jobs_per_dataset = 180
 
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
     min_dataset_size_per_job = 150
@@ -223,7 +230,8 @@ def main():
     # min_dataset_size_per_job = 50
     # min_dataset_size_per_job = 10
 
-    timeout_per_job = 3600  # for the case some jobs hangs
+    # timeout_per_job = 3600  # for the case some jobs hangs
+    timeout_per_job = 3600 * 3  # for the case some jobs hangs
 
     # skip_if_exists = False
     skip_if_exists = True
