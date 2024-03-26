@@ -116,7 +116,8 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-no')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-3')
 
-    output_top_dir = Path('./outputs/00.create_corpus/2024-02-14.translation_speedup')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-14.translation_speedup')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-03-24.H100_test')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -308,7 +309,9 @@ def main():
     # dry_run = True
 
     # engine = SubprocessEngine()
-    engine = QsubEngine('ABCI', 'rt_C.small')
+    # engine = QsubEngine('ABCI', 'rt_C.small')
+
+    engine = QsubEngine('haicl', 'xcs_s.small')
 
     # ---------------------------- fixed settings --------------------------
     num_workers_per_job = 5
@@ -555,10 +558,11 @@ def make_dataset(dataset_name: str,
             jobs.append(
                 delayed(engine.run)(
                     command,
+                    delay=0.5 * i_job,
                     stdout=stdout,
                     stderr=stderr,
                     options={
-                        'l_opts': [f'h_rt={job_hours}:00:00'],
+                        'walltime': f'{job_hours}:00:00',
                         'timeout_from_run': timeout_per_job,
                     },
                     dry_run=dry_run,
