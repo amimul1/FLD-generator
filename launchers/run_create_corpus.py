@@ -117,7 +117,18 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-3')
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-02-14.translation_speedup')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-03-24.H100_test')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-24.H100_test')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-28')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.1')
+    #  output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.2')   # NG
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.kill_child_before_parent')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.wo_9_option')
+
+    output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -281,43 +292,56 @@ def main():
         # '2024-02-14.translation_speedup.theorems',
         # '2024-02-14.translation_speedup.theorems.allow_smaller_proofs',
         # '2024-02-14.translation_speedup.translation-v2',
-        # '2024-02-14.translation_speedup.translation-v3',
+        # '2024-02-14.translation_speedup.translation-v3',   # the best in JSAI experiment
         # '2024-02-14.translation_speedup.translation-v3.propositional-0.2',
-        '2024-02-14.translation_speedup.translation-v3.propositional-0.5'
+        # '2024-02-14.translation_speedup.translation-v3.propositional-0.5'
+
+        # ---------------------------------- 2024-03-29.H100 ------------------------------------
+        '2024-03-29.JSAI_best',    # the same as "2024-02-14.translation_speedup.translation-v3"
+        '2024-03-29.JSAI_best.D8',
+        '2024-03-29.JSAI_best.theorems',
+        '2024-03-29.FLD_v2',
     ]
 
     # dataset_names = dataset_names[::-1]
 
-    num_jobs_for_datasets = 1
-    num_jobs_per_dataset = 180
+    # num_jobs_for_datasets = 1
+    # num_jobs_per_dataset = 180
 
     # num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 80
+    # num_jobs_per_dataset = 90
 
-    # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
-    min_dataset_size_per_job = 150
-    # min_dataset_size_per_job = 100
-    # min_dataset_size_per_job = 50
-    # min_dataset_size_per_job = 10
+    num_jobs_for_datasets = 1
+    num_jobs_per_dataset = 100
 
-    timeout_per_job = 3600  # for the case some jobs hangs
+    # for the case some jobs hangs
+    timeout_per_job = 3600 * 3
 
     # skip_if_exists = False
     skip_if_exists = True
 
+    # job_engine = SubprocessEngine()
+    # job_engine = QsubEngine('ABCI', 'rt_C.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+
     dry_run = False
     # dry_run = True
 
-    # engine = SubprocessEngine()
-    # engine = QsubEngine('ABCI', 'rt_C.small')
-
-    engine = QsubEngine('haicl', 'xcs_s.small')
-
     # ---------------------------- fixed settings --------------------------
-    num_workers_per_job = 5
+    if job_engine.resource == 'rt_C.small':
+        num_workers_per_job = 5
+    elif job_engine.resource == 'xcs_s.small':
+        num_workers_per_job = 18
+    else:
+        raise NotImplementedError()
+
+    # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
+    min_dataset_size_per_job = 30 * num_workers_per_job
+
     delete_logs_when_done = False
 
-    if num_jobs_for_datasets * num_jobs_per_dataset > 180:
+    if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
+            num_jobs_for_datasets * num_jobs_per_dataset > 180:
         raise ValueError('Too much jobs %s ~ ABCI job limit = 200',
                          num_jobs_for_datasets * num_jobs_per_dataset)
 
@@ -327,7 +351,7 @@ def main():
             delayed(make_dataset)(
                 dataset_name,
                 output_top_dir,
-                engine,
+                job_engine,
                 timeout_per_job,
                 delete_logs_when_done,
                 num_jobs_per_dataset,
@@ -437,7 +461,7 @@ def make_dataset(dataset_name: str,
     logger.addHandler(create_file_handler(output_dir / 'log.txt'))
 
     for split, size in settings['split_sizes'].items():
-        size_with_margin = int(size * 1.1)   # for the case some jobs fail or hang
+        size_with_margin = int(size * 1.2)   # for the case some jobs fail or hang
 
         split_output_dir = output_dir / split
         split_output_dir.mkdir(exist_ok=True, parents=True)
@@ -474,6 +498,8 @@ def make_dataset(dataset_name: str,
             save_params(job_settings, job_output_dir)
 
             command = ' '.join([
+                # 'source $HOME/.bashrc &&'
+                # 'echo $PATH > log.path.txt &&'
                 'export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH &&',
                 # 'echo $LD_LIBRARY_PATH',
 
@@ -558,7 +584,8 @@ def make_dataset(dataset_name: str,
             jobs.append(
                 delayed(engine.run)(
                     command,
-                    delay=0.5 * i_job,
+                    # delay=0.5 * i_job,
+                    delay=3.0 * i_job,
                     stdout=stdout,
                     stderr=stderr,
                     options={
