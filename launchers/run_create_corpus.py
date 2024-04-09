@@ -297,9 +297,9 @@ def main():
         # '2024-02-14.translation_speedup.translation-v3.propositional-0.5'
 
         # ---------------------------------- 2024-03-29.H100 ------------------------------------
-        '2024-03-29.JSAI_best',    # the same as "2024-02-14.translation_speedup.translation-v3"
-        '2024-03-29.JSAI_best.D8',
-        '2024-03-29.JSAI_best.theorems',
+        # '2024-03-29.JSAI_best',    # the same as "2024-02-14.translation_speedup.translation-v3"
+        # '2024-03-29.JSAI_best.D8',
+        # '2024-03-29.JSAI_best.theorems',
         '2024-03-29.FLD_v2',
     ]
 
@@ -584,8 +584,7 @@ def make_dataset(dataset_name: str,
             jobs.append(
                 delayed(engine.run)(
                     command,
-                    # delay=0.5 * i_job,
-                    delay=3.0 * i_job,
+                    delay=3.0 * i_job,   # these jobs will be launched at the same time by Parallel, so we need to set incremental offsets.
                     stdout=stdout,
                     stderr=stderr,
                     options={
