@@ -9097,7 +9097,7 @@ _DATASET_SETTINGS = {
         'split_sizes': {
             'test': 1000,
             # 'valid': 1000,
-            'train': 300000,
+            'train': 100000,
         },
 
     },
@@ -9162,7 +9162,7 @@ _DATASET_SETTINGS = {
         'split_sizes': {
             'test': 1000,
             # 'valid': 1000,
-            'train': 300000,
+            'train': 100000,
         },
 
     },
