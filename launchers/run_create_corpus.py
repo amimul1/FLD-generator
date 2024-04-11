@@ -301,11 +301,16 @@ def main():
         # '2024-03-29.JSAI_best.D8',
         # '2024-03-29.JSAI_best.theorems',
 
-        '2024-03-29.FLD_v2',
+        # '2024-03-29.FLD_v2',
 
         # '2024-03-29.JSAI_best.no_aug',
-        '2024-03-29.JSAI_best.D8.no_aug',
-        '2024-03-29.JSAI_best.theorems.no_aug',
+        # '2024-03-29.JSAI_best.D8.no_aug',
+        # '2024-03-29.JSAI_best.theorems.no_aug',
+
+        '2024-03-29.JSAI_best.no_aug.dstrctr-10',
+        '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
+        # '2024-03-29.JSAI_best.no_aug.quant-0.5',
+
     ]
 
     # dataset_names = dataset_names[::-1]
@@ -333,8 +338,12 @@ def main():
 
 
     # job_engine = SubprocessEngine()
+
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
+
     job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+    # job_engine = QsubEngine('haic', 'xcs_s.tiny')
 
     dry_run = False
     # dry_run = True
@@ -342,8 +351,13 @@ def main():
     # ---------------------------- fixed settings --------------------------
     if job_engine.resource == 'rt_C.small':
         num_workers_per_job = 5
-    elif job_engine.resource == 'xcs_s.small':
+
+    elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny']:
+        num_workers_per_job = 8
+
+    elif job_engine.resource in ['xcs_s.small', 'xcl_s.small']:
         num_workers_per_job = 18
+
     else:
         raise NotImplementedError()
 
@@ -604,6 +618,7 @@ def make_dataset(dataset_name: str,
                     'options': {
                         'walltime': f'{job_hours}:00:00',
                         'timeout_from_run': timeout_per_job,
+                        # 'force': True,
                     },
                     'dry_run': dry_run,
                 }
