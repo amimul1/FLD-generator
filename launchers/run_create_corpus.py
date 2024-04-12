@@ -309,17 +309,9 @@ def main():
 
         '2024-03-29.JSAI_best.no_aug.dstrctr-10',
         '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
-        # '2024-03-29.JSAI_best.no_aug.quant-0.5',
+        # '2024-03-29.JSAI_best.no_aug.quant-0.5',  # XXX TOO SLOW!
 
     ]
-
-    # dataset_names = dataset_names[::-1]
-
-    # num_jobs_for_datasets = 1
-    # num_jobs_per_dataset = 180
-
-    # num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 90
 
     num_jobs_for_datasets = 2
     num_jobs_per_dataset = 300
@@ -341,9 +333,9 @@ def main():
 
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    time.sleep(3600)
-    job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+
     # job_engine = QsubEngine('haic', 'xcs_s.tiny')
 
     dry_run = False

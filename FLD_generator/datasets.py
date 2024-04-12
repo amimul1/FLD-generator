@@ -9,6 +9,7 @@ import copy
 from collections import defaultdict
 from pprint import pprint, pformat
 
+from FLD_generator.exception import FormalLogicExceptionBase
 from FLD_generator.argument import is_reference_argument
 from FLD_generator.proof_tree_generation_pipeline import ProofTreeGenerationPipeline
 from FLD_generator.formula import Formula
@@ -301,19 +302,23 @@ class NLProofSDataset:
             _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
 
             # -- make proof tree and distractors  --
-            pipeline_results = self.pipeline.run(
-                depth,
-                _branch_extension_steps,
-                _num_distractors,
-                _num_translation_distractors,
-                depth_1_reference_weight=self._depth_1_reference_weight,
-                allow_inconsistency=self.allow_inconsistency,
-                allow_smaller_proofs=self.allow_smaller_proofs,
-                force_fix_illegal_intermediate_constants=self._force_fix_illegal_intermediate_constants,
-                distractor_variants_per_tree=self.distractor_variants_per_tree,
-                translation_variants_per_logic=self.translation_variants_per_logic,
-                raise_if_translation_not_found=self.raise_if_translation_not_found,
-            )
+            try:
+                pipeline_results = self.pipeline.run(
+                    depth,
+                    _branch_extension_steps,
+                    _num_distractors,
+                    _num_translation_distractors,
+                    depth_1_reference_weight=self._depth_1_reference_weight,
+                    allow_inconsistency=self.allow_inconsistency,
+                    allow_smaller_proofs=self.allow_smaller_proofs,
+                    force_fix_illegal_intermediate_constants=self._force_fix_illegal_intermediate_constants,
+                    distractor_variants_per_tree=self.distractor_variants_per_tree,
+                    translation_variants_per_logic=self.translation_variants_per_logic,
+                    raise_if_translation_not_found=self.raise_if_translation_not_found,
+                )
+            except FormalLogicExceptionBase as e:
+                logger.critical('Could not generate a sample because of the exception below. We will skip to the next, but consider why this exception occured, which may signal some flaw of dataset generation program: %s', str(e))
+                continue
 
             for proof_tree, root_negation_formula, formula_distractors, translation_distractors, others, pipeline_stats in pipeline_results:
 
