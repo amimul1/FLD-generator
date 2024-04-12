@@ -307,9 +307,9 @@ def main():
         # '2024-03-29.JSAI_best.D8.no_aug',
         # '2024-03-29.JSAI_best.theorems.no_aug',
 
-        '2024-03-29.JSAI_best.no_aug.dstrctr-10',
-        '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
-        # '2024-03-29.JSAI_best.no_aug.quant-0.5',  # XXX TOO SLOW!
+        # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
+        # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
+        '2024-03-29.JSAI_best.no_aug.quant-0.5',
 
     ]
 
