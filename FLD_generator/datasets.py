@@ -582,6 +582,8 @@ class NLProofSDataset:
                             sample_stats['word_count_all'] = (sample_stats['word_count_hypothesis'] + sample_stats['word_count_context'] + sample_stats['word_count_proof']) if sample_stats['word_count_proof'] is not None else None
                             sample_stats['tree'] = 1
 
+                            from pprint import pformat
+                            logger.critical(pformat(sample_stats))
                             for name, count in sample_stats.items():
                                 if count is None:
                                     continue

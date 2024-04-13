@@ -27,6 +27,7 @@ def main(input_path, output_path):
         'world_assump_label',
         'original_tree_depth',
         'depth',
+        'total_proof_steps',
 
         'negative_original_tree_depth',
         'negative_world_assump_label',
@@ -41,8 +42,17 @@ def main(input_path, output_path):
     for line in open(input_path):
         instance = json.loads(line.rstrip('\n'))
         for attr_name in attr_names:
-            val = instance[attr_name]
-            counts[attr_name][val] += 1
+            if attr_name == 'total_proof_steps':
+                proofs = instance['proofs']
+                if len(proofs) == 0:
+                    counts['total_proof_steps'][None] += 1
+                else:
+                    proof = proofs[0]
+                    total_proof_steps = proof.count(';')
+                    counts['total_proof_steps'][total_proof_steps] += 1
+            else:
+                val = instance[attr_name]
+                counts[attr_name][val] += 1
         tot += 1
 
     with open(output_path, 'w') as f_out:

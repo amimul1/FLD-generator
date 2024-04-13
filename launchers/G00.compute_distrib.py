@@ -22,7 +22,7 @@ def compute_distrib(input_dir: Path, output_dir: Path) -> None:
         split = re.sub(r'\.jsonl$', '', input_path.name)
         output_path = output_dir / f'dataset_name={dataset_name}.{split}.distrib.txt'
         engine.run(
-            f'python ./compute_distrib.py {str(input_path)} {str(output_path)}',
+            f'python ./scripts/compute_distrib.py {str(input_path)} {str(output_path)}',
             wait_until_finish=True,
         )
 
@@ -141,8 +141,11 @@ def main():
     # input_dir = Path('./outputs/00.create_corpus/20230711.refactor_distractors')
     # output_dir = Path('./outputs/G00.compute_distrib.py/20230711.refactor_distractors')
 
-    input_dir = Path('./outputs/00.create_corpus/2023-07-27.compare_models')
-    output_dir = Path('./outputs/G00.compute_distrib.py/2023-07-27.compare_models')
+    # input_dir = Path('./outputs/00.create_corpus/2023-07-27.compare_models')
+    # output_dir = Path('./outputs/G00.compute_distrib.py/2023-07-27.compare_models')
+
+    input_dir = Path('./outputs/00.create_corpus/2024-03-29')
+    output_dir = Path('./outputs/G00.compute_distrib.py/2024-03-29')
 
     compute_distrib(input_dir, output_dir)
 

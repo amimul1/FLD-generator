@@ -130,6 +130,8 @@ def main():
 
     output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
 
+    # output_top_dir = Path('./outputs/00.create_corpus/debug')
+
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
         # '20230729.case_study_finalize.D3',
@@ -302,6 +304,8 @@ def main():
         # '2024-03-29.JSAI_best.theorems',
 
         # '2024-03-29.FLD_v2',
+        '2024-03-29.JSAI_best.no_aug.trnsl-v2',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing',
 
         # '2024-03-29.JSAI_best.no_aug',
         # '2024-03-29.JSAI_best.D8.no_aug',
@@ -309,12 +313,13 @@ def main():
 
         # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
         # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
-        '2024-03-29.JSAI_best.no_aug.quant-0.5',
+        # '2024-03-29.JSAI_best.no_aug.quant-0.5',
 
     ]
 
     num_jobs_for_datasets = 2
     num_jobs_per_dataset = 300
+    # num_jobs_per_dataset = 900
 
     # for the case some jobs hangs
     timeout_per_job = 3600 * 3
@@ -333,8 +338,8 @@ def main():
 
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
 
     # job_engine = QsubEngine('haic', 'xcs_s.tiny')
 
