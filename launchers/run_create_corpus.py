@@ -130,8 +130,6 @@ def main():
 
     output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/debug')
-
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
         # '20230729.case_study_finalize.D3',
@@ -304,12 +302,13 @@ def main():
         # '2024-03-29.JSAI_best.theorems',
 
         # '2024-03-29.FLD_v2',
-        '2024-03-29.JSAI_best.no_aug.trnsl-v2',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
 
         # '2024-03-29.JSAI_best.no_aug',
         # '2024-03-29.JSAI_best.D8.no_aug',
         # '2024-03-29.JSAI_best.theorems.no_aug',
+        '2024-03-29.JSAI_best.theorems-0.1.no_aug',
 
         # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
         # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
@@ -353,7 +352,7 @@ def main():
     elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny']:
         num_workers_per_job = 8
 
-    elif job_engine.resource in ['xcs_s.small', 'xcl_s.small']:
+    elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
         num_workers_per_job = 18
 
     else:
@@ -362,7 +361,7 @@ def main():
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
     min_dataset_size_per_job = 30 * num_workers_per_job
 
-    delete_logs_when_done = False
+    delete_logs_when_done = True
 
     if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
             num_jobs_for_datasets * num_jobs_per_dataset > 180:
@@ -547,6 +546,7 @@ def make_dataset(dataset_name: str,
                     _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
                     maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
                     maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
+                    maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
 
                     maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                     _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
@@ -604,10 +604,9 @@ def make_dataset(dataset_name: str,
                     stdout = job_output_dir / 'stdout.txt'
                     stderr = job_output_dir / 'stderr.txt'
 
-                if delete_logs_when_done and i_job >= 5:
+                if delete_logs_when_done and i_job >= 20:
                     # remove large log files.
-                    # command += f'; rm {str(job_log_path)}; rm {str(job_output_dir)}/*.stats.json'
-                    pass
+                    command += f'; rm {str(job_log_path)};'
 
                 job_hours = math.floor(timeout_per_job / 3600)
                 kwargs = {

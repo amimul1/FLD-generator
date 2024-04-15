@@ -45,6 +45,7 @@ def load_dataset(argument_config: List[str],
                  quantifier_axioms: Optional[List[str]],
                  quantification_degree: str,
                  propositional_arguments_factor: float,
+                 theorem_arguments_factor: float,
                  knowledge_argument_factor: float,
                  keep_dneg: bool,
                  distractor: str,
@@ -111,6 +112,7 @@ def load_dataset(argument_config: List[str],
         quantifier_axioms=quantifier_axioms,
         quantification_degree=quantification_degree,
         propositional_arguments_factor=propositional_arguments_factor,
+        theorem_arguments_factor=theorem_arguments_factor,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -229,7 +231,10 @@ def generate_instances(size: int, *args):
         if stats is not None:
             for name, count in stats.items():
                 if count is not None:
-                    agg_stats[name] += count
+                    # from pprint import pformat
+                    # logger.critical('------------------------------------ agg_stats ------------------------------------')
+                    # logger.critical(pformat(agg_stats))
+                    agg_stats[name] = count   # !! should be equal, as stats already aggregated
 
     return data, agg_stats
 
@@ -246,6 +251,7 @@ def generate_instances(size: int, *args):
 @click.option('--quantifier-axiom', multiple=True, default=None)
 @click.option('--quantification-degree', type=str, default='all_constants')
 @click.option('--propositional-arguments-factor', type=float, default=1.0)
+@click.option('--theorem-arguments-factor', type=float, default=0.3)
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
 @click.option('--depth-range', type=str, default=json.dumps([1, 5]))
@@ -329,6 +335,7 @@ def main(output_path,
          quantifier_axiom,
          quantification_degree,
          propositional_arguments_factor,
+         theorem_arguments_factor,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -416,6 +423,7 @@ def main(output_path,
                         quantifier_axiom,
                         quantification_degree,
                         propositional_arguments_factor,
+                        theorem_arguments_factor,
                         knowledge_argument_factor,
                         keep_dneg,
                         distractor,
@@ -470,8 +478,12 @@ def main(output_path,
 
                 for name, count in stats.items():
                     if count is not None:
+                        # from pprint import pformat
+                        # logger.critical('------------------------------------ gathered stats master ------------------------------------')
+                        # logger.critical(pformat(gathered_stats))
                         gathered_stats[name] += count
                         num_jobs[name] += 1
+
 
             for name, count in gathered_stats.items():
                 if not name.startswith('cum.'):

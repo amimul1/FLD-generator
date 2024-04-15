@@ -55,7 +55,7 @@ def _test_word_bank(wb):
 
 
 if __name__ == '__main__':
-    # test_word_bank('eng')
+    test_word_bank('eng')
     # test_word_bank(
     #     'eng',
     #     extra_vocab=[
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     #     ]
     # )
 
-    test_word_bank('jpn', extra_vocab='punipuni')
+    # test_word_bank('jpn', extra_vocab='punipuni')
     # test_word_bank(
     #     'jpn',
     #     extra_vocab=[
