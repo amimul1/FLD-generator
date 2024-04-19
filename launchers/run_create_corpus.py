@@ -302,13 +302,16 @@ def main():
         # '2024-03-29.JSAI_best.theorems',
 
         # '2024-03-29.FLD_v2',
+        '2024-03-29.FLD_v2.D8',
+        '2024-03-29.FLD_v2.theorems-0.03',
         # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
 
         # '2024-03-29.JSAI_best.no_aug',
         # '2024-03-29.JSAI_best.D8.no_aug',
         # '2024-03-29.JSAI_best.theorems.no_aug',
-        '2024-03-29.JSAI_best.theorems-0.1.no_aug',
+        # '2024-03-29.JSAI_best.theorems-0.1.no_aug',
+        # '2024-03-29.JSAI_best.theorems-0.03.no_aug',
 
         # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
         # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
