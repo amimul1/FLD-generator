@@ -301,21 +301,26 @@ def main():
         # '2024-03-29.JSAI_best.D8',
         # '2024-03-29.JSAI_best.theorems',
 
-        # '2024-03-29.FLD_v2',
-        # '2024-03-29.FLD_v2.D8',
-        # '2024-03-29.FLD_v2.theorems-0.03',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
 
-        '2024-03-29.JSAI_best.no_aug',
+        # '2024-03-29.JSAI_best.no_aug',
         # '2024-03-29.JSAI_best.D8.no_aug',
         # '2024-03-29.JSAI_best.theorems.no_aug',
         # '2024-03-29.JSAI_best.theorems-0.1.no_aug',
         # '2024-03-29.JSAI_best.theorems-0.03.no_aug',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+
 
         # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
         # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
         # '2024-03-29.JSAI_best.no_aug.quant-0.5',
+
+        # '2024-03-29.FLD_v2',
+        # '2024-03-29.FLD_v2.D8',
+        # '2024-03-29.FLD_v2.theorems-0.03',
+        '2024-03-29.FLD_v2.theorems-0.3.fix'
+        # '2024-03-29.FLD_v2.theorems-0.1.fix'
+        # '2024-03-29.FLD_v2.theorems-0.03.fix'
 
     ]
 
@@ -329,8 +334,8 @@ def main():
     # wait_before_gather = True
     wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
     # skip_if_exists = False
     skip_if_exists = True
@@ -340,8 +345,8 @@ def main():
 
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
 
     # job_engine = QsubEngine('haic', 'xcs_s.tiny')
 
