@@ -318,9 +318,9 @@ def main():
         # '2024-03-29.FLD_v2',
         # '2024-03-29.FLD_v2.D8',
         # '2024-03-29.FLD_v2.theorems-0.03',
-        '2024-03-29.FLD_v2.theorems-0.3.fix'
-        # '2024-03-29.FLD_v2.theorems-0.1.fix'
-        # '2024-03-29.FLD_v2.theorems-0.03.fix'
+        # '2024-03-29.FLD_v2.theorems-0.3.fix'
+        '2024-03-29.FLD_v2.theorems-0.1.fix'
+        '2024-03-29.FLD_v2.theorems-0.03.fix'
 
     ]
 
@@ -345,8 +345,8 @@ def main():
 
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')  # USE THIS TOO
 
     # job_engine = QsubEngine('haic', 'xcs_s.tiny')
 
