@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.and_interchangeability",
+      "id": "propositional.theorem.and_interchangeability",
       "premises": [
           "({A} & {B})"
       ],
@@ -11,7 +11,7 @@
 
 
   {
-      "id": "propositional.or_interchangeability",
+      "id": "propositional.theorem.or_interchangeability",
       "premises": [
           "({A} v {B})"
       ],

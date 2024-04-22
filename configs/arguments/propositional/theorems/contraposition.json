@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.contraposition",
+      "id": "propositional.theorem.contraposition",
       "premises": [
           "{A} -> {B}"
       ],

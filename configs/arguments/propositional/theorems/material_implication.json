@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.material_implication",
+      "id": "propositional.theorem.material_implication",
       "premises": [
           "{A} -> {B}"
       ],
@@ -11,7 +11,7 @@
 
 
   {
-      "id": "propositional.material_implication_1",
+      "id": "propositional.theorem.material_implication_1",
       "premises": [
           "(¬{A} v {B})"
       ],

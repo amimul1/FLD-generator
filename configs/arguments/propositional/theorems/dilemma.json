@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.dilemma",
+      "id": "propositional.theorem.dilemma",
       "premises": [
           "{A} -> ({B} v {C})",
           "{B} -> {D}",
@@ -13,7 +13,7 @@
 
 
   {
-      "id": "propositional.constructive_dilemma",
+      "id": "propositional.theorem.constructive_dilemma",
       "premises": [
           "({A} v {B})",
           "{A} -> {C}",
@@ -26,7 +26,7 @@
 
 
   {
-      "id": "propositional.destructive_dilemma",
+      "id": "propositional.theorem.destructive_dilemma",
       "premises": [
           "(¬{C} v ¬{D})",
           "{A} -> {C}",
@@ -39,7 +39,7 @@
 
 
   {
-      "id": "propositional.bidirectional_dilemma",
+      "id": "propositional.theorem.bidirectional_dilemma",
       "premises": [
           "({A} v ¬{D})",
           "{A} -> {C}",

@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.modus_tollens",
+      "id": "propositional.theorem.modus_tollens",
       "premises": [
           "{A} -> {B}",
           "¬{B}"

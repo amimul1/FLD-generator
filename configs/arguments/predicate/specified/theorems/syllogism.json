@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.syllogism",
+      "id": "predicate.theorem.syllogism",
       "premises": [
           "{A}{a} -> {B}{b}",
           "{B}{b} -> {C}{c}"
@@ -8,7 +8,7 @@
       "conclusion": "{A}{a} -> {C}{c}"
   },
   {
-      "id": "predicate.syllogism.shared_arg",
+      "id": "predicate.theorem.syllogism.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}",
           "{B}{a} -> {C}{a}"
@@ -20,7 +20,7 @@
 
 
   {
-      "id": "__predicate.disjunctive_syllogism_0",
+      "id": "__predicate.theorem.disjunctive_syllogism_0",
       "premises": [
           "({A}{a} v {B}{b})",
           "¬{A}{a}"
@@ -28,7 +28,7 @@
       "conclusion": "{B}{b}"
   },
   {
-      "id": "predicate.disjunctive_syllogism_0.shared_arg",
+      "id": "predicate.theorem.disjunctive_syllogism_0.shared_arg",
       "premises": [
           "({A}{a} v {B}{a})",
           "¬{A}{a}"
@@ -40,7 +40,7 @@
 
 
   {
-      "id": "predicate.disjunctive_syllogism_1",
+      "id": "predicate.theorem.disjunctive_syllogism_1",
       "premises": [
           "{A}{a} -> ({B}{b} v {C}{b})",
           "{A}{a} -> ¬{B}{b}"
@@ -48,7 +48,7 @@
       "conclusion": "{A}{a} -> {C}{b}"
   },
   {
-      "id": "predicate.disjunctive_syllogism_1.shared_arg",
+      "id": "predicate.theorem.disjunctive_syllogism_1.shared_arg",
       "premises": [
           "{A}{a} -> ({B}{a} v {C}{a})",
           "{A}{a} -> ¬{B}{a}"

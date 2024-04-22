@@ -1,6 +1,6 @@
 [
   {
-      "id": "predicate.contraposition",
+      "id": "predicate.theorem.contraposition",
       "premises": [
           "{A}{a} -> {B}{b}"
       ],
@@ -10,7 +10,7 @@
 
 
   {
-      "id": "predicate.contraposition.shared_arg",
+      "id": "predicate.theorem.contraposition.shared_arg",
       "premises": [
           "{A}{a} -> {B}{a}"
       ],

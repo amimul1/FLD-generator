@@ -1,6 +1,6 @@
 [
   {
-      "id": "propositional.duality_and",
+      "id": "propositional.theorem.duality_and",
       "premises": [
           "¬({A} & {B})"
       ],
@@ -11,7 +11,7 @@
 
   
   {
-      "id": "propositional.duality_or",
+      "id": "propositional.theorem.duality_or",
       "premises": [
           "¬({A} v {B})"
       ],

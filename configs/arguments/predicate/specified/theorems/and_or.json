@@ -1,13 +1,13 @@
 [
   {
-      "id": "__predicate.and_interchangeability",
+      "id": "__predicate.theorem.and_interchangeability",
       "premises": [
           "({A}{a} & {B}{b})"
       ],
       "conclusion": "({B}{b} & {A}{a})"
   },
   {
-      "id": "__predicate.or_interchangeability",
+      "id": "__predicate.theorem.or_interchangeability",
       "premises": [
           "({A}{a} v {B}{b})"
       ],
@@ -18,14 +18,14 @@
 
 
   {
-      "id": "predicate.and_interchangeability.shared_arg",
+      "id": "predicate.theorem.and_interchangeability.shared_arg",
       "premises": [
           "({A}{a} & {B}{a})"
       ],
       "conclusion": "({B}{a} & {A}{a})"
   },
   {
-      "id": "predicate.or_interchangeability.shared_arg",
+      "id": "predicate.theorem.or_interchangeability.shared_arg",
       "premises": [
           "({A}{a} v {B}{a})"
       ],
