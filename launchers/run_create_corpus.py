@@ -313,26 +313,27 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.quant-0.5',
 
 
+        # '2024-03-29.FLD_v2.D8',
 
         # ------------------------------- production --------------------------------
 
         # '2024-03-29.FLD_v2',
-        # '2024-03-29.FLD_v2.D8',
-        # '2024-03-29.FLD_v2.theorems-0.03',
         # '2024-03-29.FLD_v2.theorems-0.3.fix',
         # '2024-03-29.FLD_v2.theorems-0.1.fix',
         # '2024-03-29.FLD_v2.theorems-0.03.fix',
-
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
-        '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.03',
 
 
+        # '2024-03-29.JSAI_best.no_aug',
+        '2024-03-29.JSAI_best.no_aug.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.theorems-0.03',
     ]
 
 
@@ -347,8 +348,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
 
@@ -695,7 +696,11 @@ def make_dataset(dataset_name: str,
         ])
         agg_stats: Dict[str, Union[int, List[int]]] = {}
         for stats_path in job_stats_jsonls:
-            stats = json.load(open(stats_path))
+            try:
+                stats = json.load(open(stats_path))
+            except json.JSONDecodeError:
+                logger.warning('failed to load stats file, will be skipped: "%s"', stats_path)
+                continue
             for name, cnt in stats.items():
                 if name.startswith('cum'):
                     if name in agg_stats:
