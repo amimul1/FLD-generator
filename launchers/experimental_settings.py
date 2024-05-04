@@ -9274,6 +9274,305 @@ _DATASET_SETTINGS = {
     },
 
 
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
+
+
+        'depth_range': (1, 3),
+        'depth_distrib': 'flat',
+        'branch_extensions_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'limit_vocab_size_per_type': 100,
+
+
+        'split_wise_settings': {
+            'train': {
+                # 'sample_all_stances_per_logic': True,
+                # 'context_shuffles_per_instance': 3,
+                # 'translation_variants_per_logic': 3,
+            },
+            'valid': {
+            },
+            'test': {
+            },
+        },
+        'split_sizes': {
+            'test': 1000,
+            # 'valid': 1000,
+            'train': 100000,
+        },
+
+    },
+
+
+
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
+
+
+        'depth_range': (1, 3),
+        'depth_distrib': 'flat',
+        'branch_extensions_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 0),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_wise_settings': {
+            'train': {
+                # 'sample_all_stances_per_logic': True,
+                # 'context_shuffles_per_instance': 3,
+                # 'translation_variants_per_logic': 3,
+            },
+            'valid': {
+            },
+            'test': {
+            },
+        },
+        'split_sizes': {
+            'test': 1000,
+            # 'valid': 1000,
+            'train': 100000,
+        },
+
+    },
+
+
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP': {
+
+        'argument_configs': [
+            # './configs/arguments/predicate/specified/axioms/',
+            # './configs/arguments/propositional/axioms/',
+
+            # './configs/arguments/predicate/specified/references/',
+            # './configs/arguments/propositional/references/',
+            # './configs/arguments/predicate/quantified/references/',
+
+
+            './configs/arguments/propositional/axioms/implication_elim.json',
+            './configs/arguments/predicate/specified/axioms/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
+
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
+
+
+        'depth_range': (1, 3),
+        'depth_distrib': 'flat',
+        'branch_extensions_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_wise_settings': {
+            'train': {
+                # 'sample_all_stances_per_logic': True,
+                # 'context_shuffles_per_instance': 3,
+                # 'translation_variants_per_logic': 3,
+            },
+            'valid': {
+            },
+            'test': {
+            },
+        },
+        'split_sizes': {
+            'test': 1000,
+            # 'valid': 1000,
+            'train': 100000,
+        },
+
+    },
+
+
+
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
+
+
+        'depth_range': (1, 3),
+        'depth_distrib': 'flat',
+        'branch_extensions_range': (0, 0),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_wise_settings': {
+            'train': {
+                # 'sample_all_stances_per_logic': True,
+                # 'context_shuffles_per_instance': 3,
+                # 'translation_variants_per_logic': 3,
+            },
+            'valid': {
+            },
+            'test': {
+            },
+        },
+        'split_sizes': {
+            'test': 1000,
+            # 'valid': 1000,
+            'train': 100000,
+        },
+
+    },
+
+
+
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
+
+
+        'depth_range': (1, 3),
+        'depth_distrib': 'flat',
+        'branch_extensions_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'use_fixed_translation': True,
+        'reused_object_nouns_max_factor': 0.0,
+        'translation_no_transitive_object': True,
+
+
+        'split_wise_settings': {
+            'train': {
+                # 'sample_all_stances_per_logic': True,
+                # 'context_shuffles_per_instance': 3,
+                # 'translation_variants_per_logic': 3,
+            },
+            'valid': {
+            },
+            'test': {
+            },
+        },
+        'split_sizes': {
+            'test': 1000,
+            # 'valid': 1000,
+            'train': 100000,
+        },
+
+    },
+
+
 
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03': {
 
@@ -10767,6 +11066,15 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.theorems-0.3': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.theorems-0.1': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.theorems-0.03': '20231018.thing_person_config_translation',
+
+
+    # ------------------------------- 2024-05-03.ablation --------------------------------
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small': '20231018.thing_person_config_translation',
+
 
 }
 
