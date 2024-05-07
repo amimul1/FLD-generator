@@ -351,12 +351,12 @@ def main():
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-5-3',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-8-0',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-1-2',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
 
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0',

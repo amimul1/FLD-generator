@@ -9577,22 +9577,15 @@ _DATASET_SETTINGS = {
     },
 
 
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-5-3': {
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3': {
 
         'argument_configs': [
-            # './configs/arguments/predicate/specified/axioms/',
-            # './configs/arguments/propositional/axioms/',
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
 
-            # './configs/arguments/predicate/specified/references/',
-            # './configs/arguments/propositional/references/',
-            # './configs/arguments/predicate/quantified/references/',
-
-
-            './configs/arguments/propositional/axioms/implication_elim.json',
-            './configs/arguments/predicate/specified/axioms/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
-
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -9642,22 +9635,15 @@ _DATASET_SETTINGS = {
 
 
 
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-8-0': {
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0': {
 
         'argument_configs': [
-            # './configs/arguments/predicate/specified/axioms/',
-            # './configs/arguments/propositional/axioms/',
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
 
-            # './configs/arguments/predicate/specified/references/',
-            # './configs/arguments/propositional/references/',
-            # './configs/arguments/predicate/quantified/references/',
-
-
-            './configs/arguments/propositional/axioms/implication_elim.json',
-            './configs/arguments/predicate/specified/axioms/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
-
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -9707,22 +9693,15 @@ _DATASET_SETTINGS = {
 
 
 
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-1-2': {
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2': {
 
         'argument_configs': [
-            # './configs/arguments/predicate/specified/axioms/',
-            # './configs/arguments/propositional/axioms/',
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
 
-            # './configs/arguments/predicate/specified/references/',
-            # './configs/arguments/propositional/references/',
-            # './configs/arguments/predicate/quantified/references/',
-
-
-            './configs/arguments/propositional/axioms/implication_elim.json',
-            './configs/arguments/predicate/specified/axioms/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
-            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
-
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -11514,12 +11493,12 @@ _DATASET_NAME_TO_DEFAULT = {
 
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0': '20231018.thing_person_config_translation',
 
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3': '20231018.thing_person_config_translation',
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-5-3': '20231018.thing_person_config_translation',
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-8-0': '20231018.thing_person_config_translation',
-    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-1-2': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0': '20231018.thing_person_config_translation',
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2': '20231018.thing_person_config_translation',
 
+    '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3': '20231018.thing_person_config_translation',
 
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0': '20231018.thing_person_config_translation',
