@@ -353,9 +353,9 @@ def main():
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-5-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-8-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-5-3',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-8-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-1-2',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
 
@@ -373,15 +373,15 @@ def main():
     wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
 
