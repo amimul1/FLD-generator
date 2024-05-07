@@ -316,6 +316,9 @@ def main():
 
         # '2024-03-29.FLD_v2.D8',
 
+
+
+
         # ------------------------------- production --------------------------------
 
         # '2024-03-29.FLD_v2',
@@ -339,12 +342,26 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.theorems-0.03',
 
+
+
+
         # ------------------------------- 2024-05-03.ablation --------------------------------
+
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100',
+
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
+
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
+
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old',
+
+
+
     ]
 
 
