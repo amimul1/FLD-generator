@@ -352,9 +352,9 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
@@ -380,8 +380,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
 
