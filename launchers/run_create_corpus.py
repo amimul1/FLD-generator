@@ -370,13 +370,13 @@ def main():
 
 
         # ----------------------------------- ./outputs/00.create_corpus/2024-05-08.ref_prob --------------------------
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
 
     ]
 
@@ -392,8 +392,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
 
