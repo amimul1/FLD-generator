@@ -129,7 +129,8 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.wo_9_option')
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -356,7 +357,7 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-1',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-0',
 
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
@@ -368,6 +369,14 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old',
 
 
+        # ----------------------------------- ./outputs/00.create_corpus/2024-05-08.ref_prob --------------------------
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
 
     ]
 
@@ -499,6 +508,7 @@ def make_dataset(dataset_name: str,
             'dataset_name',
             'proof_stances',
             'unknown_ratio',
+            'reference_tree_prob',
 
             'argument_configs',
 
@@ -650,6 +660,7 @@ def make_dataset(dataset_name: str,
                     f'--proof-stances \'{json.dumps(job_settings["proof_stances"])}\'' if "proof_stances" in job_settings else '',
                     f'--world-assump {job_settings["world_assump"]}' if "world_assump" in job_settings else '',
                     maybe_option('--unknown-ratio', job_settings.get("unknown_ratio", None)),
+                    maybe_option('--reference-tree-prob', job_settings.get("reference_tree_prob", None)),
                     '--sample-all-stances-per-logic' if job_settings.get('sample_all_stances_per_logic', False) else '',
                     maybe_option('--context-shuffles-per-instance', job_settings.get("context_shuffles_per_instance", None)),
                     '--use-collapsed-translation-nodes-for-unknown-tree' if job_settings.get('use_collapsed_translation_nodes_for_unknown_tree', False) else '',

@@ -502,7 +502,7 @@ def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
                    depth: int,
                    branch_extension_steps: int,
                    argument_weights: Optional[Dict[Argument, float]] = None,
-                   depth_1_reference_weight: Optional[float] = None,
+                   reference_argument_weight_in_depth_1: Optional[float] = None,
                    elim_dneg=False,
                    ng_formulas: Optional[List[Formula]] = None,
                    disallow_contradiction_as_hypothesis=False,
@@ -517,7 +517,7 @@ def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
         arguments,
         depth,
         argument_weights=argument_weights,
-        depth_1_reference_weight=depth_1_reference_weight,
+        reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
         elim_dneg=elim_dneg,
         disallow_contradiction_as_hypothesis=disallow_contradiction_as_hypothesis,
         allow_inconsistency=allow_inconsistency,
@@ -649,7 +649,7 @@ def _extend_branches_with_timeout_retry(proof_tree: ProofTree,
 def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                    depth: int,
                    argument_weights: Optional[Dict[Argument, float]] = None,
-                   depth_1_reference_weight: Optional[float] = None,
+                   reference_argument_weight_in_depth_1: Optional[float] = None,
                    elim_dneg=False,
                    disallow_contradiction_as_hypothesis=False,
                    # allow_non_canonical_contradiction_use=False,
@@ -728,15 +728,14 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
         for arg in _shuffle_arguments(arguments, weights=argument_weights):
             yield arg
 
-
     if depth == 1:
-        if depth_1_reference_weight is not None:
+        if reference_argument_weight_in_depth_1 is not None:
             def argument_sampling():
                 iter_reference = argument_sampling_reference()
                 iter_non_reference = argument_sampling_non_reference()
                 while True:
                     rand = random.random()
-                    if rand < depth_1_reference_weight:
+                    if rand < reference_argument_weight_in_depth_1:
                         try:
                             arg = next(iter_reference)
                         except StopIteration:

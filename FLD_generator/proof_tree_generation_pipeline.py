@@ -77,11 +77,11 @@ class ProofTreeGenerationPipeline:
                            branch_extension_steps: int,
                            allow_inconsistency=False,
                            allow_smaller_proofs=False,
-                           depth_1_reference_weight: Optional[float] = None,
+                           reference_argument_weight_in_depth_1: Optional[float] = None,
                            force_fix_illegal_intermediate_constants=False) -> ProofTree:
 
         def _get_cache_key(_depth: int) -> Tuple:
-            return (_depth, allow_inconsistency, allow_smaller_proofs, depth_1_reference_weight, force_fix_illegal_intermediate_constants)
+            return (_depth, allow_inconsistency, allow_smaller_proofs, reference_argument_weight_in_depth_1, force_fix_illegal_intermediate_constants)
 
         reusable_proof_trees = self._reusable_proof_trees[_get_cache_key(depth)]
         if len(reusable_proof_trees) > 0:
@@ -93,7 +93,7 @@ class ProofTreeGenerationPipeline:
         trial_proof_trees = self.generator.generate_tree(
             depth,
             branch_extension_steps,
-            depth_1_reference_weight=depth_1_reference_weight,
+            reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
             allow_inconsistency=allow_inconsistency,
             allow_smaller_proofs=allow_smaller_proofs,
             best_effort=True,
@@ -121,7 +121,7 @@ class ProofTreeGenerationPipeline:
             num_translation_distractors: int,
             allow_inconsistency=False,
             allow_smaller_proofs=False,
-            depth_1_reference_weight: Optional[float] = None,
+            reference_argument_weight_in_depth_1: Optional[float] = None,
             force_fix_illegal_intermediate_constants=False,
             distractor_variants_per_tree=1,
             translation_variants_per_logic=1,
@@ -143,7 +143,7 @@ class ProofTreeGenerationPipeline:
                     num_distractor_variants=distractor_variants_per_tree,
                     allow_inconsistency=allow_inconsistency,
                     allow_smaller_proofs=allow_smaller_proofs,
-                    depth_1_reference_weight=depth_1_reference_weight,
+                    reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
                     force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants
                 )
             if len(logics) == 0:
@@ -194,14 +194,14 @@ class ProofTreeGenerationPipeline:
 
     @profile
     def _build_logics(self,
-                     depth: int,
-                     branch_extension_steps: int,
-                     num_distractors: int,
-                     num_distractor_variants: int = 1,
-                     allow_inconsistency=False,
-                     allow_smaller_proofs=False,
-                     depth_1_reference_weight: Optional[float] = None,
-                     force_fix_illegal_intermediate_constants=False)\
+                      depth: int,
+                      branch_extension_steps: int,
+                      num_distractors: int,
+                      num_distractor_variants: int = 1,
+                      allow_inconsistency=False,
+                      allow_smaller_proofs=False,
+                      reference_argument_weight_in_depth_1: Optional[float] = None,
+                      force_fix_illegal_intermediate_constants=False)\
             -> List[Tuple[ProofTree, Formula, List[Formula], bool, Dict[str, Any]]]:
         if num_distractors == 0:
             num_distractor_variants = 1
@@ -211,7 +211,7 @@ class ProofTreeGenerationPipeline:
             proof_tree = self._reusable_generate(
                 depth,
                 branch_extension_steps,
-                depth_1_reference_weight=depth_1_reference_weight,
+                reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
                 allow_inconsistency=allow_inconsistency,
                 allow_smaller_proofs=allow_smaller_proofs,
                 force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants,

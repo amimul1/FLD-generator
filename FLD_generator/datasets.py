@@ -202,9 +202,10 @@ class NLProofSDataset:
                  proof_stances: Optional[List[str]] = None,
                  world_assump: str = 'OWA',
                  depth_weights: List[float] = None,
-                 depth_1_reference_weight: Optional[float] = None,
+                 reference_argument_weight_in_depth_1: Optional[float] = None,
                  force_fix_illegal_intermediate_constants=False,
                  unknown_ratio: float = 1 / 3.,
+                 reference_tree_prob: Optional[float] = None,
                  sample_all_stances_per_logic=False,
                  context_shuffles_per_instance=1,
                  use_collapsed_translation_nodes_for_unknown_tree=False,
@@ -226,6 +227,7 @@ class NLProofSDataset:
         self.proof_stances = [ProofStance(proof_stance) for proof_stance in proof_stances]
         self.world_assump = WorldAssumption(world_assump)
         self.unknown_ratio = unknown_ratio
+        self._reference_tree_prob = reference_tree_prob
         self._sample_all_stances_per_logic = sample_all_stances_per_logic
         self._context_shuffles_per_instance = context_shuffles_per_instance
 
@@ -240,7 +242,7 @@ class NLProofSDataset:
         self._depth_weights = depth_weights
         logger.info('using depth weight: %s', str(self._depth_weights))
 
-        self._depth_1_reference_weight = depth_1_reference_weight
+        self._reference_argument_weight_in_depth_1 = reference_argument_weight_in_depth_1
         self._force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants
 
         self.branch_extension_steps = _to_range(*branch_extensions_range)
@@ -290,16 +292,25 @@ class NLProofSDataset:
             logger.info('\n\n')
             logger.info(make_pretty_msg(title='generate a dataset instance', status='start', boundary_level=5))
 
-            # -- generate settings --
-            # proof_stance = self._sample_proof_stance()
-            depth_idx = weighted_sampling(self._depth_weights)
-            depth = self.depths[depth_idx]
-            # if proof_stance == ProofStance.UNKNOWN:
-            #     depth += 1
+            if self._reference_tree_prob is not None:
+                if random.random() < self._reference_tree_prob:
+                    depth = 1
+                    _branch_extension_steps = 0
+                    _reference_argument_weight_in_depth_1 = 1.0
+                else:
+                    depth = self.depths[weighted_sampling(self._depth_weights)]
+                    _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
+                    _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
+                    if depth == 1 and _branch_extension_steps == 0:
+                        _reference_argument_weight_in_depth_1 = 0  # as we explicifly use reference weight in the above block
+
+            else:
+                depth = self.depths[weighted_sampling(self._depth_weights)]
+                _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
+                _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
 
             _num_distractors = random.sample(self.num_distractors, 1)[0]
             _num_translation_distractors = random.sample(self.num_translation_distractors, 1)[0]
-            _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
 
             # -- make proof tree and distractors  --
             try:
@@ -308,7 +319,7 @@ class NLProofSDataset:
                     _branch_extension_steps,
                     _num_distractors,
                     _num_translation_distractors,
-                    depth_1_reference_weight=self._depth_1_reference_weight,
+                    reference_argument_weight_in_depth_1=_reference_argument_weight_in_depth_1,
                     allow_inconsistency=self.allow_inconsistency,
                     allow_smaller_proofs=self.allow_smaller_proofs,
                     force_fix_illegal_intermediate_constants=self._force_fix_illegal_intermediate_constants,

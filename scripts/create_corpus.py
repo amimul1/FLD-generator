@@ -61,6 +61,7 @@ def load_dataset(argument_config: List[str],
                  proof_stances: List[str],
                  world_assump: str,
                  unknown_ratio: float,
+                 reference_tree_prob: Optional[float],
                  sample_all_stances_per_logic: bool,
                  context_shuffles_per_instance: int,
                  use_collapsed_translation_nodes_for_unknown_tree: bool,
@@ -183,16 +184,16 @@ def load_dataset(argument_config: List[str],
 
     if depth_distrib == 'flat':
         depth_weights = None
-        depth_1_reference_weight = None
+        reference_argument_weight_in_depth_1 = None
     elif depth_distrib == 'flat.no_reference':
         depth_weights = None
-        depth_1_reference_weight = 0.0
+        reference_argument_weight_in_depth_1 = 0.0
     elif depth_distrib == 'ruletaker.ours.20221202':
         if set(depth_range) != (1, 3):
             raise ValueError(f'depths {depth_range} is not consistent with ruletaker.ours.20221202.')
         # see "depth distribution" of experiments.md
         depth_weights = [0.40, 0.15, 0.12]
-        depth_1_reference_weight = 0.23 / (0.23 + 0.17)
+        reference_argument_weight_in_depth_1 = 0.23 / (0.23 + 0.17)
     else:
         raise ValueError(f'Unknown depth distrib {depth_distrib}')
 
@@ -202,11 +203,12 @@ def load_dataset(argument_config: List[str],
                            proof_stances=proof_stances,
                            world_assump=world_assump,
                            depth_weights=depth_weights,
-                           depth_1_reference_weight=depth_1_reference_weight,
+                           reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
                            force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants,
                            distractors_range=distractors_range,
                            translation_distractors_range=translation_distractors_range,
                            unknown_ratio=unknown_ratio,
+                           reference_tree_prob=reference_tree_prob,
                            sample_all_stances_per_logic=sample_all_stances_per_logic,
                            context_shuffles_per_instance=context_shuffles_per_instance,
                            use_collapsed_translation_nodes_for_unknown_tree=use_collapsed_translation_nodes_for_unknown_tree,
@@ -296,6 +298,7 @@ def generate_instances(size: int, *args):
 @click.option('--proof-stances', type=str, default=json.dumps(['PROVED', 'DISPROVED', 'UNKNOWN']))
 @click.option('--world-assump', default='OWA')
 @click.option('--unknown-ratio', type=float, default = 1 / 3.)
+@click.option('--reference-tree-prob', type=float, default = None)
 @click.option('--sample-all-stances-per-logic', is_flag=True, default=False)
 @click.option('--context-shuffles-per-instance', type=int, default=1)
 @click.option('--use-collapsed-translation-nodes-for-unknown-tree', is_flag=True, default=False)
@@ -357,6 +360,7 @@ def main(output_path,
          proof_stances,
          world_assump,
          unknown_ratio,
+         reference_tree_prob,
          sample_all_stances_per_logic,
          context_shuffles_per_instance,
          use_collapsed_translation_nodes_for_unknown_tree,
@@ -439,6 +443,7 @@ def main(output_path,
                         proof_stances,
                         world_assump,
                         unknown_ratio,
+                        reference_tree_prob,
                         sample_all_stances_per_logic,
                         context_shuffles_per_instance,
                         use_collapsed_translation_nodes_for_unknown_tree,
