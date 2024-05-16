@@ -383,6 +383,7 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-3',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-5',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.05',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.2',
 
@@ -396,8 +397,8 @@ def main():
     wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()
