@@ -397,11 +397,11 @@ def main():
         # ------------------------------------- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems --------------------------
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
 
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
 
 
     ]
@@ -418,8 +418,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
 
