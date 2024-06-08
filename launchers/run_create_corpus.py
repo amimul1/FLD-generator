@@ -131,7 +131,9 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
+
+    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
@@ -328,7 +330,7 @@ def main():
         # '2024-03-29.FLD_v2.theorems-0.1.fix',
         # '2024-03-29.FLD_v2.theorems-0.03.fix',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.3',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
@@ -397,11 +399,11 @@ def main():
         # ------------------------------------- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems --------------------------
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
 
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
 
 
     ]
@@ -411,8 +413,8 @@ def main():
     wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()
@@ -422,7 +424,9 @@ def main():
     job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
-
+    num_jobs_for_datasets = 2
+    # num_jobs_per_dataset = 300
+    num_jobs_per_dataset = 10000
 
 
 
