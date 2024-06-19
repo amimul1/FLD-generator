@@ -133,80 +133,15 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
 
-    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+
+    output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
+
 
     dataset_names = [
         # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
         # '20230729.case_study_finalize.D3',
         # '20230729.case_study_finalize.D8',
-
-        # ---------------------------------- 20230826.jpn ------------------------------------
-        # '20230826.jpn.D3',
-        # '20230826.jpn.D8',
-
-        # ---------------------------------- 202320230901.random_transitive_verbs.D3 ------------------------------------
-        # '20230901.random_transitive_verbs.D3',
-        # '20230901.random_transitive_verbs.D8',
-
-        # ---------------------------------- 20230904.jpn ------------------------------------
-        # '20230904.jpn.D1.wo_brnch.wo_dstrct',
-        # '20230904.jpn.D1.wo_brnch',
-        # '20230904.jpn.D1',
-        # '20230904.jpn.D3',
-
-        # ---------------------------------- 20230912.jpn ------------------------------------
-        # '20230912.jpn.D3',
-
-        # ---------------------------------- 20230914.jpn ------------------------------------
-        # '20230914.jpn.D3',
-
-
-        # ---------------------------------- 20230916.jpn ------------------------------------
-        # '20230916.jpn.D1_wo_dist',
-        # '20230916.jpn.D1',
-        # '20230916.jpn.D3',
-        # '20230916.jpn.D5',
-
-        # ---------------------------------- 20231010.D3.large_vocab ------------------------------------
-        # '20231010.D3.large_vocab',
-
-        # ---------------------------------- 20231012.D3.large_vocab ------------------------------------
-        # '20231012.D3.large_vocab',
-        # '20231012.D3.large_vocab.smpl_stncs',
-        # '20231012.D3.large_vocab.smpl_stncs.cntx_shffls-3',
-        # '20231012.D3.large_vocab.smpl_stncs.cntx_shffls-3.trnsl_vrnts-3',
-
-        # ---------------------------------- 20231018.knowledge ------------------------------------
-        # '20231018.knowledge.D3',
-        # '20231018.knowledge.D3.w_knowledge',
-        # '20231018.knowledge.D3.w_knowledge.complex-0.3',
-
-        # ---------------------------------- 20231021.knowledge ------------------------------------
-        # '20231021.knowledge.D3',
-        # '20231021.knowledge.D3.complex-0.3',
-        # '20231021.knowledge.D3.complex-0.3.w_knowledge',
-
-        # ---------------------------------- 20231028.knowledge ------------------------------------
-        # '20231028.knowledge.D3',
-
-        # ---------------------------------- 20231029.knowledge ------------------------------------
-        # '20231029.knowledge.D3',
-        # '20231029.knowledge.D3.wo_knowledge',
-        # '20231029.knowledge.D3.wo_knowledge.cmplx-0.5',
-
-        # ---------------------------------- 20231029.knowledge ------------------------------------
-        # '20231030.knowledge.D3.knowledge_factor-1.0',
-        # '20231030.knowledge.D3.knowledge_factor-5.0',
-
-        # ---------------------------------- 20231101.knowledge.D3 ------------------------------------
-        # '20231103.knowledge.D3.knowledge_factor-5.0',
-
-        # ---------------------------------- 20231203.jpn ------------------------------------
-        # '20231203.jpn.D1_wo_dist',
-        # '20231203.jpn.D1',
-        # '20231203.jpn.D3',
-        # '20231203.jpn.D5',
-        # '20231203.jpn.D8',
 
         # ---------------------------------- 20231213.jpn ------------------------------------
         # '20231213.jpn.D1_wo_dist',
@@ -215,44 +150,17 @@ def main():
         # '20231213.jpn.D5',
         # '20231213.jpn.D8',
 
-        # ---------------------------------- 20230115.jpn ------------------------------------
-        # '20230115.jpn.BCCWJ.D3',
-        # '20230115.jpn.punipuni.D3',
-
-        # ---------------------------------- 20230116.jpn ------------------------------------
-        # '20230118.jpn.BCCWJ.D3.wordnet',
-        # '20230116.jpn.BCCWJ.D3.argument_pred_arg_only',
-        # '20230116.jpn.punipuni.D3.argument_pred_arg_only',
-
-        # ---------------------------------- 20230118.jpn ------------------------------------
-        # '20230118.jpn.wordnet.D3',
-        # '20230118.jpn.wordnet.D3.argument_pred_arg_only',
-        # '20230118.jpn.wordnet.D3.argument_pred_arg_only.no_kaku',
-        # '20230118.jpn.BCCWJ.D3',
-        # '20230118.jpn.punipuni.D3',
-
-        # ---------------------------------- 20230118.jpn.ICL ------------------------------------
-        # '20230118.jpn.wordnet.D3.extension-3.distractor-10',
-        # '20230118.jpn.wordnet.D3.extension-3.distractor-5',
-        # '20230118.jpn.wordnet.D3.extension-3.distractor-3',
-        # '20230118.jpn.wordnet.D3.extension-2.distractor-5',
-        # '20230118.jpn.wordnet.D3.extension-2.distractor-3',
-        # '20230118.jpn.wordnet.D3.extension-1.distractor-5',
-        # '20230118.jpn.wordnet.D3.extension-1.distractor-3',
-
-
         # ---------------------------------- 20230120.jpn.punipuni ------------------------------------
-        # '20230120.jpn.wordnet.D3',
 
         # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
         # '20230120.jpn.wordnet_repro_w_proposition.D1',
         # '20230120.jpn.wordnet_repro_w_proposition.D3',
-        # '20230120.jpn.wordnet_repro_w_proposition.D8',
+        # '20230120.jpn.wordnet_repro_w_proposition.D5',
 
         # '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
         # '20230120.jpn.wordnet_repro_wo_proposition.D1',
         # '20230120.jpn.wordnet_repro_wo_proposition.D3',
-        # '20230120.jpn.wordnet_repro_wo_proposition.D8',
+        # '20230120.jpn.wordnet_repro_wo_proposition.D5',
 
         # '20230120.jpn.BCCWJ.D1_wo_dist',
         # '20230120.jpn.BCCWJ.D1',
@@ -265,64 +173,6 @@ def main():
         # '20230120.jpn.punipuni.D8',
 
 
-        # ---------------------------------- 20230122.jpn.ICL ------------------------------------
-        # '20230122.jpn.ICL.punipuni.D1_wo_dist',
-        # '20230122.jpn.ICL.punipuni.D1',
-        # '20230122.jpn.ICL.punipuni.D3_wo_dist',
-        # '20230122.jpn.ICL.punipuni.D3',
-
-
-        # ---------------------------------- 2024-01-29.enhance_arguments ------------------------------------
-        # '2024-01-29.enhance_arguments.past_reproduce',
-        # '2024-01-29.enhance_arguments.theorems',
-        # '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs',
-        # '2024-01-29.enhance_arguments.past_reproduce.D8',
-
-        # ---------------------------------- 2024-02-25.translation-augmentation ------------------------------------
-        # '2024-02-25.translation-augmentation.timeout_test',
-
-        # ---------------------------------- 2024-02-25.enhance_translation ------------------------------------
-        # '2024-02-09.enhance_translation.past_reproduce',
-        # '2024-02-09.enhance_translation.D8',
-        # '2024-02-09.enhance_translation.propositional-0.2',
-        # '2024-02-09.enhance_translation.theorems',
-        # '2024-02-09.enhance_translation.theorems.allow_smaller_proofs',
-        # '2024-02-09.enhance_translation.translation-v2',
-        # '2024-02-09.enhance_translation.translation-v3',
-
-        # ---------------------------------- 2024-02-14.translation_speedup ------------------------------------
-        # '2024-02-14.translation_speedup.past_reproduce',
-        # '2024-02-14.translation_speedup.D8',
-        # '2024-02-14.translation_speedup.propositional-0.2',
-        # '2024-02-14.translation_speedup.theorems',
-        # '2024-02-14.translation_speedup.theorems.allow_smaller_proofs',
-        # '2024-02-14.translation_speedup.translation-v2',
-        # '2024-02-14.translation_speedup.translation-v3',   # the best in JSAI experiment
-        # '2024-02-14.translation_speedup.translation-v3.propositional-0.2',
-        # '2024-02-14.translation_speedup.translation-v3.propositional-0.5'
-
-        # ---------------------------------- 2024-03-29.H100 ------------------------------------
-        # '2024-03-29.JSAI_best',    # the same as "2024-02-14.translation_speedup.translation-v3"
-        # '2024-03-29.JSAI_best.D8',
-        # '2024-03-29.JSAI_best.theorems',
-
-        # '2024-03-29.JSAI_best.no_aug',
-        # '2024-03-29.JSAI_best.D8.no_aug',
-
-        # '2024-03-29.JSAI_best.theorems.no_aug',
-        # '2024-03-29.JSAI_best.theorems-0.1.no_aug',
-        # '2024-03-29.JSAI_best.theorems-0.03.no_aug',
-
-        # '2024-03-29.JSAI_best.no_aug.dstrctr-10',
-        # '2024-03-29.JSAI_best.no_aug.cmplx-0.25',
-        # '2024-03-29.JSAI_best.no_aug.quant-0.5',
-
-
-        # '2024-03-29.FLD_v2.D8',
-
-
-
-
         # ------------------------------- production --------------------------------
 
         # '2024-03-29.FLD_v2',
@@ -330,7 +180,7 @@ def main():
         # '2024-03-29.FLD_v2.theorems-0.1.fix',
         # '2024-03-29.FLD_v2.theorems-0.03.fix',
 
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.3',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
@@ -406,6 +256,10 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
 
 
+        # --------------------------------------- transfer ---------------------------------------
+        '20230120.jpn.wordnet_repro_w_proposition.D3.large',
+
+
     ]
 
 
@@ -425,8 +279,8 @@ def main():
 
 
     num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 300
-    num_jobs_per_dataset = 10000
+    num_jobs_per_dataset = 300
+    # num_jobs_per_dataset = 10000
 
 
 
