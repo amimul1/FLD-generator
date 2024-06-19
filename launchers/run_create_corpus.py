@@ -257,7 +257,7 @@ def main():
 
 
         # --------------------------------------- transfer ---------------------------------------
-        '20230120.jpn.wordnet_repro_w_proposition.D3.large',
+        '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
 
 
     ]

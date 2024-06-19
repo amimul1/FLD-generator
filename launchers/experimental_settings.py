@@ -12555,18 +12555,16 @@ _DATASET_SETTINGS = {
 
 
 
-    '20230120.jpn.wordnet_repro_w_proposition.D3.large': {
+    '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3': {
 
 
         'argument_configs': [
-            './configs/arguments/axioms/',
-            './configs/arguments/references/',
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
 
-            # './configs/arguments/predicate/axioms/and_or.json',
-            # './configs/arguments/predicate/axioms/implication_intro.json',
-            # './configs/arguments/predicate/axioms/negation.json',
-            # './configs/arguments/predicate/axioms/implication_elim.json',
-            # './configs/arguments/predicate/specified/references/reference.json',
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
         ],
         'quantifier_axioms': [
             'universal_quantifier_elim',
@@ -12576,6 +12574,7 @@ _DATASET_SETTINGS = {
         ],
         'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.5,
+        'propositional_arguments_factor': 1.0,
 
 
         'depth_range': (1, 3),
@@ -12593,7 +12592,6 @@ _DATASET_SETTINGS = {
         'translation_configs': ['thing.v1'],
         'translation_volume_to_weight': 'log10',
         'translation_adj_verb_noun_ratio': '1-1-1',
-        'translation_no_transitive_object': False,
         'translation_vocab': 'wordnet',
 
 
@@ -13158,7 +13156,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.large': '20231018.thing_person_config_translation',
 
     # -------------------------------------- transfer --------------------------------------------------
-    '20230120.jpn.wordnet_repro_w_proposition.D3.large': '20231018.thing_person_config_translation',
+    '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3': '20231018.thing_person_config_translation',
 
 }
 
