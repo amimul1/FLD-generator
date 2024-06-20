@@ -39,24 +39,6 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/20230914.jpn')
     # output_top_dir = Path('./outputs/00.create_corpus/20230916.jpn')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/20231010.large_vocab.small')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231010.large_vocab')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231012.large_vocab')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20231018.knowledge')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231021.knowledge')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231028.knowledge')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20231028.knowledge')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231028.knowledge.no_down_sampling')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20231030.knowledge')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231030.knowledge.pos_fix')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231102.knowledge.speedup_translators')
-    # output_top_dir = Path('./outputs/00.create_corpus/20231103.knowledge.speedup_translators')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20231103.knowledge')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20231203.jpn')
     # output_top_dir = Path('./outputs/00.create_corpus/20231205.postprocess_debug')
     # output_top_dir = Path('./outputs/00.create_corpus/debug')
@@ -72,70 +54,25 @@ def main():
 
     # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-01-29.enhance_arguments')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-25.translation-augmentation.timeout_test')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-1')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.num_workers-5.pypy')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.all_unique_formula_reps_fixed')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-09.enhance_translation.translation_None_fixed.pypy')
-
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_size_increased.slower_sort.timeout-10')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.log')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-5')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-11.translation_None_fixed.pypy.cache_volumes.timeout-3')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-None')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-max')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=True')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.timeout-min.use_signals=False')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--mean')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--min')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--no')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v2')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v1')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-3')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.translate_fast--max.v3.exploration_bonus-10')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-no')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-13.bonus-3')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-02-14.translation_speedup')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-24.H100_test')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-28')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.1')
-    #  output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.2')   # NG
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.kill_child_before_parent')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29.zombie_exp.wo_9_option')
-
     # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
-    output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
+    # =================================================================== LPT ===================================================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+
+
+
+    # =================================================================== transfer ===================================================================
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
+
+
+
+
+
+
 
 
     dataset_names = [
@@ -256,8 +193,11 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
 
 
+        # --------------------------------------- LPT ---------------------------------------
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
+
         # --------------------------------------- transfer ---------------------------------------
-        '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
+        # '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
 
 
     ]
@@ -267,8 +207,8 @@ def main():
     wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engine = SubprocessEngine()
