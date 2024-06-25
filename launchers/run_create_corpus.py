@@ -219,9 +219,8 @@ def main():
 
 
     num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 300
-    # num_jobs_per_dataset = 10000   # for 1M dataset
-    num_jobs_per_dataset = 20000     # for 2M dataset
+    # num_jobs_per_dataset = 300    # for 1M dataset
+    num_jobs_per_dataset = 600     # for 2M dataset
 
 
 
@@ -240,10 +239,6 @@ def main():
 
     # skip_if_exists = False
     skip_if_exists = True
-
-    num_jobs_for_datasets = 2
-    num_jobs_per_dataset = 300
-    # num_jobs_per_dataset = 900
 
 
     # for the case some jobs hangs

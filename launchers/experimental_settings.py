@@ -7403,8 +7403,8 @@ _DATASET_SETTINGS = {
             },
         },
         'split_sizes': {
-            'test': 5000,
-            'valid': 5000,
+            # 'test': 5000,
+            # 'valid': 5000,
             # 'train': 100000,
             # 'train': 1000000,
             'train': 2000000,
