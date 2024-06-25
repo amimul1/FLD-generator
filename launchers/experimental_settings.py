@@ -7407,6 +7407,7 @@ _DATASET_SETTINGS = {
             'valid': 5000,
             # 'train': 100000,
             # 'train': 1000000,
+            'train': 2000000,
         },
 
     },

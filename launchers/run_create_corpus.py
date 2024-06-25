@@ -204,11 +204,11 @@ def main():
 
 
     # wait_before_gather = True
-    wait_before_gather = False   # avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
+    wait_before_gather = False   # to avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()
@@ -219,8 +219,9 @@ def main():
 
 
     num_jobs_for_datasets = 2
-    num_jobs_per_dataset = 300
-    # num_jobs_per_dataset = 10000
+    # num_jobs_per_dataset = 300
+    # num_jobs_per_dataset = 10000   # for 1M dataset
+    num_jobs_per_dataset = 20000     # for 2M dataset
 
 
 
