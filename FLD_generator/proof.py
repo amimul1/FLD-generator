@@ -300,6 +300,11 @@ class ProofTree:
         yield start_node
 
     @property
+    def steps(self) -> int:
+        return len([node for node in self._nodes
+                    if node.argument is not None])
+
+    @property
     def intermediate_constants(self) -> Iterable[Formula]:
         for node in self.nodes:
             if node.argument is None or node.argument.intermediate_constants is None:

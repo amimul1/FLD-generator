@@ -203,9 +203,6 @@ def main():
     ]
 
 
-    # wait_before_gather = True
-    wait_before_gather = False   # to avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
-
 
     only_gather = False
     # only_gather = True
@@ -220,7 +217,9 @@ def main():
 
     num_jobs_for_datasets = 2
     # num_jobs_per_dataset = 300    # for 1M dataset
-    num_jobs_per_dataset = 600     # for 2M dataset
+    # num_jobs_per_dataset = 600     # for 2M dataset
+    # num_jobs_per_dataset = 900     # for 3M dataset
+    num_jobs_per_dataset = 1500     # for 5M dataset
 
 
 
@@ -236,6 +235,9 @@ def main():
     # ---------------------------- fixed settings --------------------------
     dry_run = False
     # dry_run = True
+
+    # wait_before_gather = True
+    wait_before_gather = False   # to avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
 
     # skip_if_exists = False
     skip_if_exists = True
@@ -411,11 +413,12 @@ def make_dataset(dataset_name: str,
                 job_output_dir.mkdir(exist_ok=True, parents=True)
 
                 job_output_path = job_output_dir / f'{split}.jsonl'
+                job_log_path = job_output_dir / 'log.txt'
+
                 if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                # if i_job <= 584:
                     logger.info('skip %s because', job_output_path)
                     continue
-
-                job_log_path = job_output_dir / 'log.txt'
 
                 job_settings = copy.deepcopy(settings)
                 job_settings.update(settings.get('split_wise_settings', {}).get(split, {}))

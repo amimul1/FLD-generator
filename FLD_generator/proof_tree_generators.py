@@ -1054,6 +1054,7 @@ def _extend_branches(proof_tree: ProofTree,
                      start_leaf_nodes: Optional[List[ProofNode]] = None,
                      argument_weights: Optional[Dict[Argument, float]] = None,
                      depth_limit: Optional[int] = None,
+                     steps_limit: Optional[int] = None,
                      elim_dneg=False,
                      allow_reference_arguments_when_depth_1=True,
                      ng_formulas: Optional[List[Formula]] = None,
@@ -1127,6 +1128,9 @@ def _extend_branches(proof_tree: ProofTree,
         if depth_limit is not None:
             _target_leaf_nodes = [node for node in _target_leaf_nodes
                                   if proof_tree.get_node_depth(node) < depth_limit]
+
+        # if steps_limit is not None and
+        #     proof
 
         if len(_target_leaf_nodes) == 0:
             logger.warning(make_pretty_msg(title='extend_branches()', status='failure', boundary_level=0,
