@@ -219,7 +219,8 @@ def main():
     # num_jobs_per_dataset = 300    # for 1M dataset
     # num_jobs_per_dataset = 600     # for 2M dataset
     # num_jobs_per_dataset = 900     # for 3M dataset
-    num_jobs_per_dataset = 1500     # for 5M dataset
+    # num_jobs_per_dataset = 1500     # for 5M dataset
+    num_jobs_per_dataset = 3000     # for 10M dataset
 
 
 
@@ -415,8 +416,8 @@ def make_dataset(dataset_name: str,
                 job_output_path = job_output_dir / f'{split}.jsonl'
                 job_log_path = job_output_dir / 'log.txt'
 
-                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                # if i_job <= 584:
+                # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                if 1500 <= i_job <= 2250:
                     logger.info('skip %s because', job_output_path)
                     continue
 

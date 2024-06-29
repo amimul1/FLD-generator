@@ -7409,7 +7409,8 @@ _DATASET_SETTINGS = {
             # 'train': 1000000,
             # 'train': 2000000,
             # 'train': 3000000,
-            'train': 5000000,
+            # 'train': 5000000,
+            'train': 10000000,
         },
 
     },
