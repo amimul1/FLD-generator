@@ -417,7 +417,8 @@ def make_dataset(dataset_name: str,
                 job_log_path = job_output_dir / 'log.txt'
 
                 # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                if 2251 <= i_job <= 3000:
+                if not (1500 <= i_job <= 2250):
+                # if 2251 <= i_job <= 3000:
                     logger.info('skip %s because', job_output_path)
                     continue
 
@@ -545,12 +546,18 @@ def make_dataset(dataset_name: str,
         ])
         lines: List[str] = []
         for jsonl in job_output_jsonls:
+            logger.info('loading %s', jsonl)
             if is_done:
                 break
-            for line in open(jsonl):
+            for i_line, line in enumerate(open(jsonl)):
                 if cnt >= size:
                     is_done = True
                     break
+                try:
+                    json.loads(line.rstrip('\n'))
+                except json.JSONDecodeError:
+                    logger.warning('failed to load json line %d, will be skipped', i_line)
+                    continue
                 lines.append(line)
                 cnt += 1
         random.shuffle(lines)
@@ -559,7 +566,7 @@ def make_dataset(dataset_name: str,
                 f_out.write(line)
 
         # -- aggregate statistics --
-        logger.info('gathering stats under %s', split_output_dir)
+        logger.info('aggregating stats under %s', split_output_dir)
         job_stats_jsonls = sorted([
             path for path in split_output_dir.glob(f'**/*{split}.jsonl.stats.json')
             if str(path).find('job-') >= 0
