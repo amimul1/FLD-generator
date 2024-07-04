@@ -98,9 +98,9 @@ def test_generate_dataset_lang(lang: str,
             './configs/arguments/predicate/quantified/references/',
 
             # ----------------------- theorems -----------------------
-            './configs/arguments/predicate/specified/theorems/',
-            './configs/arguments/predicate/quantified/theorems',
-            './configs/arguments/propositional/theorems/',
+            # './configs/arguments/predicate/specified/theorems/',
+            # './configs/arguments/predicate/quantified/theorems',
+            # './configs/arguments/propositional/theorems/',
 
         ],
         elim_dneg=True,
@@ -157,8 +157,12 @@ def test_generate_dataset_lang(lang: str,
         collapsed_knowledge_range=(0.0, 1.0),
     )
 
-    depth_range = (1, 8)
-    branch_extensions_range = (0, 5)
+    generate_stem_steps_range = (1, 8)
+    extend_branches_steps_range = (0, 5)
+
+    steps_limit = None
+    depth_limit = None
+    increase_depth_by_extend_branches = False
 
     unknown_ratio = 0.33
     sample_all_stances_per_logic = False
@@ -174,8 +178,12 @@ def test_generate_dataset_lang(lang: str,
     dataset = NLProofSDataset(
         pipeline,
 
-        depth_range,
-        branch_extensions_range,
+        generate_stem_steps_range=generate_stem_steps_range,
+        extend_branches_steps_range=extend_branches_steps_range,
+        steps_limit=steps_limit,
+        depth_limit=depth_limit,
+        increase_depth_by_extend_branches=increase_depth_by_extend_branches,
+
         unknown_ratio=unknown_ratio,
         sample_all_stances_per_logic=sample_all_stances_per_logic,
         context_shuffles_per_instance=context_shuffles_per_instance,

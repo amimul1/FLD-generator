@@ -197,11 +197,19 @@ class NLProofSDataset:
 
     def __init__(self,
                  pipeline: ProofTreeGenerationPipeline,
-                 depth_range: Tuple[int, int],
-                 branch_extensions_range: Tuple[int, int],
+
+                 generate_stem_steps_range: Optional[Tuple[int, int]] = None,
+                 generate_stem_steps_weights: Optional[List[float]] = None,
+
+                 extend_branches_steps_range: Optional[Tuple[int, int]] = None,
+                 extend_branches_steps_weights: Optional[List[float]] = None,
+
+                 steps_limit: Optional[int] = None,
+                 depth_limit: Optional[int] = None,
+                 increase_depth_by_extend_branches=False,   # backward compatibility
+
                  proof_stances: Optional[List[str]] = None,
                  world_assump: str = 'OWA',
-                 depth_weights: List[float] = None,
                  reference_argument_weight_in_depth_1: Optional[float] = None,
                  force_fix_illegal_intermediate_constants=False,
                  unknown_ratio: float = 1 / 3.,
@@ -231,25 +239,36 @@ class NLProofSDataset:
         self._sample_all_stances_per_logic = sample_all_stances_per_logic
         self._context_shuffles_per_instance = context_shuffles_per_instance
 
-        self.depths = _to_range(*depth_range)
-
-        if depth_weights is not None:
-            if len(depth_weights) != len(self.depths):
+        self.generate_stem_steps_list = _to_range(*generate_stem_steps_range)
+        if generate_stem_steps_weights is not None:
+            if len(generate_stem_steps_weights) != len(self.generate_stem_steps_list):
                 raise ValueError()
         else:
-            depth_weights = [1.0] * len(self.depths)
-        depth_weights = [weight / sum(depth_weights) for weight in depth_weights]
-        self._depth_weights = depth_weights
-        logger.info('using depth weight: %s', str(self._depth_weights))
+            generate_stem_steps_weights = [1.0] * len(self.generate_stem_steps_list)
+        generate_stem_steps_weights = [weight / sum(generate_stem_steps_weights) for weight in generate_stem_steps_weights]
+        self._generate_stem_steps_weights = generate_stem_steps_weights
+        logger.info('using _generate_stem_steps_weights weight: %s', str(self._generate_stem_steps_weights))
+
+        self.extend_branches_steps_list = _to_range(*extend_branches_steps_range)
+        if extend_branches_steps_weights is not None:
+            if len(extend_branches_steps_weights) != len(self.extend_branches_steps_list):
+                raise ValueError()
+        else:
+            extend_branches_steps_weights = [1.0] * len(self.extend_branches_steps_list)
+        self._extend_branches_steps_weights = [weight / sum(extend_branches_steps_weights) for weight in extend_branches_steps_weights]
+
+        self._steps_limit = steps_limit
+        self._depth_limit = depth_limit
+        self._increase_depth_by_extend_branches = increase_depth_by_extend_branches
 
         self._reference_argument_weight_in_depth_1 = reference_argument_weight_in_depth_1
         self._force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants
 
-        self.branch_extension_steps = _to_range(*branch_extensions_range)
+        self.branch_extension_steps = _to_range(*extend_branches_steps_range)
         self.distractor_variants_per_tree = distractor_variants_per_tree
         self.translation_variants_per_logic = translation_variants_per_logic
         self.num_distractors = _to_range(*distractors_range) if distractors_range is not None else [0]
-        self.num_translation_distractors = _to_range(*translation_distractors_range) if branch_extensions_range is not None else [0]
+        self.num_translation_distractors = _to_range(*translation_distractors_range) if extend_branches_steps_range is not None else [0]
         self.allow_inconsistency = allow_inconsistency
         self.allow_smaller_proofs = allow_smaller_proofs
         self.log_stats = log_stats,
@@ -294,19 +313,18 @@ class NLProofSDataset:
 
             if self._reference_tree_prob is not None:
                 if random.random() < self._reference_tree_prob:
-                    depth = 1
-                    _branch_extension_steps = 0
+                    generate_stem_steps = 1
+                    extend_branches_steps = 0
                     _reference_argument_weight_in_depth_1 = 1.0
                 else:
-                    depth = self.depths[weighted_sampling(self._depth_weights)]
-                    _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
+                    generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
+                    extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
                     _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
-                    if depth == 1 and _branch_extension_steps == 0:
+                    if generate_stem_steps == 1 and extend_branches_steps == 0:
                         _reference_argument_weight_in_depth_1 = 0  # as we explicifly use reference weight in the above block
-
             else:
-                depth = self.depths[weighted_sampling(self._depth_weights)]
-                _branch_extension_steps = random.sample(self.branch_extension_steps, 1)[0]
+                generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
+                extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
                 _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
 
             _num_distractors = random.sample(self.num_distractors, 1)[0]
@@ -315,10 +333,13 @@ class NLProofSDataset:
             # -- make proof tree and distractors  --
             try:
                 pipeline_results = self.pipeline.run(
-                    depth,
-                    _branch_extension_steps,
+                    generate_stem_steps,
+                    extend_branches_steps,
                     _num_distractors,
                     _num_translation_distractors,
+                    steps_limit=self._steps_limit,
+                    depth_limit=self._depth_limit,
+                    increase_depth_by_extend_branches=self._increase_depth_by_extend_branches,
                     reference_argument_weight_in_depth_1=_reference_argument_weight_in_depth_1,
                     allow_inconsistency=self.allow_inconsistency,
                     allow_smaller_proofs=self.allow_smaller_proofs,
@@ -464,11 +485,14 @@ class NLProofSDataset:
 
                         # -- compute depth --
                         if proof_stance == ProofStance.UNKNOWN:
+                            proof_steps = None
                             proof_depth = None
                         else:
                             if is_reference_argument(proof_tree_var.root_node.argument):
+                                proof_steps = 0
                                 proof_depth = 0
                             else:
+                                proof_steps = proof_tree_var.steps
                                 proof_depth = proof_tree_var.depth
 
                         all_positive_formulas = [leaf_node.formula for leaf_node in alive_leaf_nodes]
@@ -556,9 +580,11 @@ class NLProofSDataset:
                             'negative_proofs': [negateive_proof_text] if negateive_proof_text is not None else [],
                             'negative_original_tree_depth': negative_tree.depth if negative_tree is not None else None,
 
+                            'original_tree_steps': proof_tree_var.steps,
                             'original_tree_depth': proof_tree_var.depth,
 
                             # We follow ProofWriter to define proof depth as tree depth - 1
+                            'steps': proof_steps,
                             'depth': proof_depth,
 
                             'num_formula_distractors': len(formula_distractors_var),

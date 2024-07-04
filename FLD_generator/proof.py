@@ -226,10 +226,16 @@ class ProofNode:
 
 class ProofTree:
 
-    def __init__(self, nodes: Optional[List[ProofNode]] = None):
+    def __init__(self,
+                 nodes: Optional[List[ProofNode]] = None,
+                 count_assumption_as_step=True,
+                 count_assumption_as_depth=False):
         self._nodes: List[ProofNode] = nodes or []
         for node in self._nodes:
             node.set_tree(self)
+
+        self._count_assumption_as_step = count_assumption_as_step
+        self._count_assumption_as_depth = count_assumption_as_depth
 
     def add_node(self, node: ProofNode) -> None:
         if node not in self._nodes:
@@ -273,8 +279,14 @@ class ProofTree:
         if len(self.leaf_nodes) == 0:
             return 0
         else:
-            return max([self.get_node_depth(leaf_node)
-                        for leaf_node in self.leaf_nodes])
+            depth = -1
+            for node in self.leaf_nodes:
+                depth = max(depth, self.get_node_depth(node))
+            if self._count_assumption_as_depth:
+                for node in self.assump_nodes:
+                    # + 1 for "Let's assum that ..."
+                    depth = max(depth, self.get_node_depth(node) + 1)
+            return depth
 
     def get_node_depth(self, node: ProofNode) -> int:
         """ The depth of a node in a binary tree is the total number of edges from the root node to the target node.
@@ -301,8 +313,15 @@ class ProofTree:
 
     @property
     def steps(self) -> int:
-        return len([node for node in self._nodes
-                    if node.argument is not None])
+        if len(self.leaf_nodes) == 0:
+            return 0
+        else:
+            steps = len([node for node in self._nodes
+                         if node.argument is not None])
+            if self._count_assumption_as_step:
+                for node in self.assump_nodes:
+                    steps += 1
+            return steps
 
     @property
     def intermediate_constants(self) -> Iterable[Formula]:

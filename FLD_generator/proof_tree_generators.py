@@ -375,7 +375,6 @@ class ProofTreeGenerator:
         def is_or_argument(argument: Argument) -> bool:
             return any(is_or_formula(formula) for formula in argument.all_formulas)
 
-
         def is_knowledge_argument(argument: Argument) -> bool:
             return any(knowledge_bank.is_formula_accepatable(formula)
                        for formula in argument.premises
@@ -406,14 +405,15 @@ class ProofTreeGenerator:
         return _arguments, _argument_weights_with_factor
 
     def generate_tree(self,
-                      depth: int,
-                      branch_extension_steps: int,
+                      generate_stem_steps: int,
+                      extend_branches_steps: int,
                       get_all_trial_results=False,
                       **kwargs) -> Union[ProofTree, List[ProofTree]]:
+
         trial_result_proof_trees = _generate_tree_with_timeout_retry(
             self.arguments,
-            depth,
-            branch_extension_steps,
+            generate_stem_steps,
+            extend_branches_steps,
             argument_weights=self.argument_weights,
             elim_dneg=self.elim_dneg,
             disallow_contradiction_as_hypothesis=self.disallow_contradiction_as_hypothesis,
@@ -427,10 +427,10 @@ class ProofTreeGenerator:
             else:
                 return _pick_largest_tree(trial_result_proof_trees)
 
-    def generate_stem(self, depth: int, get_all_trial_results=False, **kwargs) -> Union[ProofTree, List[ProofTree]]:
+    def generate_stem(self, num_steps: int, get_all_trial_results=False, **kwargs) -> Union[ProofTree, List[ProofTree]]:
         trial_result_proof_trees = _generate_stem_with_timeout_retry(
             self.arguments,
-            depth,
+            num_steps,
             argument_weights=self.argument_weights,
             elim_dneg=self.elim_dneg,
             disallow_contradiction_as_hypothesis=self.disallow_contradiction_as_hypothesis,
@@ -446,13 +446,13 @@ class ProofTreeGenerator:
 
     def extend_branches(self,
                         proof_tree: ProofTree,
-                        branch_extension_steps: int,
+                        num_steps: int,
                         get_all_trial_results=False,
                         **kwargs) -> Union[Tuple[ProofTree, int], List[Tuple[ProofTree, int]]]:
         trial_result_proof_trees = _extend_branches_with_timeout_retry(
             proof_tree,
             self.arguments,
-            branch_extension_steps,
+            num_steps,
             argument_weights=self.argument_weights,
             elim_dneg=self.elim_dneg,
             **kwargs,
@@ -469,21 +469,19 @@ class ProofTreeGenerator:
 
 
 def _generate_tree_with_timeout_retry(arguments: Union[List[Argument], Tuple[Argument, ...]],
-                                      depth: int,
-                                      branch_extension_steps: int,
+                                      generate_stem_steps: int,
+                                      extend_branches_steps: int,
                                       max_retry=_MAX_RETRY_DEFAULT,
-                                      # timeout_per_trial=99999,
-                                      # timeout_per_trial: Optional[int] = 10,  # 5 + 5
                                       timeout_per_trial: Optional[Union[float, int]] = None,
                                       **kwargs) -> List[ProofTree]:
-    timeout_per_trial = timeout_per_trial or depth * _DEPTH_PER_SEC + branch_extension_steps * _EXTENSION_PER_SEC
+    timeout_per_trial = timeout_per_trial or generate_stem_steps * _DEPTH_PER_SEC + extend_branches_steps * _EXTENSION_PER_SEC
     try:
         trial_result_proof_trees = run_with_timeout_retry(
             _generate_tree,
-            func_args = [arguments, depth, branch_extension_steps],
+            func_args = [arguments, generate_stem_steps, extend_branches_steps],
             func_kwargs=kwargs,
 
-            should_retry_func=lambda proof_tree: proof_tree.depth < depth,
+            should_retry_func=lambda proof_tree: proof_tree.depth < generate_stem_steps,
             should_retry_exception=ProofTreeGenerationFailure,
 
             max_retry=max_retry,
@@ -499,8 +497,11 @@ def _generate_tree_with_timeout_retry(arguments: Union[List[Argument], Tuple[Arg
 
 
 def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
-                   depth: int,
-                   branch_extension_steps: int,
+                   generate_stem_steps: int,
+                   extend_branches_steps: int,
+                   steps_limit: Optional[int] = None,
+                   depth_limit: Optional[int] = None,
+                   increase_depth_by_extend_branches=False,
                    argument_weights: Optional[Dict[Argument, float]] = None,
                    reference_argument_weight_in_depth_1: Optional[float] = None,
                    elim_dneg=False,
@@ -515,7 +516,9 @@ def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
 
     proof_tree = _generate_stem(
         arguments,
-        depth,
+        generate_stem_steps,
+        steps_limit=steps_limit,
+        depth_limit=depth_limit,
         argument_weights=argument_weights,
         reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
         elim_dneg=elim_dneg,
@@ -525,18 +528,19 @@ def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
         best_effort=best_effort,
 
         # since the branch extension may recover the illegal intermediate constants.
-        force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants if depth == 1 else False,
-        allow_illegal_intermediate_constants = allow_illegal_intermediate_constants if depth == 1 else False,
+        force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants if generate_stem_steps == 1 else False,
+        allow_illegal_intermediate_constants = allow_illegal_intermediate_constants if generate_stem_steps == 1 else False,
     )
 
-    if depth > 1:
+    if generate_stem_steps > 1:
         try:
             trial_results = _extend_branches_with_timeout_retry(
                 proof_tree,
                 arguments,
-                branch_extension_steps,
+                extend_branches_steps,
                 argument_weights=argument_weights,
-                depth_limit=proof_tree.depth,
+                steps_limit=steps_limit,
+                depth_limit=depth_limit if increase_depth_by_extend_branches else proof_tree.depth,
                 elim_dneg=elim_dneg,
                 ng_formulas=ng_formulas,
                 allow_inconsistency=allow_inconsistency,
@@ -567,6 +571,8 @@ def _generate_tree(arguments: Union[List[Argument], Tuple[Argument, ...]],
                 proof_tree,
                 arguments,
                 argument_weights=argument_weights,
+                steps_limit=steps_limit,
+                depth_limit=depth_limit,
                 allow_inconsistency=allow_inconsistency,
                 allow_smaller_proofs=allow_smaller_proofs,
                 elim_dneg=elim_dneg,
@@ -580,7 +586,7 @@ def _pick_largest_tree(proof_trees: List[ProofTree]) -> ProofTree:
 
 
 def _generate_stem_with_timeout_retry(arguments: Union[List[Argument], Tuple[Argument, ...]],
-                                      depth: int,
+                                      num_steps: int,
                                       *args,
                                       max_retry=_MAX_RETRY_DEFAULT,
                                       # timeout_per_trial=99999,
@@ -588,16 +594,16 @@ def _generate_stem_with_timeout_retry(arguments: Union[List[Argument], Tuple[Arg
                                       timeout_per_trial: Optional[Union[float, int]] = None,
                                       best_effort=False,
                                       **kwargs) -> List[ProofTree]:
-    timeout_per_trial = timeout_per_trial or _DEPTH_PER_SEC * depth
+    timeout_per_trial = timeout_per_trial or _DEPTH_PER_SEC * num_steps
     try:
         _kwargs = kwargs.copy()
         _kwargs['best_effort'] = best_effort
         return run_with_timeout_retry(
             _generate_stem,
-            func_args=[arguments, depth] + list(args),
+            func_args=[arguments, num_steps] + list(args),
             func_kwargs=_kwargs,
 
-            should_retry_func=lambda proof_tree: proof_tree.depth < depth,
+            should_retry_func=lambda proof_tree: proof_tree.depth < num_steps,
             should_retry_exception=GenerateStemFailure,
 
             max_retry=max_retry,
@@ -647,7 +653,9 @@ def _extend_branches_with_timeout_retry(proof_tree: ProofTree,
 
 @profile
 def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
-                   depth: int,
+                   num_steps: int,
+                   steps_limit: Optional[int] = None,
+                   depth_limit: Optional[int] = None,
                    argument_weights: Optional[Dict[Argument, float]] = None,
                    reference_argument_weight_in_depth_1: Optional[float] = None,
                    elim_dneg=False,
@@ -667,8 +675,17 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
     (iv) Add the premises of the argument chosen in (iii)
     (v) Repeat (iii) - (iv).
     """
-    if depth < 1:
-        raise ValueError('depth must be >= 2')
+    if num_steps < 1:
+        raise ValueError('num_steps must be >= 1')
+    if steps_limit is not None:
+        if steps_limit < 1:
+            raise ValueError('steps_limit must be >= 1')
+        num_steps = min(num_steps, steps_limit)
+    if depth_limit is not None:
+        if depth_limit < 1:
+            raise ValueError('depth_limit must be >= 1')
+        num_steps = min(num_steps, depth_limit)
+    
 
     def _my_validate_illegal_intermediate_constants(proof_tree: ProofTree) -> ProofTree:
         return _validate_illegal_intermediate_constants(
@@ -728,7 +745,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
         for arg in _shuffle_arguments(arguments, weights=argument_weights):
             yield arg
 
-    if depth == 1:
+    if num_steps == 1:
         if reference_argument_weight_in_depth_1 is not None:
             def argument_sampling():
                 iter_reference = argument_sampling_reference()
@@ -753,6 +770,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
     else:
         argument_sampling = argument_sampling_non_reference
 
+    step = 0
     for cur_arg in argument_sampling():  # try all the argument as starting point
         if len(cur_arg.assumptions) > 0:
             # the node with assumptions can not be used as the first node.
@@ -771,9 +789,19 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
         while True:
             log_traces = []
             rejection_stats = defaultdict(int)
-            # delayed_logger = DelayedLogger(logger, delayed=_LOG_ONLY_WHEN_FAILED)
-
-            if proof_tree.depth >= depth:
+            if depth_limit is not None and proof_tree.depth >= depth_limit:
+                if proof_tree.depth == depth_limit:
+                    is_tree_done = True
+                    break
+                else:
+                    raise GenerateStemFailure('Failed because the depth jumped over depth_limit, possibly due to that assumption node is added to leaf, which incremented two depth at a time. This is as intended, and just retry building tree.')
+            if steps_limit is not None and proof_tree.steps >= steps_limit:
+                if proof_tree.steps == steps_limit:
+                    is_tree_done = True
+                    break
+                else:
+                    raise GenerateStemFailure('Failed because the steps jumped over steps_limit, possibly due to that assumption node is added to leaf, which incremented two steps at a time. This is as intended, and just retry building tree.')
+            if step >= num_steps:
                 is_tree_done = True
                 break
 
@@ -960,9 +988,9 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                        next_arg_pulled,
                        proof_tree)
 
-
                 cur_conclusion_node = next_conclusion_node
                 cur_premise_nodes = next_premise_nodes
+                step += 1
 
             else:
                 rejection_stats_msg = '\n'.join([f'    {line}' for line in pformat(dict(rejection_stats)).split('\n')])
@@ -982,7 +1010,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                 if best_effort:
                     is_tree_done = True
                     logger.info(msg)
-                    logger.info('_generate_stem() could not complete the proof tree with the specified depth. return smaller tree.')
+                    logger.info('_generate_stem() could not complete the proof tree with the specified steps. return smaller tree.')
                     break
                 else:
                     raise GenerateStemFailure(msg)
@@ -1053,8 +1081,8 @@ def _extend_branches(proof_tree: ProofTree,
                      num_steps: int,
                      start_leaf_nodes: Optional[List[ProofNode]] = None,
                      argument_weights: Optional[Dict[Argument, float]] = None,
-                     depth_limit: Optional[int] = None,
                      steps_limit: Optional[int] = None,
+                     depth_limit: Optional[int] = None,
                      elim_dneg=False,
                      allow_reference_arguments_when_depth_1=True,
                      ng_formulas: Optional[List[Formula]] = None,
@@ -1125,12 +1153,11 @@ def _extend_branches(proof_tree: ProofTree,
         else:
             _target_leaf_nodes = current_leaf_nodes
 
+        if steps_limit is not None and proof_tree.steps >= steps_limit - 1:
+            _target_leaf_nodes = []
         if depth_limit is not None:
             _target_leaf_nodes = [node for node in _target_leaf_nodes
                                   if proof_tree.get_node_depth(node) < depth_limit]
-
-        # if steps_limit is not None and
-        #     proof
 
         if len(_target_leaf_nodes) == 0:
             logger.warning(make_pretty_msg(title='extend_branches()', status='failure', boundary_level=0,
@@ -1178,7 +1205,8 @@ def _extend_branches(proof_tree: ProofTree,
                     # is_leaf_node_done = True
                     break
 
-                if is_reference_argument(next_arg) and (depth_limit != 1 or not allow_reference_arguments_when_depth_1):
+                if is_reference_argument(next_arg)\
+                        and (steps_limit != 1 or depth_limit != 1 or not allow_reference_arguments_when_depth_1):
                     continue
 
                 log_traces.append(f'   |   | next_arg {next_arg}')
@@ -1451,6 +1479,8 @@ def _shuffle_arguments(arguments: Union[Tuple[Argument, ...], List[Argument]],
 @profile
 def _fix_illegal_intermediate_constants(
     proof_tree: ProofTree,
+    steps_limit: Optional[int] = None,
+    depth_limit: Optional[int] = None,
     arguments: Optional[Union[Tuple[Argument, ...], List[Argument]]] = None,
     argument_weights: Optional[Dict[Argument, float]] = None,
     argument_weight_bias_factor=100,
@@ -1489,6 +1519,7 @@ def _fix_illegal_intermediate_constants(
     logger.info(_make_pretty_msg(status='start', boundary_level=3))
 
     original_depth = proof_tree.depth
+    original_steps = proof_tree.steps
 
     def find_one_illegal_constant(_proof_tree: ProofTree) -> Tuple[Optional[Formula],
                                                                    Optional[ProofNode]]:
@@ -1542,7 +1573,8 @@ def _fix_illegal_intermediate_constants(
                         num_steps,
 
                         argument_weights=argument_weights_biased,
-                        depth_limit=None,
+                        steps_limit=steps_limit,
+                        depth_limit=depth_limit,
                         start_leaf_nodes=[illegal_node],
                         elim_dneg=elim_dneg,
 
@@ -1572,7 +1604,6 @@ def _fix_illegal_intermediate_constants(
                     )
 
             elif illegal_node is proof_tree.root_node:
-                # TODO: implement here using _generate_stem() with universal_intro arguments
                 raise FixIllegalIntermediateConstantImpossible(_make_pretty_msg_for_fix(msg='because the fix for a root node is not implement yet'))
             else:
                 raise Exception()
@@ -1595,6 +1626,8 @@ def _fix_illegal_intermediate_constants(
 
     if proof_tree_fixed.depth != original_depth:
         logger.warning(_make_pretty_msg(msg=f'altered the depth of the tree from {original_depth} -> {proof_tree_fixed.depth}'))
+    if proof_tree_fixed.steps != original_steps:
+        logger.warning(_make_pretty_msg(msg=f'altered the steps of the tree from {original_steps} -> {proof_tree_fixed.steps}'))
 
     logger.info(_make_pretty_msg(status='success', boundary_level=3))
 
@@ -1609,6 +1642,8 @@ def _validate_illegal_intermediate_constants(
     proof_tree: ProofTree,
     arguments: Union[Tuple[Argument, ...], List[Argument]],
     argument_weights: Optional[Dict[Argument, float]] = None,
+    steps_limit: Optional[int] = None,
+    depth_limit: Optional[int] = None,
     allow_inconsistency=False,
     allow_smaller_proofs=False,
     elim_dneg=False
@@ -1620,6 +1655,8 @@ def _validate_illegal_intermediate_constants(
             try:
                 proof_tree = _fix_illegal_intermediate_constants(
                     proof_tree,
+                    steps_limit=steps_limit,
+                    depth_limit=depth_limit,
                     arguments=arguments,
                     argument_weights=argument_weights,
                     allow_inconsistency=allow_inconsistency,

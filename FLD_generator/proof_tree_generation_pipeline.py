@@ -73,8 +73,11 @@ class ProofTreeGenerationPipeline:
 
     @profile
     def _reusable_generate(self,
-                           depth: int,
-                           branch_extension_steps: int,
+                           generate_stem_steps: int,
+                           extend_branches_steps: int,
+                           steps_limit: Optional[int] = None,
+                           depth_limit: Optional[int] = None,
+                           increase_depth_by_extend_branches=False,
                            allow_inconsistency=False,
                            allow_smaller_proofs=False,
                            reference_argument_weight_in_depth_1: Optional[float] = None,
@@ -83,7 +86,7 @@ class ProofTreeGenerationPipeline:
         def _get_cache_key(_depth: int) -> Tuple:
             return (_depth, allow_inconsistency, allow_smaller_proofs, reference_argument_weight_in_depth_1, force_fix_illegal_intermediate_constants)
 
-        reusable_proof_trees = self._reusable_proof_trees[_get_cache_key(depth)]
+        reusable_proof_trees = self._reusable_proof_trees[_get_cache_key(generate_stem_steps)]
         if len(reusable_proof_trees) > 0:
             idx = random.randint(0, len(reusable_proof_trees) - 1)
             reusable_proof_tree = reusable_proof_trees[idx]
@@ -91,8 +94,11 @@ class ProofTreeGenerationPipeline:
             return reusable_proof_tree
 
         trial_proof_trees = self.generator.generate_tree(
-            depth,
-            branch_extension_steps,
+            generate_stem_steps,
+            extend_branches_steps,
+            steps_limit=steps_limit,
+            depth_limit=depth_limit,
+            increase_depth_by_extend_branches=increase_depth_by_extend_branches,
             reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
             allow_inconsistency=allow_inconsistency,
             allow_smaller_proofs=allow_smaller_proofs,
@@ -115,10 +121,13 @@ class ProofTreeGenerationPipeline:
 
     @profile
     def run(self,
-            depth: int,
-            branch_extension_steps: int,
+            generate_stem_steps: int,
+            extend_branches_steps: int,
             num_distractors: int,
             num_translation_distractors: int,
+            steps_limit: Optional[int] = None,
+            depth_limit: Optional[int] = None,
+            increase_depth_by_extend_branches=False,
             allow_inconsistency=False,
             allow_smaller_proofs=False,
             reference_argument_weight_in_depth_1: Optional[float] = None,
@@ -130,16 +139,19 @@ class ProofTreeGenerationPipeline:
         if not self.generator.disallow_contradiction_as_hypothesis:
             raise ValueError('generator.disallow_contradiction_as_hypothesis must be "Ture" since we need the negated hypothesis for ')
 
-        if depth < 1:
+        if generate_stem_steps < 1:
             raise ValueError('depth must be >= 1')
 
         variants = []
         while True:  # HONKOA: what is this while loop for?
             logics =\
                 self._build_logics(
-                    depth,
-                    branch_extension_steps,
+                    generate_stem_steps,
+                    extend_branches_steps,
                     num_distractors,
+                    steps_limit=steps_limit,
+                    depth_limit=depth_limit,
+                    increase_depth_by_extend_branches=increase_depth_by_extend_branches,
                     num_distractor_variants=distractor_variants_per_tree,
                     allow_inconsistency=allow_inconsistency,
                     allow_smaller_proofs=allow_smaller_proofs,
@@ -194,9 +206,12 @@ class ProofTreeGenerationPipeline:
 
     @profile
     def _build_logics(self,
-                      depth: int,
-                      branch_extension_steps: int,
+                      generate_stem_steps: int,
+                      extend_branches_steps: int,
                       num_distractors: int,
+                      steps_limit: Optional[int] = None,
+                      depth_limit: Optional[int] = None,
+                      increase_depth_by_extend_branches=False,
                       num_distractor_variants: int = 1,
                       allow_inconsistency=False,
                       allow_smaller_proofs=False,
@@ -209,8 +224,11 @@ class ProofTreeGenerationPipeline:
         logger.info(self._make_pretty_log('generate proof tree', 'start'))
         try:
             proof_tree = self._reusable_generate(
-                depth,
-                branch_extension_steps,
+                generate_stem_steps,
+                extend_branches_steps,
+                steps_limit=steps_limit,
+                depth_limit=depth_limit,
+                increase_depth_by_extend_branches=increase_depth_by_extend_branches,
                 reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
                 allow_inconsistency=allow_inconsistency,
                 allow_smaller_proofs=allow_smaller_proofs,
@@ -332,8 +350,6 @@ class ProofTreeGenerationPipeline:
                             collapsed_knowledge_idxs.append(idx)
 
             try:
-                # logger.critical('================================ all_unique_formulas =================================')
-                # logger.critical(pformat(all_unique_formulas))
                 named_translations, translator_stats = self.translator.translate(
                     all_unique_formulas,
                     list(proof_tree.intermediate_constants),
@@ -366,8 +382,6 @@ class ProofTreeGenerationPipeline:
                             try:
                                 formula.translation = translation[0].upper() + translation[1:]
                             except IndexError as e:
-                                # logger.critical('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                                # logger.critical('translation: %s', translation)
                                 if translation == "":
                                     logger.warning('translation is "", which is not expected. Should be debugged.'
                                                    'Currently we leave it and is just using other successful samples.')

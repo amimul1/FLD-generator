@@ -575,8 +575,8 @@ class NegativeTreeDistractor(FormulaDistractor):
         max_trial = 1  # max_trial >= 2 is too slow, thus we decided not to try multiple times
         while True:
             # gradually increase the number of extension steps to find the "just in" size tree.
-            branch_extension_steps = size + (n_trial + 1) * 5
-            self._log(logging.INFO, f'trial={n_trial}  branch_extension_steps={branch_extension_steps}')
+            extend_branches_steps = size + (n_trial + 1) * 5
+            self._log(logging.INFO, f'trial={n_trial}  extend_branches_steps={extend_branches_steps}')
 
             if initial_sampling == 'negated_hypothesis':
                 try:
@@ -607,7 +607,7 @@ class NegativeTreeDistractor(FormulaDistractor):
             try:
                 negative_tree, _ = self.generator.extend_branches(
                     negative_tree,
-                    branch_extension_steps,
+                    extend_branches_steps,
                     ng_formulas=[node.formula for node in proof_tree.nodes],
                     max_retry=10,
                     best_effort=True,
@@ -624,7 +624,7 @@ class NegativeTreeDistractor(FormulaDistractor):
             negative_leaf_nodes = [node for node in negative_tree.depth_first_traverse()
                                    if node.is_leaf]
             if n_trial < max_trial and len(negative_leaf_nodes) - 1 < size:
-                self._log(logging.INFO, f'continue to the next trial with increased branch_extension_steps, since number of negatieve leaf formulas - 1 = {len(negative_leaf_nodes) - 1} < size={size}')
+                self._log(logging.INFO, f'continue to the next trial with increased extend_branches_steps, since number of negatieve leaf formulas - 1 = {len(negative_leaf_nodes) - 1} < size={size}')
                 continue
 
             distractor_formulas: List[Formula] = []

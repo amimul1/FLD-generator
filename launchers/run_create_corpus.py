@@ -61,7 +61,7 @@ def main():
 
 
     # =================================================================== LPT ===================================================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
 
 
@@ -69,6 +69,8 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
 
 
+    # =================================================================== JFLD ===================================================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
 
 
 
@@ -76,18 +78,18 @@ def main():
 
 
     dataset_names = [
-        # ---------------------------------- 20230729.case_study_finalize (ICML-official-release-v2) ------------------------------------
+        # ==================================================================== 20230729.case_study_finalize (ICML==official==release==v2) ========================================================================
         # '20230729.case_study_finalize.D3',
         # '20230729.case_study_finalize.D8',
 
-        # ---------------------------------- 20231213.jpn ------------------------------------
+        # ==================================================================== 20231213.jpn ========================================================================
         # '20231213.jpn.D1_wo_dist',
         # '20231213.jpn.D1',
         # '20231213.jpn.D3',
         # '20231213.jpn.D5',
         # '20231213.jpn.D8',
 
-        # ---------------------------------- 20230120.jpn.punipuni ------------------------------------
+        # ==================================================================== 20230120.jpn.punipuni ========================================================================
 
         # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
         # '20230120.jpn.wordnet_repro_w_proposition.D1',
@@ -110,109 +112,116 @@ def main():
         # '20230120.jpn.punipuni.D8',
 
 
-        # ------------------------------- production --------------------------------
+        # ============================================================== production ================================================================
 
-        # '2024-03-29.FLD_v2',
-        # '2024-03-29.FLD_v2.theorems-0.3.fix',
-        # '2024-03-29.FLD_v2.theorems-0.1.fix',
-        # '2024-03-29.FLD_v2.theorems-0.03.fix',
+        # '2024==03==29.FLD_v2',
+        # '2024==03==29.FLD_v2.theorems==0.3.fix',
+        # '2024==03==29.FLD_v2.theorems==0.1.fix',
+        # '2024==03==29.FLD_v2.theorems==0.03.fix',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.03',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.03',
-
-
-        # '2024-03-29.JSAI_best.no_aug',
-        # '2024-03-29.JSAI_best.no_aug.theorems-0.3',
-        # '2024-03-29.JSAI_best.no_aug.theorems-0.1',
-        # '2024-03-29.JSAI_best.no_aug.theorems-0.03',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==v2',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.03',
 
 
+        # '2024==03==29.JSAI_best.no_aug',
+        # '2024==03==29.JSAI_best.no_aug.theorems==0.3',
+        # '2024==03==29.JSAI_best.no_aug.theorems==0.1',
+        # '2024==03==29.JSAI_best.no_aug.theorems==0.03',
 
 
-        # ------------------------------- 2024-05-03.ablation --------------------------------
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100',
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-0',
 
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
+        # ============================================================== 2024==05==03.ablation ================================================================
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.voc==100',
 
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.dstrct==0',
 
-        # ----------------------------------- ./outputs/00.create_corpus/2024-05-08.ref_prob --------------------------
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-5-5',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.2',
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-3',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-5',
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.05',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.2',
-
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.30',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.40',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==5==3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==8==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==2',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==0',
 
 
-        # ------------------------------------- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems --------------------------
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.rule==G_MP',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.rule==G_MP.stps==3',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl_sttng==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl_sttng==1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl==small',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl==small.trnsl==old',
 
 
-        # --------------------------------------- LPT ---------------------------------------
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
+        # ====================================================================== ./outputs/00.create_corpus/2024==05==08.ref_prob ====================================================
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==3==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==1==2',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==3==3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==5==5',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.theorems==0.1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.theorems==0.2',
 
-        # --------------------------------------- transfer ---------------------------------------
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==3==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==1==2',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==3==3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==5==3',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==5==5',
+
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.05',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.2',
+
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.30',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.40',
+
+
+        # ========================================================================== ./outputs/00.create_corpus/2024==05==19.ablation_with_theorems ====================================================
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1',
+
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.voc==100',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.dstrct==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.rule==G_MP',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.stps==3==0',
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.transl_sttng==1',
+
+
+        # ============================================================================== LPT ==============================================================================
+        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.large',
+
+
+        # ============================================================================== transfer ==============================================================================
         # '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
 
 
+        # ============================================================================== 2024-07-02.debug_punipuni ==============================================================================
+        '2024-07-02.debug_punipuni.0',
+        '2024-07-02.debug_punipuni.1',
+        '2024-07-02.debug_punipuni.2',
+        '2024-07-02.debug_punipuni.3',
+        '2024-07-02.debug_punipuni.4',
     ]
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
@@ -263,6 +272,7 @@ def main():
 
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
     min_dataset_size_per_job = 30 * num_workers_per_job
+    # min_dataset_size_per_job = 3 * num_workers_per_job
 
     if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
             num_jobs_for_datasets * num_jobs_per_dataset > 180:
@@ -340,11 +350,11 @@ def make_dataset(dataset_name: str,
             'quantify_implication_premise_conclusion_at_once',
             'quantify_all_at_once',
 
-            'depth_range',
-            'depth_distrib',
+            'generate_stem_steps_range',
+            'generate_stem_steps_distrib',
             'distractor_variants_per_tree',
             'translation_variants_per_logic',
-            'branch_extensions_range',
+            'extend_branches_steps_range',
 
             'distractor',
             # 'distractor_factor',
@@ -416,9 +426,9 @@ def make_dataset(dataset_name: str,
                 job_output_path = job_output_dir / f'{split}.jsonl'
                 job_log_path = job_output_dir / 'log.txt'
 
-                # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
                 # if not (1500 <= i_job <= 2250):
-                if not (2251 <= i_job <= 3000):
+                # if not (2251 <= i_job <= 3000):
                     logger.info('skip %s because', job_output_path)
                     continue
 
@@ -440,9 +450,12 @@ def make_dataset(dataset_name: str,
                     f'{job_output_path}',
                     str(int(size_per_job)),
 
-                    f'--depth-range \'{json.dumps(job_settings["depth_range"])}\'',
-                    maybe_option('--depth-distrib', job_settings.get("depth_distrib", None)),
-                    f'--branch-extensions-range \'{json.dumps(job_settings["branch_extensions_range"])}\'',
+                    f'--generate-stem-steps-range \'{json.dumps(job_settings["generate_stem_steps_range"])}\'',
+                    maybe_option('--generate-stem-steps-distrib', job_settings.get("generate_stem_steps_distrib", None)),
+                    f'--extend-branches-steps-range \'{json.dumps(job_settings["extend_branches_steps_range"])}\'',
+                    maybe_option('--steps-limit', job_settings.get("steps_limit", None)),
+                    maybe_option('--depth-limit', job_settings.get("depth_limit", None)),
+                    '--increase-depth-by-extend-branches' if job_settings.get('increase_depth_by_extend_branches', False) else '',
 
                     _make_multiple_value_option('--argument-config', job_settings['argument_configs']),
                     f'--complex-formula-arguments-weight {job_settings["complex_formula_arguments_weight"]}',

@@ -29,56 +29,66 @@ from logger_setup import setup as setup_logger
 logger = logging.getLogger(__name__)
 
 
-def load_dataset(argument_config: List[str],
-                 translation_lang: str,
-                 translation_config: List[str],
-                 use_fixed_translation: bool,
-                 reused_object_nouns_max_factor: float,
-                 limit_vocab_size_per_type: Optional[int],
-                 translation_volume_to_weight: str,
-                 translation_default_weight_factor_type: str,
-                 translation_adj_verb_noun_ratio: str,
-                 translation_no_transitive_object: bool,
-                 translation_vocab: str,
-                 complex_formula_arguments_weight: float,
-                 quantifier_axiom_arguments_weight: float,
-                 quantifier_axioms: Optional[List[str]],
-                 quantification_degree: str,
-                 propositional_arguments_factor: float,
-                 theorem_arguments_factor: float,
-                 knowledge_argument_factor: float,
-                 keep_dneg: bool,
-                 distractor: str,
-                 distractors_range: Tuple[int, int],
-                 sample_distractor_prototype_formulas_from_all_possible_formulas: bool,
-                 disallow_simplified_tree_formulas_as_distractor_prototype: bool,
-                 disallow_hard_negative_distractors: bool,
-                 # negative_tree_negated_hypothesis_ratio: float,
-                 disallow_subj_obj_swapped_distractor: bool,
-                 translation_distractor: str,
-                 fallback_from_formula_to_translation_distractor: bool,
-                 translation_distractors_range: Tuple[int, int],
-                 proof_stances: List[str],
-                 world_assump: str,
-                 unknown_ratio: float,
-                 reference_tree_prob: Optional[float],
-                 sample_all_stances_per_logic: bool,
-                 context_shuffles_per_instance: int,
-                 use_collapsed_translation_nodes_for_unknown_tree: bool,
-                 swap_ng_words: Optional[List[str]],
-                 depth_range: Tuple[int, int],
-                 depth_distrib: str,
-                 force_fix_illegal_intermediate_constants: bool,
-                 branch_extensions_range: Tuple[int, int],
-                 distractor_variants_per_tree: int,
-                 translation_variants_per_logic: int,
-                 allow_smaller_proofs: bool,
-                 knowledge_range: float,
-                 collapsed_knowledge_range: float,
-                 knowledge_no_shuffle: bool,
-                 atomic_filepath: str,
-                 concept_net_100k_filepath: str,
-                 dbpedia_filepath: str):
+def load_dataset(
+    argument_config: List[str],
+    translation_lang: str,
+    translation_config: List[str],
+    use_fixed_translation: bool,
+    reused_object_nouns_max_factor: float,
+    limit_vocab_size_per_type: Optional[int],
+    translation_volume_to_weight: str,
+    translation_default_weight_factor_type: str,
+    translation_adj_verb_noun_ratio: str,
+    translation_no_transitive_object: bool,
+    translation_vocab: str,
+    complex_formula_arguments_weight: float,
+    quantifier_axiom_arguments_weight: float,
+    quantifier_axioms: Optional[List[str]],
+    quantification_degree: str,
+    propositional_arguments_factor: float,
+    theorem_arguments_factor: float,
+    knowledge_argument_factor: float,
+    keep_dneg: bool,
+    distractor: str,
+    distractors_range: Tuple[int, int],
+    sample_distractor_prototype_formulas_from_all_possible_formulas: bool,
+    disallow_simplified_tree_formulas_as_distractor_prototype: bool,
+    disallow_hard_negative_distractors: bool,
+    # negative_tree_negated_hypothesis_ratio: float,
+    disallow_subj_obj_swapped_distractor: bool,
+    translation_distractor: str,
+    fallback_from_formula_to_translation_distractor: bool,
+    translation_distractors_range: Tuple[int, int],
+    proof_stances: List[str],
+    world_assump: str,
+    unknown_ratio: float,
+    reference_tree_prob: Optional[float],
+    sample_all_stances_per_logic: bool,
+    context_shuffles_per_instance: int,
+    use_collapsed_translation_nodes_for_unknown_tree: bool,
+    swap_ng_words: Optional[List[str]],
+
+    generate_stem_steps_range: Tuple[int, int],
+    generate_stem_steps_distrib: str,
+
+    extend_branches_steps_range: Tuple[int, int],
+
+    steps_limit: Optional[int],
+    depth_limit: Optional[int],
+    increase_depth_by_extend_branches: bool,
+
+    force_fix_illegal_intermediate_constants: bool,
+    distractor_variants_per_tree: int,
+    translation_variants_per_logic: int,
+    allow_smaller_proofs: bool,
+    knowledge_range: float,
+    collapsed_knowledge_range: float,
+    knowledge_no_shuffle: bool,
+    atomic_filepath: str,
+    concept_net_100k_filepath: str,
+    dbpedia_filepath: str,
+):
+
     knowledge_banks = []
     if atomic_filepath is not None:
         knowledge_banks.append(
@@ -182,41 +192,51 @@ def load_dataset(argument_config: List[str],
         collapsed_knowledge_range=collapsed_knowledge_range,
     )
 
-    if depth_distrib == 'flat':
-        depth_weights = None
+    if generate_stem_steps_distrib == 'flat':
+        generate_stem_steps_weights = None
         reference_argument_weight_in_depth_1 = None
-    elif depth_distrib == 'flat.no_reference':
-        depth_weights = None
+    elif generate_stem_steps_distrib == 'flat.no_reference':
+        generate_stem_steps_weights = None
         reference_argument_weight_in_depth_1 = 0.0
-    elif depth_distrib == 'ruletaker.ours.20221202':
-        if set(depth_range) != (1, 3):
-            raise ValueError(f'depths {depth_range} is not consistent with ruletaker.ours.20221202.')
+    elif generate_stem_steps_distrib == 'ruletaker.ours.20221202':
+        if set(generate_stem_steps_range) != (1, 3):
+            raise ValueError(f'depths {generate_stem_steps_range} is not consistent with ruletaker.ours.20221202.')
         # see "depth distribution" of experiments.md
-        depth_weights = [0.40, 0.15, 0.12]
+        generate_stem_steps_weights = [0.40, 0.15, 0.12]
         reference_argument_weight_in_depth_1 = 0.23 / (0.23 + 0.17)
     else:
-        raise ValueError(f'Unknown depth distrib {depth_distrib}')
+        raise ValueError(f'Unknown depth distrib {generate_stem_steps_distrib}')
 
-    return NLProofSDataset(pipeline,
-                           depth_range,
-                           branch_extensions_range,
-                           proof_stances=proof_stances,
-                           world_assump=world_assump,
-                           depth_weights=depth_weights,
-                           reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
-                           force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants,
-                           distractors_range=distractors_range,
-                           translation_distractors_range=translation_distractors_range,
-                           unknown_ratio=unknown_ratio,
-                           reference_tree_prob=reference_tree_prob,
-                           sample_all_stances_per_logic=sample_all_stances_per_logic,
-                           context_shuffles_per_instance=context_shuffles_per_instance,
-                           use_collapsed_translation_nodes_for_unknown_tree=use_collapsed_translation_nodes_for_unknown_tree,
-                           swap_ng_words=swap_ng_words,
-                           word_bank = word_bank if use_collapsed_translation_nodes_for_unknown_tree else None,
-                           distractor_variants_per_tree=distractor_variants_per_tree,
-                           translation_variants_per_logic=translation_variants_per_logic,
-                           allow_smaller_proofs=allow_smaller_proofs)
+    return NLProofSDataset(
+        pipeline,
+
+        generate_stem_steps_range=generate_stem_steps_range,
+        generate_stem_steps_weights=generate_stem_steps_weights,
+
+        extend_branches_steps_range=extend_branches_steps_range,
+        extend_branches_steps_weights=None,
+
+        steps_limit=steps_limit,
+        depth_limit=depth_limit,
+        increase_depth_by_extend_branches=increase_depth_by_extend_branches,
+
+        proof_stances=proof_stances,
+        world_assump=world_assump,
+        reference_argument_weight_in_depth_1=reference_argument_weight_in_depth_1,
+        force_fix_illegal_intermediate_constants=force_fix_illegal_intermediate_constants,
+        distractors_range=distractors_range,
+        translation_distractors_range=translation_distractors_range,
+        unknown_ratio=unknown_ratio,
+        reference_tree_prob=reference_tree_prob,
+        sample_all_stances_per_logic=sample_all_stances_per_logic,
+        context_shuffles_per_instance=context_shuffles_per_instance,
+        use_collapsed_translation_nodes_for_unknown_tree=use_collapsed_translation_nodes_for_unknown_tree,
+        swap_ng_words=swap_ng_words,
+        word_bank = word_bank if use_collapsed_translation_nodes_for_unknown_tree else None,
+        distractor_variants_per_tree=distractor_variants_per_tree,
+        translation_variants_per_logic=translation_variants_per_logic,
+        allow_smaller_proofs=allow_smaller_proofs,
+    )
 
 
 def generate_instances(size: int, *args):
@@ -256,9 +276,12 @@ def generate_instances(size: int, *args):
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
-@click.option('--depth-range', type=str, default=json.dumps([1, 5]))
-@click.option('--depth-distrib', type=click.Choice(['flat', 'flat.no_reference', 'ruletaker.ours.20221202']))
-@click.option('--branch-extensions-range', type=str, default=json.dumps([5, 5]))
+@click.option('--generate-stem-steps-range', type=str, default=json.dumps([1, 5]))
+@click.option('--generate-stem-steps-distrib', default='flat', type=click.Choice(['flat', 'flat.no_reference', 'ruletaker.ours.20221202']))
+@click.option('--extend-branches-steps-range', type=str, default=json.dumps([5, 5]))
+@click.option('--steps-limit', type=int, default=None)
+@click.option('--depth-limit', type=int, default=None)
+@click.option('--increase-depth-by-extend-branches', is_flag=True)
 #
 @click.option('--force-fix-illegal-intermediate-constants', is_flag=True)
 @click.option('--keep-dneg', is_flag=True, default=False)
@@ -329,10 +352,15 @@ def main(output_path,
          translation_no_transitive_object,
          translation_vocab,
          size,
-         depth_range,
-         depth_distrib,
+
+         generate_stem_steps_range,
+         generate_stem_steps_distrib,
+         extend_branches_steps_range,
+         steps_limit,
+         depth_limit,
+         increase_depth_by_extend_branches,
+
          force_fix_illegal_intermediate_constants,
-         branch_extensions_range,
          complex_formula_arguments_weight,
          quantifier_axiom_arguments_weight,
          quantifier_axiom,
@@ -374,8 +402,8 @@ def main(output_path,
          seed):
     setup_logger(do_stderr=True, level=logging.INFO)
     fix_seed(seed)
-    depth_range = tuple(json.loads(depth_range))
-    branch_extensions_range = json.loads(branch_extensions_range)
+    generate_stem_steps_range = tuple(json.loads(generate_stem_steps_range))
+    extend_branches_steps_range = json.loads(extend_branches_steps_range)
     distractors_range = json.loads(distractors_range)
     translation_distractors_range = json.loads(translation_distractors_range)
     knowledge_range = json.loads(knowledge_range)
@@ -448,10 +476,17 @@ def main(output_path,
                         context_shuffles_per_instance,
                         use_collapsed_translation_nodes_for_unknown_tree,
                         swap_ng_words,
-                        depth_range,
-                        depth_distrib,
+
+                        generate_stem_steps_range,
+                        generate_stem_steps_distrib,
+
+                        extend_branches_steps_range,
+
+                        steps_limit,
+                        depth_limit,
+                        increase_depth_by_extend_branches,
+
                         force_fix_illegal_intermediate_constants,
-                        branch_extensions_range,
                         distractor_variants_per_tree,
                         translation_variants_per_logic,
                         allow_smaller_proofs,
@@ -488,7 +523,6 @@ def main(output_path,
                         # logger.critical(pformat(gathered_stats))
                         gathered_stats[name] += count
                         num_jobs[name] += 1
-
 
             for name, count in gathered_stats.items():
                 if not name.startswith('cum.'):
