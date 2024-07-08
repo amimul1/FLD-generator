@@ -61,7 +61,7 @@ def main():
 
 
     # =================================================================== LPT ===================================================================
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
 
 
@@ -71,25 +71,25 @@ def main():
 
     # =================================================================== JFLD ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
 
 
 
 
     dataset_names = [
-        # ==================================================================== 20230729.case_study_finalize (ICML==official==release==v2) ========================================================================
+        # ============================================- 20230729.case_study_finalize (ICML-official-release-v2) ================================================
         # '20230729.case_study_finalize.D3',
         # '20230729.case_study_finalize.D8',
 
-        # ==================================================================== 20231213.jpn ========================================================================
+        # ============================================- 20231213.jpn ================================================
         # '20231213.jpn.D1_wo_dist',
         # '20231213.jpn.D1',
         # '20231213.jpn.D3',
         # '20231213.jpn.D5',
         # '20231213.jpn.D8',
 
-        # ==================================================================== 20230120.jpn.punipuni ========================================================================
+        # ============================================- 20230120.jpn.punipuni ================================================
 
         # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
         # '20230120.jpn.wordnet_repro_w_proposition.D1',
@@ -112,94 +112,95 @@ def main():
         # '20230120.jpn.punipuni.D8',
 
 
-        # ============================================================== production ================================================================
+        # ========================================- production ==========================================-
 
-        # '2024==03==29.FLD_v2',
-        # '2024==03==29.FLD_v2.theorems==0.3.fix',
-        # '2024==03==29.FLD_v2.theorems==0.1.fix',
-        # '2024==03==29.FLD_v2.theorems==0.03.fix',
+        # '2024-03-29.FLD_v2',
+        # '2024-03-29.FLD_v2.theorems-0.3.fix',
+        # '2024-03-29.FLD_v2.theorems-0.1.fix',
+        # '2024-03-29.FLD_v2.theorems-0.03.fix',
 
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.theorems==0.03',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
 
-        # '2024==03==29.JSAI_best.no_aug.trnsl==v2',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==v2.theorems==0.03',
-
-
-        # '2024==03==29.JSAI_best.no_aug',
-        # '2024==03==29.JSAI_best.no_aug.theorems==0.3',
-        # '2024==03==29.JSAI_best.no_aug.theorems==0.1',
-        # '2024==03==29.JSAI_best.no_aug.theorems==0.03',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.03',
 
 
+        # '2024-03-29.JSAI_best.no_aug',
+        # '2024-03-29.JSAI_best.no_aug.theorems-0.3',
+        # '2024-03-29.JSAI_best.no_aug.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.theorems-0.03',
 
 
-        # ============================================================== 2024==05==03.ablation ================================================================
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.voc==100',
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.dstrct==0',
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==5==3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==8==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==2',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.stps==1==0',
 
 
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.rule==G_MP',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.rule==G_MP.stps==3',
+        # ========================================- 2024-05-03.ablation ==========================================-
 
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl_sttng==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl_sttng==1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl==small',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.transl==small.trnsl==old',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100',
 
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
 
-        # ====================================================================== ./outputs/00.create_corpus/2024==05==08.ref_prob ====================================================
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==3==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==1==2',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==3==3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.stps==5==5',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.theorems==0.1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.10.theorems==0.2',
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==3==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==1==2',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==3==3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==5==3',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.stps==5==5',
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.05',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.2',
-
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.30',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.40',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-0',
 
 
-        # ========================================================================== ./outputs/00.create_corpus/2024==05==19.ablation_with_theorems ====================================================
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
 
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.voc==100',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.dstrct==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.rule==G_MP',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.stps==3==0',
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.ref_prob=0.20.theorems==0.1.transl_sttng==1',
-
-
-        # ============================================================================== LPT ==============================================================================
-        # '2024==03==29.JSAI_best.no_aug.trnsl==thing.large',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old',
 
 
-        # ============================================================================== transfer ==============================================================================
+        # ==============================================- ./outputs/00.create_corpus/2024-05-08.ref_prob ==================================-
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-5-5',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.2',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-3',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-5',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.05',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.2',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.30',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.40',
+
+
+        # ================================================- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems ==================================-
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
+
+
+        # ==================================================== LPT ====================================================
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
+
+
+        # ==================================================== transfer ====================================================
         # '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
 
 
@@ -213,15 +214,15 @@ def main():
 
 
         # -------------------------------------- 2024-07-08.JFLD ----------------------------------------------
-        '2024-07-08.JFLD.step-1',
-        '2024-07-08.JFLD.step-3',
-        '2024-07-08.JFLD.step-5',
-        '2024-07-08.JFLD.cmpl-0.2.step-1',
-        '2024-07-08.JFLD.cmpl-0.2.step-3',
-        '2024-07-08.JFLD.cmpl-0.2.step-5',
-        '2024-07-08.JFLD.dstrct-10.step-1',
-        '2024-07-08.JFLD.dstrct-10.step-3',
-        '2024-07-08.JFLD.dstrct-10.step-5',
+        # '2024-07-08.JFLD.step-1',
+        # '2024-07-08.JFLD.step-3',
+        # '2024-07-08.JFLD.step-5',
+        # '2024-07-08.JFLD.cmpl-0.2.step-1',
+        # '2024-07-08.JFLD.cmpl-0.2.step-3',
+        # '2024-07-08.JFLD.cmpl-0.2.step-5',
+        # '2024-07-08.JFLD.dstrct-10.step-1',
+        # '2024-07-08.JFLD.dstrct-10.step-3',
+        # '2024-07-08.JFLD.dstrct-10.step-5',
 
     ]
 
@@ -234,16 +235,16 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 300    # for 1M dataset
+    num_jobs_per_dataset = 300    # for 1M dataset
     # num_jobs_per_dataset = 600     # for 2M dataset
     # num_jobs_per_dataset = 900     # for 3M dataset
     # num_jobs_per_dataset = 1500     # for 5M dataset
-    num_jobs_per_dataset = 3000     # for 10M dataset
+    # num_jobs_per_dataset = 3000     # for 10M dataset
 
 
 
