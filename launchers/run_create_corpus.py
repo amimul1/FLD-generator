@@ -70,8 +70,8 @@ def main():
 
 
     # =================================================================== JFLD ===================================================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
-
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
 
 
@@ -204,24 +204,38 @@ def main():
 
 
         # ============================================================================== 2024-07-02.debug_punipuni ==============================================================================
-        '2024-07-02.debug_punipuni.0',
-        '2024-07-02.debug_punipuni.1',
-        '2024-07-02.debug_punipuni.2',
-        '2024-07-02.debug_punipuni.3',
-        '2024-07-02.debug_punipuni.4',
+        # '2024-07-02.debug_punipuni.0',
+        # '2024-07-02.debug_punipuni.1',
+        # '2024-07-02.debug_punipuni.2',
+        # '2024-07-02.debug_punipuni.3',
+        # '2024-07-02.debug_punipuni.4',
+
+
+
+        # -------------------------------------- 2024-07-08.JFLD ----------------------------------------------
+        '2024-07-08.JFLD.step-1',
+        '2024-07-08.JFLD.step-3',
+        '2024-07-08.JFLD.step-5',
+        '2024-07-08.JFLD.cmpl-0.2.step-1',
+        '2024-07-08.JFLD.cmpl-0.2.step-3',
+        '2024-07-08.JFLD.cmpl-0.2.step-5',
+        '2024-07-08.JFLD.dstrct-10.step-1',
+        '2024-07-08.JFLD.dstrct-10.step-3',
+        '2024-07-08.JFLD.dstrct-10.step-5',
+
     ]
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2

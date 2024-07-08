@@ -7718,6 +7718,476 @@ _DATASET_SETTINGS = {
             # 'train': 30000,
         }
     },
+
+
+
+
+
+
+
+
+
+
+    '2024-07-08.JFLD.step-1': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 1),
+        'extend_branches_steps_range': (0, 1),
+        'steps_limit': 1,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+    '2024-07-08.JFLD.step-3': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'extend_branches_steps_range': (0, 3),
+        'steps_limit': 3,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+    '2024-07-08.JFLD.step-5': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 5),
+        'extend_branches_steps_range': (0, 5),
+        'steps_limit': 5,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    '2024-07-08.JFLD.cmpl-0.2.step-1': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 1),
+        'extend_branches_steps_range': (0, 1),
+        'steps_limit': 1,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+
+    '2024-07-08.JFLD.cmpl-0.2.step-3': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'extend_branches_steps_range': (0, 3),
+        'steps_limit': 3,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+    '2024-07-08.JFLD.cmpl-0.2.step-5': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 5),
+        'extend_branches_steps_range': (0, 5),
+        'steps_limit': 5,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+
+
+
+    '2024-07-08.JFLD.dstrct-10.step-1': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 1),
+        'extend_branches_steps_range': (0, 1),
+        'steps_limit': 1,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 10),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+    '2024-07-08.JFLD.dstrct-10.step-3': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'extend_branches_steps_range': (0, 3),
+        'steps_limit': 3,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 10),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
+
+    '2024-07-08.JFLD.dstrct-10.step-5': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+
+        'generate_stem_steps_range': (1, 5),
+        'extend_branches_steps_range': (0, 5),
+        'steps_limit': 5,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 10),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 5000,
+            # 'train': 30000,
+        }
+    },
+
+
 }
 
 
@@ -7918,7 +8388,7 @@ _DATASET_NAME_TO_DEFAULT = {
 
     '20221203.first_exp__arg-RT__frml-smpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': '20221203',
 
-    # ---------------------------------- 20221216 additional experiments ------------------------------------
+    # =================================- 20221216 additional experiments ====================================
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-0__transl-nrrw__tree-3__dataset_size-30000': '20221203',
     '20221203.first_exp__arg-FLNL__frml-smpl__dist-20__transl-nrrw__tree-3__dataset_size-30000': '20221203',
     '20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-5__dataset_size-30000': '20221203',
@@ -7934,25 +8404,25 @@ _DATASET_NAME_TO_DEFAULT = {
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-wide__tree-5__dataset_size-30000.G_MP': '20221203',
     '20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-100000.G_MP': '20221203',
 
-    # ---------------------------------- 20221217.back_to_the_past ------------------------------------
+    # =================================- 20221217.back_to_the_past ====================================
     '20221217.back_to_the_past__arg-FLNL__frml-cmpl__dist-10__transl-wide__tree-10__dataset_size-100000': '20221203',
 
-    # ---------------------------------- 20230529.use_fixed_translation_for_LLM ------------------------------------
+    # =================================- 20230529.use_fixed_translation_for_LLM ====================================
     '20230529.use_fixed_translation_for_LLM.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000': '20221203',
     '20230529.use_fixed_translation_for_LLM.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-8__dataset_size-30000': '20221203',
 
-    # ---------------------------------- 20230615.formula_checkers ------------------------------------
+    # =================================- 20230615.formula_checkers ====================================
     # '20230615.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000': '20221203',
     # '20230615.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': '20221203',
 
-    # ---------------------------------- 20230616.formula_checkers ------------------------------------
+    # =================================- 20230616.formula_checkers ====================================
     '20230616.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': '20221203',
 
-    # ---------------------------------- 20230621.formula_checkers ------------------------------------
+    # =================================- 20230621.formula_checkers ====================================
     '20230621.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems': '20221203',
     '20230621.formula_checkers.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.wo_theorems.wo_translation_dist': '20221203',
 
-    # ---------------------------------- 20230626.many_bugs_fixed ------------------------------------
+    # =================================- 20230626.many_bugs_fixed ====================================
     '20230626.many_bugs_fixed.20221203.first_exp__arg-RT__frml-cmpl__dist-20__transl-nrrw__tree-3__dataset_size-30000.G_MP': '20230626.many_bugs_fixed',
     '20230626.many_bugs_fixed.20221203.first_exp__arg-FLNL__frml-cmpl__dist-20__transl-wide__tree-3__dataset_size-30000.plus_quantifiers': '20230626.many_bugs_fixed',
 
@@ -7968,7 +8438,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230626.many_bugs_fixed.D8.hard': '20230626.many_bugs_fixed',
     '20230626.many_bugs_fixed.D8.hard.dist-trees': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230701.finalize ------------------------------------
+    # =================================- 20230701.finalize ====================================
     '20230701.D3.default': '20230626.many_bugs_fixed',
     '20230701.D3.debug': '20230626.many_bugs_fixed',
     '20230701.D3.wo_transl_dist': '20230626.many_bugs_fixed',
@@ -7981,14 +8451,14 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230701.D8.default': '20230626.many_bugs_fixed',
 
 
-    # ---------------------------------- 20230706.finalize ------------------------------------
+    # =================================- 20230706.finalize ====================================
     '20230706.finalize.D3.dist-double': '20230626.many_bugs_fixed', 
     '20230706.finalize.D3.dist-quadruple': '20230626.many_bugs_fixed', 
     '20230706.finalize.D8.dist-double': '20230626.many_bugs_fixed', 
     '20230706.finalize.D8.dist-quadruple': '20230626.many_bugs_fixed', 
 
 
-    # ---------------------------------- 20230707.finalize ------------------------------------
+    # =================================- 20230707.finalize ====================================
     '20230707.finalize.D3.dist-double': '20230626.many_bugs_fixed', 
     '20230707.finalize.D3.dist-triple': '20230626.many_bugs_fixed', 
     '20230707.finalize.D3.dist-quadruple': '20230626.many_bugs_fixed', 
@@ -7997,12 +8467,12 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230707.finalize.D8.dist-triple': '20230626.many_bugs_fixed', 
     '20230707.finalize.D8.dist-quadruple': '20230626.many_bugs_fixed', 
 
-    # ---------------------------------- 20230711.finalize ------------------------------------
+    # =================================- 20230711.finalize ====================================
     '20230711.dist-fallback': '20230626.many_bugs_fixed',
     '20230711.finalize.D3': '20230626.many_bugs_fixed',
     '20230711.finalize.D8': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230718.case_study ------------------------------------
+    # =================================- 20230718.case_study ====================================
     '20230718.case_study.D3.dist-mixture': '20230626.many_bugs_fixed',
     '20230718.case_study.D3.num_dist-wide': '20230626.many_bugs_fixed',
     '20230718.case_study.D3.dist-mixture.num_dist-wide': '20230626.many_bugs_fixed',
@@ -8011,101 +8481,101 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230718.case_study.D3.dist-mixture.num_dist-wide.transl_vol_log10.adj_verb_noun_equal': '20230626.many_bugs_fixed',
     '20230718.case_study.D8.dist-mixture.num_dist-wide': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230729.case_study_finalize ------------------------------------
+    # =================================- 20230729.case_study_finalize ====================================
     '20230729.case_study_finalize.D3': '20230626.many_bugs_fixed',
     '20230729.case_study_finalize.D8': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230826.jpn ------------------------------------
+    # =================================- 20230826.jpn ====================================
     '20230826.jpn.D3': '20230626.many_bugs_fixed',
     '20230826.jpn.D8': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230901.random_transitive_verbs ------------------------------------
+    # =================================- 20230901.random_transitive_verbs ====================================
     '20230901.random_transitive_verbs.D3': '20230626.many_bugs_fixed',
     '20230901.random_transitive_verbs.D8': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230904.jpn ------------------------------------
+    # =================================- 20230904.jpn ====================================
     '20230904.jpn.D1.wo_brnch.wo_dstrct': '20230626.many_bugs_fixed', 
     '20230904.jpn.D1.wo_brnch': '20230626.many_bugs_fixed', 
     '20230904.jpn.D1': '20230626.many_bugs_fixed', 
     '20230904.jpn.D3': '20230626.many_bugs_fixed', 
 
-    # ---------------------------------- 20230912.jpn ------------------------------------
+    # =================================- 20230912.jpn ====================================
     '20230912.jpn.D3': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230914.jpn ------------------------------------
+    # =================================- 20230914.jpn ====================================
     '20230914.jpn.D3': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20230916.jpn ------------------------------------
+    # =================================- 20230916.jpn ====================================
     '20230916.jpn.D1_wo_dist': '20230626.many_bugs_fixed',
     '20230916.jpn.D1': '20230626.many_bugs_fixed',
     '20230916.jpn.D3': '20230626.many_bugs_fixed',
     '20230916.jpn.D5': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20231010.D3.large_vocab ------------------------------------
+    # =================================- 20231010.D3.large_vocab ====================================
     '20231010.D3.large_vocab': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20231012.D3.large_vocab ------------------------------------
+    # =================================- 20231012.D3.large_vocab ====================================
     '20231012.D3.large_vocab': '20230626.many_bugs_fixed',
     '20231012.D3.large_vocab.smpl_stncs': '20230626.many_bugs_fixed',
     '20231012.D3.large_vocab.smpl_stncs.cntx_shffls-3': '20230626.many_bugs_fixed',
     '20231012.D3.large_vocab.smpl_stncs.cntx_shffls-3.trnsl_vrnts-3': '20230626.many_bugs_fixed',
 
-    # ---------------------------------- 20231018.knowledge.D3 ------------------------------------
+    # =================================- 20231018.knowledge.D3 ====================================
     '20231018.knowledge.D3': '20231018.thing_person_config_translation',
     '20231018.knowledge.D3.w_knowledge': '20231018.thing_person_config_translation',
     '20231018.knowledge.D3.w_knowledge.complex-0.3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231021.knowledge.D3 ------------------------------------
+    # =================================- 20231021.knowledge.D3 ====================================
     '20231021.knowledge.D3': '20231018.thing_person_config_translation',
     '20231021.knowledge.D3.complex-0.3': '20231018.thing_person_config_translation',
     '20231021.knowledge.D3.complex-0.3.w_knowledge': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231028.knowledge ------------------------------------
+    # =================================- 20231028.knowledge ====================================
     '20231028.knowledge.D3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231029.knowledge ------------------------------------
+    # =================================- 20231029.knowledge ====================================
     '20231029.knowledge.D3': '20231018.thing_person_config_translation',
     '20231029.knowledge.D3.wo_knowledge': '20231018.thing_person_config_translation',
     '20231029.knowledge.D3.wo_knowledge.cmplx-0.5': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231030.knowledge ------------------------------------
+    # =================================- 20231030.knowledge ====================================
     '20231030.knowledge.D3.knowledge_factor-1.0': '20231018.thing_person_config_translation',
     '20231030.knowledge.D3.knowledge_factor-5.0': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231103.knowledge.D3 ------------------------------------
+    # =================================- 20231103.knowledge.D3 ====================================
     '20231103.knowledge.D3.knowledge_factor-5.0': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231203.jpn ------------------------------------
+    # =================================- 20231203.jpn ====================================
     '20231203.jpn.D1_wo_dist': '20231018.thing_person_config_translation',
     '20231203.jpn.D1': '20231018.thing_person_config_translation',
     '20231203.jpn.D3': '20231018.thing_person_config_translation',
     '20231203.jpn.D5': '20231018.thing_person_config_translation',
     '20231203.jpn.D8': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20231213.jpn ------------------------------------
+    # =================================- 20231213.jpn ====================================
     '20231213.jpn.D1_wo_dist': '20231018.thing_person_config_translation',
     '20231213.jpn.D1': '20231018.thing_person_config_translation',
     '20231213.jpn.D3': '20231018.thing_person_config_translation',
     '20231213.jpn.D5': '20231018.thing_person_config_translation',
     '20231213.jpn.D8': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20230115.jpn ------------------------------------
+    # =================================- 20230115.jpn ====================================
     '20230115.jpn.BCCWJ.D3': '20231018.thing_person_config_translation',
     '20230115.jpn.punipuni.D3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20230116.jpn ------------------------------------
+    # =================================- 20230116.jpn ====================================
     '20230116.jpn.wordnet.D3': '20231018.thing_person_config_translation',
     '20230116.jpn.BCCWJ.D3.argument_pred_arg_only': '20231018.thing_person_config_translation',
     '20230116.jpn.punipuni.D3.argument_pred_arg_only': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20230116.jpn ------------------------------------
+    # =================================- 20230116.jpn ====================================
     '20230118.jpn.wordnet.D3': '20231018.thing_person_config_translation',
     '20230118.jpn.wordnet.D3.argument_pred_arg_only': '20231018.thing_person_config_translation',
     '20230118.jpn.wordnet.D3.argument_pred_arg_only.no_kaku': '20231018.thing_person_config_translation',
     '20230118.jpn.BCCWJ.D3': '20231018.thing_person_config_translation',
     '20230118.jpn.punipuni.D3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20230118.jpn.ICL ------------------------------------
+    # =================================- 20230118.jpn.ICL ====================================
     '20230118.jpn.wordnet.D3.extension-3.distractor-10': '20231018.thing_person_config_translation',
     '20230118.jpn.wordnet.D3.extension-3.distractor-5': '20231018.thing_person_config_translation',
     '20230118.jpn.wordnet.D3.extension-3.distractor-3': '20231018.thing_person_config_translation',
@@ -8114,7 +8584,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230118.jpn.wordnet.D3.extension-1.distractor-5': '20231018.thing_person_config_translation',
     '20230118.jpn.wordnet.D3.extension-1.distractor-3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 20230120.jpn.punipuni ------------------------------------
+    # =================================- 20230120.jpn.punipuni ====================================
     '20230120.jpn.wordnet.D3': '20231018.thing_person_config_translation',
 
     '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist': '20231018.thing_person_config_translation',
@@ -8138,23 +8608,23 @@ _DATASET_NAME_TO_DEFAULT = {
     '20230120.jpn.punipuni.D8': '20231018.thing_person_config_translation',
 
 
-    # ---------------------------------- 20230122.jpn.ICL ------------------------------------
+    # =================================- 20230122.jpn.ICL ====================================
     '20230122.jpn.ICL.punipuni.D1_wo_dist': '20231018.thing_person_config_translation',
     '20230122.jpn.ICL.punipuni.D1': '20231018.thing_person_config_translation',
     '20230122.jpn.ICL.punipuni.D3_wo_dist': '20231018.thing_person_config_translation',
     '20230122.jpn.ICL.punipuni.D3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 2024-01-29.enhance_arguments ------------------------------------
+    # =================================- 2024-01-29.enhance_arguments ====================================
     '2024-01-29.enhance_arguments.past_reproduce': '20231018.thing_person_config_translation',
     '2024-01-29.enhance_arguments.theorems': '20231018.thing_person_config_translation',
     '2024-01-29.enhance_arguments.theorems.allow_smaller_proofs': '20231018.thing_person_config_translation',
     '2024-01-29.enhance_arguments.past_reproduce.D8': '20231018.thing_person_config_translation',
     
 
-    # ---------------------------------- 2024-02-25.translation-augmentation ------------------------------------
+    # =================================- 2024-02-25.translation-augmentation ====================================
     '2024-02-25.translation-augmentation.timeout_test': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 2024-02-09.enhance_translation ------------------------------------
+    # =================================- 2024-02-09.enhance_translation ====================================
     '2024-02-09.enhance_translation.past_reproduce': '20231018.thing_person_config_translation',
     '2024-02-09.enhance_translation.D8': '20231018.thing_person_config_translation',
     '2024-02-09.enhance_translation.propositional-0.2': '20231018.thing_person_config_translation',
@@ -8163,7 +8633,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-02-09.enhance_translation.translation-v2': '20231018.thing_person_config_translation',
     '2024-02-09.enhance_translation.translation-v3': '20231018.thing_person_config_translation',
 
-    # ---------------------------------- 2024-02-14.translation_speedup ------------------------------------
+    # =================================- 2024-02-14.translation_speedup ====================================
     '2024-02-14.translation_speedup.past_reproduce': '20231018.thing_person_config_translation',
     '2024-02-14.translation_speedup.D8': '20231018.thing_person_config_translation',
     '2024-02-14.translation_speedup.propositional-0.2': '20231018.thing_person_config_translation',
@@ -8175,7 +8645,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-02-14.translation_speedup.translation-v3.propositional-0.5': '20231018.thing_person_config_translation',
 
 
-    # ---------------------------------- 2024-03-29.H100 ------------------------------------
+    # =================================- 2024-03-29.H100 ====================================
     '2024-03-29.JSAI_best': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.D8': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.theorems': '20231018.thing_person_config_translation',
@@ -8191,7 +8661,7 @@ _DATASET_NAME_TO_DEFAULT = {
 
 
 
-    # ------------------------------- production --------------------------------
+    # ==============================- production ==============================--
     '2024-03-29.FLD_v2.D8': '20230626.many_bugs_fixed',
 
 
@@ -8217,7 +8687,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.theorems-0.03': '20231018.thing_person_config_translation',
 
 
-    # ------------------------------- 2024-05-03.ablation --------------------------------
+    # ==============================- 2024-05-03.ablation ==============================--
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100': '20231018.thing_person_config_translation',
 
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0': '20231018.thing_person_config_translation',
@@ -8238,7 +8708,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old': '20231018.thing_person_config_translation',
 
 
-    # ----------------------------------- ./outputs/00.create_corpus/2024-05-08.ref_prob --------------------------
+    # =================================-- ./outputs/00.create_corpus/2024-05-08.ref_prob ========================--
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2': '20231018.thing_person_config_translation',
@@ -8261,7 +8731,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.30': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.40': '20231018.thing_person_config_translation',
 
-    # ------------------------------------- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems --------------------------
+    # ====================================- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems ========================--
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0': '20231018.thing_person_config_translation',
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP': '20231018.thing_person_config_translation',
@@ -8269,20 +8739,32 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1': '20231018.thing_person_config_translation',
 
 
-    # ------------------------------------- ./outputs/00.create_corpus/2024-06-08.LPT --------------------------
+    # ====================================- ./outputs/00.create_corpus/2024-06-08.LPT ========================--
     '2024-03-29.JSAI_best.no_aug.trnsl-thing.large': '20231018.thing_person_config_translation',
 
-    # -------------------------------------- transfer --------------------------------------------------
+    # ====================================-- transfer ================================================--
     '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3': '20231018.thing_person_config_translation',
 
 
-    # -------------------------------------- 2024-07-02.debug_punipuni ----------------------------------------------
+    # ====================================-- 2024-07-02.debug_punipuni =============================================-
     '2024-07-02.debug_punipuni.0': '20231018.thing_person_config_translation',
     '2024-07-02.debug_punipuni.1': '20231018.thing_person_config_translation',
     '2024-07-02.debug_punipuni.2': '20231018.thing_person_config_translation',
     '2024-07-02.debug_punipuni.3': '20231018.thing_person_config_translation',
     '2024-07-02.debug_punipuni.4': '20231018.thing_person_config_translation',
 
+
+    # ====================================-- 2024-07-08.JFLD =============================================-
+    '2024-07-08.JFLD.step-1': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.step-3': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.step-5': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.step-1': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.step-3': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.step-5': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-10.step-1': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-10.step-3': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-10.step-5': '20231018.thing_person_config_translation',
+ 
 
 }
 
