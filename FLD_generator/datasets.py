@@ -243,19 +243,18 @@ class NLProofSDataset:
         if generate_stem_steps_weights is not None:
             if len(generate_stem_steps_weights) != len(self.generate_stem_steps_list):
                 raise ValueError()
+            self._generate_stem_steps_weights = [weight / sum(generate_stem_steps_weights) for weight in generate_stem_steps_weights]
         else:
-            generate_stem_steps_weights = [1.0] * len(self.generate_stem_steps_list)
-        generate_stem_steps_weights = [weight / sum(generate_stem_steps_weights) for weight in generate_stem_steps_weights]
-        self._generate_stem_steps_weights = generate_stem_steps_weights
+            self._generate_stem_steps_weights = None
         logger.info('using _generate_stem_steps_weights weight: %s', str(self._generate_stem_steps_weights))
 
         self.extend_branches_steps_list = _to_range(*extend_branches_steps_range)
         if extend_branches_steps_weights is not None:
             if len(extend_branches_steps_weights) != len(self.extend_branches_steps_list):
                 raise ValueError()
+            self._extend_branches_steps_weights = [weight / sum(extend_branches_steps_weights) for weight in extend_branches_steps_weights]
         else:
-            extend_branches_steps_weights = [1.0] * len(self.extend_branches_steps_list)
-        self._extend_branches_steps_weights = [weight / sum(extend_branches_steps_weights) for weight in extend_branches_steps_weights]
+            self._extend_branches_steps_weights = None
 
         self._steps_limit = steps_limit
         self._depth_limit = depth_limit
@@ -311,20 +310,31 @@ class NLProofSDataset:
             logger.info('\n\n')
             logger.info(make_pretty_msg(title='generate a dataset instance', status='start', boundary_level=5))
 
+            def sample_steps():
+                if self._steps_limit is not None and self._generate_stem_steps_weights is None and self._extend_branches_steps_weights is None:
+                    generate_stem_steps = random.randint(1, self._steps_limit)
+                    extend_branches_steps = self._steps_limit - generate_stem_steps
+                else:
+                    if self._generate_stem_steps_weights is not None:
+                        generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
+                    else:
+                        generate_stem_steps = random.choice(self.generate_stem_steps_list)
+                    if self._extend_branches_steps_weights is not None:
+                        extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
+                    else:
+                        extend_branches_steps = random.choice(self.extend_branches_steps_list)
+
+                return generate_stem_steps, extend_branches_steps
+
             if self._reference_tree_prob is not None:
                 if random.random() < self._reference_tree_prob:
-                    generate_stem_steps = 1
-                    extend_branches_steps = 0
+                    generate_stem_steps, extend_branches_steps = 1, 0
                     _reference_argument_weight_in_depth_1 = 1.0
                 else:
-                    generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
-                    extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
-                    _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
-                    if generate_stem_steps == 1 and extend_branches_steps == 0:
-                        _reference_argument_weight_in_depth_1 = 0  # as we explicifly use reference weight in the above block
+                    generate_stem_steps, extend_branches_steps = sample_steps()
+                    _reference_argument_weight_in_depth_1 = 0  # as we explicifly use reference weight in the above block
             else:
-                generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
-                extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
+                generate_stem_steps, extend_branches_steps = sample_steps()
                 _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
 
             _num_distractors = random.sample(self.num_distractors, 1)[0]
