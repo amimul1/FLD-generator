@@ -215,15 +215,15 @@ def main():
 
 
         # -------------------------------------- 2024-07-08.JFLD ----------------------------------------------
-        '2024-07-08.JFLD.step-1',
-        '2024-07-08.JFLD.step-3',
-        '2024-07-08.JFLD.step-5',
-        '2024-07-08.JFLD.cmpl-0.2.step-1',
-        # '2024-07-08.JFLD.cmpl-0.2.step-3',
-        # '2024-07-08.JFLD.cmpl-0.2.step-5',
-        # '2024-07-08.JFLD.dstrct-5.step-1',
-        # '2024-07-08.JFLD.dstrct-5.step-3',
-        # '2024-07-08.JFLD.dstrct-5.step-5',
+        # '2024-07-08.JFLD.step-1',
+        # '2024-07-08.JFLD.step-3',
+        # '2024-07-08.JFLD.step-5',
+        # '2024-07-08.JFLD.cmpl-0.2.step-1',
+        '2024-07-08.JFLD.cmpl-0.2.step-3',
+        '2024-07-08.JFLD.cmpl-0.2.step-5',
+        '2024-07-08.JFLD.dstrct-5.step-1',
+        '2024-07-08.JFLD.dstrct-5.step-3',
+        '2024-07-08.JFLD.dstrct-5.step-5',
 
     ]
 
@@ -236,8 +236,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
