@@ -61,7 +61,7 @@ def main():
 
 
     # =================================================================== LPT ===================================================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
 
 
@@ -71,7 +71,7 @@ def main():
 
     # =================================================================== JFLD ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
 
 
@@ -198,7 +198,7 @@ def main():
         # ==================================================== LPT ====================================================
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
 
 
         # ==================================================== transfer ====================================================
@@ -215,15 +215,15 @@ def main():
 
 
         # -------------------------------------- 2024-07-08.JFLD ----------------------------------------------
-        # '2024-07-08.JFLD.step-1',
-        # '2024-07-08.JFLD.step-3',
-        # '2024-07-08.JFLD.step-5',
-        # '2024-07-08.JFLD.cmpl-0.2.step-1',
+        '2024-07-08.JFLD.step-1',
+        '2024-07-08.JFLD.step-3',
+        '2024-07-08.JFLD.step-5',
+        '2024-07-08.JFLD.cmpl-0.2.step-1',
         # '2024-07-08.JFLD.cmpl-0.2.step-3',
         # '2024-07-08.JFLD.cmpl-0.2.step-5',
-        # '2024-07-08.JFLD.dstrct-10.step-1',
-        # '2024-07-08.JFLD.dstrct-10.step-3',
-        # '2024-07-08.JFLD.dstrct-10.step-5',
+        # '2024-07-08.JFLD.dstrct-5.step-1',
+        # '2024-07-08.JFLD.dstrct-5.step-3',
+        # '2024-07-08.JFLD.dstrct-5.step-5',
 
     ]
 

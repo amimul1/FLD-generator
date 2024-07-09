@@ -8157,7 +8157,7 @@ _DATASET_SETTINGS = {
 
 
 
-    '2024-07-08.JFLD.dstrct-10.step-1': {
+    '2024-07-08.JFLD.dstrct-5.step-1': {
 
         'argument_configs': [
             './configs/arguments/predicate/specified/axioms/',
@@ -8185,7 +8185,7 @@ _DATASET_SETTINGS = {
 
 
         'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
-        'distractors_range': (0, 10),
+        'distractors_range': (0, 5),
         'translation_distractors_range': (0, 0),
         'use_collapsed_translation_nodes_for_unknown_tree': False,
 
@@ -8207,7 +8207,7 @@ _DATASET_SETTINGS = {
 
 
 
-    '2024-07-08.JFLD.dstrct-10.step-3': {
+    '2024-07-08.JFLD.dstrct-5.step-3': {
 
         'argument_configs': [
             './configs/arguments/predicate/specified/axioms/',
@@ -8235,7 +8235,7 @@ _DATASET_SETTINGS = {
 
 
         'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
-        'distractors_range': (0, 10),
+        'distractors_range': (0, 5),
         'translation_distractors_range': (0, 0),
         'use_collapsed_translation_nodes_for_unknown_tree': False,
 
@@ -8257,7 +8257,7 @@ _DATASET_SETTINGS = {
 
 
 
-    '2024-07-08.JFLD.dstrct-10.step-5': {
+    '2024-07-08.JFLD.dstrct-5.step-5': {
 
         'argument_configs': [
             './configs/arguments/predicate/specified/axioms/',
@@ -8285,7 +8285,7 @@ _DATASET_SETTINGS = {
 
 
         'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
-        'distractors_range': (0, 10),
+        'distractors_range': (0, 5),
         'translation_distractors_range': (0, 0),
         'use_collapsed_translation_nodes_for_unknown_tree': False,
 
@@ -8917,9 +8917,9 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-07-08.JFLD.cmpl-0.2.step-1': '20231018.thing_person_config_translation',
     '2024-07-08.JFLD.cmpl-0.2.step-3': '20231018.thing_person_config_translation',
     '2024-07-08.JFLD.cmpl-0.2.step-5': '20231018.thing_person_config_translation',
-    '2024-07-08.JFLD.dstrct-10.step-1': '20231018.thing_person_config_translation',
-    '2024-07-08.JFLD.dstrct-10.step-3': '20231018.thing_person_config_translation',
-    '2024-07-08.JFLD.dstrct-10.step-5': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-5.step-1': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-5.step-3': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.dstrct-5.step-5': '20231018.thing_person_config_translation',
  
 
 }
