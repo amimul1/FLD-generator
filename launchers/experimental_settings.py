@@ -7530,7 +7530,7 @@ _DATASET_SETTINGS = {
         'split_sizes': {
             'test': 5000,
             'valid': 5000,
-            'train': 100000,
+            'train': 10000000,
         },
 
     },
