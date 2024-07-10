@@ -236,8 +236,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
@@ -443,7 +443,7 @@ def make_dataset(dataset_name: str,
                 job_log_path = job_output_dir / 'log.txt'
 
                 # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                if i_job >= 1500:
+                if i_job < 1500:
                     logger.info('skip %s because', job_output_path)
                     continue
 
