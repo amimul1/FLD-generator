@@ -61,7 +61,7 @@ def main():
 
 
     # =================================================================== LPT ===================================================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
 
 
@@ -71,7 +71,7 @@ def main():
 
     # =================================================================== JFLD ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
 
 
@@ -198,7 +198,7 @@ def main():
         # ==================================================== LPT ====================================================
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
 
 
         # ==================================================== transfer ====================================================
@@ -225,6 +225,12 @@ def main():
         # '2024-07-08.JFLD.dstrct-5.step-3',
         # '2024-07-08.JFLD.dstrct-5.step-5',
 
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1',
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2',
+        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
+        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
+
+
     ]
 
 
@@ -236,16 +242,16 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engine = QsubEngine('haic', 'xcs_s.small')
+    # job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
-    # num_jobs_per_dataset = 300    # for 1M dataset
+    num_jobs_per_dataset = 300    # for 1M dataset
     # num_jobs_per_dataset = 600     # for 2M dataset
     # num_jobs_per_dataset = 900     # for 3M dataset
     # num_jobs_per_dataset = 1500     # for 5M dataset
-    num_jobs_per_dataset = 3000     # for 10M dataset
+    # num_jobs_per_dataset = 3000     # for 10M dataset
 
 
 
@@ -442,8 +448,8 @@ def make_dataset(dataset_name: str,
                 job_output_path = job_output_dir / f'{split}.jsonl'
                 job_log_path = job_output_dir / 'log.txt'
 
-                # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                if i_job < 1500:
+                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                # if i_job < 1500:
                     logger.info('skip %s because', job_output_path)
                     continue
 

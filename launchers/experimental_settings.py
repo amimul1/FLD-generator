@@ -7889,8 +7889,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -7938,8 +7938,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -7988,8 +7988,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8046,8 +8046,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8097,8 +8097,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8147,8 +8147,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8200,8 +8200,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8250,8 +8250,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8300,8 +8300,8 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 500,
-            # 'valid': 5000,
-            # 'train': 30000,
+            # 'valid': 500,
+            'train': 500,
         }
     },
 
@@ -8314,16 +8314,200 @@ _DATASET_SETTINGS = {
 
 
 
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
 
 
+        'generate_stem_steps_range': (1, 1),
+        'extend_branches_steps_range': (0, 1),
+        'steps_limit': 1,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
 
 
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 5),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
 
 
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 500,
+            'train': 500,
+        }
+    },
 
 
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 2),
+        'extend_branches_steps_range': (0, 2),
+        'steps_limit': 2,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 5),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 500,
+            'train': 500,
+        }
+    },
+
+
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'extend_branches_steps_range': (0, 3),
+        'steps_limit': 3,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 5),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 500,
+            'train': 500,
+        }
+    },
+
+
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5': {
+
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 5),
+        'extend_branches_steps_range': (0, 5),
+        'steps_limit': 5,
+        'depth_limit': None,
+        'increase_depth_by_extend_branches': True,
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 5),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_lang': 'jpn',
+        'translation_configs': ['punipuni.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'translation_no_transitive_object': True,
+        'translation_vocab': 'punipuni',
+
+
+        'split_sizes': {
+            'test': 500,
+            # 'valid': 500,
+            'train': 500,
+        }
+    }
 
 
 
@@ -8920,7 +9104,11 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-07-08.JFLD.dstrct-5.step-1': '20231018.thing_person_config_translation',
     '2024-07-08.JFLD.dstrct-5.step-3': '20231018.thing_person_config_translation',
     '2024-07-08.JFLD.dstrct-5.step-5': '20231018.thing_person_config_translation',
- 
+
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3': '20231018.thing_person_config_translation',
+    '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5': '20231018.thing_person_config_translation',
 
 }
 
