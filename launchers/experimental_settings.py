@@ -8356,9 +8356,9 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 500,
-            # 'valid': 500,
-            'train': 500,
+            'test': 3000,
+            # 'valid': 3000,
+            'train': 3000,
         }
     },
 
@@ -8405,9 +8405,9 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 500,
-            # 'valid': 500,
-            'train': 500,
+            'test': 3000,
+            # 'valid': 3000,
+            'train': 3000,
         }
     },
 
@@ -8454,9 +8454,9 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 500,
-            # 'valid': 500,
-            'train': 500,
+            'test': 3000,
+            # 'valid': 3000,
+            'train': 3000,
         }
     },
 
@@ -8503,9 +8503,9 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 500,
-            # 'valid': 500,
-            'train': 500,
+            'test': 3000,
+            # 'valid': 3000,
+            'train': 3000,
         }
     }
 
