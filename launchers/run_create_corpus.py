@@ -227,16 +227,16 @@ def main():
 
         '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1',
         '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2',
-        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
-        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
+        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
+        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
 
 
     ]
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engine = SubprocessEngine()
