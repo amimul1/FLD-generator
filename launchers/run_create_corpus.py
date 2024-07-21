@@ -71,7 +71,11 @@ def main():
 
     # =================================================================== JFLD ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+
+
+    # =================================== 2024-07-21.neurips_additional ========================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
 
 
 
@@ -185,7 +189,7 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.40',
 
 
-        # ================================================- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems ==================================-
+        # ==================================- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems =====================
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
@@ -225,18 +229,22 @@ def main():
         # '2024-07-08.JFLD.dstrct-5.step-3',
         # '2024-07-08.JFLD.dstrct-5.step-5',
 
-        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1',
-        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2',
-        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
-        '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1',
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2',
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
+        # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
+
+
+        # =================================== 2024-07-21.neurips_additional ========================================
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100.fixed',
 
 
     ]
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engine = SubprocessEngine()

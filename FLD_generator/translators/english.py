@@ -7,7 +7,6 @@ from FLD_generator.formula import Formula
 from FLD_generator.utils import starts_with_vowel_sound
 from FLD_generator.word_banks import POS, ATTR
 from FLD_generator.word_banks.english import MODAL_VERBS
-from FLD_generator.person_names import get_person_names
 from .templated import TemplatedTranslator
 from .base import PredicatePhrase, ConstantPhrase
 
@@ -72,14 +71,6 @@ class EnglishTranslator(TemplatedTranslator):
 
         self._no_transitive_object = no_transitive_object
 
-        self._male_names: Set[str] = set()
-        self._female_names: Set[str] = set()
-        for person in get_person_names(country='US', details=True):
-            if person['gender'] == 'M':
-                self._male_names.add(person['name'])
-            else:
-                self._female_names.add(person['name'])
-
     def _postprocess_template(self, template: str) -> str:
         return template
 
@@ -110,7 +101,7 @@ class EnglishTranslator(TemplatedTranslator):
 
     def _postprocess_translation(self, translation: str) -> str:
         translation = self._correct_indefinite_particles(translation)
-        translation = self._arugment_thing_vs_person_and_pronouns(translation)
+        translation = self._augment_thing_vs_person_and_pronouns(translation)
         translation = self._reduce_degenerate_blanks(translation)
         translation = self._strip_the_from_named_entities(translation)
 
@@ -188,7 +179,7 @@ class EnglishTranslator(TemplatedTranslator):
         corrected_sentence = ' '.join(corrected_words)
         return corrected_sentence
 
-    def _arugment_thing_vs_person_and_pronouns(self, translation: str) -> str:
+    def _augment_thing_vs_person_and_pronouns(self, translation: str) -> str:
         is_person = random.random() < 0.5
 
         if is_person:

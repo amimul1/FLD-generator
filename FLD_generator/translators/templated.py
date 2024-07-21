@@ -246,12 +246,32 @@ class TemplatedTranslator(Translator):
         self.use_fixed_translation = use_fixed_translation
         self.reused_object_nouns_max_factor = reused_object_nouns_max_factor
         self._no_adj_verb_as_zeroary = no_adj_verb_as_zeroary
-        self._zeroary_predicates, self._unary_predicates, self._constants = self._load_phrases(
-            self._word_bank, adj_verb_noun_ratio=adj_verb_noun_ratio)
+
+
         if limit_vocab_size_per_type is not None:
-            self._zeroary_predicates = self._sample(self._zeroary_predicates, limit_vocab_size_per_type)
-            self._unary_predicates = self._sample(self._unary_predicates, limit_vocab_size_per_type)
-            self._constants = self._sample(self._constants, limit_vocab_size_per_type)
+            logger.info('limiting vocab size per type to %d', limit_vocab_size_per_type)
+
+            self._zeroary_predicates, self._unary_predicates, self._constants = self._load_phrases(
+                self._word_bank, adj_verb_noun_ratio=adj_verb_noun_ratio, no_shuffle_and_take=limit_vocab_size_per_type)
+
+            # XXX: should take rather than sample, because when we run this scripts in many jobs or processes, the sampled vocab will be diverse, so that we can not achieve the effect of limiting the vocab size.
+
+            logger.info('===================== zeroary predicates =====================')
+            for zeroary_predicate in self._zeroary_predicates:
+                logger.info('zeroary predicate: %s', zeroary_predicate)
+
+            logger.info('===================== unary predicates =====================')
+            for unary_predicate in self._unary_predicates:
+                logger.info('unary predicate: %s', unary_predicate)
+
+            logger.info('===================== constant =====================')
+            for constant in self._constants:
+                logger.info('constant: %s', constant)
+        else:
+            self._zeroary_predicates, self._unary_predicates, self._constants = self._load_phrases(
+                self._word_bank, adj_verb_noun_ratio=adj_verb_noun_ratio)
+
+
         self._constant_set = set(self._constants)
 
         if volume_to_weight == 'linear':
@@ -324,51 +344,83 @@ class TemplatedTranslator(Translator):
                       word_bank: WordBank,
                       adj_verb_noun_ratio: Optional[List[float]] = None,
                       # prioritize_form_abundant_words=False,
+                      no_shuffle_and_take: Optional[int] = None,
                       ) -> Tuple[Iterator[PredicatePhrase], Iterator[PredicatePhrase], List[ConstantPhrase]]:
 
         logger.info('loading nouns ...')
         intermediate_constant_noun_set = set(word_bank.get_intermediate_constant_words())
 
+
         event_nouns = [word
                        for word in self._load_words_by_pos_attrs(word_bank, pos=POS.NOUN)
                        if ATTR.can_be_event_noun in word_bank.get_attrs(word)]
         event_nouns = list(set(event_nouns) - intermediate_constant_noun_set)
-        random.shuffle(event_nouns)
+        if no_shuffle_and_take:
+            event_nouns = sorted(event_nouns)
+        else:
+            random.shuffle(event_nouns)
+
 
         entity_nouns = [word
                         for word in self._load_words_by_pos_attrs(word_bank, pos=POS.NOUN)
                         if ATTR.can_be_entity_noun in word_bank.get_attrs(word)]
         entity_nouns = list(set(entity_nouns) - intermediate_constant_noun_set)
-        random.shuffle(entity_nouns)
+        if no_shuffle_and_take:
+            entity_nouns = sorted(entity_nouns)
+        else:
+            random.shuffle(entity_nouns)
+
 
         predicate_nouns = [word
                            for word in self._load_words_by_pos_attrs(word_bank, pos=POS.NOUN)
                            if ATTR.can_be_predicate_noun in word_bank.get_attrs(word)]
         predicate_nouns = list(set(predicate_nouns) - intermediate_constant_noun_set)
+        if no_shuffle_and_take:
+            predicate_nouns = sorted(predicate_nouns)
+        else:
+            random.shuffle(predicate_nouns)
+
 
         logger.info('loading adjs ...')
         adjs = [word
                 for word in self._load_words_by_pos_attrs(word_bank, pos=POS.ADJ)]
-        random.shuffle(adjs)
+        if no_shuffle_and_take:
+            adjs = sorted(adjs)
+        else:
+            random.shuffle(adjs)
+
 
         logger.info('loading intransitive_verbs ...')
         intransitive_verbs = [word
                               for word in self._load_words_by_pos_attrs(word_bank, pos=POS.VERB)
                               if ATTR.can_be_intransitive_verb in word_bank.get_attrs(word)]
-        random.shuffle(intransitive_verbs)
+        if no_shuffle_and_take:
+            intransitive_verbs = sorted(intransitive_verbs)
+        else:
+            random.shuffle(intransitive_verbs)
+
 
         logger.info('loading transitive_verbs ...')
         transitive_verbs = [word
                             for word in self._load_words_by_pos_attrs(word_bank, pos=POS.VERB)
                             if ATTR.can_be_transitive_verb in word_bank.get_attrs(word)]
-        random.shuffle(transitive_verbs)
+        if no_shuffle_and_take:
+            transitive_verbs = sorted(transitive_verbs)
+        else:
+            random.shuffle(transitive_verbs)
+
 
         logger.info('making transitive verb and object combinations ...')
 
         @profile
         def build_transitive_verb_PASs() -> Iterator[Tuple[str, str]]:
-            _transitive_verbs = shuffle(transitive_verbs)
-            _nouns = shuffle(predicate_nouns)
+            if no_shuffle_and_take:
+                _transitive_verbs = transitive_verbs
+                _nouns = predicate_nouns
+            else:
+                _transitive_verbs = shuffle(transitive_verbs)
+                _nouns = shuffle(predicate_nouns)
+
             for i in range(min(len(_transitive_verbs), len(_nouns))):
                 verb = _transitive_verbs[i]
                 obj = _nouns[i]
@@ -398,6 +450,7 @@ class TemplatedTranslator(Translator):
                 _weights.append(weight)
             return weighted_chained_sampling(_cyclic_words, _weights)
 
+
         if self._no_adj_verb_as_zeroary:
             zeroary_words = (event_nouns,)
             zeorary_weights = (1.0,)
@@ -405,22 +458,57 @@ class TemplatedTranslator(Translator):
             zeroary_words = (adjs, intransitive_verbs, build_transitive_verb_PASs, event_nouns)
             zeorary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3,
                                adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
-        zeroary_predicates = make_chained_sampling_from_weighted_iterators(zeroary_words, zeorary_weights)
+        if no_shuffle_and_take is not None:
+            zeroary_predicates = []
+            for _zeroary_words, _zeroary_weight in zip(zeroary_words, zeorary_weights):
+                if _zeroary_words == build_transitive_verb_PASs:
+                    if is_transitive_verbs_empty:
+                        continue
+                    random_cycle = RandomCycle(_zeroary_words, shuffle=False)
+                    zeroary_predicates.extend(self._take(random_cycle, int(no_shuffle_and_take * _zeroary_weight)))
+                else:
+                    zeroary_predicates.extend(self._take(_zeroary_words, int(no_shuffle_and_take * _zeroary_weight)))
+        else:
+           zeroary_predicates = make_chained_sampling_from_weighted_iterators(zeroary_words, zeorary_weights)
+
 
         unary_words = (adjs, intransitive_verbs, build_transitive_verb_PASs, predicate_nouns)
         unary_weights = (adj_verb_noun_weight[0], adj_verb_noun_weight[1] * 1 / 3,
                          adj_verb_noun_weight[1] * 2 / 3, adj_verb_noun_weight[2])
-        unary_predicates = make_chained_sampling_from_weighted_iterators(unary_words, unary_weights)
+        if no_shuffle_and_take is not None:
+            unary_predicates = []
+            for _unary_words, _unary_weight in zip(unary_words, unary_weights):
+                if _unary_words == build_transitive_verb_PASs:
+                    if is_transitive_verbs_empty:
+                        continue
+                    random_cycle = RandomCycle(_unary_words, shuffle=False)
+                    unary_predicates.extend(self._take(random_cycle, int(no_shuffle_and_take * _unary_weight)))
+                else:
+                    unary_predicates.extend(self._take(_unary_words, int(no_shuffle_and_take * _unary_weight)))
+        else:
+            unary_predicates = make_chained_sampling_from_weighted_iterators(unary_words, unary_weights)
 
-        constants = entity_nouns
 
-        return (
+        if no_shuffle_and_take is not None:
+            constants = self._take(entity_nouns, no_shuffle_and_take)
+        else:
+            constants = entity_nouns
+
+        ret = (
             (PredicatePhrase(predicate=pred[0], object=pred[1]) if isinstance(pred, tuple) else PredicatePhrase(predicate=pred)
              for pred in zeroary_predicates),
             (PredicatePhrase(predicate=pred[0], object=pred[1]) if isinstance(pred, tuple) else PredicatePhrase(predicate=pred)
              for pred in unary_predicates),
             [ConstantPhrase(constant=constant) for constant in constants],
         )
+        if no_shuffle_and_take:
+            ret = tuple([
+                sorted(list(set(phrases)),
+                       key=lambda phrase: str((phrase.predicate, phrase.object)) if isinstance(phrase, PredicatePhrase) else str(phrase.constant))
+                for phrases in ret
+            ])
+
+        return ret
 
     @profile
     def _load_words_by_pos_attrs(self,
