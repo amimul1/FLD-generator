@@ -8,6 +8,7 @@ from pathlib import Path
 import copy
 from collections import defaultdict
 import statistics
+import time
 
 import click
 from script_engine import QsubEngine, SubprocessEngine
@@ -75,7 +76,8 @@ def main():
 
 
     # =================================== 2024-07-21.neurips_additional ========================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-08-08.debug')
 
 
 
@@ -236,8 +238,29 @@ def main():
 
 
         # =================================== 2024-07-21.neurips_additional ========================================
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100.fixed',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100.fixed',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed',
 
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed.ref_prob=0.20.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1.ref_prob=0.20.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.ref_prob=0.20.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.ref_prob=0.20.theorems-0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old.ref_prob=0.20.theorems-0.1',
+
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.2',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.2',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03.adjust_theorems',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.4-4',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.5-3',
 
     ]
 
@@ -295,7 +318,7 @@ def main():
         num_workers_per_job = 8
 
     elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
-        num_workers_per_job = 18
+        num_workers_per_job = 14
 
     else:
         raise NotImplementedError()
@@ -493,6 +516,7 @@ def make_dataset(dataset_name: str,
                     maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
                     maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
                     maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
+                    '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
 
                     maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                     _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
@@ -571,6 +595,7 @@ def make_dataset(dataset_name: str,
                     jobs.append(delayed(engine.run)(command, wait_until_finish=True, delay=delay, **kwargs))
                 else:
                     engine.run(command, wait_until_finish=False, **kwargs)
+                    time.sleep(10)  # 10 second additional to the default wait time of qsub_with_sleep, as we tend to run this script two or three more.
 
             if wait_before_gather:
                 logger.info('waiting %d jobs to be finished...', len(jobs))

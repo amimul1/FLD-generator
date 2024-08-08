@@ -16,7 +16,8 @@ import dill
 @click.command()
 @click.argument('input_path', type=str)
 @click.argument('output_path', type=str)
-def main(input_path, output_path):
+@click.option('--max-examples', type=int, default=None)
+def main(input_path, output_path, max_examples):
     input_path = Path(input_path)
     output_path = Path(output_path)
     output_path.parent.mkdir(exist_ok=True, parents=True)
@@ -35,34 +36,71 @@ def main(input_path, output_path):
         'num_formula_distractors',
         'num_translation_distractors',
         'num_all_distractors',
+
+        # 'op_conjunction',
+        # 'op_disjunction',
+        # 'op_implication',
+        # 'op_negation',
+        # 'op_universal',
+        # 'op_existential',
+        'op_&',
+        'op_v',
+        'op_->',
+        'op_¬',
+        'op_(x)',
+        'op_(Ex)',
     ]
 
     counts = defaultdict(lambda: defaultdict(int))
     tot = 0
     for line in open(input_path):
+        if max_examples is not None and tot >= max_examples:
+            break
         instance = json.loads(line.rstrip('\n'))
+
         for attr_name in attr_names:
+
             if attr_name == 'total_proof_steps':
                 proofs = instance['proofs']
                 if len(proofs) == 0:
-                    counts['total_proof_steps'][None] += 1
+                    val = None
+                    # counts['total_proof_steps'][None] += 1
                 else:
                     proof = proofs[0]
                     total_proof_steps = proof.count(';')
-                    counts['total_proof_steps'][total_proof_steps] += 1
+                    val = total_proof_steps
+                    # counts['total_proof_steps'][total_proof_steps] += 1
+
+            elif attr_name.startswith('op_'):
+                symbol = attr_name[3:]
+                val = instance['facts_formula'].count(symbol)
+                val += instance['hypothesis_formula'].count(symbol)
+                if len(instance['proofs_formula']) > 0:
+                    val += instance['proofs_formula'][0].count(symbol)
             else:
                 val = instance[attr_name]
-                counts[attr_name][val] += 1
+
+            counts[attr_name][val] += 1
+
         tot += 1
 
     with open(output_path, 'w') as f_out:
         for attr_name in attr_names:
             print('\n\n\n', file=f_out)
             print(f'------------------ {attr_name} ------------------', file=f_out)
+            print(f'{"attr":<10}    {"count":<20}    ratio', file=f_out)
+            print('', file=f_out)
             for val, count in sorted(item for item in counts[attr_name].items() if item[0] is not None):
-                print(f'{str(val):<10}    [{count:<6} / {tot}]    {count/tot:.2f}', file=f_out)
+                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.2f}', file=f_out)
             for val, count in sorted(item for item in counts[attr_name].items() if item[0] is None):
-                print(f'{str(val):<10}    [{count:<6} / {tot}]    {count/tot:.2f}', file=f_out)
+                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.2f}', file=f_out)
+
+            if type(list(counts[attr_name].keys())[0]) == int:
+                sum_count = sum(key * count for key, count in counts[attr_name].items()
+                                if key is not None)
+                print('', file=f_out)
+                print('-- sum --', file=f_out)
+                print(f'sum(attr * counts)   -> {sum_count:<10,}', file=f_out)
 
 
 
