@@ -312,19 +312,19 @@ class NLProofSDataset:
 
             def sample_steps():
                 if self._steps_limit is not None and self._generate_stem_steps_weights is None and self._extend_branches_steps_weights is None:
-                    generate_stem_steps = random.randint(1, self._steps_limit)
-                    extend_branches_steps = self._steps_limit - generate_stem_steps
+                    _generate_stem_steps = random.randint(1, self._steps_limit)
+                    _extend_branches_steps = self._steps_limit - _generate_stem_steps
                 else:
                     if self._generate_stem_steps_weights is not None:
-                        generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
+                        _generate_stem_steps = self.generate_stem_steps_list[weighted_sampling(self._generate_stem_steps_weights)]
                     else:
-                        generate_stem_steps = random.choice(self.generate_stem_steps_list)
+                        _generate_stem_steps = random.choice(self.generate_stem_steps_list)
                     if self._extend_branches_steps_weights is not None:
-                        extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
+                        _extend_branches_steps = self.extend_branches_steps_list[weighted_sampling(self._extend_branches_steps_weights)]
                     else:
-                        extend_branches_steps = random.choice(self.extend_branches_steps_list)
+                        _extend_branches_steps = random.choice(self.extend_branches_steps_list)
 
-                return generate_stem_steps, extend_branches_steps
+                return _generate_stem_steps, _extend_branches_steps
 
             if self._reference_tree_prob is not None:
                 if random.random() < self._reference_tree_prob:

@@ -77,7 +77,7 @@ def main():
 
     # =================================== 2024-07-21.neurips_additional ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-08-08.debug')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.debug')
 
 
 
@@ -255,12 +255,20 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.2',
 
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03.adjust_theorems',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01.adjust_theorems',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03.adjust_theorems',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05.adjust_theorems',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.10.adjust_theorems',
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.4-4',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.5-3',
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1',
+        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.debug',
 
     ]
 
@@ -273,8 +281,8 @@ def main():
     # job_engine = SubprocessEngine()
     # job_engine = QsubEngine('ABCI', 'rt_C.small')
 
-    job_engine = QsubEngine('haic', 'xcs_s.small')
-    # job_engine = QsubEngine('haic', 'xcl_s.small')
+    # job_engine = QsubEngine('haic', 'xcs_s.small')
+    job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
     num_jobs_for_datasets = 2
@@ -318,6 +326,7 @@ def main():
         num_workers_per_job = 8
 
     elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
+        # num_workers_per_job = 14
         num_workers_per_job = 14
 
     else:
@@ -595,7 +604,7 @@ def make_dataset(dataset_name: str,
                     jobs.append(delayed(engine.run)(command, wait_until_finish=True, delay=delay, **kwargs))
                 else:
                     engine.run(command, wait_until_finish=False, **kwargs)
-                    time.sleep(10)  # 10 second additional to the default wait time of qsub_with_sleep, as we tend to run this script two or three more.
+                    time.sleep(15)  # 10 additional to the default wait time of qsub_with_sleep, as we tend to run this script two or three more.
 
             if wait_before_gather:
                 logger.info('waiting %d jobs to be finished...', len(jobs))

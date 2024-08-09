@@ -101,7 +101,7 @@ class EnglishTranslator(TemplatedTranslator):
 
     def _postprocess_translation(self, translation: str) -> str:
         translation = self._correct_indefinite_particles(translation)
-        translation = self._augment_thing_vs_person_and_pronouns(translation)
+        translation = self._argument_thing_vs_person_and_pronouns(translation)
         translation = self._reduce_degenerate_blanks(translation)
         translation = self._strip_the_from_named_entities(translation)
 
@@ -117,10 +117,10 @@ class EnglishTranslator(TemplatedTranslator):
         return translation
 
     def _postprocess_translations_at_once(self, translations: List[Optional[str]]) -> List[Optional[str]]:
-        translations = self._augment_pronouns_at_once(translations)
+        translations = self._argument_pronouns_at_once(translations)
         return translations
 
-    def _augment_pronouns_at_once(self, translations: List[Optional[str]]) -> List[Optional[str]]:
+    def _argument_pronouns_at_once(self, translations: List[Optional[str]]) -> List[Optional[str]]:
 
         ng_list = [
             # replacement of pronouns is done in _arugment_thing_vs_person_and_pronouns
@@ -179,7 +179,7 @@ class EnglishTranslator(TemplatedTranslator):
         corrected_sentence = ' '.join(corrected_words)
         return corrected_sentence
 
-    def _augment_thing_vs_person_and_pronouns(self, translation: str) -> str:
+    def _argument_thing_vs_person_and_pronouns(self, translation: str) -> str:
         is_person = random.random() < 0.5
 
         if is_person:
@@ -218,11 +218,11 @@ class EnglishTranslator(TemplatedTranslator):
             else:
                 raise ValueError()
 
-        translation = self._augment_pronouns(translation, is_person=is_person)
+        translation = self._argument_pronouns(translation, is_person=is_person)
 
         return translation
 
-    def _augment_pronouns(self,
+    def _argument_pronouns(self,
                           translation: str,
                           is_person=False) -> str:
         tokens = translation.split(' ')

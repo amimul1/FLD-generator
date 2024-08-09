@@ -345,7 +345,7 @@ class ProofTree:
             depth = self.get_node_depth(node)
             rep += ''.join([f'{_depth}    ' for _depth in range(0, 10)]) + '\n'
             rep += ''.join(['|    '] * 10) + '\n'
-            rep += '|    ' * depth + f'|  {node.argument}\n'
+            rep += '|    ' * depth + f'|{node.argument}\n'
             rep += '|    ' * depth + f'|{node}\n'
             rep += ''.join(['|    '] * 10) + '\n'
         # rep += '\n)'

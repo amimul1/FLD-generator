@@ -752,7 +752,9 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
             yield arg
 
     if num_steps == 1:
+
         if reference_argument_weight_in_depth_1 is not None:
+
             def argument_sampling():
                 iter_reference = argument_sampling_reference()
                 iter_non_reference = argument_sampling_non_reference()
@@ -773,6 +775,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                     yield arg
         else:
             argument_sampling = argument_sampling_all
+
     else:
         argument_sampling = argument_sampling_non_reference
 
@@ -790,6 +793,7 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
         cur_conclusion_node = ProofNode(cur_arg.conclusion)
         cur_premise_nodes = [ProofNode(formula) for formula in cur_arg.premises]
         update(cur_premise_nodes, [], cur_conclusion_node, cur_arg, proof_tree)
+        step += 1
 
         is_tree_done = False
         while True:
@@ -1022,13 +1026,10 @@ def _generate_stem(arguments: Union[List[Argument], Tuple[Argument, ...]],
                     raise GenerateStemFailure(msg)
 
         if is_tree_done:
-
             if disallow_contradiction_as_hypothesis and has_contradiction_symbol(proof_tree.root_node.formula):
                 raise GenerateStemFailure(f'formula with contradiction {proof_tree.root_node.formula.rep} as the hypothesis is disallowed.')
-
             # _check_leaf_consistency(proof_tree)
             proof_tree = _my_validate_illegal_intermediate_constants(proof_tree)
-
             return proof_tree
 
     raise Exception('Unexpected')

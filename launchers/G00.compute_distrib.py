@@ -34,8 +34,19 @@ def main():
     # input_dir = Path('./outputs/00.create_corpus/2024-03-29')
     # output_dir = Path('./outputs/G00.compute_distrib.py/2024-03-29')
 
-    input_dir = Path('./outputs/00.create_corpus/2024-03-29/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing')
-    output_dir = Path('./outputs/G00.compute_distrib.py/2024-03-29/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing')
+    # input_dir = Path('./outputs/00.create_corpus/2024-03-29/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing')
+    # output_dir = Path('./outputs/G00.compute_distrib.py/2024-03-29/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing')
+
+    input_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.large')
+    output_dir = Path('./outputs/G00.compute_distrib.py/2024-07-21.neurips_additional/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.large')
+
+    # input_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1')
+    # output_dir = Path('./outputs/G00.compute_distrib.py/2024-07-21.neurips_additional/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1')
+
+    # input_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed')
+    # output_dir = Path('./outputs/G00.compute_distrib.py/2024-07-21.neurips_additional/dataset_name=2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed')
+
+
 
     max_examples = 100000
     compute_distrib(input_dir, output_dir, max_examples)
