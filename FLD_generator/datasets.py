@@ -210,10 +210,10 @@ class NLProofSDataset:
 
                  proof_stances: Optional[List[str]] = None,
                  world_assump: str = 'OWA',
-                 reference_argument_weight_in_depth_1: Optional[float] = None,
+                 reference_tree_prob: Optional[float] = None,
+                 reference_argument_prob_in_depth_1: Optional[float] = None,
                  force_fix_illegal_intermediate_constants=False,
                  unknown_ratio: float = 1 / 3.,
-                 reference_tree_prob: Optional[float] = None,
                  sample_all_stances_per_logic=False,
                  context_shuffles_per_instance=1,
                  use_collapsed_translation_nodes_for_unknown_tree=False,
@@ -236,6 +236,7 @@ class NLProofSDataset:
         self.world_assump = WorldAssumption(world_assump)
         self.unknown_ratio = unknown_ratio
         self._reference_tree_prob = reference_tree_prob
+        self._reference_argument_prob_in_depth_1 = reference_argument_prob_in_depth_1
         self._sample_all_stances_per_logic = sample_all_stances_per_logic
         self._context_shuffles_per_instance = context_shuffles_per_instance
 
@@ -260,7 +261,6 @@ class NLProofSDataset:
         self._depth_limit = depth_limit
         self._increase_depth_by_extend_branches = increase_depth_by_extend_branches
 
-        self._reference_argument_weight_in_depth_1 = reference_argument_weight_in_depth_1
         self._force_fix_illegal_intermediate_constants = force_fix_illegal_intermediate_constants
 
         self.branch_extension_steps = _to_range(*extend_branches_steps_range)
@@ -327,15 +327,17 @@ class NLProofSDataset:
                 return _generate_stem_steps, _extend_branches_steps
 
             if self._reference_tree_prob is not None:
+                if self._reference_argument_prob_in_depth_1 is not None:
+                    logger.warning('Both "reference_tree_prob" and "reference_argument_prob_in_depth_1" are set. "reference_tree_prob" takes precedence.')
                 if random.random() < self._reference_tree_prob:
                     generate_stem_steps, extend_branches_steps = 1, 0
-                    _reference_argument_weight_in_depth_1 = 1.0
+                    _reference_argument_prob_in_depth_1 = 1.0
                 else:
                     generate_stem_steps, extend_branches_steps = sample_steps()
-                    _reference_argument_weight_in_depth_1 = 0  # as we explicifly use reference weight in the above block
+                    _reference_argument_prob_in_depth_1 = 0  # as we explicifly use reference weight in the above block
             else:
                 generate_stem_steps, extend_branches_steps = sample_steps()
-                _reference_argument_weight_in_depth_1 = self._reference_argument_weight_in_depth_1
+                _reference_argument_prob_in_depth_1 = self._reference_argument_prob_in_depth_1
 
             _num_distractors = random.sample(self.num_distractors, 1)[0]
             _num_translation_distractors = random.sample(self.num_translation_distractors, 1)[0]
@@ -350,7 +352,7 @@ class NLProofSDataset:
                     steps_limit=self._steps_limit,
                     depth_limit=self._depth_limit,
                     increase_depth_by_extend_branches=self._increase_depth_by_extend_branches,
-                    reference_argument_weight_in_depth_1=_reference_argument_weight_in_depth_1,
+                    reference_argument_prob_in_depth_1=_reference_argument_prob_in_depth_1,
                     allow_inconsistency=self.allow_inconsistency,
                     allow_smaller_proofs=self.allow_smaller_proofs,
                     force_fix_illegal_intermediate_constants=self._force_fix_illegal_intermediate_constants,

@@ -75,10 +75,14 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
 
+
     # =================================== 2024-07-21.neurips_additional ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.debug')
 
+
+
+    # =================================== 2024-08-09.fix_depth_problem ========================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.depth_fix')
 
 
 
@@ -249,33 +253,67 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old.ref_prob=0.20.theorems-0.1',
 
 
+
+        # =================================== 2024-07-21.neurips_additional ========================================
+
+        # we should rename all.
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing'
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.4-4',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.5-3',
+
+
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.1',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.2',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.2',
+
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05',
+
+
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.1',
+        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.2',
+
 
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01.adjust_theorems',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03.adjust_theorems',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05.adjust_theorems',
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.10.adjust_theorems',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.4-4',
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.5-3',
 
-        # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1',
-        '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.debug',
 
+        # =================================== 2024-08-09.fix_depth_problem ========================================
+
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing',
+
+        '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.05',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
+
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-4-4',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5-3',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-8',
+
+        '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.10',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.25',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.01',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.03',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.03.adjust_theorems',
+
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-v2',
+        '2024-08-09.depth_fix.2024-03-29.FLD_v2',
     ]
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engine = SubprocessEngine()
@@ -285,14 +323,11 @@ def main():
     job_engine = QsubEngine('haic', 'xcl_s.small')
 
 
-    num_jobs_for_datasets = 2
     num_jobs_per_dataset = 300    # for 1M dataset
     # num_jobs_per_dataset = 600     # for 2M dataset
     # num_jobs_per_dataset = 900     # for 3M dataset
     # num_jobs_per_dataset = 1500     # for 5M dataset
     # num_jobs_per_dataset = 3000     # for 10M dataset
-
-
 
 
 
@@ -336,31 +371,43 @@ def main():
     min_dataset_size_per_job = 30 * num_workers_per_job
     # min_dataset_size_per_job = 3 * num_workers_per_job
 
+
+    if wait_before_gather and any(job_engine.resource.find(res) >= 0
+                                  for res in ['xcs', 'xcl', 'xhn']):
+        raise Exception('we should not use wait_before_gather with xcs, xcl, xhn resources, as it will launch multiple job using Parallel, which leads to zombies')
+
+    if wait_before_gather:
+        num_jobs_for_datasets = 2
+    else:
+        num_jobs_for_datasets = None  # we do not need this value.
+
     if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
             num_jobs_for_datasets * num_jobs_per_dataset > 180:
         raise ValueError('Too much jobs %s ~ ABCI job limit = 200',
                          num_jobs_for_datasets * num_jobs_per_dataset)
 
-    jobs = []
-    for dataset_name in dataset_names:
-        jobs.append(
-            delayed(make_dataset)(
-                dataset_name,
-                output_top_dir,
-                job_engine,
-                timeout_per_job,
-                delete_logs_when_done,
-                num_jobs_per_dataset,
-                num_workers_per_job,
-                min_dataset_size_per_job,
-                skip_if_exists,
-                wait_before_gather,
-                only_gather,
-                dry_run,
-            )
-        )
+    make_dataset_args = [
+        output_top_dir,
+        job_engine,
+        timeout_per_job,
+        delete_logs_when_done,
+        num_jobs_per_dataset,
+        num_workers_per_job,
+        min_dataset_size_per_job,
+        skip_if_exists,
+        wait_before_gather,
+        only_gather,
+        dry_run,
+    ]
 
-    Parallel(n_jobs=num_jobs_for_datasets, backend='threading')(jobs)
+    if wait_before_gather or only_gather:
+        jobs = []
+        for dataset_name in dataset_names:
+            jobs.append(delayed(make_dataset)(dataset_name, *make_dataset_args))
+        Parallel(n_jobs=num_jobs_for_datasets, backend='threading')(jobs)
+    else:
+        for dataset_name in dataset_names:
+            make_dataset(dataset_name, *make_dataset_args)
 
     logger.info('============================== [00.run_create_corpus.py] done! ============================')
 
@@ -404,6 +451,7 @@ def make_dataset(dataset_name: str,
             'proof_stances',
             'unknown_ratio',
             'reference_tree_prob',
+            'reference_argument_prob_in_depth_1',
 
             'argument_configs',
 
@@ -561,6 +609,7 @@ def make_dataset(dataset_name: str,
                     f'--world-assump {job_settings["world_assump"]}' if "world_assump" in job_settings else '',
                     maybe_option('--unknown-ratio', job_settings.get("unknown_ratio", None)),
                     maybe_option('--reference-tree-prob', job_settings.get("reference_tree_prob", None)),
+                    maybe_option('--reference-argument-prob-in-depth-1', job_settings.get("reference_argument_prob_in_depth_1", None)),
                     '--sample-all-stances-per-logic' if job_settings.get('sample_all_stances_per_logic', False) else '',
                     maybe_option('--context-shuffles-per-instance', job_settings.get("context_shuffles_per_instance", None)),
                     '--use-collapsed-translation-nodes-for-unknown-tree' if job_settings.get('use_collapsed_translation_nodes_for_unknown_tree', False) else '',
@@ -604,7 +653,6 @@ def make_dataset(dataset_name: str,
                     jobs.append(delayed(engine.run)(command, wait_until_finish=True, delay=delay, **kwargs))
                 else:
                     engine.run(command, wait_until_finish=False, **kwargs)
-                    time.sleep(15)  # 10 additional to the default wait time of qsub_with_sleep, as we tend to run this script two or three more.
 
             if wait_before_gather:
                 logger.info('waiting %d jobs to be finished...', len(jobs))
