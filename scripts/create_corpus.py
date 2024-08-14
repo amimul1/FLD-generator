@@ -46,6 +46,7 @@ def load_dataset(
     quantifier_axioms: Optional[List[str]],
     quantification_degree: str,
     propositional_arguments_factor: float,
+    theorem_tree_prob: float,
     theorem_arguments_factor: float,
     adjust_theorem_argument_weight: bool,
     knowledge_argument_factor: float,
@@ -125,6 +126,7 @@ def load_dataset(
         quantifier_axioms=quantifier_axioms,
         quantification_degree=quantification_degree,
         propositional_arguments_factor=propositional_arguments_factor,
+        theorem_tree_prob=theorem_tree_prob,
         theorem_arguments_factor=theorem_arguments_factor,
         adjust_theorem_argument_weight=adjust_theorem_argument_weight,
         knowledge_argument_factor=knowledge_argument_factor,
@@ -276,6 +278,7 @@ def generate_instances(size: int, *args):
 @click.option('--quantifier-axiom', multiple=True, default=None)
 @click.option('--quantification-degree', type=str, default='all_constants')
 @click.option('--propositional-arguments-factor', type=float, default=1.0)
+@click.option('--theorem-tree-prob', type=float, default=1.0)
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
 @click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False)
 #
@@ -372,6 +375,7 @@ def main(output_path,
          quantifier_axiom,
          quantification_degree,
          propositional_arguments_factor,
+         theorem_tree_prob,
          theorem_arguments_factor,
          adjust_theorem_argument_weight,
          knowledge_argument_factor,
@@ -463,6 +467,7 @@ def main(output_path,
                         quantifier_axiom,
                         quantification_degree,
                         propositional_arguments_factor,
+                        theorem_tree_prob,
                         theorem_arguments_factor,
                         adjust_theorem_argument_weight,
                         knowledge_argument_factor,

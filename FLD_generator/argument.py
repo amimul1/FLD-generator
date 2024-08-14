@@ -118,6 +118,9 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
     elif argument.id.find('syllogism') >= 0:
         # as we have many times of syllogism, their frequency is too high.
         return 0.1
+    # elif argument.id.find('dilemma') >= 0:
+    #     # while dilemma is not that important, its frequency is too high.
+    #     return 0.25
     else:
         return None
 

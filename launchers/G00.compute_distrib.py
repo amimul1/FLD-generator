@@ -42,14 +42,14 @@ def compute_distrib(input_dir: str, output_dir: str, max_examples: Optional[int]
             f'ack cum.argument_stats {str(stats_path)} | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules.{split}.txt")}',
             wait_until_finish=False,
         )
-        engine.run(
-            f'ack cum.argument_stats {str(stats_path)} | ack -v \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-axioms.{split}.txt")}',
-            wait_until_finish=False,
-        )
-        engine.run(
-            f'ack cum.argument_stats {str(stats_path)} | ack \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-theorems.{split}.txt")}',
-            wait_until_finish=False,
-        )
+        # engine.run(
+        #     f'ack cum.argument_stats {str(stats_path)} | ack -v \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-axioms.{split}.txt")}',
+        #     wait_until_finish=False,
+        # )
+        # engine.run(
+        #     f'ack cum.argument_stats {str(stats_path)} | ack \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-theorems.{split}.txt")}',
+        #     wait_until_finish=False,
+        # )
 
 
 def main():
@@ -59,10 +59,11 @@ def main():
     # TOP_DIR = './outputs/00.create_corpus/2024-08-09.depth_fix'
     # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-09.depth_fix'
 
+    # TOP_DIR = './outputs/00.create_corpus/2024-03-29'
+    # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-03-29'
 
-    TOP_DIR = './outputs/00.create_corpus/2024-03-29'
-    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-03-29'
-
+    TOP_DIR = './outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora'
+    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-12.neurips_camera_ready.towards_best_corpora'
 
 
 

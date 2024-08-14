@@ -5146,3 +5146,32 @@ _DATASET_SETTINGS = {
 
 
 }
+
+
+
+
+
+# output_top_dir = Path('./outputs/00.create_corpus/20230826.jpn')
+
+# output_top_dir = Path('./outputs/00.create_corpus/20230901.random_transitive_verbs')
+
+# output_top_dir = Path('./outputs/00.create_corpus/20230904.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20230912.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20230914.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20230916.jpn')
+
+
+
+
+# ==================================================== transfer ====================================================
+# '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
+
+
+# ============================================================================== 2024-07-02.debug_punipuni ==============================================================================
+# '2024-07-02.debug_punipuni.0',
+# '2024-07-02.debug_punipuni.1',
+# '2024-07-02.debug_punipuni.2',
+# '2024-07-02.debug_punipuni.3',
+# '2024-07-02.debug_punipuni.4',
+
+

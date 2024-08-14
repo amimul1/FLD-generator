@@ -146,6 +146,7 @@ class ProofTreeGenerator:
                  quantifier_axioms: Optional[List[str]] = None,
                  quantification_degree: str = 'all_constants',
                  propositional_arguments_factor=1.0,
+                 theorem_tree_prob=1.0,
                  theorem_arguments_factor=0.3,
                  adjust_theorem_argument_weight=False,
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
@@ -187,7 +188,10 @@ class ProofTreeGenerator:
             allow_non_canonical_contradiction_use=False,
             elim_dneg=elim_dneg,
         )
+        self.theorem_tree_prob = theorem_tree_prob
         self.arguments = tuple(self.arguments)  # to use cache
+        self.arguments_wo_theorems = tuple(argument for argument in self.arguments
+                                           if not is_theorem_argument(argument))
 
     @property
     def complex_formula_arguments_weight(self):
@@ -415,9 +419,8 @@ class ProofTreeGenerator:
                       extend_branches_steps: int,
                       get_all_trial_results=False,
                       **kwargs) -> Union[ProofTree, List[ProofTree]]:
-
         trial_result_proof_trees = _generate_tree_with_timeout_retry(
-            self.arguments,
+            self._sample_arguments_axioms_or_theorems(),
             generate_stem_steps,
             extend_branches_steps,
             argument_weights=self.argument_weights,
@@ -435,7 +438,7 @@ class ProofTreeGenerator:
 
     def generate_stem(self, num_steps: int, get_all_trial_results=False, **kwargs) -> Union[ProofTree, List[ProofTree]]:
         trial_result_proof_trees = _generate_stem_with_timeout_retry(
-            self.arguments,
+            self._sample_arguments_axioms_or_theorems(),
             num_steps,
             argument_weights=self.argument_weights,
             elim_dneg=self.elim_dneg,
@@ -457,7 +460,7 @@ class ProofTreeGenerator:
                         **kwargs) -> Union[Tuple[ProofTree, int], List[Tuple[ProofTree, int]]]:
         trial_result_proof_trees = _extend_branches_with_timeout_retry(
             proof_tree,
-            self.arguments,
+            self._sample_arguments_axioms_or_theorems(),
             num_steps,
             argument_weights=self.argument_weights,
             elim_dneg=self.elim_dneg,
@@ -472,6 +475,12 @@ class ProofTreeGenerator:
             else:
                 return sorted(trial_result_proof_trees,
                               key = lambda A_num_step: A_num_step[1])[-1]
+
+    def _sample_arguments_axioms_or_theorems(self) -> Tuple[Argument]:
+        if random.random() < self.theorem_tree_prob:
+            return self.arguments
+        else:
+            return self.arguments_wo_theorems
 
 
 def _generate_tree_with_timeout_retry(arguments: Union[List[Argument], Tuple[Argument, ...]],

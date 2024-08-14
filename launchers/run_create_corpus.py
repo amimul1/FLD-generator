@@ -26,64 +26,47 @@ def main():
     setup_logger(level=logging.INFO)
     logger.info('============================== [run_create_corpus.py] start! ============================')
 
+    # =================================================================== ICML ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/20230729.case_study_finalize')
     # output_top_dir = Path('./outputs/00.create_corpus/20230729.case_study_finalize.debug')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20230801.case_study_finalize.fix')
 
-    # output_top_dir = Path('./outputs/00.create_corpus/20230826.jpn')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20230901.random_transitive_verbs')
-
-    # output_top_dir = Path('./outputs/00.create_corpus/20230904.jpn')
-    # output_top_dir = Path('./outputs/00.create_corpus/20230912.jpn')
-    # output_top_dir = Path('./outputs/00.create_corpus/20230914.jpn')
-    # output_top_dir = Path('./outputs/00.create_corpus/20230916.jpn')
+    # =================================================================== JFLD ===================================================================
 
     # output_top_dir = Path('./outputs/00.create_corpus/20231203.jpn')
     # output_top_dir = Path('./outputs/00.create_corpus/20231205.postprocess_debug')
-    # output_top_dir = Path('./outputs/00.create_corpus/debug')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20231213.jpn')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20230115.jpn')
     # output_top_dir = Path('./outputs/00.create_corpus/20230116.jpn.argument_pred_arg_only')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn/')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20230118.jpn.ICL')
-
     # output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+
+    # =================================================================== NeurIPS 2024 ===================================================================
 
     # output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
 
-
     # =================================================================== LPT ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
 
-
-
     # =================================================================== transfer ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
-
 
     # =================================================================== JFLD ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
 
-
-
     # =================================== 2024-07-21.neurips_additional ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
 
-
-
     # =================================== 2024-08-09.fix_depth_problem ========================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.depth_fix')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.depth_fix')
 
+    # =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora')
 
 
 
@@ -122,7 +105,7 @@ def main():
         # '20230120.jpn.punipuni.D8',
 
 
-        # ========================================- production ==========================================-
+        # ========================================- NeurIPS production ==========================================-
 
         # '2024-03-29.FLD_v2',
         # '2024-03-29.FLD_v2.theorems-0.3.fix',
@@ -211,20 +194,7 @@ def main():
         # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
 
 
-        # ==================================================== transfer ====================================================
-        # '20240419.20230120.jpn.wordnet_repro_w_proposition.reimpl.D3',
-
-
-        # ============================================================================== 2024-07-02.debug_punipuni ==============================================================================
-        # '2024-07-02.debug_punipuni.0',
-        # '2024-07-02.debug_punipuni.1',
-        # '2024-07-02.debug_punipuni.2',
-        # '2024-07-02.debug_punipuni.3',
-        # '2024-07-02.debug_punipuni.4',
-
-
-
-        # -------------------------------------- 2024-07-08.JFLD ----------------------------------------------
+        # ================================================ 2024-07-08.JFLD ===========================================
         # '2024-07-08.JFLD.step-1',
         # '2024-07-08.JFLD.step-3',
         # '2024-07-08.JFLD.step-5',
@@ -290,16 +260,18 @@ def main():
 
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing',
 
-        '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.05',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.05',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
 
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-3-4',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-4-4',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-4-5',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5-3',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-8',
 
-        '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.10',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.10',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.25',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5',
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.01',
@@ -307,20 +279,49 @@ def main():
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.03.adjust_theorems',
 
         # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-v2',
-        '2024-08-09.depth_fix.2024-03-29.FLD_v2',
+        # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-v3',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2',
+
+
+        # =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.wo_trnsl-v2',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.wo_theorems',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.suppress_dilemma',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.suppress_dilemma.theorems-0.003',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorems-0.0001',
+
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem_tree_prob-0.1',
+
+        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.01',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.01',
+        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.01',
+
+        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.1',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.1',
+        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1',
+
     ]
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
-    # job_engine = SubprocessEngine()
-    # job_engine = QsubEngine('ABCI', 'rt_C.small')
+    # job_engines = [SubprocessEngine()]
+    # job_engines = [QsubEngine('ABCI', 'rt_C.small')]
+    # job_engines = [QsubEngine('haic', 'xcl_s.small'), QsubEngine('haic', 'xcs_s.small')]
 
-    # job_engine = QsubEngine('haic', 'xcs_s.small')
-    job_engine = QsubEngine('haic', 'xcl_s.small')
+    job_engines = [
+        QsubEngine('haic', 'xhn_s.small'),
+        QsubEngine('haic', 'xhn_s.small'),
+        QsubEngine('haic', 'xhn_s.small'),
+        QsubEngine('haic', 'xhn_s.small'),
+        QsubEngine('haic', 'xcl_s.small'),
+        # QsubEngine('haic', 'xcl_s.small'),
+        QsubEngine('haic', 'xcs_s.small'),
+    ]
 
 
     num_jobs_per_dataset = 300    # for 1M dataset
@@ -328,6 +329,21 @@ def main():
     # num_jobs_per_dataset = 900     # for 3M dataset
     # num_jobs_per_dataset = 1500     # for 5M dataset
     # num_jobs_per_dataset = 3000     # for 10M dataset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -354,41 +370,48 @@ def main():
 
     delete_logs_when_done = True
 
-    if job_engine.resource == 'rt_C.small':
-        num_workers_per_job = 5
-
-    elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny']:
-        num_workers_per_job = 8
-
-    elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
-        # num_workers_per_job = 14
-        num_workers_per_job = 14
-
-    else:
-        raise NotImplementedError()
-
-    # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
-    min_dataset_size_per_job = 30 * num_workers_per_job
-    # min_dataset_size_per_job = 3 * num_workers_per_job
-
-
-    if wait_before_gather and any(job_engine.resource.find(res) >= 0
-                                  for res in ['xcs', 'xcl', 'xhn']):
-        raise Exception('we should not use wait_before_gather with xcs, xcl, xhn resources, as it will launch multiple job using Parallel, which leads to zombies')
-
     if wait_before_gather:
         num_jobs_for_datasets = 2
     else:
         num_jobs_for_datasets = None  # we do not need this value.
 
-    if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
-            num_jobs_for_datasets * num_jobs_per_dataset > 180:
-        raise ValueError('Too much jobs %s ~ ABCI job limit = 200',
-                         num_jobs_for_datasets * num_jobs_per_dataset)
+    if len(job_engines) == 1:
+        job_engine = job_engines[0]
+        if job_engine.resource == 'rt_C.small':
+            num_workers_per_job = 5
+        elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny']:
+            num_workers_per_job = 8
+        elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
+            # num_workers_per_job = 14
+            num_workers_per_job = 14
+        else:
+            raise NotImplementedError()
+
+        if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
+                num_jobs_for_datasets * num_jobs_per_dataset > 180:
+            raise ValueError('Too much jobs %s ~ ABCI job limit = 200',
+                             num_jobs_for_datasets * num_jobs_per_dataset)
+
+    else:
+        if not all(job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']
+                   for job_engine in job_engines):
+            raise NotImplementedError()
+        num_workers_per_job = 14
+
+    # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
+    min_dataset_size_per_job = 30 * num_workers_per_job
+
+    if wait_before_gather and any(
+        any(
+            job_engine.resource.find(res) >= 0
+            for res in ['xcs', 'xcl', 'xhn']
+        ) for job_engine in job_engines
+    ):
+        raise Exception('we should not use wait_before_gather with xcs, xcl, xhn resources, as it will launch multiple job using Parallel, which leads to zombies')
 
     make_dataset_args = [
         output_top_dir,
-        job_engine,
+        job_engines,
         timeout_per_job,
         delete_logs_when_done,
         num_jobs_per_dataset,
@@ -421,7 +444,7 @@ def _make_multiple_value_option(option: str, values: List[str]) -> str:
 
 def make_dataset(dataset_name: str,
                  output_top_dir: Union[str, Path],
-                 engine: EngineBase,
+                 engines: List[EngineBase],
                  timeout_per_job: int,
                  delete_logs_when_done: bool,
                  num_jobs: int,
@@ -434,6 +457,7 @@ def make_dataset(dataset_name: str,
     logger.info('====================== make_dataset() for "%s" =========================',
                 dataset_name)
     output_top_dir = Path(output_top_dir)
+
 
     # ----------------- fixed ------------------
     settings = {
@@ -509,6 +533,7 @@ def make_dataset(dataset_name: str,
     )
     logger.addHandler(create_file_handler(output_dir / 'log.txt'))
 
+    n_engine = 0
     for split, size in settings['split_sizes'].items():
         size_with_margin = int(size * 1.2)   # for the case some jobs fail or hang
 
@@ -536,7 +561,8 @@ def make_dataset(dataset_name: str,
                 job_output_path = job_output_dir / f'{split}.jsonl'
                 job_log_path = job_output_dir / 'log.txt'
 
-                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                if skip_if_exists and job_output_path.exists():
                 # if i_job < 1500:
                     logger.info('skip %s because', job_output_path)
                     continue
@@ -572,6 +598,7 @@ def make_dataset(dataset_name: str,
                     _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
                     maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
                     maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
+                    maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
                     maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
                     '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
 
@@ -623,6 +650,9 @@ def make_dataset(dataset_name: str,
                     f'--seed {job_settings["seed"]}',
 
                 ])
+
+                engine = engines[n_engine]
+                n_engine = (n_engine + 1) % len(engines)
 
                 if isinstance(engine, SubprocessEngine):
                     command += f' 2>&1 | tee {str(job_log_path)}'
