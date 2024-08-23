@@ -62,6 +62,9 @@ def main():
     # TOP_DIR = './outputs/00.create_corpus/2024-03-29'
     # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-03-29'
 
+    # TOP_DIR = './outputs/00.create_corpus/2024-08-09.depth_fix'
+    # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-09.depth_fix'
+
     TOP_DIR = './outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora'
     OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-12.neurips_camera_ready.towards_best_corpora'
 

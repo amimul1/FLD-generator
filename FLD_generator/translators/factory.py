@@ -30,8 +30,24 @@ def _get_config_paths(name_or_path: Union[str, List[str], Tuple[str]], lang: str
 
     else:
         if lang == 'eng':
-            if name_or_path in ['thing', 'thing.v1']:
+            if name_or_path in ['old-thing', 'old-thing.v0']:
+                return _get_config_paths('./configs/translations/eng/thing/', lang)
+            elif name_or_path in ['old-thing.v1']:
+                return _get_config_paths('./configs/translations/eng/thing.v1/', lang)
+
+            elif name_or_path in ['thing_person.v0']:
                 return _get_config_paths('./configs/translations/eng/thing_person.v0/', lang)
+
+            elif name_or_path in ['thing_person.v0.wo_suppress_if']:
+                return _get_config_paths('./configs/translations/eng/thing_person.v0.wo_suppress_if/', lang)
+
+            elif name_or_path in ['thing_person.v0.wo_phrase']:
+                return _get_config_paths('./configs/translations/eng/thing_person.v0.wo_phrase/', lang)
+
+            elif name_or_path in ['thing_person.v0.wo_clause']:
+                return _get_config_paths('./configs/translations/eng/thing_person.v0.wo_clause/', lang)
+
+
             elif name_or_path == 'thing_person.v2':
                 return _get_config_paths('./configs/translations/eng/thing_person.v2/', lang)
             elif name_or_path == 'thing_person.v3':

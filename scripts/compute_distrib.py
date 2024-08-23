@@ -95,12 +95,13 @@ def main(input_path, output_path, max_examples):
             for val, count in sorted(item for item in counts[attr_name].items() if item[0] is None):
                 print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.2f}', file=f_out)
 
-            if type(list(counts[attr_name].keys())[0]) == int:
-                sum_count = sum(key * count for key, count in counts[attr_name].items()
-                                if key is not None)
-                print('', file=f_out)
-                print('-- sum --', file=f_out)
-                print(f'sum(attr * counts)   -> {sum_count:<10,}', file=f_out)
+            if len(counts[attr_name]) > 0:
+                if type(list(counts[attr_name].keys())[0]) == int:
+                    sum_count = sum(key * count for key, count in counts[attr_name].items()
+                                    if key is not None)
+                    print('', file=f_out)
+                    print('-- sum --', file=f_out)
+                    print(f'sum(attr * counts)   -> {sum_count:<10,}', file=f_out)
 
 
 

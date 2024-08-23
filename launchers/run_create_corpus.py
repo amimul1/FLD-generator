@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 @click.command()
 def main():
     setup_logger(level=logging.INFO)
-    logger.info('============================== [run_create_corpus.py] start! ============================')
 
     # =================================================================== ICML ===================================================================
     # output_top_dir = Path('./outputs/00.create_corpus/20230729.case_study_finalize')
@@ -293,20 +292,48 @@ def main():
 
         # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem_tree_prob-0.1',
 
-        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.01',
-        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.01',
-        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.01',
 
-        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.1',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.1',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.01',
+
         # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.1',
-        '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.01',
+
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.01',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1.G_MP-3',
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1.G_MP-10',
+
+        # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.10--0.1',
+
+
+        # =================================== ./outputs/01.train.py/2024-08-16.neurips_camera_ready ========================================
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2',
+        # '2024-08-16.neurips_camera_ready.FLD.small_vocab',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.05',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.20',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15',
+        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_suppress_if',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_phrase',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_clause',
+
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.1',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.126',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.1.theorems-0.25',
+
 
     ]
 
-
-
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engines = [SubprocessEngine()]
@@ -315,22 +342,9 @@ def main():
 
     job_engines = [
         QsubEngine('haic', 'xhn_s.small'),
-        QsubEngine('haic', 'xhn_s.small'),
-        QsubEngine('haic', 'xhn_s.small'),
-        QsubEngine('haic', 'xhn_s.small'),
+        # QsubEngine('haic', 'xcs_s.small'),
         QsubEngine('haic', 'xcl_s.small'),
-        # QsubEngine('haic', 'xcl_s.small'),
-        QsubEngine('haic', 'xcs_s.small'),
     ]
-
-
-    num_jobs_per_dataset = 300    # for 1M dataset
-    # num_jobs_per_dataset = 600     # for 2M dataset
-    # num_jobs_per_dataset = 900     # for 3M dataset
-    # num_jobs_per_dataset = 1500     # for 5M dataset
-    # num_jobs_per_dataset = 3000     # for 10M dataset
-
-
 
 
 
@@ -358,22 +372,15 @@ def main():
     dry_run = False
     # dry_run = True
 
-    # wait_before_gather = True
-    wait_before_gather = False   # to avoid using too much jobs in parallel, which may lead to os error (BrokenPipeError) in HAIC
-
     # skip_if_exists = False
     skip_if_exists = True
-
 
     # for the case some jobs hangs
     timeout_per_job = 3600 * 3
 
     delete_logs_when_done = True
 
-    if wait_before_gather:
-        num_jobs_for_datasets = 2
-    else:
-        num_jobs_for_datasets = None  # we do not need this value.
+    num_jobs_for_datasets = None  # we do not need this value.
 
     if len(job_engines) == 1:
         job_engine = job_engines[0]
@@ -387,11 +394,6 @@ def main():
         else:
             raise NotImplementedError()
 
-        if isinstance(job_engine, QsubEngine) and job_engine.region == 'ABCI' and \
-                num_jobs_for_datasets * num_jobs_per_dataset > 180:
-            raise ValueError('Too much jobs %s ~ ABCI job limit = 200',
-                             num_jobs_for_datasets * num_jobs_per_dataset)
-
     else:
         if not all(job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']
                    for job_engine in job_engines):
@@ -401,36 +403,20 @@ def main():
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.
     min_dataset_size_per_job = 30 * num_workers_per_job
 
-    if wait_before_gather and any(
-        any(
-            job_engine.resource.find(res) >= 0
-            for res in ['xcs', 'xcl', 'xhn']
-        ) for job_engine in job_engines
-    ):
-        raise Exception('we should not use wait_before_gather with xcs, xcl, xhn resources, as it will launch multiple job using Parallel, which leads to zombies')
-
     make_dataset_args = [
         output_top_dir,
         job_engines,
         timeout_per_job,
         delete_logs_when_done,
-        num_jobs_per_dataset,
         num_workers_per_job,
         min_dataset_size_per_job,
         skip_if_exists,
-        wait_before_gather,
         only_gather,
         dry_run,
     ]
 
-    if wait_before_gather or only_gather:
-        jobs = []
-        for dataset_name in dataset_names:
-            jobs.append(delayed(make_dataset)(dataset_name, *make_dataset_args))
-        Parallel(n_jobs=num_jobs_for_datasets, backend='threading')(jobs)
-    else:
-        for dataset_name in dataset_names:
-            make_dataset(dataset_name, *make_dataset_args)
+    for dataset_name in dataset_names:
+        make_dataset(dataset_name, *make_dataset_args)
 
     logger.info('============================== [00.run_create_corpus.py] done! ============================')
 
@@ -447,15 +433,11 @@ def make_dataset(dataset_name: str,
                  engines: List[EngineBase],
                  timeout_per_job: int,
                  delete_logs_when_done: bool,
-                 num_jobs: int,
                  num_workers_per_job: int,
                  min_dataset_size_per_job: int,
                  skip_if_exists: bool,
-                 wait_before_gather: bool,
                  only_gather: bool,
                  dry_run: bool) -> None:
-    logger.info('====================== make_dataset() for "%s" =========================',
-                dataset_name)
     output_top_dir = Path(output_top_dir)
 
 
@@ -535,7 +517,9 @@ def make_dataset(dataset_name: str,
 
     n_engine = 0
     for split, size in settings['split_sizes'].items():
-        size_with_margin = int(size * 1.2)   # for the case some jobs fail or hang
+        num_jobs = get_num_jobs(size)
+
+        size_with_margin = int(size * 1.1)   # for the case some jobs fail or hang
 
         split_output_dir = output_dir / split
         split_output_dir.mkdir(exist_ok=True, parents=True)
@@ -546,11 +530,11 @@ def make_dataset(dataset_name: str,
             _num_jobs = num_jobs
         size_per_job = math.ceil(size_with_margin / _num_jobs)
 
-        logger.info('============================== [launch_create_FLD_corpus.py] Generating dataset for %s split ============================', split)
-        logger.info('size: %d', size)
-        logger.info('size_with_margin: %d', size_with_margin)
-        logger.info('num_jobs: %d', _num_jobs)
-        logger.info('size_per_job: %d', size_per_job)
+        # logger.info('============================== [launch_create_FLD_corpus.py] Generating dataset for %s split ============================', split)
+        # logger.info('size: %d', size)
+        # logger.info('size_with_margin: %d', size_with_margin)
+        # logger.info('num_jobs: %d', _num_jobs)
+        # logger.info('size_per_job: %d', size_per_job)
 
         if not only_gather:
             jobs = []
@@ -678,20 +662,12 @@ def make_dataset(dataset_name: str,
                     },
                     'dry_run': dry_run,
                 }
-                if wait_before_gather:
-                    delay = 3.0 * i_job  # We need to increment the delay, as Parallel will start jobs at the same time.
-                    jobs.append(delayed(engine.run)(command, wait_until_finish=True, delay=delay, **kwargs))
-                else:
-                    engine.run(command, wait_until_finish=False, **kwargs)
+                engine.run(command, wait_until_finish=False, **kwargs)
 
-            if wait_before_gather:
-                logger.info('waiting %d jobs to be finished...', len(jobs))
-                Parallel(n_jobs=_num_jobs, backend='threading')(jobs)
-            else:
-                logger.warning('We now start gathering the results without waiting for the jobs to be finished. As the jobs may not be finished, the gathered results will also be incomplete.')
+            logger.warning('We now start gathering the results without waiting for the jobs to be finished. As the jobs may not be finished, the gathered results will also be incomplete.')
 
         # -- aggregate results --
-        logger.info('gathering results under %s', split_output_dir)
+        # logger.info('gathering results under %s', split_output_dir)
         cnt = 0
         is_done = False
         job_output_jsonls = sorted([
@@ -700,7 +676,7 @@ def make_dataset(dataset_name: str,
         ])
         lines: List[str] = []
         for jsonl in job_output_jsonls:
-            logger.info('loading %s', jsonl)
+            # logger.info('loading %s', jsonl)
             if is_done:
                 break
             for i_line, line in enumerate(open(jsonl)):
@@ -714,13 +690,14 @@ def make_dataset(dataset_name: str,
                     continue
                 lines.append(line)
                 cnt += 1
+        output_path = split_output_dir / f'{split}.jsonl'
         random.shuffle(lines)
-        with open(split_output_dir / f'{split}.jsonl', 'w') as f_out:
+        with open(output_path, 'w') as f_out:
             for line in lines:
                 f_out.write(line)
+        logger.info('%d samples are written into "%s"', len(lines), output_path)
 
         # -- aggregate statistics --
-        logger.info('aggregating stats under %s', split_output_dir)
         job_stats_jsonls = sorted([
             path for path in split_output_dir.glob(f'**/*{split}.jsonl.stats.json')
             if str(path).find('job-') >= 0
@@ -751,6 +728,19 @@ def make_dataset(dataset_name: str,
                 agg_stats[name] = statistics.mean(cnt)
         json.dump(dict(agg_stats), open(str(split_output_dir / f'{split}.jsonl.stats.json'), 'w'),
                   ensure_ascii=False, indent=4, sort_keys=True, separators=(',', ': '))
+
+
+def get_num_jobs(num_examples: int) -> int:
+    if num_examples in [1_000, 100_000]:
+        return 300
+    elif num_examples in [200_000]:
+        return 600
+    elif num_examples in [300_000]:
+        return 900
+    else:
+        raise NotImplementedError()
+
+
 
 
 if __name__ == '__main__':

@@ -121,6 +121,8 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
     # elif argument.id.find('dilemma') >= 0:
     #     # while dilemma is not that important, its frequency is too high.
     #     return 0.25
+    # elif argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+    #     return 3
     else:
         return None
 
