@@ -10,7 +10,7 @@ from collections import defaultdict
 from pprint import pprint, pformat
 
 from FLD_generator.exception import FormalLogicExceptionBase
-from FLD_generator.argument import is_reference_argument
+from FLD_generator.argument import is_reference_argument, is_theorem_argument
 from FLD_generator.proof_tree_generation_pipeline import ProofTreeGenerationPipeline
 from FLD_generator.formula import Formula
 from FLD_generator.proof import ProofTree, ProofNode
@@ -225,7 +225,7 @@ class NLProofSDataset:
                  translation_variants_per_logic=1,
                  allow_inconsistency=False,
                  allow_smaller_proofs=False,
-                 version: str = '0.3',
+                 version: str = '0.31',
                  log_stats=True,
                  raise_if_translation_not_found=True):
 
@@ -437,7 +437,7 @@ class NLProofSDataset:
                                             if node not in dead_leaf_nodes]
 
                         # -- make texts --
-                        context, formula_context, proof_text, formula_proof_text, node2id, id2node = self._make_text(
+                        context, formula_context, proof_text, formula_proof_text, node2id, id2node, theorem_is_used_in_proof = self._make_text(
                             proof_tree_var,
                             proof_stance,
 
@@ -476,7 +476,7 @@ class NLProofSDataset:
                             negative_hypothesis_formula = negative_tree.root_node.formula
                             negative_hypothesis = self._get_sent_from_node(negative_hypothesis_formula)
 
-                            _, _, negateive_proof_text, _, _, _ = self._make_text(
+                            _, _, negateive_proof_text, _, _, _, _ = self._make_text(
                                 negative_tree,
                                 ProofStance.UNKNOWN,
 
@@ -586,6 +586,7 @@ class NLProofSDataset:
                             f'{self._facts_ident}_formula': formula_context,
                             'proofs': [proof_text] if proof_text is not None else [],
                             'proofs_formula': [formula_proof_text] if formula_proof_text is not None else [],
+                            'theorem_is_used_in_proof': theorem_is_used_in_proof,
 
                             'negative_hypothesis': negative_hypothesis,
                             'negative_hypothesis_formula': negative_hypothesis_formula.rep if negative_hypothesis_formula is not None else None,
@@ -703,7 +704,7 @@ class NLProofSDataset:
 
                    add_random_sentence_if_context_is_null=False,
                    conclude_hypothesis_from_subtree_roots_if_proof_is_unknown=True,
-                   conclude_hypothesis_from_random_sent_if_proof_is_unknown=False) -> Tuple[str, Optional[str], Dict[Node, str], Dict[str, Node]]:
+                   conclude_hypothesis_from_random_sent_if_proof_is_unknown=False) -> Tuple[str, Optional[str], Dict[Node, str], Dict[str, Node], bool]:
 
         dead_leaf_nodes = dead_leaf_nodes or []
         missing_leaf_nodes = missing_leaf_nodes or []
@@ -719,6 +720,11 @@ class NLProofSDataset:
             dead_leaf_nodes,
             missing_leaf_nodes,
             collapsed_leaf_nodes,
+        )
+
+        theorem_is_used_in_proof = any(
+            is_theorem_argument(node.argument) if node.argument is not None else False
+            for node in transformed_proof_nodes if node is not None and node.argument is not None
         )
 
         transformed_proof_and_distractor_nodes: List[Node] = list(transformed_proof_nodes)\
@@ -772,6 +778,7 @@ class NLProofSDataset:
             formula_proof_text,
             node2id,
             id2node,
+            theorem_is_used_in_proof,
         )
 
     def _divide_into_missing_and_collapsed_nodes(self, dead_leaf_nodes: List[ProofNode]) -> Tuple[List[ProofNode], List[ProofNode]]:

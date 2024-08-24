@@ -317,7 +317,11 @@ def main():
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.20',
 
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15',
-        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
+
+        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05.w_flag',
+        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.25.w_flag',
 
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_suppress_if',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_phrase',
@@ -341,9 +345,9 @@ def main():
     # job_engines = [QsubEngine('haic', 'xcl_s.small'), QsubEngine('haic', 'xcs_s.small')]
 
     job_engines = [
-        QsubEngine('haic', 'xhn_s.small'),
-        # QsubEngine('haic', 'xcs_s.small'),
-        QsubEngine('haic', 'xcl_s.small'),
+        # QsubEngine('haic', 'xhn_s.small'),
+        QsubEngine('haic', 'xcs_s.small'),
+        # QsubEngine('haic', 'xcl_s.small'),
     ]
 
 
