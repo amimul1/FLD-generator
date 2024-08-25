@@ -112,17 +112,25 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
     """
     Considered ./outputs/G02.compute_rule_stats.sh/2024-08-08/
     """
-    if argument.id.find('interchangeability') >= 0:
-        # while interchangeability is not that important, its frequency is too high.
-        return 0.25
-    elif argument.id.find('syllogism') >= 0:
-        # as we have many times of syllogism, their frequency is too high.
-        return 0.1
+    if argument.id.find('theorem') < 0:
+        return None
+
+    # if argument.id.find('interchangeability') >= 0:
+    #     # while interchangeability is not that important, its frequency is too high.
+    #     return 0.25
+    # elif argument.id.find('syllogism') >= 0:
+    #     # as we have many times of syllogism, their frequency is too high.
+    #     return 0.1
     # elif argument.id.find('dilemma') >= 0:
     #     # while dilemma is not that important, its frequency is too high.
     #     return 0.25
     # elif argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
     #     return 3
+    # else:
+    #     return None
+
+    if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+        return 100
     else:
-        return None
+        return 0
 

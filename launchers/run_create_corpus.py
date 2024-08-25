@@ -307,25 +307,32 @@ def main():
         # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.10--0.1',
 
 
+
         # =================================== ./outputs/01.train.py/2024-08-16.neurips_camera_ready ========================================
+
+
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2',
         # '2024-08-16.neurips_camera_ready.FLD.small_vocab',
 
+
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0',
-
-        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.05',
-        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.20',
-
-        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15',
-        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
-
-        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag',
-        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05.w_flag',
-        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.25.w_flag',
 
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_suppress_if',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_phrase',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_clause',
+
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.05',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.20',
+
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05.w_flag',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag',
+        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.25.w_flag',
 
 
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2',
@@ -336,8 +343,12 @@ def main():
 
     ]
 
-    # only_gather = False
-    only_gather = True
+
+
+
+    only_gather = False
+    # only_gather = True
+
 
 
     # job_engines = [SubprocessEngine()]
@@ -346,8 +357,12 @@ def main():
 
     job_engines = [
         # QsubEngine('haic', 'xhn_s.small'),
-        QsubEngine('haic', 'xcs_s.small'),
+        # QsubEngine('haic', 'xcs_s.small'),
         # QsubEngine('haic', 'xcl_s.small'),
+
+        QsubEngine('haic', 'xhn_s.middle'),
+        # QsubEngine('haic', 'xcs_s.middle'),
+        # QsubEngine('haic', 'xcl_s.middle'),
     ]
 
 
@@ -390,11 +405,14 @@ def main():
         job_engine = job_engines[0]
         if job_engine.resource == 'rt_C.small':
             num_workers_per_job = 5
-        elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny']:
+        elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny', 'xhn_s.small']:
             num_workers_per_job = 8
-        elif job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']:
+        elif job_engine.resource in ['xcs_s.small', 'xcl_s.small', 'xhn_s.middle']:
             # num_workers_per_job = 14
             num_workers_per_job = 14
+        elif job_engine.resource in ['xcs_s.middle', 'xcl_s.middle', 'xhn_s.middle2']:
+            num_workers_per_job = 30
+
         else:
             raise NotImplementedError()
 
@@ -451,6 +469,8 @@ def make_dataset(dataset_name: str,
         'num_workers_per_job': num_workers_per_job,
     }
     settings.update(get_dataset_setting(dataset_name))
+    if settings['translation_configs'] in ['thing_person.v2']:
+        logger.warning('thing_person.v2 is very slow. We recommend to use thing_person.v0 for tuning parameters, then use thing_person.v2 only finally.')
 
     output_dir = build_dir(
         settings,
