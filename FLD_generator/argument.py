@@ -131,6 +131,8 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
 
     if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
         return 50
+    elif argument.id.find('syllogism') >= 0:
+        return 0.1
     else:
         return 0
 
