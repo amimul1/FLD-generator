@@ -135,6 +135,8 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
         return 0.1
     elif argument.id.find('contraposition') >= 0:
         return 1.0
+    elif argument.id.find('interchangeability') >= 0:
+        return 0.25
     else:
         return 0
 
