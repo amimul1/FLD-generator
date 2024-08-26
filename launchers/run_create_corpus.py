@@ -345,9 +345,8 @@ def main():
 
 
 
-
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
 
@@ -360,9 +359,9 @@ def main():
         # QsubEngine('haic', 'xcs_s.small'),
         # QsubEngine('haic', 'xcl_s.small'),
 
-        QsubEngine('haic', 'xhn_s.middle'),
-        # QsubEngine('haic', 'xcs_s.middle'),
-        # QsubEngine('haic', 'xcl_s.middle'),
+        # QsubEngine('haic', 'xhn_s.middle'),
+        QsubEngine('haic', 'xcs_s.middle'),
+        QsubEngine('haic', 'xcl_s.middle'),
     ]
 
 
@@ -403,12 +402,13 @@ def main():
 
     if len(job_engines) == 1:
         job_engine = job_engines[0]
+
+        if job_engine.resource in ['xcs_s.small', 'xcl_s.small', 'xhn_s.small']:
+            raise ValueError('small resource leads to many jobs running concurrently. Then, when they finishes, many new jobs races to start, which leads to zombies')
+
         if job_engine.resource == 'rt_C.small':
             num_workers_per_job = 5
-        elif job_engine.resource in ['xcs_s.tiny', 'xcl_s.tiny', 'xhn_s.small']:
-            num_workers_per_job = 8
         elif job_engine.resource in ['xcs_s.small', 'xcl_s.small', 'xhn_s.middle']:
-            # num_workers_per_job = 14
             num_workers_per_job = 14
         elif job_engine.resource in ['xcs_s.middle', 'xcl_s.middle', 'xhn_s.middle2']:
             num_workers_per_job = 30
@@ -417,9 +417,6 @@ def main():
             raise NotImplementedError()
 
     else:
-        if not all(job_engine.resource in ['xhn_s.small', 'xcs_s.small', 'xcl_s.small']
-                   for job_engine in job_engines):
-            raise NotImplementedError()
         num_workers_per_job = 14
 
     # -- large value can save ABCI points because it avoids that the data loading becomes the bottleneck.

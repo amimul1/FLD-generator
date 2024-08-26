@@ -395,7 +395,8 @@ class ProofTreeGenerator:
             if is_theorem_argument(argument):
                 weight *= theorem_arguments_factor
             if adjust_theorem_argument_weight:
-                weight *= get_theorem_adjust_weight(argument) or 1.0
+                factor = get_theorem_adjust_weight(argument)
+                weight *= factor if factor is not None else 1.0
             if is_or_argument(argument):
                 weight *= or_arguments_factor
             if is_existential_argument(argument):

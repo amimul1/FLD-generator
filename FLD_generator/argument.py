@@ -130,7 +130,7 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
     #     return None
 
     if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
-        return 100
+        return 50
     else:
         return 0
 
