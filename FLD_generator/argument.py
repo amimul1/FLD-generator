@@ -108,7 +108,8 @@ def is_theorem_argument(argument: Argument) -> bool:
     return argument.id.find('theorem') >= 0
 
 
-def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
+def get_theorem_adjust_weight(argument: Argument,
+                              subset='all') -> Optional[float]:
     """
     Considered ./outputs/G02.compute_rule_stats.sh/2024-08-08/
     """
@@ -129,14 +130,52 @@ def get_theorem_adjust_weight(argument: Argument) -> Optional[float]:
     # else:
     #     return None
 
-    if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
-        return 50
-    elif argument.id.find('syllogism') >= 0:
-        return 0.1
-    elif argument.id.find('contraposition') >= 0:
-        return 1.0
-    elif argument.id.find('interchangeability') >= 0:
-        return 0.25
-    else:
-        return 0
+    if subset == 'G_MP':
+        if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+            return 50
+        else:
+            return 0
+
+    elif subset == 'G_MP.syllogism':
+        if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+            return 50
+        elif argument.id.find('syllogism') >= 0:
+            return 0.1
+        else:
+            return 0
+
+    elif subset == 'G_MP.syllogism.contraposition':
+        if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+            return 50
+        elif argument.id.find('syllogism') >= 0:
+            return 0.1
+        elif argument.id.find('contraposition') >= 0:
+            return 1.0
+        else:
+            return 0
+
+    elif subset == 'G_MP.syllogism.contraposition.interchangeability':
+        if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+            return 50
+        elif argument.id.find('syllogism') >= 0:
+            return 0.1
+        elif argument.id.find('contraposition') >= 0:
+            return 1.0
+        elif argument.id.find('interchangeability') >= 0:
+            return 0.25
+        else:
+            return 0
+
+    elif subset == 'all':
+        if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
+            return 50
+        elif argument.id.find('syllogism') >= 0:
+            return 0.1
+        elif argument.id.find('contraposition') >= 0:
+            return 1.0
+        elif argument.id.find('interchangeability') >= 0:
+            return 0.25
+        else:
+            return 1.0
+
 

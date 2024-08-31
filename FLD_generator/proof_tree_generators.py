@@ -149,6 +149,7 @@ class ProofTreeGenerator:
                  theorem_tree_prob=1.0,
                  theorem_arguments_factor=0.3,
                  adjust_theorem_argument_weight=False,
+                 theorem_subset='all',
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
                  universal_arguments_factor=1.0,
@@ -179,6 +180,7 @@ class ProofTreeGenerator:
             propositional_arguments_factor=propositional_arguments_factor,
             theorem_arguments_factor=theorem_arguments_factor,
             adjust_theorem_argument_weight=adjust_theorem_argument_weight,
+            theorem_subset=theorem_subset,
             or_arguments_factor=or_arguments_factor,
             existential_arguments_factor=existential_arguments_factor,
             universal_arguments_factor=universal_arguments_factor,
@@ -212,6 +214,7 @@ class ProofTreeGenerator:
                         propositional_arguments_factor: float,
                         theorem_arguments_factor: float,
                         adjust_theorem_argument_weight: bool,
+                        theorem_subset: str,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
@@ -395,7 +398,7 @@ class ProofTreeGenerator:
             if is_theorem_argument(argument):
                 weight *= theorem_arguments_factor
             if adjust_theorem_argument_weight:
-                factor = get_theorem_adjust_weight(argument)
+                factor = get_theorem_adjust_weight(argument, subset=theorem_subset)
                 weight *= factor if factor is not None else 1.0
             if is_or_argument(argument):
                 weight *= or_arguments_factor

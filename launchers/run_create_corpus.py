@@ -15,7 +15,6 @@ from script_engine import QsubEngine, SubprocessEngine
 from script_engine.base import EngineBase
 from logger_setup import setup as setup_logger, create_file_handler
 from lab import build_dir, save_params
-from joblib import Parallel, delayed
 from experimental_settings import get_dataset_setting, maybe_option
 
 logger = logging.getLogger(__name__)
@@ -65,7 +64,10 @@ def main():
     # output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.depth_fix')
 
     # =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora')
+
+    # =================================== 2024-08-30.fix_ref_prob ========================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-08-30.fix_ref_prob')
 
 
 
@@ -331,10 +333,14 @@ def main():
 
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05.w_flag',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag',
+
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism',
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism.contraposition',
-        '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism.contraposition.and_interchangeability',
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism.contraposition.and_interchangeability',
+
+        # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.ref_prob=0.20',
+
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.25.w_flag',
 
 
@@ -344,12 +350,25 @@ def main():
         # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.1.theorems-0.25',
 
 
+        # =================================== 2024-08-30.fix_ref_prob ========================================
+
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
+
+
+
+
+
     ]
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
 
@@ -609,6 +628,7 @@ def make_dataset(dataset_name: str,
                     maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
                     maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
                     '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
+                    maybe_option('--theorem-subset', job_settings.get('theorem_subset', None)),
 
                     maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                     _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
@@ -755,8 +775,12 @@ def make_dataset(dataset_name: str,
 
 
 def get_num_jobs(num_examples: int) -> int:
-    if num_examples in [1_000, 100_000]:
+    if num_examples < 100:
+        return 1
+    elif num_examples in [1_000, 100_000]:
         return 300
+    elif num_examples in [150_000]:
+        return 450
     elif num_examples in [200_000]:
         return 600
     elif num_examples in [300_000]:
