@@ -22,8 +22,12 @@ from FLD_generator.translation_distractors import build as build_translation_dis
 from FLD_generator.utils import _build_bounded_msg, log_results, fix_seed
 from FLD_generator.knowledge_banks import build_knowledge_bank
 from joblib import Parallel, delayed
+from concurrent.futures import ProcessPoolExecutor
 
 from logger_setup import setup as setup_logger
+
+
+_USE_JOBLIB_FOR_PARALLEL = False
 
 
 logger = logging.getLogger(__name__)
@@ -49,6 +53,7 @@ def load_dataset(
     theorem_tree_prob: float,
     theorem_arguments_factor: float,
     adjust_theorem_argument_weight: bool,
+    theorem_subset: str,
     knowledge_argument_factor: float,
     keep_dneg: bool,
     distractor: str,
@@ -129,6 +134,7 @@ def load_dataset(
         theorem_tree_prob=theorem_tree_prob,
         theorem_arguments_factor=theorem_arguments_factor,
         adjust_theorem_argument_weight=adjust_theorem_argument_weight,
+        theorem_subset=theorem_subset,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -281,6 +287,7 @@ def generate_instances(size: int, *args):
 @click.option('--theorem-tree-prob', type=float, default=1.0)
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
 @click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False)
+@click.option('--theorem-subset', type=str, default='all')
 #
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
@@ -378,6 +385,7 @@ def main(output_path,
          theorem_tree_prob,
          theorem_arguments_factor,
          adjust_theorem_argument_weight,
+         theorem_subset,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -446,83 +454,84 @@ def main(output_path,
     with open(output_path, 'w') as f_out:
 
         for i_batch in range(num_batches):
-            jobs = []
+            job_args = []
             for _ in range(num_workers):
-                jobs.append(
-                    delayed(generate_instances)(
-                        _batch_size_per_worker,
-                        argument_config,
-                        translation_lang,
-                        translation_config,
-                        use_fixed_translation,
-                        reused_object_nouns_max_factor,
-                        limit_vocab_size_per_type,
-                        translation_volume_to_weight,
-                        translation_default_weight_factor_type,
-                        translation_adj_verb_noun_ratio,
-                        translation_no_transitive_object,
-                        translation_vocab,
-                        complex_formula_arguments_weight,
-                        quantifier_axiom_arguments_weight,
-                        quantifier_axiom,
-                        quantification_degree,
-                        propositional_arguments_factor,
-                        theorem_tree_prob,
-                        theorem_arguments_factor,
-                        adjust_theorem_argument_weight,
-                        knowledge_argument_factor,
-                        keep_dneg,
-                        distractor,
-                        distractors_range,
-                        sample_distractor_prototype_formulas_from_all_possible_formulas,
-                        disallow_simplified_tree_formulas_as_distractor_prototype,
-                        disallow_hard_negative_distractors,
-                        # negative_tree_negated_hypothesis_ratio,
-                        disallow_subj_obj_swapped_distractor,
-                        translation_distractor,
-                        fallback_from_formula_to_translation_distractor,
-                        translation_distractors_range,
-                        proof_stances,
-                        world_assump,
-                        unknown_ratio,
-                        reference_tree_prob,
-                        reference_argument_prob_in_depth_1,
-                        sample_all_stances_per_logic,
-                        context_shuffles_per_instance,
-                        use_collapsed_translation_nodes_for_unknown_tree,
-                        swap_ng_words,
+                job_args.append([
+                    _batch_size_per_worker,
+                    argument_config,
+                    translation_lang,
+                    translation_config,
+                    use_fixed_translation,
+                    reused_object_nouns_max_factor,
+                    limit_vocab_size_per_type,
+                    translation_volume_to_weight,
+                    translation_default_weight_factor_type,
+                    translation_adj_verb_noun_ratio,
+                    translation_no_transitive_object,
+                    translation_vocab,
+                    complex_formula_arguments_weight,
+                    quantifier_axiom_arguments_weight,
+                    quantifier_axiom,
+                    quantification_degree,
+                    propositional_arguments_factor,
+                    theorem_tree_prob,
+                    theorem_arguments_factor,
+                    adjust_theorem_argument_weight,
+                    theorem_subset,
+                    knowledge_argument_factor,
+                    keep_dneg,
+                    distractor,
+                    distractors_range,
+                    sample_distractor_prototype_formulas_from_all_possible_formulas,
+                    disallow_simplified_tree_formulas_as_distractor_prototype,
+                    disallow_hard_negative_distractors,
+                    disallow_subj_obj_swapped_distractor,
+                    translation_distractor,
+                    fallback_from_formula_to_translation_distractor,
+                    translation_distractors_range,
+                    proof_stances,
+                    world_assump,
+                    unknown_ratio,
+                    reference_tree_prob,
+                    reference_argument_prob_in_depth_1,
+                    sample_all_stances_per_logic,
+                    context_shuffles_per_instance,
+                    use_collapsed_translation_nodes_for_unknown_tree,
+                    swap_ng_words,
 
-                        generate_stem_steps_range,
-                        generate_stem_steps_distrib,
+                    generate_stem_steps_range,
+                    generate_stem_steps_distrib,
 
-                        extend_branches_steps_range,
+                    extend_branches_steps_range,
 
-                        steps_limit,
-                        depth_limit,
-                        increase_depth_by_extend_branches,
+                    steps_limit,
+                    depth_limit,
+                    increase_depth_by_extend_branches,
 
-                        force_fix_illegal_intermediate_constants,
-                        distractor_variants_per_tree,
-                        translation_variants_per_logic,
-                        allow_smaller_proofs,
-                        knowledge_range,
-                        collapsed_knowledge_range,
-                        knowledge_no_shuffle,
-                        atomic_filepath,
-                        concept_net_100k_filepath,
-                        dbpedia_filepath,
-                    )
-                )
+                    force_fix_illegal_intermediate_constants,
+                    distractor_variants_per_tree,
+                    translation_variants_per_logic,
+                    allow_smaller_proofs,
+                    knowledge_range,
+                    collapsed_knowledge_range,
+                    knowledge_no_shuffle,
+                    atomic_filepath,
+                    concept_net_100k_filepath,
+                    dbpedia_filepath,
+                ])
 
-            logger.info('creating corpus with %d jobs', num_workers)
-            instances_list = Parallel(n_jobs=num_workers, backend='multiprocessing')(jobs)
 
             cnt = 0
             is_done = False
             num_jobs: Dict[str, int] = defaultdict(int)
-            for instances, stats in instances_list:
+
+            def update(instance, stats):
+                nonlocal cnt
+                nonlocal is_done
+                nonlocal num_jobs
+
                 if is_done:
-                    break
+                    return
 
                 for nlproof_json, proof_tree, _, _ in instances:
                     if cnt >= size:
@@ -538,6 +547,20 @@ def main(output_path,
                         # logger.critical(pformat(gathered_stats))
                         gathered_stats[name] += count
                         num_jobs[name] += 1
+
+            logger.info('creating corpus with %d jobs', num_workers)
+
+            if _USE_JOBLIB_FOR_PARALLEL:
+                jobs = [delayed(generate_instances)(*args) for job_args in job_args]
+                job_results = Parallel(n_jobs=num_workers, backend='multiprocessing')(jobs)
+                for instances, stats in job_results:
+                    update(instances, stats)
+            else:
+                with ProcessPoolExecutor(max_workers=num_workers) as executor:
+                    futures = [executor.submit(generate_instances, *args) for args in job_args]
+                    for future in futures:
+                        instances, stats = future.result()
+                        update(instances, stats)
 
             for name, count in gathered_stats.items():
                 if not name.startswith('cum.'):
