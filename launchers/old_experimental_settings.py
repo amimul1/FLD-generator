@@ -5175,3 +5175,346 @@ _DATASET_SETTINGS = {
 # '2024-07-02.debug_punipuni.4',
 
 
+
+
+
+
+
+# =================================================================== ICML ===================================================================
+# output_top_dir = Path('./outputs/00.create_corpus/20230729.case_study_finalize')
+# output_top_dir = Path('./outputs/00.create_corpus/20230729.case_study_finalize.debug')
+# output_top_dir = Path('./outputs/00.create_corpus/20230801.case_study_finalize.fix')
+
+# =================================================================== JFLD ===================================================================
+
+# output_top_dir = Path('./outputs/00.create_corpus/20231203.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20231205.postprocess_debug')
+# output_top_dir = Path('./outputs/00.create_corpus/20231213.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20230115.jpn')
+# output_top_dir = Path('./outputs/00.create_corpus/20230116.jpn.argument_pred_arg_only')
+# output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn/')
+# output_top_dir = Path('./outputs/00.create_corpus/20230118.jpn.ICL')
+# output_top_dir = Path('./outputs/00.create_corpus/20230120.jpn.punipuni')
+
+# =================================================================== NeurIPS 2024 ===================================================================
+
+# output_top_dir = Path('./outputs/00.create_corpus/2024-03-29')
+# output_top_dir = Path('./outputs/00.create_corpus/2024-05-03.ablation')
+# output_top_dir = Path('./outputs/00.create_corpus/2024-05-08.ref_prob')
+# output_top_dir = Path('./outputs/00.create_corpus/2024-05-19.ablation_with_theorems')
+
+# =================================================================== LPT ===================================================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-06-08.LPT')
+
+# =================================================================== transfer ===================================================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-06-19.transfer')
+
+# =================================================================== JFLD ===================================================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-07-02.debug_punipuni')
+# output_top_dir = Path('./outputs/00.create_corpus/2024-07-08.JFLD')
+
+# =================================== 2024-07-21.neurips_additional ========================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-07-21.neurips_additional')
+
+# =================================== 2024-08-09.fix_depth_problem ========================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-08-09.depth_fix')
+
+# =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora')
+
+# =================================== 2024-08-30.fix_ref_prob ========================================
+# output_top_dir = Path('./outputs/00.create_corpus/2024-08-30.fix_ref_prob')
+
+
+
+dataset_names = [
+    # ============================================- 20230729.case_study_finalize (ICML-official-release-v2) ================================================
+    # '20230729.case_study_finalize.D3',
+    # '20230729.case_study_finalize.D8',
+
+    # ============================================- 20231213.jpn ================================================
+    # '20231213.jpn.D1_wo_dist',
+    # '20231213.jpn.D1',
+    # '20231213.jpn.D3',
+    # '20231213.jpn.D5',
+    # '20231213.jpn.D8',
+
+    # ============================================- 20230120.jpn.punipuni ================================================
+
+    # '20230120.jpn.wordnet_repro_w_proposition.D1_wo_dist',
+    # '20230120.jpn.wordnet_repro_w_proposition.D1',
+    # '20230120.jpn.wordnet_repro_w_proposition.D3',
+    # '20230120.jpn.wordnet_repro_w_proposition.D5',
+
+    # '20230120.jpn.wordnet_repro_wo_proposition.D1_wo_dist',
+    # '20230120.jpn.wordnet_repro_wo_proposition.D1',
+    # '20230120.jpn.wordnet_repro_wo_proposition.D3',
+    # '20230120.jpn.wordnet_repro_wo_proposition.D5',
+
+    # '20230120.jpn.BCCWJ.D1_wo_dist',
+    # '20230120.jpn.BCCWJ.D1',
+    # '20230120.jpn.BCCWJ.D3',
+    # '20230120.jpn.BCCWJ.D8',
+
+    # '20230120.jpn.punipuni.D1_wo_dist',
+    # '20230120.jpn.punipuni.D1',
+    # '20230120.jpn.punipuni.D3',
+    # '20230120.jpn.punipuni.D8',
+
+
+    # ========================================- NeurIPS production ==========================================-
+
+    # '2024-03-29.FLD_v2',
+    # '2024-03-29.FLD_v2.theorems-0.3.fix',
+    # '2024-03-29.FLD_v2.theorems-0.1.fix',
+    # '2024-03-29.FLD_v2.theorems-0.03.fix',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems-0.03',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-v2',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-v2.theorems-0.03',
+
+
+    # '2024-03-29.JSAI_best.no_aug',
+    # '2024-03-29.JSAI_best.no_aug.theorems-0.3',
+    # '2024-03-29.JSAI_best.no_aug.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.theorems-0.03',
+
+
+
+
+    # ========================================- 2024-05-03.ablation ==========================================-
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.dstrct-0',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-5-3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-8-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-2',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.stps-1-0',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.stps-3',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old',
+
+
+    # ==============================================- ./outputs/00.create_corpus/2024-05-08.ref_prob ==================================-
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-1-2',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-3-3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.stps-5-5',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10.theorems-0.2',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-1-2',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-3-3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-3',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.stps-5-5',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.05',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.2',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.30',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.40',
+
+
+    # ==================================- ./outputs/00.create_corpus/2024-05-19.ablation_with_theorems =====================
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1',
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.voc-100',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.dstrct-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.rule-G_MP',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.stps-3-0',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.20.theorems-0.1.transl_sttng-1',
+
+
+    # ==================================================== LPT ====================================================
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.large',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
+
+
+    # ================================================ 2024-07-08.JFLD ===========================================
+    # '2024-07-08.JFLD.step-1',
+    # '2024-07-08.JFLD.step-3',
+    # '2024-07-08.JFLD.step-5',
+    # '2024-07-08.JFLD.cmpl-0.2.step-1',
+    # '2024-07-08.JFLD.cmpl-0.2.step-3',
+    # '2024-07-08.JFLD.cmpl-0.2.step-5',
+    # '2024-07-08.JFLD.dstrct-5.step-1',
+    # '2024-07-08.JFLD.dstrct-5.step-3',
+    # '2024-07-08.JFLD.dstrct-5.step-5',
+
+    # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-1',
+    # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-2',
+    # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-3',
+    # '2024-07-08.JFLD.cmpl-0.2.dstrct-5.step-5',
+
+
+    # =================================== 2024-07-21.neurips_additional ========================================
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-100.fixed',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.voc-50.fixed.ref_prob=0.20.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl_sttng-1.ref_prob=0.20.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.rule-G_MP.ref_prob=0.20.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.ref_prob=0.20.theorems-0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.transl-small.trnsl-old.ref_prob=0.20.theorems-0.1',
+
+
+
+    # =================================== 2024-07-21.neurips_additional ========================================
+
+    # we should rename all.
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing'
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.steps-5',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.4-4',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.5-3',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.2',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.1',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.1.theorems=0.2',
+
+
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.01.adjust_theorems',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.03.adjust_theorems',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.05.adjust_theorems',
+    # '2024-03-29.JSAI_best.no_aug.trnsl-thing.theorems=0.10.adjust_theorems',
+
+
+
+    # =================================== 2024-08-09.fix_depth_problem ========================================
+
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing',
+
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.05',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.10',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15',
+
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-3-4',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-4-4',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-4-5',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5-3',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-5',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob=0.15.steps-8',
+
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.10',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.25',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.01',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.03',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-thing.ref_prob_in_1=0.5.theorems=0.03.adjust_theorems',
+
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-v2',
+    # '2024-08-09.depth_fix.2024-03-29.JSAI_best.no_aug.trnsl-v3',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2',
+
+
+    # =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.wo_trnsl-v2',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.wo_theorems',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.suppress_dilemma',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.suppress_dilemma.theorems-0.003',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorems-0.0001',
+
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem_tree_prob-0.1',
+
+
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.1',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--1.0--0.01',
+
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.1',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.5--0.01',
+
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.01',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1.G_MP-3',
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.25--0.1.G_MP-10',
+
+    # '2024-08-12.neurips_camera_ready.towards_best_corpora.theorem--0.10--0.1',
+
+
+
+    # =================================== ./outputs/01.train.py/2024-08-16.neurips_camera_ready ========================================
+
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2',
+    # '2024-08-16.neurips_camera_ready.FLD.small_vocab',
+
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0',
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_suppress_if',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_phrase',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.wo_clause',
+
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.05',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.ref_prob-0.20',
+
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15',
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.05.w_flag',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag',
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism.contraposition',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.syllogism.contraposition.and_interchangeability',
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.15.w_flag.super_theorems.ref_prob=0.20',
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v0.theorem--0.25.w_flag',
+
+
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.1',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.126',
+    # '2024-08-09.depth_fix.2024-03-29.FLD_v2.trnsl-thing_person-v2.ref_prob-0.1.theorems-0.25',
+
+
+    # =================================== 2024-08-30.fix_ref_prob ========================================
+
+    # '2024-08-30.FLD.ref_prob-0.20',
+    # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20',
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP',
+    # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism',
+    # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
+
+]
+
