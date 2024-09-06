@@ -27,8 +27,14 @@ def main():
     # =================================== 2024-08-12.neurips_camera_ready.towards_best_corpora ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-08-12.neurips_camera_ready.towards_best_corpora')
 
+
     # =================================== 2024-08-30.fix_ref_prob ========================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-08-30.fix_ref_prob')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-08-30.fix_ref_prob')
+
+
+    # =================================== 2024-09-03.toward_camera_ready ========================================
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
+
 
 
 
@@ -36,21 +42,42 @@ def main():
 
         # =================================== 2024-08-30.fix_ref_prob ========================================
 
-        '2024-08-30.FLD.ref_prob-0.20',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
+        # '2024-08-30.FLD.ref_prob-0.20',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.13.theorem-G_MP.syllogism.contraposition.interchangeability',
+        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
 
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.066.theorem-G_MP',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.066.theorem-G_MP',
+
+
+        # ================================== 2024-09-03.toward_camera_ready ========================================
+        # '2024-08-30.FLD.ref_prob-0.20',
+
+        # '2024-09-03.trnsl-thing_person-v2',
+        # '2024-09-03.trnsl-thing_person-v2.voc-100',
+        # '2024-09-03.trnsl-thing_person-v2.dstrct-0',
+        # '2024-09-03.trnsl-thing_person-v2.rule-G_MP',
+        # '2024-09-03.trnsl-thing_person-v2.stps-3-0',
+        # '2024-09-03.trnsl-thing_person-v2.trnsl-small',
+
+        # '2024-09-03.trnsl-thing_person-v0.rule-G_MP',
+        # '2024-09-03.trnsl-thing_person-v0.voc-100',
+        # '2024-09-03.trnsl-thing_person-v0.dstrct-0',
+        # '2024-09-03.trnsl-thing_person-v0.stps-3-0',
+        # '2024-09-03.trnsl-thing_person-v0.trnsl-small',
+        # '2024-09-03.trnsl-thing_person-v0',
+
     ]
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engines = [SubprocessEngine()]
@@ -266,7 +293,6 @@ def make_dataset(dataset_name: str,
 
                 # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
                 if skip_if_exists and job_output_path.exists():
-                # if i_job < 1500:
                     logger.info('skip %s because', job_output_path)
                     continue
 
@@ -461,6 +487,8 @@ def get_num_jobs(num_examples: int) -> int:
         return 600
     elif num_examples in [300_000]:
         return 900
+    elif num_examples in [1_000_000]:
+        return 3000
     else:
         raise NotImplementedError()
 

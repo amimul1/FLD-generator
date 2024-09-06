@@ -13594,7 +13594,112 @@ _DATASET_SETTINGS = {
     },
 
 
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.13.theorem-G_MP.syllogism.contraposition.interchangeability': {
 
+        'reference_tree_prob': 0.13,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability': {
+
+        'reference_tree_prob': 0.05,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all': {
 
         'reference_tree_prob': 0.20,
@@ -13647,6 +13752,707 @@ _DATASET_SETTINGS = {
             'train': 300000,
         }
     },
+
+
+
+
+
+
+
+
+
+
+
+    '2024-09-03.trnsl-thing_person-v2': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 200000,
+        }
+    },
+
+
+
+     '2024-09-03.trnsl-thing_person-v2.voc-100': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'limit_vocab_size_per_type': 50,
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },   
+
+
+
+    '2024-09-03.trnsl-thing_person-v2.dstrct-0': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 0),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+    '2024-09-03.trnsl-thing_person-v2.rule-G_MP': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            # './configs/arguments/predicate/specified/axioms/',
+            # './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+
+            './configs/arguments/propositional/axioms/implication_elim.json',
+            './configs/arguments/predicate/specified/axioms/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
+
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.75,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': False,
+        'theorem_subset': 'all',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+    '2024-09-03.trnsl-thing_person-v2.stps-3-0': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 0),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+    '2024-09-03.trnsl-thing_person-v2.trnsl-small': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'use_fixed_translation': True,
+        'reused_object_nouns_max_factor': 0.0,
+        'translation_no_transitive_object': True,
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    '2024-09-03.trnsl-thing_person-v0': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 1000000,
+        }
+    },
+
+
+
+     '2024-09-03.trnsl-thing_person-v0.voc-100': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'limit_vocab_size_per_type': 50,
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },   
+
+
+
+    '2024-09-03.trnsl-thing_person-v0.dstrct-0': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 0),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+    '2024-09-03.trnsl-thing_person-v0.rule-G_MP': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            # './configs/arguments/predicate/specified/axioms/',
+            # './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+
+            './configs/arguments/propositional/axioms/implication_elim.json',
+            './configs/arguments/predicate/specified/axioms/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/theorems/implication_elim.json',
+            './configs/arguments/predicate/quantified/theorems/axioms/implication_elim.json',
+
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.75,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': False,
+        'theorem_subset': 'all',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+    '2024-09-03.trnsl-thing_person-v0.stps-3-0': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 0),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+    '2024-09-03.trnsl-thing_person-v0.trnsl-small': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v0'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+        'use_fixed_translation': True,
+        'reused_object_nouns_max_factor': 0.0,
+        'translation_no_transitive_object': True,
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 150000,
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
@@ -14037,9 +14843,30 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism': '20231018.thing_person_config_translation',
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition': '20231018.thing_person_config_translation',
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability': '20231018.thing_person_config_translation',
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.13.theorem-G_MP.syllogism.contraposition.interchangeability': '20231018.thing_person_config_translation',
+    '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability': '20231018.thing_person_config_translation',
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all': '20231018.thing_person_config_translation',
 
     '2024-08-30.trnsl-thing_person-v0.ref_prob-0.066.theorem-G_MP': '20231018.thing_person_config_translation',
+
+
+    # ================================== 2024-09-03.toward_camera_ready ========================================
+    '2024-08-30.FLD.ref_prob-0.20': '20230626.many_bugs_fixed',
+
+    '2024-09-03.trnsl-thing_person-v2': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v2.voc-100': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v2.dstrct-0': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v2.rule-G_MP': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v2.stps-3-0': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v2.trnsl-small': '20231018.thing_person_config_translation',
+
+    '2024-09-03.trnsl-thing_person-v0': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v0.voc-100': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v0.dstrct-0': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v0.rule-G_MP': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v0.stps-3-0': '20231018.thing_person_config_translation',
+    '2024-09-03.trnsl-thing_person-v0.trnsl-small': '20231018.thing_person_config_translation',
+
 }
 
 
