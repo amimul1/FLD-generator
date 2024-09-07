@@ -49,7 +49,7 @@ def main():
         # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
         # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
         # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.13.theorem-G_MP.syllogism.contraposition.interchangeability',
-        '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability',
+        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability',
         # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
 
         # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.066.theorem-G_MP',
@@ -76,8 +76,8 @@ def main():
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engines = [SubprocessEngine()]
