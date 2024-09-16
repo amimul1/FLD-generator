@@ -33,7 +33,8 @@ def main():
 
 
     # =================================== 2024-09-03.toward_camera_ready ========================================
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
 
 
 
@@ -65,19 +66,23 @@ def main():
         # '2024-09-03.trnsl-thing_person-v2.stps-3-0',
         # '2024-09-03.trnsl-thing_person-v2.trnsl-small',
 
+        # '2024-09-03.trnsl-thing_person-v0',
         # '2024-09-03.trnsl-thing_person-v0.rule-G_MP',
         # '2024-09-03.trnsl-thing_person-v0.voc-100',
         # '2024-09-03.trnsl-thing_person-v0.dstrct-0',
         # '2024-09-03.trnsl-thing_person-v0.stps-3-0',
         # '2024-09-03.trnsl-thing_person-v0.trnsl-small',
-        # '2024-09-03.trnsl-thing_person-v0',
+
+
+        # ================================== 2024-09-16.fix_negation ========================================
+        '2024-09-16.FLD.fix_negation',
 
     ]
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
     # job_engines = [SubprocessEngine()]
@@ -116,8 +121,8 @@ def main():
     dry_run = False
     # dry_run = True
 
-    # skip_if_exists = False
-    skip_if_exists = True
+    skip_if_exists = False
+    # skip_if_exists = True
 
     # for the case some jobs hangs
     timeout_per_job = 3600 * 3
@@ -327,6 +332,7 @@ def make_dataset(dataset_name: str,
                     _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
                     maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
                     maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
+                    maybe_option('--negation-arguments-weight', job_settings.get('negation_arguments_weight', None)),
                     maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
                     maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
                     '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
@@ -477,7 +483,7 @@ def make_dataset(dataset_name: str,
 
 
 def get_num_jobs(num_examples: int) -> int:
-    if num_examples < 100:
+    if num_examples <= 100:
         return 1
     elif num_examples in [1_000, 100_000]:
         return 300

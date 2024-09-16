@@ -88,6 +88,10 @@ def is_negation_intro_argument(arg: Argument) -> bool:
     return arg.id.find('negation_intro') >= 0
 
 
+def is_negation_argument(arg: Argument) -> bool:
+    return is_negation_elim_argument(arg) or is_negation_intro_argument(arg)
+
+
 def is_existential_argument(argument: Argument) -> bool:
     return argument.id.find('existential') >= 0
 

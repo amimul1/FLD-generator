@@ -30,6 +30,7 @@ from .argument import (
     is_universal_argument,
     is_universal_intro_argument,
     is_negation_elim_argument,
+    is_negation_argument,
 )
 from .argument_checkers import (
     is_trivial as is_argument_trivial,
@@ -146,6 +147,7 @@ class ProofTreeGenerator:
                  quantifier_axioms: Optional[List[str]] = None,
                  quantification_degree: str = 'all_constants',
                  propositional_arguments_factor=1.0,
+                 negation_arguments_weight=None,
                  theorem_tree_prob=1.0,
                  theorem_arguments_factor=0.3,
                  adjust_theorem_argument_weight=False,
@@ -166,7 +168,13 @@ class ProofTreeGenerator:
         self.disallow_contradiction_as_hypothesis = disallow_contradiction_as_hypothesis
 
         self._complex_formula_arguments_weight = complex_formula_arguments_weight
-        self.arguments, self.argument_weights = self._load_arguments(
+        self._theorem_tree_prob = theorem_tree_prob
+        (
+            self.arguments,
+            self.argument_weights,
+            self.arguments_wo_theorems,
+            self.arguments_wo_theorems_weights,
+        ) = self._load_arguments(
             arguments,
             max_PASs_per_formula=3,
             max_implication_per_formula=1,
@@ -178,6 +186,7 @@ class ProofTreeGenerator:
             quantification_degree=quantification_degree,
             allow_generating_heterogeneous_arity_formulas=False,
             propositional_arguments_factor=propositional_arguments_factor,
+            negation_arguments_weight=negation_arguments_weight,
             theorem_arguments_factor=theorem_arguments_factor,
             adjust_theorem_argument_weight=adjust_theorem_argument_weight,
             theorem_subset=theorem_subset,
@@ -190,7 +199,6 @@ class ProofTreeGenerator:
             allow_non_canonical_contradiction_use=False,
             elim_dneg=elim_dneg,
         )
-        self.theorem_tree_prob = theorem_tree_prob
         self.arguments = tuple(self.arguments)  # to use cache
         self.arguments_wo_theorems = tuple(argument for argument in self.arguments
                                            if not is_theorem_argument(argument))
@@ -212,6 +220,7 @@ class ProofTreeGenerator:
                         quantification_degree: str,
                         allow_generating_heterogeneous_arity_formulas: bool,
                         propositional_arguments_factor: float,
+                        negation_arguments_weight: Optional[float],
                         theorem_arguments_factor: float,
                         adjust_theorem_argument_weight: bool,
                         theorem_subset: str,
@@ -222,7 +231,7 @@ class ProofTreeGenerator:
                         knowledge_argument_factor: float,
                         knowledge_banks: List[KnowledgeBankBase],
                         allow_non_canonical_contradiction_use: bool,
-                        elim_dneg: bool) -> Tuple[List[Argument], Dict[Argument, float]]:
+                        elim_dneg: bool) -> Tuple[List[Argument], Dict[Argument, float], List[Argument], Dict[Argument, float]]:
         if allow_generating_heterogeneous_arity_formulas:
             raise NotImplementedError()
         logger.info(make_pretty_msg(title='load arguments', status='start', boundary_level=0))
@@ -411,23 +420,72 @@ class ProofTreeGenerator:
             if is_knowledge_argument(argument):
                 weight *= knowledge_argument_factor
             _argument_weights_with_factor[argument] = weight
+        _sum_weight = sum(_argument_weights_with_factor.values())
+        _argument_weights_with_factor = {argument: weight / _sum_weight
+                                         for argument, weight in _argument_weights_with_factor.items()}
 
-        logger.info(make_pretty_msg(title='load arguments', status='finish', boundary_level=0))
+        _arguments_wo_theorems = [argument for argument in _arguments
+                                  if not is_theorem_argument(argument)]
+        _sum_weight_wo_theorems = sum(_argument_weights_with_factor[argument]
+                                      for argument in _arguments_wo_theorems)
+        _argument_wo_theorems_weights_with_factor = {
+            argument: _argument_weights_with_factor[argument] / _sum_weight_wo_theorems
+            for argument in _arguments_wo_theorems
+        }
+
+        if negation_arguments_weight is not None:
+            def _adjust_negation(weights: Dict[Argument, float]) -> Dict[Argument, float]:
+                all_weight_sum = sum(weights.values())
+                negation_weight_sum = sum(weights[argument]
+                                          for argument in _arguments
+                                          if is_negation_argument(argument))
+                negation_boost_factor = negation_arguments_weight / negation_weight_sum
+                others_decay_factor = (all_weight_sum - negation_arguments_weight)\
+                    / (all_weight_sum - negation_weight_sum)
+                logger.info(
+                    'adjusting negation weight from %f to %f,'
+                    'this means that each negation argument will be factored by %f,'
+                    'and others will be factored by %f',
+                    negation_weight_sum, negation_arguments_weight, negation_boost_factor, others_decay_factor
+                )
+                return {
+                    argument: weights[argument] * negation_boost_factor if is_negation_argument(argument) else
+                    weights[argument] * others_decay_factor
+                    for argument in _arguments
+                }
+            _argument_weights_with_factor = _adjust_negation(_argument_weights_with_factor)
+            _argument_wo_theorems_weights_with_factor = _adjust_negation(_argument_wo_theorems_weights_with_factor)
+
+        logger.info(make_pretty_msg(title='loaded all arguments', status='finish', boundary_level=0))
         for argument in _arguments:
             logger.info('weight: %f    %s', _argument_weights_with_factor[argument], str(argument))
+        if not math.isclose(sum(_argument_weights_with_factor.values()), 1.0):
+            raise ValueError(f'sum of weights is not 1.0: {sum(_argument_weights_with_factor.values())}')
 
-        return _arguments, _argument_weights_with_factor
+        logger.info(make_pretty_msg(title='loaded arguments wo theorems', status='finish', boundary_level=0))
+        for argument in _arguments_wo_theorems:
+            logger.info('weight: %f    %s', _argument_wo_theorems_weights_with_factor[argument], str(argument))
+        if not math.isclose(sum(_argument_wo_theorems_weights_with_factor.values()), 1.0):
+            raise ValueError(f'sum of weights is not 1.0: {sum(_argument_wo_theorems_weights_with_factor.values())}')
+
+        return (
+            _arguments,
+            _argument_weights_with_factor,
+            _arguments_wo_theorems,
+            _argument_wo_theorems_weights_with_factor,
+        )
 
     def generate_tree(self,
                       generate_stem_steps: int,
                       extend_branches_steps: int,
                       get_all_trial_results=False,
                       **kwargs) -> Union[ProofTree, List[ProofTree]]:
+        arguments, argument_weights = self._sample_arguments()
         trial_result_proof_trees = _generate_tree_with_timeout_retry(
-            self._sample_arguments_axioms_or_theorems(),
+            arguments,
             generate_stem_steps,
             extend_branches_steps,
-            argument_weights=self.argument_weights,
+            argument_weights=argument_weights,
             elim_dneg=self.elim_dneg,
             disallow_contradiction_as_hypothesis=self.disallow_contradiction_as_hypothesis,
             **kwargs,
@@ -441,10 +499,11 @@ class ProofTreeGenerator:
                 return _pick_largest_tree(trial_result_proof_trees)
 
     def generate_stem(self, num_steps: int, get_all_trial_results=False, **kwargs) -> Union[ProofTree, List[ProofTree]]:
+        arguments, argument_weights = self._sample_arguments()
         trial_result_proof_trees = _generate_stem_with_timeout_retry(
-            self._sample_arguments_axioms_or_theorems(),
+            arguments,
             num_steps,
-            argument_weights=self.argument_weights,
+            argument_weights=argument_weights,
             elim_dneg=self.elim_dneg,
             disallow_contradiction_as_hypothesis=self.disallow_contradiction_as_hypothesis,
             **kwargs,
@@ -462,11 +521,12 @@ class ProofTreeGenerator:
                         num_steps: int,
                         get_all_trial_results=False,
                         **kwargs) -> Union[Tuple[ProofTree, int], List[Tuple[ProofTree, int]]]:
+        arguments, argument_weights = self._sample_arguments()
         trial_result_proof_trees = _extend_branches_with_timeout_retry(
             proof_tree,
-            self._sample_arguments_axioms_or_theorems(),
+            arguments,
             num_steps,
-            argument_weights=self.argument_weights,
+            argument_weights=argument_weights,
             elim_dneg=self.elim_dneg,
             **kwargs,
         )
@@ -480,11 +540,11 @@ class ProofTreeGenerator:
                 return sorted(trial_result_proof_trees,
                               key = lambda A_num_step: A_num_step[1])[-1]
 
-    def _sample_arguments_axioms_or_theorems(self) -> Tuple[Argument]:
-        if random.random() < self.theorem_tree_prob:
-            return self.arguments
+    def _sample_arguments(self) -> Tuple[Tuple[Argument], Dict[Argument, float]]:
+        if random.random() < self._theorem_tree_prob:
+            return self.arguments, self.argument_weights
         else:
-            return self.arguments_wo_theorems
+            return self.arguments_wo_theorems, self.arguments_wo_theorems_weights
 
 
 def _generate_tree_with_timeout_retry(arguments: Union[List[Argument], Tuple[Argument, ...]],

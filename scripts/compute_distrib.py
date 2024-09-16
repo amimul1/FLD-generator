@@ -91,9 +91,9 @@ def main(input_path, output_path, max_examples):
             print(f'{"attr":<10}    {"count":<20}    ratio', file=f_out)
             print('', file=f_out)
             for val, count in sorted(item for item in counts[attr_name].items() if item[0] is not None):
-                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.2f}', file=f_out)
+                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.4f}', file=f_out)
             for val, count in sorted(item for item in counts[attr_name].items() if item[0] is None):
-                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.2f}', file=f_out)
+                print(f'{str(val):<10}    [{count:<6,} / {tot:,}]    {count/tot:.4f}', file=f_out)
 
             if len(counts[attr_name]) > 0:
                 if type(list(counts[attr_name].keys())[0]) == int:

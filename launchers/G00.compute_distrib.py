@@ -38,18 +38,19 @@ def compute_distrib(input_dir: str, output_dir: str, max_examples: Optional[int]
             continue
         split = re.sub(r'.*\/(.*).jsonl.stats.json$', '\g<1>', str(stats_path))
 
+        out_path = str(output_dir / f"rules.cum.{split}.txt")
         engine.run(
-            f'ack cum.argument_stats {str(stats_path)} | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules.{split}.txt")}',
+            f'ack cum.argument_stats {str(stats_path)} | gawk -F "[ ,]+"  \'{{printf "%.8f    "$2"\\n", $3}}\' | sort -n -r >{out_path};',
             wait_until_finish=False,
         )
-        # engine.run(
-        #     f'ack cum.argument_stats {str(stats_path)} | ack -v \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-axioms.{split}.txt")}',
-        #     wait_until_finish=False,
-        # )
-        # engine.run(
-        #     f'ack cum.argument_stats {str(stats_path)} | ack \'theorem\' | gawk \'{{print $2 $1}}\' | sort -n -r >{str(output_dir / f"rules-theorems.{split}.txt")}',
-        #     wait_until_finish=False,
-        # )
+
+        out_path = str(output_dir / f"rules.avg.{split}.txt")
+        engine.run(
+            f'ack avg.argument_stats {str(stats_path)} | gawk -F "[ ,]+"  \'{{printf "%.8f    "$2"\\n", $3}}\' | sort -n -r >{out_path};',
+            # {printf "%.8f\n", $1}
+            wait_until_finish=False,
+        )
+
 
 
 def main():
@@ -72,11 +73,12 @@ def main():
     # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-12.neurips_camera_ready.towards_best_corpora'
 
 
-    TOP_DIR = './outputs/00.create_corpus/2024-08-30.fix_ref_prob'
-    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-30.fix_ref_prob'
+    # TOP_DIR = './outputs/00.create_corpus/2024-08-30.fix_ref_prob'
+    # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-08-30.fix_ref_prob'
 
 
-
+    TOP_DIR = './outputs/00.create_corpus/2024-09-03.toward_camera_ready'
+    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-09-03.toward_camera_ready'
 
 
     jobs = []
