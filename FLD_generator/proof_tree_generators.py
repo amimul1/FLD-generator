@@ -169,40 +169,51 @@ class ProofTreeGenerator:
 
         self._complex_formula_arguments_weight = complex_formula_arguments_weight
         self._theorem_tree_prob = theorem_tree_prob
-        (
-            self.arguments,
-            self.argument_weights,
-            self.arguments_wo_theorems,
-            self.arguments_wo_theorems_weights,
-        ) = self._load_arguments(
-            arguments,
-            max_PASs_per_formula=3,
-            max_implication_per_formula=1,
-            max_and_or_per_formula=1,
-            complex_formula_arguments_weight=self._complex_formula_arguments_weight,
-            quantifier_arguments_weight=quantifier_arguments_weight,
-            quantifier_axiom_arguments_weight=quantifier_axiom_arguments_weight,
-            quantifier_axioms=quantifier_axioms,
-            quantification_degree=quantification_degree,
-            allow_generating_heterogeneous_arity_formulas=False,
-            propositional_arguments_factor=propositional_arguments_factor,
-            negation_arguments_weight=negation_arguments_weight,
-            theorem_arguments_factor=theorem_arguments_factor,
-            adjust_theorem_argument_weight=adjust_theorem_argument_weight,
-            theorem_subset=theorem_subset,
-            or_arguments_factor=or_arguments_factor,
-            existential_arguments_factor=existential_arguments_factor,
-            universal_arguments_factor=universal_arguments_factor,
-            reference_argument_factor=reference_argument_factor,
-            knowledge_argument_factor=knowledge_argument_factor,
-            knowledge_banks=knowledge_banks,
-            allow_non_canonical_contradiction_use=False,
-            elim_dneg=elim_dneg,
-        )
-        self.arguments = tuple(self.arguments)  # to use cache
-        self.arguments_wo_theorems = tuple(argument for argument in self.arguments
-                                           if not is_theorem_argument(argument))
 
+        def _laod_arguments(arguments: List[Argument]):
+            return self._load_arguments(
+                arguments,
+                max_PASs_per_formula=3,
+                max_implication_per_formula=1,
+                max_and_or_per_formula=1,
+                complex_formula_arguments_weight=self._complex_formula_arguments_weight,
+                quantifier_arguments_weight=quantifier_arguments_weight,
+                quantifier_axiom_arguments_weight=quantifier_axiom_arguments_weight,
+                quantifier_axioms=quantifier_axioms,
+                quantification_degree=quantification_degree,
+                allow_generating_heterogeneous_arity_formulas=False,
+                propositional_arguments_factor=propositional_arguments_factor,
+                negation_arguments_weight=negation_arguments_weight,
+                theorem_arguments_factor=theorem_arguments_factor,
+                adjust_theorem_argument_weight=adjust_theorem_argument_weight,
+                theorem_subset=theorem_subset,
+                or_arguments_factor=or_arguments_factor,
+                existential_arguments_factor=existential_arguments_factor,
+                universal_arguments_factor=universal_arguments_factor,
+                reference_argument_factor=reference_argument_factor,
+                knowledge_argument_factor=knowledge_argument_factor,
+                knowledge_banks=knowledge_banks,
+                allow_non_canonical_contradiction_use=False,
+                elim_dneg=elim_dneg,
+            )
+
+        # logger.info(make_pretty_msg(title='load all arguments', status='start', boundary_level=0))
+        # self.arguments, self.argument_weights = _laod_arguments(arguments)
+
+        # logger.info(make_pretty_msg(title='load only axiom arguments', status='start', boundary_level=0))
+        # self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(
+        #     [argument for argument in arguments if not is_theorem_argument(argument)]
+        # )
+
+        # self.arguments, self.argument_weights, self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(arguments)
+        self.arguments, self.argument_weights = _laod_arguments(arguments)
+        self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(
+            [argument for argument in arguments if not is_theorem_argument(argument)]
+        )
+
+        self.arguments = tuple(self.arguments)  # to use cache
+        self.arguments_wo_theorems = tuple(self.arguments_wo_theorems)  # to use cache
+        
     @property
     def complex_formula_arguments_weight(self):
         return self._complex_formula_arguments_weight
@@ -231,114 +242,128 @@ class ProofTreeGenerator:
                         knowledge_argument_factor: float,
                         knowledge_banks: List[KnowledgeBankBase],
                         allow_non_canonical_contradiction_use: bool,
-                        elim_dneg: bool) -> Tuple[List[Argument], Dict[Argument, float], List[Argument], Dict[Argument, float]]:
-        if allow_generating_heterogeneous_arity_formulas:
-            raise NotImplementedError()
-        logger.info(make_pretty_msg(title='load arguments', status='start', boundary_level=0))
+                        elim_dneg: bool) -> Tuple[List[Argument], Dict[Argument, float]]:
 
-        # arguments = _REFERENCE_ARGUMENTS + arguments
+        def _expand_arguments(_arguments: List[Argument]) -> Tuple[List[Argument], List[Argument], List[Argument]]:
+            # declare outer variable quantifier_axioms
+            nonlocal quantifier_axioms
 
-        def _is_numbers_ok_formula(formula: Formula) -> bool:
-            if max_PASs_per_formula is not None and len(list(formula.PASs)) > max_PASs_per_formula:
-                return False
-            if max_implication_per_formula is not None and formula.rep.count(IMPLICATION) > max_implication_per_formula:
-                return False
-            if max_and_or_per_formula is not None and formula.rep.count(CONJUNCTION) + formula.rep.count(DISJUNCTION) > max_and_or_per_formula:
-                return False
-            return True
 
-        def _is_numbers_ok_argument(argument: Argument) -> bool:
-            all_formulas = argument.premises + [argument.conclusion] + list(argument.assumptions.values())
-            if any(not _is_numbers_ok_formula(formula) for formula in all_formulas):
-                return False
-            return True
+            def _is_numbers_ok_formula(formula: Formula) -> bool:
+                if max_PASs_per_formula is not None and len(list(formula.PASs)) > max_PASs_per_formula:
+                    return False
+                if max_implication_per_formula is not None and formula.rep.count(IMPLICATION) > max_implication_per_formula:
+                    return False
+                if max_and_or_per_formula is not None and formula.rep.count(CONJUNCTION) + formula.rep.count(DISJUNCTION) > max_and_or_per_formula:
+                    return False
+                return True
 
-        # --- generate complicated arguments that includes &, v, and negation ---
-        complicated_arguments: List[Argument] = []
-        if complex_formula_arguments_weight > 0.0:
-            for argument in arguments:
-                for complicated_argument, _, name in generate_complicated_arguments(argument,
-                                                                                    elim_dneg=elim_dneg,
-                                                                                    suppress_op_expansion_if_exists=True,
-                                                                                    # suppress_op_expansion_if_exists=False,
-                                                                                    get_name=True):
-                    if not _is_numbers_ok_argument(complicated_argument):
-                        continue
-                    if _is_argument_new(complicated_argument, arguments + complicated_arguments):
-                        complicated_argument.id += f'.{name}'
-                        complicated_arguments.append(complicated_argument)
+            def _is_numbers_ok_argument(argument: Argument) -> bool:
+                all_formulas = argument.premises + [argument.conclusion] + list(argument.assumptions.values())
+                if any(not _is_numbers_ok_formula(formula) for formula in all_formulas):
+                    return False
+                return True
 
-        # --- generate quantified arguments ---
-        quantified_arguments: List[Argument] = []
-        if quantifier_arguments_weight > 0.0:
-            for argument in arguments + complicated_arguments:
-                for quantifier_type in ['universal', 'existential']:
-                    for quantifier_argument, _, name in generate_partially_quantifier_arguments(
-                            argument,
-                            quantifier_type,
-                            elim_dneg=elim_dneg,
-                            quantification_degree=quantification_degree,
-                            get_name=True):
-                        if not _is_numbers_ok_argument(quantifier_argument):
+            # --- generate complicated arguments that includes &, v, and negation ---
+            complicated_arguments: List[Argument] = []
+            if complex_formula_arguments_weight > 0.0:
+                for argument in _arguments:
+                    for complicated_argument, _, name in generate_complicated_arguments(argument,
+                                                                                        elim_dneg=elim_dneg,
+                                                                                        suppress_op_expansion_if_exists=True,
+                                                                                        # suppress_op_expansion_if_exists=False,
+                                                                                        get_name=True):
+                        if not _is_numbers_ok_argument(complicated_argument):
                             continue
-                        if _is_argument_new(quantifier_argument, arguments + complicated_arguments + quantified_arguments):
-                            quantified_arguments.append(quantifier_argument)
-                            quantifier_argument.id += f'.{name}'
+                        if _is_argument_new(complicated_argument, _arguments + complicated_arguments):
+                            complicated_argument.id += f'.{name}'
+                            complicated_arguments.append(complicated_argument)
 
-        # --- generate axioms of quantifiers, such as universal elimination ---
-        quantifier_axiom_arguments: List[Argument] = []
-        if quantifier_axiom_arguments_weight > 0.0:
-            unique_formulas: List[Formula] = []
-            for argument in arguments + complicated_arguments:
-                for formula in argument.all_formulas:
-                    if all(not formula_is_identical_to(formula, existent_formula) for existent_formula in unique_formulas):
-                        unique_formulas.append(formula)
-
-            quantifier_axioms = quantifier_axioms or []
-            for axiom_type in quantifier_axioms:
-
-                if axiom_type == 'existential_quantifier_elim':
-                    def _generate_quantifier_axiom_arguments(i_formula: int, formula: Formula):
-                        for i_other_formula, other_formula in enumerate(unique_formulas):
-                            if len(other_formula.variables) > 0:
+            # --- generate quantified arguments ---
+            quantified_arguments: List[Argument] = []
+            if quantifier_arguments_weight > 0.0:
+                for argument in _arguments + complicated_arguments:
+                    for quantifier_type in ['universal', 'existential']:
+                        for quantifier_argument, _, name in generate_partially_quantifier_arguments(
+                                argument,
+                                quantifier_type,
+                                elim_dneg=elim_dneg,
+                                quantification_degree=quantification_degree,
+                                get_name=True):
+                            if not _is_numbers_ok_argument(quantifier_argument):
                                 continue
-                            if not allow_generating_heterogeneous_arity_formulas:
-                                if len(formula.zeroary_predicates) > 0 and len(formula.unary_predicates) > 0:
-                                    raise NotImplementedError()
-                                if len(other_formula.zeroary_predicates) > 0 and len(other_formula.unary_predicates) > 0:
-                                    raise NotImplementedError()
-                                if len(formula.zeroary_predicates) > 0 and len(other_formula.unary_predicates) > 0:
+                            if _is_argument_new(quantifier_argument, _arguments + complicated_arguments + quantified_arguments):
+                                quantified_arguments.append(quantifier_argument)
+                                quantifier_argument.id += f'.{name}'
+
+            # --- generate axioms of quantifiers, such as universal elimination ---
+            quantifier_axiom_arguments: List[Argument] = []
+            if quantifier_axiom_arguments_weight > 0.0:
+
+                def sort_arguments(arguments: List[Argument]) -> List[Argument]:
+                    axioms = [argument for argument in arguments if not is_theorem_argument(argument)]
+                    theorems = [argument for argument in arguments if is_theorem_argument(argument)]
+                    return sorted(axioms, key=lambda argument: argument.id) + sorted(theorems, key=lambda argument: argument.id)
+
+                all_arguments = sort_arguments(_arguments + quantified_arguments + complicated_arguments)
+
+                unique_formulas: List[Formula] = []
+                for argument in all_arguments:
+                    for formula in argument.all_formulas:
+                        if all(not formula_is_identical_to(formula, existent_formula) for existent_formula in unique_formulas):
+                            unique_formulas.append(formula)
+
+                quantifier_axioms = quantifier_axioms or []
+                for axiom_type in quantifier_axioms:
+
+                    if axiom_type == 'existential_quantifier_elim':
+                        def _generate_quantifier_axiom_arguments(i_formula: int, formula: Formula):
+                            for i_other_formula, other_formula in enumerate(unique_formulas):
+                                if len(other_formula.variables) > 0:
                                     continue
-                                if len(formula.unary_predicates) > 0 and len(other_formula.zeroary_predicates) > 0:
-                                    continue
+                                if not allow_generating_heterogeneous_arity_formulas:
+                                    if len(formula.zeroary_predicates) > 0 and len(formula.unary_predicates) > 0:
+                                        raise NotImplementedError()
+                                    if len(other_formula.zeroary_predicates) > 0 and len(other_formula.unary_predicates) > 0:
+                                        raise NotImplementedError()
+                                    if len(formula.zeroary_predicates) > 0 and len(other_formula.unary_predicates) > 0:
+                                        continue
+                                    if len(formula.unary_predicates) > 0 and len(other_formula.zeroary_predicates) > 0:
+                                        continue
+                                for quantifier_axiom_argument in generate_quantifier_axiom_arguments(
+                                        axiom_type,
+                                        formula,
+                                        # id_prefix=f'fomula-{str(i_formula).zfill(6)}.other_fomula-{str(i_other_formula).zfill(6)}',
+                                        id_prefix=f'fomula--{str(formula)}.other_fomula--{str(other_formula)}',
+                                        quantification_degree=quantification_degree,
+                                        e_elim_conclusion_formula_prototype=other_formula):
+                                    yield quantifier_axiom_argument
+
+                    else:
+                        def _generate_quantifier_axiom_arguments(i_formula: int, formula: Formula):
                             for quantifier_axiom_argument in generate_quantifier_axiom_arguments(
                                     axiom_type,
                                     formula,
-                                    id_prefix=f'fomula-{str(i_formula).zfill(6)}.other_fomula-{str(i_other_formula).zfill(6)}',
-                                    quantification_degree=quantification_degree,
-                                    e_elim_conclusion_formula_prototype=other_formula):
+                                    # id_prefix=f'fomula-{str(i_formula).zfill(6)}',
+                                    id_prefix=f'fomula--{str(formula)}',
+                                    quantification_degree=quantification_degree):
                                 yield quantifier_axiom_argument
 
-                else:
-                    def _generate_quantifier_axiom_arguments(i_formula: int, formula: Formula):
-                        for quantifier_axiom_argument in generate_quantifier_axiom_arguments(
-                                axiom_type,
-                                formula,
-                                id_prefix=f'fomula-{str(i_formula).zfill(6)}',
-                                quantification_degree=quantification_degree):
-                            yield quantifier_axiom_argument
-
-                for i_formula, formula in enumerate(unique_formulas):
-                    if len(formula.variables) > 0:
-                        continue
-                    for quantifier_axiom_argument in _generate_quantifier_axiom_arguments(i_formula, formula):
-                        if not _is_numbers_ok_argument(quantifier_axiom_argument):
+                    for i_formula, formula in enumerate(unique_formulas):
+                        if len(formula.variables) > 0:
                             continue
-                        if _is_argument_new(quantifier_axiom_argument, arguments + complicated_arguments + quantifier_axiom_arguments):
-                            quantifier_axiom_arguments.append(quantifier_axiom_argument)
+                        for quantifier_axiom_argument in _generate_quantifier_axiom_arguments(i_formula, formula):
+                            if not _is_numbers_ok_argument(quantifier_axiom_argument):
+                                continue
+                            if _is_argument_new(quantifier_axiom_argument, _arguments + complicated_arguments + quantifier_axiom_arguments):
+                                quantifier_axiom_arguments.append(quantifier_axiom_argument)
 
-        def calc_argument_weight(argument: Argument) -> float:
+            return complicated_arguments, quantified_arguments, quantifier_axiom_arguments
 
+        def calc_argument_weight(argument: Argument,
+                                 complicated_arguments: List[Argument],
+                                 quantified_arguments: List[Argument],
+                                 quantifier_axiom_arguments: List[Argument]) -> float:
             if not (0 <= complex_formula_arguments_weight <= 1):
                 raise ValueError()
             if not (0 <= quantifier_arguments_weight <= 1):
@@ -346,48 +371,25 @@ class ProofTreeGenerator:
             if not (0 <= quantifier_axiom_arguments_weight <= 1):
                 raise ValueError()
 
-            some_others = complex_formula_arguments_weight + quantifier_arguments_weight + quantifier_axiom_arguments_weight
-            if not (0 <= some_others <= 1):
-                raise ValueError()
-
             if argument in arguments:
-                if len(arguments) == 0:
-                    return None
-                else:
-                    weight = (1 - some_others)
-                    return 1 / len(arguments) * weight
-
+                weight_others = complex_formula_arguments_weight + quantifier_arguments_weight + quantifier_axiom_arguments_weight
+                if not (0 <= weight_others <= 1):
+                    raise ValueError()
+                weight = (1 - weight_others)
+                volume = len(arguments)
             elif argument in complicated_arguments:
-                if len(complicated_arguments) == 0:
-                    return None
-                else:
-                    return 1 / len(complicated_arguments) * complex_formula_arguments_weight
-
+                weight = complex_formula_arguments_weight
+                volume = len(complicated_arguments)
             elif argument in quantified_arguments:
-                if len(quantified_arguments) == 0:
-                    return None
-                else:
-                    return 1 / len(quantified_arguments) * quantifier_arguments_weight
-
+                weight = quantifier_arguments_weight
+                volume = len(quantified_arguments)
             elif argument in quantifier_axiom_arguments:
-                if len(quantifier_axiom_arguments) == 0:
-                    return None
-                else:
-                    return 1 / len(quantifier_axiom_arguments) * quantifier_axiom_arguments_weight
-
+                weight = quantifier_axiom_arguments_weight
+                volume = len(quantifier_axiom_arguments)
             else:
                 raise NotImplementedError()
 
-        _arguments = arguments + complicated_arguments + quantified_arguments + quantifier_axiom_arguments
-        if not allow_non_canonical_contradiction_use:
-            # we reject formulas such as "(x): ({A}x & {B}x) -> #F#" due to the folllowing reasons.
-            # (i) we have not yet implemented translations for such formulas
-            # (ii) we have not yet implemented formula checking algorithms for such formulas, due to the technological limitation of z3
-            # Rejecting such formulas does not matter much, because proof by contradiction is not that important in NLP.
-            _arguments = [argument for argument in _arguments
-                          if not argument_has_non_canonical_contradiction_use(argument)]
-
-        _argument_weights = {argument: calc_argument_weight(argument) for argument in _arguments}
+            return weight * (1 / volume) * get_boost_factor(argument)
 
         def is_or_formula(formula: Formula) -> bool:
             return formula.rep.find(f' {DISJUNCTION} ') >= 0
@@ -400,48 +402,70 @@ class ProofTreeGenerator:
                        for formula in argument.premises
                        for knowledge_bank in knowledge_banks)
 
-        _argument_weights_with_factor: Dict[Argument, float] = {}
-        for argument, weight in _argument_weights.items():
+        def get_boost_factor(argument: Argument) -> float:
+            factor = 1.0
             if is_propositional_argument(argument):
-                weight *= propositional_arguments_factor
+                factor *= propositional_arguments_factor
             if is_theorem_argument(argument):
-                weight *= theorem_arguments_factor
+                factor *= theorem_arguments_factor
             if adjust_theorem_argument_weight:
-                factor = get_theorem_adjust_weight(argument, subset=theorem_subset)
-                weight *= factor if factor is not None else 1.0
+                factor *= get_theorem_adjust_weight(argument, subset=theorem_subset) or 1.0
             if is_or_argument(argument):
-                weight *= or_arguments_factor
+                factor *= or_arguments_factor
             if is_existential_argument(argument):
-                weight *= existential_arguments_factor
+                factor *= existential_arguments_factor
             if is_universal_argument(argument):
-                weight *= universal_arguments_factor
+                factor *= universal_arguments_factor
             if is_reference_argument(argument):
-                weight *= reference_argument_factor
+                factor *= reference_argument_factor
             if is_knowledge_argument(argument):
-                weight *= knowledge_argument_factor
-            _argument_weights_with_factor[argument] = weight
-        _sum_weight = sum(_argument_weights_with_factor.values())
-        _argument_weights_with_factor = {argument: weight / _sum_weight
-                                         for argument, weight in _argument_weights_with_factor.items()}
+                factor *= knowledge_argument_factor
+            return factor
 
-        _arguments_wo_theorems = [argument for argument in _arguments
-                                  if not is_theorem_argument(argument)]
-        _sum_weight_wo_theorems = sum(_argument_weights_with_factor[argument]
-                                      for argument in _arguments_wo_theorems)
-        _argument_wo_theorems_weights_with_factor = {
-            argument: _argument_weights_with_factor[argument] / _sum_weight_wo_theorems
-            for argument in _arguments_wo_theorems
-        }
+        if allow_generating_heterogeneous_arity_formulas:
+            raise NotImplementedError()
+        logger.info(make_pretty_msg(title='load arguments', status='start', boundary_level=0))
 
+        complicated_arguments, quantified_arguments, quantifier_axiom_arguments = _expand_arguments(arguments)
+        all_arguments = arguments + complicated_arguments + quantified_arguments + quantifier_axiom_arguments
+        if not allow_non_canonical_contradiction_use:
+            # we reject formulas such as "(x): ({A}x & {B}x) -> #F#" due to the folllowing reasons.
+            # (i) we have not yet implemented translations for such formulas
+            # (ii) we have not yet implemented formula checking algorithms for such formulas, due to the technological limitation of z3
+            # Rejecting such formulas does not matter much, because proof by contradiction is not that important in NLP.
+            all_arguments = [argument for argument in all_arguments
+                             if not argument_has_non_canonical_contradiction_use(argument)]
+        argument_weights = {argument: calc_argument_weight(argument, complicated_arguments, quantified_arguments, quantifier_axiom_arguments)
+                            for argument in all_arguments}
+        _sum_argument_weights = sum(argument_weights.values())
+        argument_weights = {argument: weight / _sum_argument_weights for argument, weight in argument_weights.items()}
+
+
+        # wo_th_arguments = [argument for argument in arguments if not is_theorem_argument(argument)]
+        # wo_th_complicated_arguments = [argument for argument in complicated_arguments if not is_theorem_argument(argument)]
+        # wo_th_quantified_arguments = [argument for argument in quantified_arguments if not is_theorem_argument(argument)]
+        # wo_th_quantifier_axiom_arguments = [argument for argument in quantifier_axiom_arguments if not is_theorem_argument(argument)]
+        # wo_th_all_arguments = wo_th_arguments + wo_th_complicated_arguments + wo_th_quantified_arguments + wo_th_quantifier_axiom_arguments
+        # if not allow_non_canonical_contradiction_use:
+        #     wo_th_all_arguments = [argument for argument in wo_th_all_arguments
+        #                            if not argument_has_non_canonical_contradiction_use(argument)]
+        # # XXX: Below recomputed weights are NOT equivallent to the weights by slicing _argument_weights,
+        # # as the relative volume of complicated_arguments, quantified_arguments, and quantifier_axiom_arguments are different.
+        # wo_th_argument_weights = {argument: calc_argument_weight(argument, wo_th_complicated_arguments, wo_th_quantified_arguments, wo_th_quantifier_axiom_arguments)
+        #                           for argument in wo_th_all_arguments}
+        # wo_th_sum_argument_weights = sum(wo_th_argument_weights.values())
+        # wo_th_argument_weights = {argument: weight / wo_th_sum_argument_weights for argument, weight in wo_th_argument_weights.items()}
+
+        
         if negation_arguments_weight is not None:
-            def _adjust_negation(weights: Dict[Argument, float]) -> Dict[Argument, float]:
-                all_weight_sum = sum(weights.values())
+            def _adjust_negation(_arguments: List[Argument], weights: Dict[Argument, float]) -> Dict[Argument, float]:
+                weight_sum = sum(weights.values())
                 negation_weight_sum = sum(weights[argument]
                                           for argument in _arguments
                                           if is_negation_argument(argument))
                 negation_boost_factor = negation_arguments_weight / negation_weight_sum
-                others_decay_factor = (all_weight_sum - negation_arguments_weight)\
-                    / (all_weight_sum - negation_weight_sum)
+                others_decay_factor = (weight_sum - negation_arguments_weight)\
+                    / (weight_sum - negation_weight_sum)
                 logger.info(
                     'adjusting negation weight from %f to %f,'
                     'this means that each negation argument will be factored by %f,'
@@ -449,31 +473,36 @@ class ProofTreeGenerator:
                     negation_weight_sum, negation_arguments_weight, negation_boost_factor, others_decay_factor
                 )
                 return {
-                    argument: weights[argument] * negation_boost_factor if is_negation_argument(argument) else
-                    weights[argument] * others_decay_factor
+                    argument: weights[argument] * negation_boost_factor if is_negation_argument(argument)\
+                    else weights[argument] * others_decay_factor
                     for argument in _arguments
                 }
-            _argument_weights_with_factor = _adjust_negation(_argument_weights_with_factor)
-            _argument_wo_theorems_weights_with_factor = _adjust_negation(_argument_wo_theorems_weights_with_factor)
+            argument_weights = _adjust_negation(all_arguments, argument_weights)
+            # wo_th_argument_weights = _adjust_negation(wo_th_all_arguments, wo_th_argument_weights)
 
-        logger.info(make_pretty_msg(title='loaded all arguments', status='finish', boundary_level=0))
-        for argument in _arguments:
-            logger.info('weight: %f    %s', _argument_weights_with_factor[argument], str(argument))
-        if not math.isclose(sum(_argument_weights_with_factor.values()), 1.0):
-            raise ValueError(f'sum of weights is not 1.0: {sum(_argument_weights_with_factor.values())}')
 
-        logger.info(make_pretty_msg(title='loaded arguments wo theorems', status='finish', boundary_level=0))
-        for argument in _arguments_wo_theorems:
-            logger.info('weight: %f    %s', _argument_wo_theorems_weights_with_factor[argument], str(argument))
-        if not math.isclose(sum(_argument_wo_theorems_weights_with_factor.values()), 1.0):
-            raise ValueError(f'sum of weights is not 1.0: {sum(_argument_wo_theorems_weights_with_factor.values())}')
+        logger.info(make_pretty_msg(title='loaded arguments', status='finish', boundary_level=0))
+        for argument in all_arguments:
+            logger.info('weight: %f    %s', argument_weights[argument], str(argument))
+        if not math.isclose(sum(argument_weights.values()), 1.0):
+            raise ValueError(f'sum of weights is not 1.0: {sum(argument_weights.values())}')
+
+
+        # logger.info(make_pretty_msg(title='loaded arguments without theorems', status='finish', boundary_level=0))
+        # for argument in wo_th_all_arguments:
+        #     logger.info('weight: %f    %s', wo_th_argument_weights[argument], str(argument))
+        # if not math.isclose(sum(wo_th_argument_weights.values()), 1.0):
+        #     raise ValueError(f'sum of weights is not 1.0: {sum(wo_th_argument_weights.values())}')
+
 
         return (
-            _arguments,
-            _argument_weights_with_factor,
-            _arguments_wo_theorems,
-            _argument_wo_theorems_weights_with_factor,
+            all_arguments,
+            argument_weights,
+            # wo_th_all_arguments,
+            # wo_th_argument_weights,
         )
+
+
 
     def generate_tree(self,
                       generate_stem_steps: int,

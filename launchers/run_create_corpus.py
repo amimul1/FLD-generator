@@ -34,7 +34,8 @@ def main():
 
     # =================================== 2024-09-03.toward_camera_ready ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation.debug')
 
 
 
@@ -75,14 +76,21 @@ def main():
 
 
         # ================================== 2024-09-16.fix_negation ========================================
-        '2024-09-16.FLD.fix_negation',
+        '2024-09-16.FLD.neg-0.10',
+        '2024-09-16.PLD.neg-0.10.theorems-0.00',
+        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old',
+        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
 
+        # '2024-09-16.PLD.neg-0.10',
+        # '2024-09-16.PLD.neg-0.20',
+        # '2024-09-16.PLD.neg-0.10.theorems-0.30',
+        # '2024-09-16.PLD.neg-0.10.theorems-all',
     ]
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
     # job_engines = [SubprocessEngine()]
@@ -121,8 +129,8 @@ def main():
     dry_run = False
     # dry_run = True
 
-    skip_if_exists = False
-    # skip_if_exists = True
+    # skip_if_exists = False
+    skip_if_exists = True
 
     # for the case some jobs hangs
     timeout_per_job = 3600 * 3
@@ -281,14 +289,7 @@ def make_dataset(dataset_name: str,
             _num_jobs = num_jobs
         size_per_job = math.ceil(size_with_margin / _num_jobs)
 
-        # logger.info('============================== [launch_create_FLD_corpus.py] Generating dataset for %s split ============================', split)
-        # logger.info('size: %d', size)
-        # logger.info('size_with_margin: %d', size_with_margin)
-        # logger.info('num_jobs: %d', _num_jobs)
-        # logger.info('size_per_job: %d', size_per_job)
-
         if not only_gather:
-            jobs = []
             for i_job in range(_num_jobs):
                 job_output_dir = split_output_dir / f'job-{str(i_job).zfill(6)}'
                 job_output_dir.mkdir(exist_ok=True, parents=True)
@@ -438,7 +439,7 @@ def make_dataset(dataset_name: str,
                 try:
                     json.loads(line.rstrip('\n'))
                 except json.JSONDecodeError:
-                    logger.warning('failed to load json line %d, will be skipped', i_line)
+                    logger.warning('failed to load json line %d, will be skipped: "%s"', i_line, jsonl)
                     continue
                 lines.append(line)
                 cnt += 1
