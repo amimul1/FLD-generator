@@ -168,7 +168,7 @@ class ProofTreeGenerator:
         self.disallow_contradiction_as_hypothesis = disallow_contradiction_as_hypothesis
 
         self._complex_formula_arguments_weight = complex_formula_arguments_weight
-        self._theorem_tree_prob = theorem_tree_prob
+        self.theorem_tree_prob = theorem_tree_prob
 
         def _laod_arguments(arguments: List[Argument]):
             return self._load_arguments(
@@ -570,7 +570,7 @@ class ProofTreeGenerator:
                               key = lambda A_num_step: A_num_step[1])[-1]
 
     def _sample_arguments(self) -> Tuple[Tuple[Argument], Dict[Argument, float]]:
-        if random.random() < self._theorem_tree_prob:
+        if random.random() < self.theorem_tree_prob:
             return self.arguments, self.argument_weights
         else:
             return self.arguments_wo_theorems, self.arguments_wo_theorems_weights

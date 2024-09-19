@@ -35,7 +35,7 @@ def main():
     # =================================== 2024-09-03.toward_camera_ready ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation.debug')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
 
 
 
@@ -76,16 +76,30 @@ def main():
 
 
         # ================================== 2024-09-16.fix_negation ========================================
-        '2024-09-16.FLD.neg-0.10',
-        '2024-09-16.PLD.neg-0.10.theorems-0.00',
-        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old',
+        # '2024-09-16.FLD.neg-0.10',
         # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
+        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old',
+        # '2024-09-16.PLD.neg-0.10.theorems-0.00',
 
         # '2024-09-16.PLD.neg-0.10',
         # '2024-09-16.PLD.neg-0.20',
         # '2024-09-16.PLD.neg-0.10.theorems-0.30',
         # '2024-09-16.PLD.neg-0.10.theorems-all',
+
+
+        # ================================== 2024-09-18.fix_negation ========================================
+        '2024-09-18.FLD.neg-0.10',
+        '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
+        # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old',
+        # '2024-09-18.PLD.neg-0.10.theorems-0.00',
+        # '2024-09-18.PLD.neg-0.10',
+
+
+
     ]
+
+
+
 
 
 
@@ -93,9 +107,12 @@ def main():
     only_gather = True
 
 
+
+
     # job_engines = [SubprocessEngine()]
     # job_engines = [QsubEngine('ABCI', 'rt_C.small')]
     # job_engines = [QsubEngine('haic', 'xcl_s.small'), QsubEngine('haic', 'xcs_s.small')]
+
 
     job_engines = [
         # QsubEngine('haic', 'xhn_s.middle'),
@@ -486,7 +503,13 @@ def make_dataset(dataset_name: str,
 def get_num_jobs(num_examples: int) -> int:
     if num_examples <= 100:
         return 1
-    elif num_examples in [1_000, 100_000]:
+    elif num_examples in [1_000]:
+        return 10
+    elif num_examples in [30_000]:
+        return 90
+    elif num_examples in [50_000]:
+        return 150
+    elif num_examples in [100_000]:
         return 300
     elif num_examples in [150_000]:
         return 450

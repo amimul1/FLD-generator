@@ -81,8 +81,12 @@ def main():
     # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-09-03.toward_camera_ready'
 
 
-    TOP_DIR = './outputs/00.create_corpus/2024-09-16.fix_negation'
-    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-09-16.fix_negation'
+    # TOP_DIR = './outputs/00.create_corpus/2024-09-16.fix_negation'
+    # OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-09-16.fix_negation'
+
+
+    TOP_DIR = './outputs/00.create_corpus/2024-09-18.fix_negation'
+    OUTPUT_TOP_DIR = './outputs/G00.compute_distrib.py/2024-09-18.fix_negation'
 
 
     jobs = []

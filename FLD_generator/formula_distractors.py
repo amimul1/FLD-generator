@@ -807,7 +807,8 @@ def build(type_: str,
             logger.info(make_pretty_msg(title='build distractor',
                                         status='start',
                                         msg='collecting prototype formulas from arguments to build the distractor ...', boundary_level=0))
-            for argument in generator.arguments:
+            prototype_arguments = generator.arguments if generator.theorem_tree_prob > 0 else generator.arguments_wo_theorems
+            for argument in prototype_arguments:
                 for formula in argument.all_formulas:
                     if all(not formula_is_identical_to(formula, existent_formula)
                            for existent_formula in prototype_formulas):
