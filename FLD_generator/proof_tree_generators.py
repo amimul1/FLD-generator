@@ -197,15 +197,6 @@ class ProofTreeGenerator:
                 elim_dneg=elim_dneg,
             )
 
-        # logger.info(make_pretty_msg(title='load all arguments', status='start', boundary_level=0))
-        # self.arguments, self.argument_weights = _laod_arguments(arguments)
-
-        # logger.info(make_pretty_msg(title='load only axiom arguments', status='start', boundary_level=0))
-        # self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(
-        #     [argument for argument in arguments if not is_theorem_argument(argument)]
-        # )
-
-        # self.arguments, self.argument_weights, self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(arguments)
         self.arguments, self.argument_weights = _laod_arguments(arguments)
         self.arguments_wo_theorems, self.arguments_wo_theorems_weights = _laod_arguments(
             [argument for argument in arguments if not is_theorem_argument(argument)]
@@ -463,6 +454,8 @@ class ProofTreeGenerator:
                 negation_weight_sum = sum(weights[argument]
                                           for argument in _arguments
                                           if is_negation_argument(argument))
+                if negation_weight_sum == 0:
+                    return weights
                 negation_boost_factor = negation_arguments_weight / negation_weight_sum
                 others_decay_factor = (weight_sum - negation_arguments_weight)\
                     / (weight_sum - negation_weight_sum)

@@ -88,13 +88,29 @@ def main():
 
 
         # ================================== 2024-09-18.fix_negation ========================================
-        '2024-09-18.FLD.neg-0.10',
-        '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
+        # '2024-09-18.FLD.neg-0.10',
+        # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
         # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old',
         # '2024-09-18.PLD.neg-0.10.theorems-0.00',
+
         # '2024-09-18.PLD.neg-0.10',
 
+        # '2024-09-18.PLD.neg-0.10.theorems-0.30',
+        # '2024-09-18.PLD.neg-0.20',
+        # '2024-09-18.PLD.neg-0.10.theorems-all',
+        # '2024-09-18.PLD.neg-0.10.ref_prob-0.10',
 
+        # '2024-09-18.PLD.neg-0.10.theorems-0.30.theorems-all',
+        # '2024-09-18.PLD.neg-0.15',
+        # '2024-09-18.PLD.neg-0.15.theorems-0.30.theorems-all',
+
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2',
+
+        '2024-09-18.PLD.neg-0.20.voc-100',
+        '2024-09-18.PLD.neg-0.20.dstrct-0',
+        '2024-09-18.PLD.neg-0.20.stps-3-0',
+        '2024-09-18.PLD.neg-0.20.rule-G_MP',
+        '2024-09-18.PLD.neg-0.20.trnsl-small',
 
     ]
 
@@ -214,7 +230,6 @@ def make_dataset(dataset_name: str,
                  dry_run: bool) -> None:
     output_top_dir = Path(output_top_dir)
 
-
     # ----------------- fixed ------------------
     settings = {
         'dataset_name': dataset_name,
@@ -314,8 +329,9 @@ def make_dataset(dataset_name: str,
                 job_output_path = job_output_dir / f'{split}.jsonl'
                 job_log_path = job_output_dir / 'log.txt'
 
-                # if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                if skip_if_exists and job_output_path.exists():
+                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                # if skip_if_exists and job_output_path.exists():
+                # if skip_if_exists and job_log_path.exists():
                     logger.info('skip %s because', job_output_path)
                     continue
 
