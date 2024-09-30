@@ -9,6 +9,7 @@ import copy
 from collections import defaultdict
 import statistics
 import time
+import random
 
 import click
 from script_engine import QsubEngine, SubprocessEngine
@@ -35,7 +36,8 @@ def main():
     # =================================== 2024-09-03.toward_camera_ready ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-30.hybrid')
 
 
 
@@ -106,11 +108,19 @@ def main():
 
         # '2024-09-18.PLD.neg-0.20.trnsl-v2',
 
-        '2024-09-18.PLD.neg-0.20.voc-100',
-        '2024-09-18.PLD.neg-0.20.dstrct-0',
-        '2024-09-18.PLD.neg-0.20.stps-3-0',
-        '2024-09-18.PLD.neg-0.20.rule-G_MP',
-        '2024-09-18.PLD.neg-0.20.trnsl-small',
+        # '2024-09-18.PLD.neg-0.20.voc-100',
+        # '2024-09-18.PLD.neg-0.20.dstrct-0',
+        # '2024-09-18.PLD.neg-0.20.stps-3-0',
+        # '2024-09-18.PLD.neg-0.20.rule-G_MP',
+        # '2024-09-18.PLD.neg-0.20.trnsl-small',
+
+
+
+        # ================================== 2024-09-30.hybrid ========================================
+        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10',
+        '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75',
+        '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25',
+
 
     ]
 
@@ -119,8 +129,8 @@ def main():
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
 
@@ -233,75 +243,14 @@ def make_dataset(dataset_name: str,
     # ----------------- fixed ------------------
     settings = {
         'dataset_name': dataset_name,
-        'num_workers_per_job': num_workers_per_job,
     }
     settings.update(get_dataset_setting(dataset_name))
-    if settings['translation_configs'] in ['thing_person.v2']:
-        logger.warning('thing_person.v2 is very slow. We recommend to use thing_person.v0 for tuning parameters, then use thing_person.v2 only finally.')
 
+    pseudo_setting = {'dataset_name': dataset_name}  # as dataset_name alone is enough to specify the dataset
     output_dir = build_dir(
-        settings,
+        pseudo_setting,
         top_dir=str(output_top_dir / f'dataset_name={dataset_name}'),
         short=True,
-        dirname_ignore_params=[
-            'dataset_name',
-            'proof_stances',
-            'unknown_ratio',
-            'reference_tree_prob',
-            'reference_argument_prob_in_depth_1',
-
-            'argument_configs',
-
-            'complex_formula_arguments_weight',
-            'quantifier_axiom_arguments_weight',
-            'quantify_implication_premise_conclusion_at_once',
-            'quantify_all_at_once',
-
-            'generate_stem_steps_range',
-            'generate_stem_steps_distrib',
-            'distractor_variants_per_tree',
-            'translation_variants_per_logic',
-            'extend_branches_steps_range',
-
-            'distractor',
-            # 'distractor_factor',
-            'distractors_range',
-            'sample_distractor_prototype_formulas_from_all_possible_formulas',
-            'disallow_hard_negative_distractors',
-            # 'negative_tree_negated_hypothesis_ratio',
-            'disallow_subj_obj_swapped_distractor',
-            'use_collapsed_translation_nodes_for_unknown_tree',
-            'fallback_from_formula_to_translation_distractor',
-            'swap_ng_words_config',
-
-            'translation_distractor',
-            'translation_distractors_range',
-            'use_fixed_translation',
-
-            'split_sizes',
-            'split_wise_settings',
-
-            'translation_lang',
-            'translation_configs',
-            'limit_vocab_size_per_type',
-            'translation_volume_to_weight',
-            'trnsltn_adj_vrb_nn_rt',
-
-            'knowledge_range',
-            'collapsed_knowledge_range',
-            'knowledge_no_shuffle',
-            'atomic_filepath',
-            'concept_net_100k_filepath',
-            'dbpedia_filepath',
-
-            'num_workers_per_job',
-
-            'quantifier_axioms',
-
-            'allow_smaller_proofs',
-
-            'world_assump',
-        ],
         save_params=True
     )
     logger.addHandler(create_file_handler(output_dir / 'log.txt'))
@@ -335,10 +284,29 @@ def make_dataset(dataset_name: str,
                     logger.info('skip %s because', job_output_path)
                     continue
 
-                job_settings = copy.deepcopy(settings)
-                job_settings.update(settings.get('split_wise_settings', {}).get(split, {}))
+                if 'sub_datasets' in settings:
+                    sub_datasets = settings['sub_datasets']
+
+                    probs = list(sub_datasets.values())
+                    _sum = sum(probs)
+                    probs = [p / _sum for p in probs]
+
+                    indices = range(len(sub_datasets))
+                    index = random.choices(indices, weights=probs, k=1)[0]
+
+                    sub_dataset_name = list(sub_datasets.keys())[index]
+
+                    logger.info('dataset="%s" is composite dataset. selected dataset=%s', dataset_name, sub_dataset_name)
+
+                    job_settings = copy.deepcopy(get_dataset_setting(sub_dataset_name))
+                    job_settings['sub_dataset_name'] = sub_dataset_name
+                else:
+                    job_settings = copy.deepcopy(settings)
+
+                job_settings.update(job_settings.get('split_wise_settings', {}).get(split, {}))
                 job_settings['split'] = split
                 job_settings['seed'] = i_job
+                job_settings['num_workers_per_job'] = num_workers_per_job
 
                 save_params(job_settings, job_output_dir)
 

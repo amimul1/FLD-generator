@@ -15974,12 +15974,48 @@ _DATASET_SETTINGS = {
 
 
 
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20': 0.5,
+            '2024-09-18.FLD.neg-0.10': 0.5,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
 
 
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75': {
 
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.75,
+        },
 
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
 
+    },
 
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20': 0.75,
+            '2024-09-18.FLD.neg-0.10': 0.25,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
 
 }
 
@@ -16430,6 +16466,11 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-09-18.PLD.neg-0.20.stps-3-0': '20231018.thing_person_config_translation',
     '2024-09-18.PLD.neg-0.20.trnsl-small': '20231018.thing_person_config_translation',
 
+
+    # ================================== 2024-09-30.hybrid ========================================
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25': '20231018.thing_person_config_translation',
 
 
 }
