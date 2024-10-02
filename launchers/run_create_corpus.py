@@ -118,19 +118,38 @@ def main():
 
         # ================================== 2024-09-30.hybrid ========================================
         # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10',
-        '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75',
-        '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25',
+        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75',
+        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25',
+
+        # '2024-09-30.hybrid__PLD_v0.theorems-0.3=0.50__FLD=0.25',
+        # '2024-09-30.hybrid__PLD_v0.theorems-0.3.theorems-all=0.50__FLD=0.25',
+        # '2024-09-30.hybrid__PLD_v2=0.25__PLD_v0=0.50__FLD=0.25',
+        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25',
+
+
+        # '2024-09-30.hybrid__PLD_v0.theorems-all=0.50__FLD=0.25',                  # 1.0 hour
+
+        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 50k + 1.5 hour / 100k * 50k = 3.75 hour
+
+        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25',                  # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
+        '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
+
+
 
 
     ]
 
+    # ------ runtime estimation ------
+    # XXX: transl-v0  1.5 hour / 100k
+    # XXX: transl-v2  6.0 hour / 100k
 
 
 
 
 
-    only_gather = False
-    # only_gather = True
+
+    # only_gather = False
+    only_gather = True
 
 
 
@@ -299,7 +318,6 @@ def make_dataset(dataset_name: str,
                     logger.info('dataset="%s" is composite dataset. selected dataset=%s', dataset_name, sub_dataset_name)
 
                     job_settings = copy.deepcopy(get_dataset_setting(sub_dataset_name))
-                    job_settings['sub_dataset_name'] = sub_dataset_name
                 else:
                     job_settings = copy.deepcopy(settings)
 
