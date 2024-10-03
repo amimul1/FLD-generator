@@ -3,7 +3,7 @@ import json
 import random
 import math
 import logging
-from typing import List, Union, Dict
+from typing import List, Union, Dict, Tuple
 from pathlib import Path
 import copy
 from collections import defaultdict
@@ -36,8 +36,7 @@ def main():
     # =================================== 2024-09-03.toward_camera_ready ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
-    # output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-30.hybrid')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
 
 
 
@@ -132,10 +131,16 @@ def main():
         # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 50k + 1.5 hour / 100k * 50k = 3.75 hour
 
         # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25',                  # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
-        '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
+        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
 
 
+        # '2024-09-18.FLD.neg-0.20',
+        # '2024-09-30.hybrid__PLD_v2=0.25__FLD=0.75',
+        # '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50',
+        # '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25',
 
+        '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
+        '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
 
     ]
 
@@ -259,6 +264,9 @@ def make_dataset(dataset_name: str,
                  dry_run: bool) -> None:
     output_top_dir = Path(output_top_dir)
 
+    def make_dataset_dir(output_top_dir: Path, dataset_name: str) -> Path:
+        return output_top_dir / f'dataset_name={dataset_name}'
+
     # ----------------- fixed ------------------
     settings = {
         'dataset_name': dataset_name,
@@ -268,175 +276,189 @@ def make_dataset(dataset_name: str,
     pseudo_setting = {'dataset_name': dataset_name}  # as dataset_name alone is enough to specify the dataset
     output_dir = build_dir(
         pseudo_setting,
-        top_dir=str(output_top_dir / f'dataset_name={dataset_name}'),
+        top_dir=str(make_dataset_dir(output_top_dir, dataset_name)),
         short=True,
         save_params=True
     )
     logger.addHandler(create_file_handler(output_dir / 'log.txt'))
 
     n_engine = 0
-    for split, size in settings['split_sizes'].items():
-        num_jobs = get_num_jobs(size)
-
-        size_with_margin = int(size * 1.1)   # for the case some jobs fail or hang
+    for split, dataset_size in settings['split_sizes'].items():
+        if 'sub_datasets' in settings:
+            sub_datasets = {
+                sub_dataset_name: int(dataset_size * prob)
+                for sub_dataset_name, prob in settings['sub_datasets'].items()
+            }
+        else:
+            sub_datasets = {dataset_name: dataset_size}
 
         split_output_dir = output_dir / split
-        split_output_dir.mkdir(exist_ok=True, parents=True)
+        for sub_dataset_name, sub_dataset_size in sub_datasets.items():
+            split_sub_dataset_output_dir = split_output_dir / f'sub_dataset_name={sub_dataset_name}'
+            split_sub_dataset_output_dir.mkdir(exist_ok=True, parents=True)
 
-        if size_with_margin / num_jobs < min_dataset_size_per_job:
-            _num_jobs = max(math.ceil(size_with_margin / min_dataset_size_per_job), 1)
-        else:
-            _num_jobs = num_jobs
-        size_per_job = math.ceil(size_with_margin / _num_jobs)
+            def make_job_output_dir(i_job: int) -> Tuple[Path, Path, Path]:
+                _dir = split_sub_dataset_output_dir / f'job-{str(i_job).zfill(6)}'
+                _dir.mkdir(exist_ok=True, parents=True)
+                return _dir, _dir / f'{split}.jsonl', _dir / 'log.txt'
 
-        if not only_gather:
-            for i_job in range(_num_jobs):
-                job_output_dir = split_output_dir / f'job-{str(i_job).zfill(6)}'
-                job_output_dir.mkdir(exist_ok=True, parents=True)
+            existing_examples = []
+            maybe_existing_dir = make_dataset_dir(output_top_dir, sub_dataset_name)
+            if maybe_existing_dir.exists():
+                existing_json_paths = [path for path in maybe_existing_dir.glob(f'**/{split}.jsonl')
+                                       if str(path).find('job-') < 0]
+                if len(existing_json_paths) >= 2:
+                    raise Exception(f'{sub_dataset_name} already exists. {len(existing_json_paths)} json files are found.')
+                elif len(existing_json_paths) == 1:
+                    existing_examples = [json.loads(line.rstrip('\n')) for line in open(existing_json_paths[0])][:sub_dataset_size]
+                    logger.info('Reuse %d examples found in "%s"', len(existing_examples), existing_json_paths[0])
+                else:
+                    pass
 
-                job_output_path = job_output_dir / f'{split}.jsonl'
-                job_log_path = job_output_dir / 'log.txt'
+            _, exsiting_output_path, _ = make_job_output_dir(-1)
+            with open(exsiting_output_path, 'w') as f_out:
+                for example in existing_examples:
+                    f_out.write(json.dumps(example, ensure_ascii=False) + '\n')
 
-                if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
-                # if skip_if_exists and job_output_path.exists():
-                # if skip_if_exists and job_log_path.exists():
-                    logger.info('skip %s because', job_output_path)
-                    continue
+            sub_dataset_size -= len(existing_examples)
+            num_jobs = get_num_jobs(sub_dataset_size)
+            size_with_margin = int(sub_dataset_size * 1.1)   # for the case some jobs fail or hang
 
-                if 'sub_datasets' in settings:
-                    sub_datasets = settings['sub_datasets']
+            if size_with_margin <= 0:
+                _num_jobs = 0
+            elif size_with_margin / num_jobs < min_dataset_size_per_job:
+                _num_jobs = max(math.ceil(size_with_margin / min_dataset_size_per_job), 1)
+            else:
+                _num_jobs = num_jobs
 
-                    probs = list(sub_datasets.values())
-                    _sum = sum(probs)
-                    probs = [p / _sum for p in probs]
+            if not only_gather and _num_jobs > 0:
+                size_per_job = math.ceil(size_with_margin / _num_jobs)
+                for i_job in range(_num_jobs):
+                    job_output_dir, job_output_path, job_log_path = make_job_output_dir(i_job)
 
-                    indices = range(len(sub_datasets))
-                    index = random.choices(indices, weights=probs, k=1)[0]
-
-                    sub_dataset_name = list(sub_datasets.keys())[index]
-
-                    logger.info('dataset="%s" is composite dataset. selected dataset=%s', dataset_name, sub_dataset_name)
+                    if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
+                    # if skip_if_exists and job_output_path.exists():
+                    # if skip_if_exists and job_log_path.exists():
+                        logger.info('skip %s because', job_output_path)
+                        continue
 
                     job_settings = copy.deepcopy(get_dataset_setting(sub_dataset_name))
-                else:
-                    job_settings = copy.deepcopy(settings)
+                    job_settings.update(job_settings.get('split_wise_settings', {}).get(split, {}))
+                    job_settings['split'] = split
+                    job_settings['seed'] = i_job
+                    job_settings['num_workers_per_job'] = num_workers_per_job
 
-                job_settings.update(job_settings.get('split_wise_settings', {}).get(split, {}))
-                job_settings['split'] = split
-                job_settings['seed'] = i_job
-                job_settings['num_workers_per_job'] = num_workers_per_job
+                    save_params(job_settings, job_output_dir)
 
-                save_params(job_settings, job_output_dir)
+                    command = ' '.join([
+                        # 'source $HOME/.bashrc &&'
+                        # 'echo $PATH > log.path.txt &&'
+                        'export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH &&',
+                        # 'echo $LD_LIBRARY_PATH',
 
-                command = ' '.join([
-                    # 'source $HOME/.bashrc &&'
-                    # 'echo $PATH > log.path.txt &&'
-                    'export LD_LIBRARY_PATH=$HOME/.local/lib:$HOME/.local/lib64:$LD_LIBRARY_PATH &&',
-                    # 'echo $LD_LIBRARY_PATH',
+                        'python ./scripts/create_corpus.py',
 
-                    'python ./scripts/create_corpus.py',
+                        f'{job_output_path}',
+                        str(int(size_per_job)),
 
-                    f'{job_output_path}',
-                    str(int(size_per_job)),
+                        f'--generate-stem-steps-range \'{json.dumps(job_settings["generate_stem_steps_range"])}\'',
+                        maybe_option('--generate-stem-steps-distrib', job_settings.get("generate_stem_steps_distrib", None)),
+                        f'--extend-branches-steps-range \'{json.dumps(job_settings["extend_branches_steps_range"])}\'',
+                        maybe_option('--steps-limit', job_settings.get("steps_limit", None)),
+                        maybe_option('--depth-limit', job_settings.get("depth_limit", None)),
+                        '--increase-depth-by-extend-branches' if job_settings.get('increase_depth_by_extend_branches', False) else '',
 
-                    f'--generate-stem-steps-range \'{json.dumps(job_settings["generate_stem_steps_range"])}\'',
-                    maybe_option('--generate-stem-steps-distrib', job_settings.get("generate_stem_steps_distrib", None)),
-                    f'--extend-branches-steps-range \'{json.dumps(job_settings["extend_branches_steps_range"])}\'',
-                    maybe_option('--steps-limit', job_settings.get("steps_limit", None)),
-                    maybe_option('--depth-limit', job_settings.get("depth_limit", None)),
-                    '--increase-depth-by-extend-branches' if job_settings.get('increase_depth_by_extend_branches', False) else '',
+                        _make_multiple_value_option('--argument-config', job_settings['argument_configs']),
+                        f'--complex-formula-arguments-weight {job_settings["complex_formula_arguments_weight"]}',
+                        f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
+                        _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
+                        maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
+                        maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
+                        maybe_option('--negation-arguments-weight', job_settings.get('negation_arguments_weight', None)),
+                        maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
+                        maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
+                        '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
+                        maybe_option('--theorem-subset', job_settings.get('theorem_subset', None)),
 
-                    _make_multiple_value_option('--argument-config', job_settings['argument_configs']),
-                    f'--complex-formula-arguments-weight {job_settings["complex_formula_arguments_weight"]}',
-                    f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
-                    _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
-                    maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
-                    maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
-                    maybe_option('--negation-arguments-weight', job_settings.get('negation_arguments_weight', None)),
-                    maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
-                    maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
-                    '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
-                    maybe_option('--theorem-subset', job_settings.get('theorem_subset', None)),
-
-                    maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
-                    _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
-                    '--translation-no-transitive-object' if job_settings.get("translation_no_transitive_object", False) else '',
-                    '--use-fixed-translation' if job_settings.get("use_fixed_translation", False) else '',
-                    maybe_option('--reused-object-nouns-max-factor', job_settings.get("reused_object_nouns_max_factor", None)),
-                    f'--limit-vocab-size-per-type {job_settings["limit_vocab_size_per_type"]}' if job_settings.get("limit_vocab_size_per_type", None) is not None else '',
-                    maybe_option('--translation-volume-to-weight', job_settings.get("translation_volume_to_weight", None)),
-                    maybe_option('--translation-adj-verb-noun-ratio', job_settings.get("translation_adj_verb_noun_ratio", None)),
-                    maybe_option('--translation-vocab', job_settings.get("translation_vocab", None)),
+                        maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
+                        _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
+                        '--translation-no-transitive-object' if job_settings.get("translation_no_transitive_object", False) else '',
+                        '--use-fixed-translation' if job_settings.get("use_fixed_translation", False) else '',
+                        maybe_option('--reused-object-nouns-max-factor', job_settings.get("reused_object_nouns_max_factor", None)),
+                        f'--limit-vocab-size-per-type {job_settings["limit_vocab_size_per_type"]}' if job_settings.get("limit_vocab_size_per_type", None) is not None else '',
+                        maybe_option('--translation-volume-to-weight', job_settings.get("translation_volume_to_weight", None)),
+                        maybe_option('--translation-adj-verb-noun-ratio', job_settings.get("translation_adj_verb_noun_ratio", None)),
+                        maybe_option('--translation-vocab', job_settings.get("translation_vocab", None)),
 
 
-                    f'--distractor "{job_settings["distractor"]}"',
-                    f'--distractors-range \'{json.dumps(job_settings["distractors_range"])}\'',
-                    # maybe_option('--negative-tree-negated-hypothesis-ratio', job_settings.get('negative_tree_negated_hypothesis_ratio', None)),
-                    '--sample-distractor-prototype-formulas-from-all-possible-formulas' if job_settings.get('sample_distractor_prototype_formulas_from_all_possible_formulas', False) else '',
-                    '--disallow-simplified-tree-formulas-as-distractor-prototype' if job_settings.get('disallow_simplified_tree_formulas_as_distractor_prototype', False) else '',
-                    '--disallow-subj-obj-swapped-distractor' if job_settings.get('disallow_subj_obj_swapped_distractor', False) else '',
-                    maybe_option('--swap-ng-words-config', job_settings.get("swap_ng_words_config", None)),
-                    maybe_option('--translation-distractor', job_settings.get("translation_distractor", None)),
-                    f'--translation-distractors-range \'{json.dumps(job_settings["translation_distractors_range"])}\'',
-                    '--fallback-from-formula-to-translation-distractor' if job_settings.get('fallback_from_formula_to_translation_distractor', False) else '',
+                        f'--distractor "{job_settings["distractor"]}"',
+                        f'--distractors-range \'{json.dumps(job_settings["distractors_range"])}\'',
+                        # maybe_option('--negative-tree-negated-hypothesis-ratio', job_settings.get('negative_tree_negated_hypothesis_ratio', None)),
+                        '--sample-distractor-prototype-formulas-from-all-possible-formulas' if job_settings.get('sample_distractor_prototype_formulas_from_all_possible_formulas', False) else '',
+                        '--disallow-simplified-tree-formulas-as-distractor-prototype' if job_settings.get('disallow_simplified_tree_formulas_as_distractor_prototype', False) else '',
+                        '--disallow-subj-obj-swapped-distractor' if job_settings.get('disallow_subj_obj_swapped_distractor', False) else '',
+                        maybe_option('--swap-ng-words-config', job_settings.get("swap_ng_words_config", None)),
+                        maybe_option('--translation-distractor', job_settings.get("translation_distractor", None)),
+                        f'--translation-distractors-range \'{json.dumps(job_settings["translation_distractors_range"])}\'',
+                        '--fallback-from-formula-to-translation-distractor' if job_settings.get('fallback_from_formula_to_translation_distractor', False) else '',
 
-                    f'--knowledge-range \'{json.dumps(job_settings["knowledge_range"])}\'' if job_settings.get('knowledge_range', None) is not None else '',
-                    f'--collapsed-knowledge-range \'{json.dumps(job_settings["collapsed_knowledge_range"])}\'' if job_settings.get('collapsed_knowledge_range', None) is not None else '',
-                    '--knowledge-no-shuffle' if job_settings.get('knowledge_no_shuffle', False) else '',
-                    maybe_option('--knowledge-argument-factor', job_settings.get('knowledge_argument_factor', None)),
-                    maybe_option('--atomic-filepath', job_settings.get("atomic_filepath", None)),
-                    maybe_option('--concept-net-100k-filepath', job_settings.get("concept_net_100k_filepath", None)),
-                    maybe_option('--dbpedia-filepath', job_settings.get("dbpedia_filepath", None)),
+                        f'--knowledge-range \'{json.dumps(job_settings["knowledge_range"])}\'' if job_settings.get('knowledge_range', None) is not None else '',
+                        f'--collapsed-knowledge-range \'{json.dumps(job_settings["collapsed_knowledge_range"])}\'' if job_settings.get('collapsed_knowledge_range', None) is not None else '',
+                        '--knowledge-no-shuffle' if job_settings.get('knowledge_no_shuffle', False) else '',
+                        maybe_option('--knowledge-argument-factor', job_settings.get('knowledge_argument_factor', None)),
+                        maybe_option('--atomic-filepath', job_settings.get("atomic_filepath", None)),
+                        maybe_option('--concept-net-100k-filepath', job_settings.get("concept_net_100k_filepath", None)),
+                        maybe_option('--dbpedia-filepath', job_settings.get("dbpedia_filepath", None)),
 
-                    f'--proof-stances \'{json.dumps(job_settings["proof_stances"])}\'' if "proof_stances" in job_settings else '',
-                    f'--world-assump {job_settings["world_assump"]}' if "world_assump" in job_settings else '',
-                    maybe_option('--unknown-ratio', job_settings.get("unknown_ratio", None)),
-                    maybe_option('--reference-tree-prob', job_settings.get("reference_tree_prob", None)),
-                    maybe_option('--reference-argument-prob-in-depth-1', job_settings.get("reference_argument_prob_in_depth_1", None)),
-                    '--sample-all-stances-per-logic' if job_settings.get('sample_all_stances_per_logic', False) else '',
-                    maybe_option('--context-shuffles-per-instance', job_settings.get("context_shuffles_per_instance", None)),
-                    '--use-collapsed-translation-nodes-for-unknown-tree' if job_settings.get('use_collapsed_translation_nodes_for_unknown_tree', False) else '',
+                        f'--proof-stances \'{json.dumps(job_settings["proof_stances"])}\'' if "proof_stances" in job_settings else '',
+                        f'--world-assump {job_settings["world_assump"]}' if "world_assump" in job_settings else '',
+                        maybe_option('--unknown-ratio', job_settings.get("unknown_ratio", None)),
+                        maybe_option('--reference-tree-prob', job_settings.get("reference_tree_prob", None)),
+                        maybe_option('--reference-argument-prob-in-depth-1', job_settings.get("reference_argument_prob_in_depth_1", None)),
+                        '--sample-all-stances-per-logic' if job_settings.get('sample_all_stances_per_logic', False) else '',
+                        maybe_option('--context-shuffles-per-instance', job_settings.get("context_shuffles_per_instance", None)),
+                        '--use-collapsed-translation-nodes-for-unknown-tree' if job_settings.get('use_collapsed_translation_nodes_for_unknown_tree', False) else '',
 
-                    maybe_option('--distractor-variants-per-tree', job_settings.get("distractor_variants_per_tree", None)),
-                    maybe_option('--translation-variants-per-logic', job_settings.get("translation_variants_per_logic", None)),
+                        maybe_option('--distractor-variants-per-tree', job_settings.get("distractor_variants_per_tree", None)),
+                        maybe_option('--translation-variants-per-logic', job_settings.get("translation_variants_per_logic", None)),
 
-                    '--allow-smaller-proofs' if job_settings.get('allow_smaller_proofs', False) else '',
+                        '--allow-smaller-proofs' if job_settings.get('allow_smaller_proofs', False) else '',
 
-                    f'--num-workers {job_settings["num_workers_per_job"]}',
-                    f'--seed {job_settings["seed"]}',
+                        f'--num-workers {job_settings["num_workers_per_job"]}',
+                        f'--seed {job_settings["seed"]}',
 
-                ])
+                    ])
 
-                engine = engines[n_engine]
-                n_engine = (n_engine + 1) % len(engines)
+                    engine = engines[n_engine]
+                    n_engine = (n_engine + 1) % len(engines)
 
-                if isinstance(engine, SubprocessEngine):
-                    command += f' 2>&1 | tee {str(job_log_path)}'
-                    stdout = None
-                    stderr = None
-                else:
-                    command += f' 1>{str(job_log_path)} 2>&1'
-                    stdout = job_output_dir / 'stdout.txt'
-                    stderr = job_output_dir / 'stderr.txt'
+                    if isinstance(engine, SubprocessEngine):
+                        command += f' 2>&1 | tee {str(job_log_path)}'
+                        stdout = None
+                        stderr = None
+                    else:
+                        command += f' 1>{str(job_log_path)} 2>&1'
+                        stdout = job_output_dir / 'stdout.txt'
+                        stderr = job_output_dir / 'stderr.txt'
 
-                if delete_logs_when_done and i_job >= 20:
-                    # remove large log files.
-                    command += f'; rm {str(job_log_path)};'
+                    if delete_logs_when_done and i_job >= 20:
+                        # remove large log files.
+                        command += f'; rm {str(job_log_path)};'
 
-                job_hours = math.floor(timeout_per_job / 3600)
-                kwargs = {
-                    'stdout': stdout,
-                    'stderr': stderr,
-                    'options': {
-                        'walltime': f'{job_hours}:00:00',
-                        'timeout_from_run': timeout_per_job,
-                        # 'force': True,
-                    },
-                    'dry_run': dry_run,
-                }
-                engine.run(command, wait_until_finish=False, **kwargs)
+                    job_hours = math.floor(timeout_per_job / 3600)
+                    kwargs = {
+                        'stdout': stdout,
+                        'stderr': stderr,
+                        'options': {
+                            'walltime': f'{job_hours}:00:00',
+                            'timeout_from_run': timeout_per_job,
+                            # 'force': True,
+                        },
+                        'dry_run': dry_run,
+                    }
+                    engine.run(command, wait_until_finish=False, **kwargs)
 
-            logger.warning('We now start gathering the results without waiting for the jobs to be finished. As the jobs may not be finished, the gathered results will also be incomplete.')
+                logger.warning('We now start gathering the results without waiting for the jobs to be finished. As the jobs may not be finished, the gathered results will also be incomplete.')
 
         # -- aggregate results --
         # logger.info('gathering results under %s', split_output_dir)
@@ -452,7 +474,7 @@ def make_dataset(dataset_name: str,
             if is_done:
                 break
             for i_line, line in enumerate(open(jsonl)):
-                if cnt >= size:
+                if cnt >= dataset_size:
                     is_done = True
                     break
                 try:
@@ -505,26 +527,24 @@ def make_dataset(dataset_name: str,
 def get_num_jobs(num_examples: int) -> int:
     if num_examples <= 100:
         return 1
-    elif num_examples in [1_000]:
+    elif num_examples <= 1_000:
         return 10
-    elif num_examples in [30_000]:
+    elif num_examples <= 30_000:
         return 90
-    elif num_examples in [50_000]:
+    elif num_examples <= 50_000:
         return 150
-    elif num_examples in [100_000]:
+    elif num_examples <= 100_000:
         return 300
-    elif num_examples in [150_000]:
+    elif num_examples <= 150_000:
         return 450
-    elif num_examples in [200_000]:
+    elif num_examples <= 200_000:
         return 600
-    elif num_examples in [300_000]:
+    elif num_examples <= 300_000:
         return 900
-    elif num_examples in [1_000_000]:
+    elif num_examples <= 500_000:
         return 3000
     else:
         raise NotImplementedError()
-
-
 
 
 if __name__ == '__main__':

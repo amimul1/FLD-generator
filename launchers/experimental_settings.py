@@ -14944,6 +14944,52 @@ _DATASET_SETTINGS = {
     },
 
 
+    '2024-09-18.FLD.neg-0.20': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.2,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
 
     '2024-09-18.PLD.neg-0.10': {
 
@@ -15905,10 +15951,66 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 1000,
-            'train': 200000,
+            'train': 50000,
         }
     },
 
+
+
+    '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.2,
+
+
+        'theorem_tree_prob': 0.30,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'all',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 50000,
+        }
+    },
 
     '2024-09-18.PLD.neg-0.20.voc-100': {
 
@@ -16367,6 +16469,68 @@ _DATASET_SETTINGS = {
         }
 
     },
+
+
+
+    '2024-09-30.hybrid__PLD_v2=0.25__FLD=0.75': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.25,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.75,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+    '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.50,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+    '2024-09-30.hybrid__PLD_v2.theorems-all=0.50__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all': 0.50,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+    '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.75,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.25,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
 
 }
 
@@ -16834,6 +16998,7 @@ _DATASET_NAME_TO_DEFAULT = {
 
     '2024-09-18.PLD.neg-0.20.theorems-all': '20231018.thing_person_config_translation',
     '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all': '20231018.thing_person_config_translation',
+    '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3': '20231018.thing_person_config_translation',
 
 
     '2024-09-30.hybrid__PLD_v0.theorems-all=0.50__FLD=0.25': '20231018.thing_person_config_translation',
@@ -16842,6 +17007,13 @@ _DATASET_NAME_TO_DEFAULT = {
 
     '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25': '20231018.thing_person_config_translation',
     '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all': '20231018.thing_person_config_translation',
+
+
+    '2024-09-18.FLD.neg-0.20': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2=0.25__FLD=0.75': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25': '20231018.thing_person_config_translation',
+
 
 
 
