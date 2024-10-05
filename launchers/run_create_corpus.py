@@ -88,7 +88,12 @@ def main():
         # '2024-09-16.PLD.neg-0.10.theorems-all',
 
 
+
+
+
+
         # ================================== 2024-09-18.fix_negation ========================================
+
         # '2024-09-18.FLD.neg-0.10',
         # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
         # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old',
@@ -107,6 +112,9 @@ def main():
 
         # '2024-09-18.PLD.neg-0.20.trnsl-v2',
 
+
+        # --------- ablation ---------
+
         # '2024-09-18.PLD.neg-0.20.voc-100',
         # '2024-09-18.PLD.neg-0.20.dstrct-0',
         # '2024-09-18.PLD.neg-0.20.stps-3-0',
@@ -115,7 +123,9 @@ def main():
 
 
 
+
         # ================================== 2024-09-30.hybrid ========================================
+
         # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10',
         # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75',
         # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25',
@@ -126,12 +136,12 @@ def main():
         # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25',
 
 
-        # '2024-09-30.hybrid__PLD_v0.theorems-all=0.50__FLD=0.25',                  # 1.0 hour
+        # '2024-09-30.hybrid__PLD_v0.theorems-all=0.50__FLD=0.25',
 
-        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 50k + 1.5 hour / 100k * 50k = 3.75 hour
+        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25.theorems-all',
 
-        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25',                  # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
-        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',     # 6.0 hour / 100k * 37k + 1.5 hour / 100k * 37k + 1.5 hour / 100k * 25k = 3.15 hour
+        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25',
+        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',
 
 
         # '2024-09-18.FLD.neg-0.20',
@@ -139,10 +149,49 @@ def main():
         # '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50',
         # '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25',
 
-        '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
-        '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
+
+        # '2024-09-30.hybrid__PLD_v2=0.17__PLD_v0=0.33__FLD=0.50',
+
+
+
+        # '2024-09-18.PLD.neg-0.10',
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.50__FLD=0.50',
+
+
+        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50',
+
+
+        # '2024-09-18.FLD.neg-0.10.theorems-all.theorems-0.3',
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
+
+        # '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50',
+        # '2024-09-30.hybrid__PLD_v2=0.45__PLD_v0=0.10__FLD=0.45',
+        # '2024-09-30.hybrid__PLD_v2=0.40__PLD_v0=0.10__FLD=0.50',
+
+
+        # '2024-09-30.hybrid__PLD_v2.neg-0.15=0.50__FLD=0.50',
+
+
+        # '2024-09-18.FLD.neg-0.10.theorems',   # 2.4 hour
+        # '2024-09-18.FLD.neg-0.10.theorems.theorems-0.3',
+
+        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all',
+        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3',
+        '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large',
+        '2024-09-18.PLD.neg-0.20.trnsl-v2',
+
+        # '2024-09-18.FLD.neg-0.10.voc-large',
+        # '2024-09-18.FLD.neg-0.10.other_seed',
 
     ]
+
+
+
+
 
     # ------ runtime estimation ------
     # XXX: transl-v0  1.5 hour / 100k
@@ -165,7 +214,6 @@ def main():
 
 
     job_engines = [
-        # QsubEngine('haic', 'xhn_s.middle'),
         QsubEngine('haic', 'xcs_s.middle'),
         QsubEngine('haic', 'xcl_s.middle'),
     ]
@@ -273,12 +321,12 @@ def make_dataset(dataset_name: str,
     }
     settings.update(get_dataset_setting(dataset_name))
 
-    pseudo_setting = {'dataset_name': dataset_name}  # as dataset_name alone is enough to specify the dataset
     output_dir = build_dir(
-        pseudo_setting,
+        settings,
         top_dir=str(make_dataset_dir(output_top_dir, dataset_name)),
         short=True,
-        save_params=True
+        save_params=True,
+        dirname_ignore_params=list(settings.keys()),  # ignore all, as we name directories by make_dataset_dir()
     )
     logger.addHandler(create_file_handler(output_dir / 'log.txt'))
 
@@ -304,7 +352,7 @@ def make_dataset(dataset_name: str,
 
             existing_examples = []
             maybe_existing_dir = make_dataset_dir(output_top_dir, sub_dataset_name)
-            if maybe_existing_dir.exists():
+            if maybe_existing_dir.exists() and str(maybe_existing_dir) != str(output_dir):
                 existing_json_paths = [path for path in maybe_existing_dir.glob(f'**/{split}.jsonl')
                                        if str(path).find('job-') < 0]
                 if len(existing_json_paths) >= 2:
@@ -339,13 +387,13 @@ def make_dataset(dataset_name: str,
                     if skip_if_exists and job_output_path.exists() and len(open(job_output_path).readlines()) >= 1:
                     # if skip_if_exists and job_output_path.exists():
                     # if skip_if_exists and job_log_path.exists():
-                        logger.info('skip %s because', job_output_path)
+                        logger.info('skip %s because it exists', job_output_path)
                         continue
 
                     job_settings = copy.deepcopy(get_dataset_setting(sub_dataset_name))
                     job_settings.update(job_settings.get('split_wise_settings', {}).get(split, {}))
                     job_settings['split'] = split
-                    job_settings['seed'] = i_job
+                    job_settings['seed'] = job_settings.get('start_seed',0) + i_job
                     job_settings['num_workers_per_job'] = num_workers_per_job
 
                     save_params(job_settings, job_output_dir)
@@ -480,7 +528,7 @@ def make_dataset(dataset_name: str,
                 try:
                     json.loads(line.rstrip('\n'))
                 except json.JSONDecodeError:
-                    logger.warning('failed to load json line %d, will be skipped: "%s"', i_line, jsonl)
+                    # logger.warning('failed to load json line %d, which will be skipped: "%s"', i_line, jsonl)
                     continue
                 lines.append(line)
                 cnt += 1

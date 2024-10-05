@@ -14944,6 +14944,55 @@ _DATASET_SETTINGS = {
     },
 
 
+
+    '2024-09-18.FLD.neg-0.10.other_seed': {
+        'start_seed': 50000,
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.09,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 200000,
+        }
+
+    },
+
+
     '2024-09-18.FLD.neg-0.20': {
 
         'reference_tree_prob': 0.20,
@@ -14990,6 +15039,110 @@ _DATASET_SETTINGS = {
 
     },
 
+
+
+    '2024-09-18.FLD.neg-0.10.theorems': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.10,
+
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
+
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-0.3': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.10,
+
+
+        'theorem_tree_prob': 0.30,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
 
     '2024-09-18.PLD.neg-0.10': {
 
@@ -15844,6 +15997,64 @@ _DATASET_SETTINGS = {
 
 
 
+    '2024-09-18.PLD.neg-0.10.trnsl-v2': {
+
+        'reference_tree_prob': 0.10,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+
+            './configs/arguments/predicate/specified/theorems',
+            './configs/arguments/propositional/theorems',
+            './configs/arguments/predicate/quantified/theorems',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.2,
+
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+
+
+        'translation_configs': ['thing_person.v2'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+
+
     '2024-09-18.PLD.neg-0.20.trnsl-v2': {
 
         'reference_tree_prob': 0.20,
@@ -15898,6 +16109,8 @@ _DATASET_SETTINGS = {
             'train': 200000,
         }
     },
+
+
 
 
     '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all': {
@@ -16008,7 +16221,7 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 1000,
-            'train': 50000,
+            'train': 100000,
         }
     },
 
@@ -16497,7 +16710,7 @@ _DATASET_SETTINGS = {
 
         'split_sizes': {
             'test': 1000,
-            'train': 100000,
+            'train': 200000,
         }
     },
 
@@ -16529,6 +16742,388 @@ _DATASET_SETTINGS = {
             'test': 1000,
             'train': 100000,
         }
+    },
+
+
+
+    '2024-09-30.hybrid__PLD_v2=0.17__PLD_v0=0.33__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.17,
+            '2024-09-18.PLD.neg-0.20': 0.33,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+
+    '2024-09-30.hybrid__PLD_v2=0.45__PLD_v0=0.10__FLD=0.45': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.45,
+            '2024-09-18.PLD.neg-0.20': 0.10,
+            '2024-09-18.FLD.neg-0.10': 0.45
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 200000,
+        }
+    },
+
+
+    '2024-09-30.hybrid__PLD_v2=0.40__PLD_v0=0.10__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.40,
+            '2024-09-18.PLD.neg-0.20': 0.10,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 200000,
+        }
+    },
+
+
+
+
+
+
+    '2024-09-30.hybrid__PLD_v0.neg-0.10=0.50__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.10': 0.50,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.10.trnsl-v2': 0.50,
+            # '2024-09-18.PLD.neg-0.20': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+    '2024-09-30.hybrid__PLD_v2.neg-0.15=0.50__FLD=0.50': {
+
+        'sub_datasets': {
+            '2024-09-18.PLD.neg-0.10.trnsl-v2': 0.25,
+            '2024-09-18.PLD.neg-0.20.trnsl-v2': 0.25,
+            '2024-09-18.FLD.neg-0.10': 0.50,
+        },
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+    '2024-09-18.FLD.neg-0.10.voc-large': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.1,
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
+
+
+
+    '2024-09-18.FLD.neg-0.20.theorems': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.2,
+
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'G_MP.syllogism.contraposition.interchangeability',
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
+
+
+
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.1,
+
+
+        'theorem_tree_prob': 0.15,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'all',
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
+
+
+
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.1,
+
+
+        'theorem_tree_prob': 0.3,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'all',
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
+    },
+
+
+
+
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large': {
+
+        'reference_tree_prob': 0.20,
+        'argument_configs': [
+            './configs/arguments/predicate/specified/axioms/',
+            './configs/arguments/propositional/axioms/',
+
+            './configs/arguments/predicate/specified/references/',
+            './configs/arguments/propositional/references/',
+            './configs/arguments/predicate/quantified/references/',
+        ],
+        'quantifier_axioms': [
+            'universal_quantifier_elim',
+            'universal_quantifier_intro',
+            'existential_quantifier_intro',
+            'existential_quantifier_elim',
+        ],
+        'quantifier_axiom_arguments_weight': 0.2,
+        'complex_formula_arguments_weight': 0.5,
+        'negation_arguments_weight': 0.1,
+
+
+        'theorem_tree_prob': 0.3,
+        'theorem_arguments_factor': 0.01,
+        'adjust_theorem_argument_weight': True,
+        'theorem_subset': 'all',
+
+
+        'generate_stem_steps_range': (1, 3),
+        'generate_stem_steps_distrib': 'flat',
+        'extend_branches_steps_range': (0, 5),
+
+
+        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        'distractors_range': (0, 20),
+        'translation_distractors_range': (0, 0),
+        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'limit_vocab_size_per_type': 5000,
+
+
+        'translation_configs': ['old-thing.v1'],
+        'translation_volume_to_weight': 'log10',
+        'translation_adj_verb_noun_ratio': '1-1-1',
+
+
+        'split_sizes': {
+            'test': 1000,
+            'train': 100000,
+        }
+
     },
 
 
@@ -16973,6 +17568,7 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-09-18.PLD.neg-0.15': '20231018.thing_person_config_translation',
     '2024-09-18.PLD.neg-0.15.theorems-0.30.theorems-all': '20231018.thing_person_config_translation',
 
+    '2024-09-18.PLD.neg-0.10.trnsl-v2': '20231018.thing_person_config_translation',
     '2024-09-18.PLD.neg-0.20.trnsl-v2': '20231018.thing_person_config_translation',
 
     '2024-09-18.PLD.neg-0.20.voc-100': '20231018.thing_person_config_translation',
@@ -17014,10 +17610,39 @@ _DATASET_NAME_TO_DEFAULT = {
     '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50': '20231018.thing_person_config_translation',
     '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25': '20231018.thing_person_config_translation',
 
+    '2024-09-30.hybrid__PLD_v2=0.17__PLD_v0=0.33__FLD=0.50': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2=0.45__PLD_v0=0.10__FLD=0.45': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2=0.40__PLD_v0=0.10__FLD=0.50': '20231018.thing_person_config_translation',
+
+    '2024-09-18.PLD.neg-0.10': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v0.neg-0.10=0.50__FLD=0.50': '20231018.thing_person_config_translation',
+
+    '2024-09-18.PLD.neg-0.10.trnsl-v2': '20231018.thing_person_config_translation',
+    '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50': '20231018.thing_person_config_translation',
+
+
+    '2024-09-30.hybrid__PLD_v2.neg-0.15=0.50__FLD=0.50': '20231018.thing_person_config_translation',
+
+
+    '2024-09-18.FLD.neg-0.10.theorems': '20231018.thing_person_config_translation',
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-0.3': '20231018.thing_person_config_translation',
+
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all': '20231018.thing_person_config_translation',
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3': '20231018.thing_person_config_translation',
+    '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large': '20231018.thing_person_config_translation',
+
+    '2024-09-18.FLD.neg-0.10.voc-large': '20231018.thing_person_config_translation',
+
+    '2024-09-18.FLD.neg-0.10.other_seed': '20231018.thing_person_config_translation',
+
 
 
 
 }
+
+
+
+
 
 
 

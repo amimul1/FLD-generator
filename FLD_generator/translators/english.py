@@ -223,8 +223,8 @@ class EnglishTranslator(TemplatedTranslator):
         return translation
 
     def _argument_pronouns(self,
-                          translation: str,
-                          is_person=False) -> str:
+                           translation: str,
+                           is_person=False) -> str:
         tokens = translation.split(' ')
 
         if is_person:
