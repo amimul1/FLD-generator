@@ -68,6 +68,7 @@ def main():
         # '2024-09-03.trnsl-thing_person-v2.stps-3-0',
         # '2024-09-03.trnsl-thing_person-v2.trnsl-small',
 
+
         # '2024-09-03.trnsl-thing_person-v0',
         # '2024-09-03.trnsl-thing_person-v0.rule-G_MP',
         # '2024-09-03.trnsl-thing_person-v0.voc-100',
@@ -118,6 +119,7 @@ def main():
         # '2024-09-18.PLD.neg-0.20.voc-100',
         # '2024-09-18.PLD.neg-0.20.dstrct-0',
         # '2024-09-18.PLD.neg-0.20.stps-3-0',
+        # '2024-09-18.PLD.neg-0.20.stps-1-0',
         # '2024-09-18.PLD.neg-0.20.rule-G_MP',
         # '2024-09-18.PLD.neg-0.20.trnsl-small',
 
@@ -181,11 +183,40 @@ def main():
 
         # '2024-09-18.FLD.neg-0.10.theorems.theorems-all',
         # '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3',
-        '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large',
-        '2024-09-18.PLD.neg-0.20.trnsl-v2',
+        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large',
+        # '2024-09-18.PLD.neg-0.20.trnsl-v2',
 
         # '2024-09-18.FLD.neg-0.10.voc-large',
         # '2024-09-18.FLD.neg-0.10.other_seed',
+
+
+
+
+
+        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
+        # '2024-09-18.PLD.neg-0.10.trnsl-v2.theorems-all',
+        # '2024-09-18.PLD.neg-0.10.trnsl-v2.theorems-all.theorems-0.3',
+
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.25__FLD=0.75',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.75__FLD=0.25',
+
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.25__FLD=0.75',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.50__FLD=0.50',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.75__FLD=0.25',
+
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.25__FLD=0.75',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.50__FLD=0.50',
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.75__FLD=0.25',
+
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.rule-G_MP',
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.voc-100',
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.dstrct-0',
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.stps-3-0',
+        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.trnsl-small',
+
+        '2024-09-18.PLD.neg-0.20.stps-1-0',
+
 
     ]
 
@@ -202,8 +233,8 @@ def main():
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
 
@@ -214,6 +245,8 @@ def main():
 
 
     job_engines = [
+        # QsubEngine('haic', 'xhn_s.middle'),
+        # QsubEngine('haic', 'xhn_s.middle'),
         QsubEngine('haic', 'xcs_s.middle'),
         QsubEngine('haic', 'xcl_s.middle'),
     ]
