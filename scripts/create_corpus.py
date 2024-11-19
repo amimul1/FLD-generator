@@ -286,10 +286,18 @@ def generate_instances(size: int, *args):
 @click.option('--quantifier-axiom', multiple=True, default=None)
 @click.option('--quantification-degree', type=str, default='all_constants')
 @click.option('--propositional-arguments-factor', type=float, default=1.0)
-@click.option('--negation-arguments-weight', type=float, default=None)
-@click.option('--theorem-tree-prob', type=float, default=1.0)
+@click.option('--negation-arguments-weight', type=float, default=None,
+              help="""Negation arguments can affect the benchmar performance, especially benchmarks such as NLI,
+                      as they require distinguishing between 'entailment' and 'contradiction'.
+                      So we should fix their ratio for fair comparison among different corpora.""")
+@click.option('--theorem-tree-prob', type=float, default=1.0,
+              help="""The probability of trees that 'allow' theorem arguments to be included.
+                      Note that it does not mean that these trees always include theorem arguments.
+                      Whether to include theorem arguments or not is determined by random sampling,
+                      which mainly affected by 'theorem-arguments-factor""")
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
-@click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False)
+@click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False,
+              help='If True, the weights for more important theorem arguments are increased.')
 @click.option('--theorem-subset', type=str, default='all')
 #
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
@@ -326,7 +334,8 @@ def generate_instances(size: int, *args):
 @click.option('--disallow-simplified-tree-formulas-as-distractor-prototype', type=bool, is_flag=True)
 @click.option('--disallow-subj-obj-swapped-distractor', type=bool, is_flag=True)
 @click.option('--translation-distractor', default='word_swap')
-@click.option('--translation-distractors-range', type=str, default=json.dumps([0, 0]))
+@click.option('--translation-distractors-range', type=str, default=json.dumps([0, 0]),
+              help='SHOULD NOT USE, as it can lead to logically inconsistent facts.')
 @click.option('--fallback-from-formula-to-translation-distractor', is_flag=True, default=False)
 #
 @click.option('--knowledge-range', type=str, default=json.dumps([0.0, 0.0]))
@@ -339,15 +348,21 @@ def generate_instances(size: int, *args):
 @click.option('--proof-stances', type=str, default=json.dumps(['PROVED', 'DISPROVED', 'UNKNOWN']))
 @click.option('--world-assump', default='OWA')
 @click.option('--unknown-ratio', type=float, default = 1 / 3.)
-@click.option('--reference-tree-prob', type=float, default = None)
+@click.option('--reference-tree-prob', type=float, default = None,
+              help='''Reference arguments affect the benchmark performance signififancly,
+                      so we should fix their ratio for fair comparison among different corpora.''')
 @click.option('--reference-argument-prob-in-depth-1', type=float, default = None)
-@click.option('--sample-all-stances-per-logic', is_flag=True, default=False)
-@click.option('--context-shuffles-per-instance', type=int, default=1)
+@click.option('--sample-all-stances-per-logic', is_flag=True, default=False,
+              help='Augmentation. But, it seems to be better to just increase the size of the dataset without augmentation, if computationally feasible.')
+@click.option('--context-shuffles-per-instance', type=int, default=1,
+              help='Augmentation. Same comment as "sample-all-stances-per-logic."')
 @click.option('--use-collapsed-translation-nodes-for-unknown-tree', is_flag=True, default=False)
 @click.option('--swap-ng-words-config', default=None)
 #
-@click.option('--distractor-variants-per-tree', type=int, default=1)
-@click.option('--translation-variants-per-logic', type=int, default=1)
+@click.option('--distractor-variants-per-tree', type=int, default=1,
+              help='Augmentation. Same comment as "sample-all-stances-per-logic."')
+@click.option('--translation-variants-per-logic', type=int, default=1,
+              help='Augmentation. Same comment as "sample-all-stances-per-logic."')
 #
 @click.option('--allow-smaller-proofs', is_flag=True, default=False)
 #

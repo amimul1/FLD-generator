@@ -43,216 +43,33 @@ def main():
 
     dataset_names = [
 
-        # =================================== 2024-08-30.fix_ref_prob ========================================
-
-        # '2024-08-30.FLD.ref_prob-0.20',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-G_MP.syllogism.contraposition.interchangeability',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.13.theorem-G_MP.syllogism.contraposition.interchangeability',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.05.theorem-G_MP.syllogism.contraposition.interchangeability',
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.20.theorem-all',
-
-        # '2024-08-30.trnsl-thing_person-v0.ref_prob-0.066.theorem-G_MP',
-
-
-        # ================================== 2024-09-03.toward_camera_ready ========================================
-        # '2024-08-30.FLD.ref_prob-0.20',
-
-        # '2024-09-03.trnsl-thing_person-v2',
-        # '2024-09-03.trnsl-thing_person-v2.voc-100',
-        # '2024-09-03.trnsl-thing_person-v2.dstrct-0',
-        # '2024-09-03.trnsl-thing_person-v2.rule-G_MP',
-        # '2024-09-03.trnsl-thing_person-v2.stps-3-0',
-        # '2024-09-03.trnsl-thing_person-v2.trnsl-small',
-
-
-        # '2024-09-03.trnsl-thing_person-v0',
-        # '2024-09-03.trnsl-thing_person-v0.rule-G_MP',
-        # '2024-09-03.trnsl-thing_person-v0.voc-100',
-        # '2024-09-03.trnsl-thing_person-v0.dstrct-0',
-        # '2024-09-03.trnsl-thing_person-v0.stps-3-0',
-        # '2024-09-03.trnsl-thing_person-v0.trnsl-small',
-
-
-        # ================================== 2024-09-16.fix_negation ========================================
-        # '2024-09-16.FLD.neg-0.10',
-        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
-        # '2024-09-16.PLD.neg-0.10.theorems-0.00.trnsl-old',
-        # '2024-09-16.PLD.neg-0.10.theorems-0.00',
-
-        # '2024-09-16.PLD.neg-0.10',
-        # '2024-09-16.PLD.neg-0.20',
-        # '2024-09-16.PLD.neg-0.10.theorems-0.30',
-        # '2024-09-16.PLD.neg-0.10.theorems-all',
-
-
-
-
-
-
-        # ================================== 2024-09-18.fix_negation ========================================
-
-        # '2024-09-18.FLD.neg-0.10',
-        # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old.vocab-5000',
-        # '2024-09-18.PLD.neg-0.10.theorems-0.00.trnsl-old',
-        # '2024-09-18.PLD.neg-0.10.theorems-0.00',
-
-        # '2024-09-18.PLD.neg-0.10',
-
-        # '2024-09-18.PLD.neg-0.10.theorems-0.30',
-        # '2024-09-18.PLD.neg-0.20',
-        # '2024-09-18.PLD.neg-0.10.theorems-all',
-        # '2024-09-18.PLD.neg-0.10.ref_prob-0.10',
-
-        # '2024-09-18.PLD.neg-0.10.theorems-0.30.theorems-all',
-        # '2024-09-18.PLD.neg-0.15',
-        # '2024-09-18.PLD.neg-0.15.theorems-0.30.theorems-all',
-
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2',
-
-
-        # --------- ablation ---------
-
-        # '2024-09-18.PLD.neg-0.20.voc-100',
-        # '2024-09-18.PLD.neg-0.20.dstrct-0',
-        # '2024-09-18.PLD.neg-0.20.stps-3-0',
-        # '2024-09-18.PLD.neg-0.20.stps-1-0',
-        # '2024-09-18.PLD.neg-0.20.rule-G_MP',
-        # '2024-09-18.PLD.neg-0.20.trnsl-small',
-
-
-
-
-        # ================================== 2024-09-30.hybrid ========================================
-
-        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20__2024-09-18.FLD.neg-0.10',
-        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.25__2024-09-18.FLD.neg-0.10=0.75',
-        # '2024-09-30.hybrid__2024-09-18.PLD.neg-0.20=0.75__2024-09-18.FLD.neg-0.10=0.25',
-
-        # '2024-09-30.hybrid__PLD_v0.theorems-0.3=0.50__FLD=0.25',
-        # '2024-09-30.hybrid__PLD_v0.theorems-0.3.theorems-all=0.50__FLD=0.25',
-        # '2024-09-30.hybrid__PLD_v2=0.25__PLD_v0=0.50__FLD=0.25',
-        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25',
-
-
-        # '2024-09-30.hybrid__PLD_v0.theorems-all=0.50__FLD=0.25',
-
-        # '2024-09-30.hybrid__PLD_v2=0.50__PLD_v0=0.25__FLD=0.25.theorems-all',
-
-        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25',
-        # '2024-09-30.hybrid__PLD_v2=0.37__PLD_v0=0.37__FLD=0.25.theorems-all',
-
-
-        # '2024-09-18.FLD.neg-0.20',
-        # '2024-09-30.hybrid__PLD_v2=0.25__FLD=0.75',
-        # '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50',
-        # '2024-09-30.hybrid__PLD_v2=0.75__FLD=0.25',
-
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
-
-        # '2024-09-30.hybrid__PLD_v2=0.17__PLD_v0=0.33__FLD=0.50',
-
-
-
-        # '2024-09-18.PLD.neg-0.10',
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.50__FLD=0.50',
-
-
-        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50',
-
-
-        # '2024-09-18.FLD.neg-0.10.theorems-all.theorems-0.3',
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all',
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2.theorems-all.theorems-0.3',
-
-        # '2024-09-30.hybrid__PLD_v2=0.50__FLD=0.50',
-        # '2024-09-30.hybrid__PLD_v2=0.45__PLD_v0=0.10__FLD=0.45',
-        # '2024-09-30.hybrid__PLD_v2=0.40__PLD_v0=0.10__FLD=0.50',
-
-
-        # '2024-09-30.hybrid__PLD_v2.neg-0.15=0.50__FLD=0.50',
-
-
-        # '2024-09-18.FLD.neg-0.10.theorems',   # 2.4 hour
-        # '2024-09-18.FLD.neg-0.10.theorems.theorems-0.3',
-
-        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all',
-        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3',
-        # '2024-09-18.FLD.neg-0.10.theorems.theorems-all.theorems-0.3.voc-large',
-        # '2024-09-18.PLD.neg-0.20.trnsl-v2',
-
-        # '2024-09-18.FLD.neg-0.10.voc-large',
-        # '2024-09-18.FLD.neg-0.10.other_seed',
-
-
-
-
-
-        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
-        # '2024-09-18.PLD.neg-0.10.trnsl-v2.theorems-all',
-        # '2024-09-18.PLD.neg-0.10.trnsl-v2.theorems-all.theorems-0.3',
-
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.25__FLD=0.75',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.50__FLD=0.50',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.75__FLD=0.25',
-
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.25__FLD=0.75',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.50__FLD=0.50',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all=0.75__FLD=0.25',
-
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.25__FLD=0.75',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.50__FLD=0.50',
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10.theorems-all.thelrems-0.3=0.75__FLD=0.25',
-
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.rule-G_MP',
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.voc-100',
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.dstrct-0',
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.stps-3-0',
-        # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.trnsl-small',
-
-        # '2024-09-18.PLD.neg-0.20.stps-1-0',
-        # '2024-09-18.PLD.neg-0.20.stps-2-0',
-
-        # '2024-09-18.PLD.neg-0.20.trnsl-small.trnsl-old',
-
-        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.10__FLD=0.90',
-        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems=0.40__FLD=0.50',
-
-        # '2024-09-18.FLD.neg-0.10.theorems.voc-large',
-        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.25__FLD_theorems_voc-large=0.25__FLD=0.50',
-        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.40__FLD=0.50',
-
-        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.40__FLD_voc-large=0.50',
-        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.90',
-
-
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
-        # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.40__FLD_voc-large=0.50',
-        # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
-
-
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP',
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.voc-100',
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.dstrct-0',
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-3-0',
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-1-0',
-        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.trnsl-small.trnsl-old',
-
-
+        # ==================== NeurIPS_2024 camera ready ===================
+
+        # -- the baseline FLD corpus
+        '2024-09-18.FLD.neg-0.10.other_seed',
+
+        # -- main single corpus (used in the paper)
+        '2024-09-18.PLD.neg-0.10.trnsl-v2',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
+
+        # -- main hybrid corpus (used in the paper)
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
+
+        # -- ablation single corpus (used for creating hybrid corpus)
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.voc-100',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.dstrct-0',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-3-0',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-1-0',
+        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.trnsl-small.trnsl-old',
+
+        # -- ablation hybrid corpus (used in the paper)
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP=0.90',
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.voc-100=0.90',
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.dstrct-0=0.90',
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-3-0=0.90',
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-1-0=0.90',
         '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.trnsl-small.trnsl-old=0.90',
-
-
-
     ]
 
 
