@@ -215,7 +215,42 @@ def main():
         # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.stps-3-0',
         # '2024-09-30.hybrid__PLD_v0.neg-0.10=0.75__FLD=0.25.trnsl-small',
 
-        '2024-09-18.PLD.neg-0.20.stps-1-0',
+        # '2024-09-18.PLD.neg-0.20.stps-1-0',
+        # '2024-09-18.PLD.neg-0.20.stps-2-0',
+
+        # '2024-09-18.PLD.neg-0.20.trnsl-small.trnsl-old',
+
+        # '2024-09-30.hybrid__PLD_v2.neg-0.10=0.10__FLD=0.90',
+        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems=0.40__FLD=0.50',
+
+        # '2024-09-18.FLD.neg-0.10.theorems.voc-large',
+        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.25__FLD_theorems_voc-large=0.25__FLD=0.50',
+        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.40__FLD=0.50',
+
+        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.40__FLD_voc-large=0.50',
+        # '2024-10-20.hybrid__PLD_v2.neg-0.10=0.10__FLD_theorems_voc-large=0.90',
+
+
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
+        # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.40__FLD_voc-large=0.50',
+        # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
+
+
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP',
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.voc-100',
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.dstrct-0',
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-3-0',
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-1-0',
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.trnsl-small.trnsl-old',
+
+
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP=0.90',
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.voc-100=0.90',
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.dstrct-0=0.90',
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-3-0=0.90',
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.stps-1-0=0.90',
+        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.trnsl-small.trnsl-old=0.90',
+
 
 
     ]
@@ -233,8 +268,8 @@ def main():
 
 
 
-    only_gather = False
-    # only_gather = True
+    # only_gather = False
+    only_gather = True
 
 
 
