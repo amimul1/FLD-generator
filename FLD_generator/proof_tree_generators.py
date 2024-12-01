@@ -144,14 +144,14 @@ class ProofTreeGenerator:
                  complex_formula_arguments_weight=0.0,
                  quantifier_arguments_weight=0.0,
                  quantifier_axiom_arguments_weight=0.0,
-                 quantifier_axioms: Optional[List[str]] = None,
+                 quantifier_axioms='all',
                  quantification_degree: str = 'all_constants',
                  propositional_arguments_factor=1.0,
                  negation_arguments_weight=None,
                  theorem_tree_prob=1.0,
                  theorem_arguments_factor=0.3,
                  # adjust_theorem_argument_weight=False,
-                 theorem_subset='all',
+                 theorem_arguments_weight_adjustment_subset='all',
                  or_arguments_factor=0.2,  # or is not that impotant for NLI
                  existential_arguments_factor=0.2,  # existential quantifier is not that impotant for NLI
                  universal_arguments_factor=1.0,
@@ -170,6 +170,16 @@ class ProofTreeGenerator:
         self._complex_formula_arguments_weight = complex_formula_arguments_weight
         self.theorem_tree_prob = theorem_tree_prob
 
+        if quantifier_axioms == 'all':
+            _quantifier_axioms = [
+                'universal_quantifier_elim',
+                'universal_quantifier_intro',
+                'existential_quantifier_intro',
+                'existential_quantifier_elim',
+            ]
+        else:
+            _quantifier_axioms = [quantifier_axioms]
+
         def _laod_arguments(arguments: List[Argument]):
             return self._load_arguments(
                 arguments,
@@ -179,14 +189,14 @@ class ProofTreeGenerator:
                 complex_formula_arguments_weight=self._complex_formula_arguments_weight,
                 quantifier_arguments_weight=quantifier_arguments_weight,
                 quantifier_axiom_arguments_weight=quantifier_axiom_arguments_weight,
-                quantifier_axioms=quantifier_axioms,
+                quantifier_axioms=_quantifier_axioms,
                 quantification_degree=quantification_degree,
                 allow_generating_heterogeneous_arity_formulas=False,
                 propositional_arguments_factor=propositional_arguments_factor,
                 negation_arguments_weight=negation_arguments_weight,
                 theorem_arguments_factor=theorem_arguments_factor,
                 # adjust_theorem_argument_weight=# adjust_theorem_argument_weight,
-                theorem_weights_adjustment_subset=theorem_subset,
+                theorem_arguments_weight_adjustment_subset=theorem_arguments_weight_adjustment_subset,
                 or_arguments_factor=or_arguments_factor,
                 existential_arguments_factor=existential_arguments_factor,
                 universal_arguments_factor=universal_arguments_factor,
@@ -225,7 +235,7 @@ class ProofTreeGenerator:
                         negation_arguments_weight: Optional[float],
                         theorem_arguments_factor: float,
                         # adjust_theorem_argument_weight: bool,
-                        theorem_weights_adjustment_subset: str,
+                        theorem_arguments_weight_adjustment_subset: str,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
@@ -399,8 +409,8 @@ class ProofTreeGenerator:
                 factor *= propositional_arguments_factor
             if is_theorem_argument(argument):
                 factor *= theorem_arguments_factor
-            if theorem_weights_adjustment_subset is not None:
-                factor *= get_theorem_adjust_weight(argument, subset=theorem_weights_adjustment_subset)
+            if theorem_arguments_weight_adjustment_subset is not None:
+                factor *= get_theorem_adjust_weight(argument, subset=theorem_arguments_weight_adjustment_subset)
             if is_or_argument(argument):
                 factor *= or_arguments_factor
             if is_existential_argument(argument):

@@ -119,7 +119,7 @@ def get_theorem_adjust_weight(argument: Argument,
     Considered ./outputs/G02.compute_rule_stats.sh/2024-08-08/
     """
     if argument.id.find('theorem') < 0:
-        return None
+        return 1.0
     if subset is None:
         return 1.0
 
