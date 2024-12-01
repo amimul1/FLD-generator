@@ -186,7 +186,7 @@ class ProofTreeGenerator:
                 negation_arguments_weight=negation_arguments_weight,
                 theorem_arguments_factor=theorem_arguments_factor,
                 # adjust_theorem_argument_weight=# adjust_theorem_argument_weight,
-                theorem_adjust_subset=theorem_subset,
+                theorem_weights_adjustment_subset=theorem_subset,
                 or_arguments_factor=or_arguments_factor,
                 existential_arguments_factor=existential_arguments_factor,
                 universal_arguments_factor=universal_arguments_factor,
@@ -225,7 +225,7 @@ class ProofTreeGenerator:
                         negation_arguments_weight: Optional[float],
                         theorem_arguments_factor: float,
                         # adjust_theorem_argument_weight: bool,
-                        theorem_adjust_subset: str,
+                        theorem_weights_adjustment_subset: str,
                         or_arguments_factor: float,
                         existential_arguments_factor: float,
                         universal_arguments_factor: float,
@@ -399,8 +399,8 @@ class ProofTreeGenerator:
                 factor *= propositional_arguments_factor
             if is_theorem_argument(argument):
                 factor *= theorem_arguments_factor
-            if theorem_adjust_subset is not None:
-                factor *= get_theorem_adjust_weight(argument, adjust_subset=theorem_adjust_subset)
+            if theorem_weights_adjustment_subset is not None:
+                factor *= get_theorem_adjust_weight(argument, subset=theorem_weights_adjustment_subset)
             if is_or_argument(argument):
                 factor *= or_arguments_factor
             if is_existential_argument(argument):

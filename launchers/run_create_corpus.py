@@ -311,7 +311,7 @@ def make_dataset(dataset_name: str,
                         maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
                         maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
                         # '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
-                        maybe_option('--theorem-adjust-subset', job_settings.get('theorem_adjust_subset', None)),
+                        maybe_option('--theorem-adjust-subset', job_settings.get('theorem_weights_adjustment_subset', None)),
 
                         maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                         _make_multiple_value_option('--translation-config', job_settings['translation_configs']),

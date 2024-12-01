@@ -8066,7 +8066,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -8193,7 +8193,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.03,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -8257,7 +8257,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.05,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -8321,7 +8321,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.10,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -11058,7 +11058,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.03,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -11307,7 +11307,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11364,7 +11364,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.05,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11419,7 +11419,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11473,7 +11473,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11529,7 +11529,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11583,7 +11583,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11638,7 +11638,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11693,7 +11693,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11747,7 +11747,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.05,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -11801,7 +11801,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.05,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -12131,7 +12131,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -12186,7 +12186,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12252,7 +12252,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12318,7 +12318,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.00,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12384,7 +12384,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12449,7 +12449,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.003,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12514,7 +12514,7 @@ _DATASET_SETTINGS = {
         'propositional_arguments_factor': 1.0,
         'theorem_arguments_factor': 0.0001,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12584,7 +12584,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12651,7 +12651,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 1.0,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12718,7 +12718,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.5,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12783,7 +12783,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12852,7 +12852,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12916,7 +12916,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -12981,7 +12981,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.10,
         'theorem_arguments_factor': 0.1,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -13047,7 +13047,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 1.0,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -13114,7 +13114,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.5,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -13179,7 +13179,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.25,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -13384,7 +13384,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP',
+        'theorem_weights_adjustment_subset': 'G_MP',
 
 
 
@@ -13438,7 +13438,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP',
+        'theorem_weights_adjustment_subset': 'G_MP',
 
 
 
@@ -13490,7 +13490,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism',
 
 
 
@@ -13546,7 +13546,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition',
 
 
 
@@ -13601,7 +13601,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13655,7 +13655,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13709,7 +13709,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13761,7 +13761,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -13824,7 +13824,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13879,7 +13879,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13935,7 +13935,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -13992,7 +13992,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.75,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': False,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -14047,7 +14047,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14102,7 +14102,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14168,7 +14168,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14223,7 +14223,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14279,7 +14279,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14336,7 +14336,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.75,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': False,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -14391,7 +14391,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14446,7 +14446,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14558,7 +14558,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -14614,7 +14614,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -14669,7 +14669,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -14725,7 +14725,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14783,7 +14783,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14839,7 +14839,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -14896,8 +14896,8 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        # 'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
-        'theorem_adjust_subset': 'all',
+        # 'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -15098,7 +15098,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15152,7 +15152,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15208,7 +15208,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15266,7 +15266,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15322,7 +15322,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15380,7 +15380,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15437,7 +15437,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15492,7 +15492,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 1),
         'generate_stem_steps_distrib': 'flat',
@@ -15549,7 +15549,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15604,7 +15604,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
         'generate_stem_steps_range': (1, 3),
         'generate_stem_steps_distrib': 'flat',
@@ -15659,7 +15659,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -15715,7 +15715,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -15771,7 +15771,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -15826,7 +15826,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.00,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -15883,7 +15883,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -15939,7 +15939,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -15995,7 +15995,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16052,7 +16052,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16107,7 +16107,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16163,8 +16163,8 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        # 'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
-        'theorem_adjust_subset': 'all',
+        # 'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16220,7 +16220,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16276,8 +16276,8 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        # 'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
-        'theorem_adjust_subset': 'all',
+        # 'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16338,8 +16338,8 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        # 'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
-        'theorem_adjust_subset': 'all',
+        # 'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16393,8 +16393,8 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        # 'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
-        'theorem_adjust_subset': 'all',
+        # 'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16454,7 +16454,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16512,7 +16512,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16568,7 +16568,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16624,7 +16624,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16681,7 +16681,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16739,7 +16739,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16796,7 +16796,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.30,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -16856,7 +16856,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16913,7 +16913,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -16971,7 +16971,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.75,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': False,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
 
@@ -17027,7 +17027,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -17083,7 +17083,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -17140,7 +17140,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -17195,7 +17195,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -17255,7 +17255,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
 
@@ -18035,7 +18035,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'G_MP.syllogism.contraposition.interchangeability',
+        'theorem_weights_adjustment_subset': 'G_MP.syllogism.contraposition.interchangeability',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -18090,7 +18090,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.15,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -18145,7 +18145,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.3,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),
@@ -18200,7 +18200,7 @@ _DATASET_SETTINGS = {
         'theorem_tree_prob': 0.3,
         'theorem_arguments_factor': 0.01,
         # 'adjust_theorem_argument_weight': True,
-        'theorem_adjust_subset': 'all',
+        'theorem_weights_adjustment_subset': 'all',
 
 
         'generate_stem_steps_range': (1, 3),

@@ -113,17 +113,17 @@ def is_theorem_argument(argument: Argument) -> bool:
 
 
 def get_theorem_adjust_weight(argument: Argument,
-                              adjust_subset: Optional[str] = None,
+                              subset: Optional[str] = None,
                               suppress_others=False) -> float:
     """
     Considered ./outputs/G02.compute_rule_stats.sh/2024-08-08/
     """
     if argument.id.find('theorem') < 0:
         return None
-    if adjust_subset is None:
+    if subset is None:
         return 1.0
 
-    if adjust_subset == 'G_MP':
+    if subset == 'G_MP':
         if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
             return 50
         else:
@@ -132,7 +132,7 @@ def get_theorem_adjust_weight(argument: Argument,
             else:
                 return 1.0
 
-    elif adjust_subset == 'G_MP.syllogism':
+    elif subset == 'G_MP.syllogism':
         if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
             return 50
         elif argument.id.find('syllogism') >= 0:
@@ -143,7 +143,7 @@ def get_theorem_adjust_weight(argument: Argument,
             else:
                 return 1.0
 
-    elif adjust_subset == 'G_MP.syllogism.contraposition':
+    elif subset == 'G_MP.syllogism.contraposition':
         if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
             return 50
         elif argument.id.find('syllogism') >= 0:
@@ -156,7 +156,7 @@ def get_theorem_adjust_weight(argument: Argument,
             else:
                 return 1.0
 
-    elif adjust_subset == 'G_MP.syllogism.contraposition.interchangeability':
+    elif subset == 'G_MP.syllogism.contraposition.interchangeability':
         if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
             return 50
         elif argument.id.find('syllogism') >= 0:
@@ -171,7 +171,7 @@ def get_theorem_adjust_weight(argument: Argument,
             else:
                 return 1.0
 
-    elif adjust_subset == 'all':
+    elif subset == 'all':
         if argument.id.find('predicate.universal_theorem.implication_elim') >= 0:
             return 50
         elif argument.id.find('syllogism') >= 0:
@@ -184,4 +184,4 @@ def get_theorem_adjust_weight(argument: Argument,
             return 1.0
 
     else:
-        raise ValueError(f'Unknown subset: {adjust_subset}')
+        raise ValueError(f'Unknown subset: {subset}')
