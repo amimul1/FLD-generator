@@ -53,8 +53,8 @@ def load_dataset(
     negation_arguments_weight: float,
     theorem_tree_prob: float,
     theorem_arguments_factor: float,
-    adjust_theorem_argument_weight: bool,
-    theorem_subset: str,
+    # adjust_theorem_argument_weight: bool,
+    theorem_adjust_subset: str,
     knowledge_argument_factor: float,
     keep_dneg: bool,
     distractor: str,
@@ -135,8 +135,8 @@ def load_dataset(
         negation_arguments_weight=negation_arguments_weight,
         theorem_tree_prob=theorem_tree_prob,
         theorem_arguments_factor=theorem_arguments_factor,
-        adjust_theorem_argument_weight=adjust_theorem_argument_weight,
-        theorem_subset=theorem_subset,
+        # adjust_theorem_argument_weight=# adjust_theorem_argument_weight,
+        theorem_adjust_subset=theorem_adjust_subset,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -296,9 +296,9 @@ def generate_instances(size: int, *args):
                       Whether to include theorem arguments or not is determined by random sampling,
                       which mainly affected by 'theorem-arguments-factor""")
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
-@click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False,
-              help='If True, the weights for more important theorem arguments are increased.')
-@click.option('--theorem-subset', type=str, default='all')
+# @click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False,
+#               help='If True, the weights for more important theorem arguments are increased.')
+@click.option('--theorem-adjust-subset', type=str, default=None)
 #
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
@@ -403,8 +403,8 @@ def main(output_path,
          negation_arguments_weight,
          theorem_tree_prob,
          theorem_arguments_factor,
-         adjust_theorem_argument_weight,
-         theorem_subset,
+         # adjust_theorem_argument_weight,
+         theorem_adjust_subset,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -496,8 +496,8 @@ def main(output_path,
                     negation_arguments_weight,
                     theorem_tree_prob,
                     theorem_arguments_factor,
-                    adjust_theorem_argument_weight,
-                    theorem_subset,
+                    # adjust_theorem_argument_weight,
+                    theorem_adjust_subset,
                     knowledge_argument_factor,
                     keep_dneg,
                     distractor,
