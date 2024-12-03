@@ -15196,7 +15196,8 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 1000,
+            'test': 5000,
+            'valid': 5000,
             'train': 100000,
         }
 
@@ -16501,8 +16502,9 @@ _DATASET_SETTINGS = {
 
 
         'split_sizes': {
-            'test': 1000,
-            'train': 100000,
+            'test': 5000,
+            'valid': 5000,
+            # 'train': 100000,
         }
     },
 
@@ -17722,8 +17724,9 @@ _DATASET_SETTINGS = {
         },
 
         'split_sizes': {
-            'test': 1000,
-            'train': 100000,
+            'test': 5000,
+            'valid': 5000,
+            # 'train': 100000,
         }
     },
 
