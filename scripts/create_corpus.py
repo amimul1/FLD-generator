@@ -47,14 +47,14 @@ def load_dataset(
     translation_vocab: str,
     complex_formula_arguments_weight: float,
     quantifier_axiom_arguments_weight: float,
-    quantifier_axioms: Optional[List[str]],
+    quantifier_axioms: str,
     quantification_degree: str,
     propositional_arguments_factor: float,
     negation_arguments_weight: float,
     theorem_tree_prob: float,
     theorem_arguments_factor: float,
-    adjust_theorem_argument_weight: bool,
-    theorem_subset: str,
+    # adjust_theorem_argument_weight: bool,
+    theorem_arguments_weight_adjustment_subset: str,
     knowledge_argument_factor: float,
     keep_dneg: bool,
     distractor: str,
@@ -135,8 +135,8 @@ def load_dataset(
         negation_arguments_weight=negation_arguments_weight,
         theorem_tree_prob=theorem_tree_prob,
         theorem_arguments_factor=theorem_arguments_factor,
-        adjust_theorem_argument_weight=adjust_theorem_argument_weight,
-        theorem_subset=theorem_subset,
+        # adjust_theorem_argument_weight=# adjust_theorem_argument_weight,
+        theorem_arguments_weight_adjustment_subset=theorem_arguments_weight_adjustment_subset,
         knowledge_argument_factor=knowledge_argument_factor,
         knowledge_banks=knowledge_banks,
     )
@@ -281,13 +281,14 @@ def generate_instances(size: int, *args):
               multiple=True,
               default=[],
               help='argument (deduction rule) configuration files')
-@click.option('--complex-formula-arguments-weight', type=float, default=0.0)
-@click.option('--quantifier-axiom-arguments-weight', type=float, default=0.0)
-@click.option('--quantifier-axiom', multiple=True, default=None)
+@click.option('--complex-formula-arguments-weight', type=float, default=0.5)
+@click.option('--quantifier-axiom-arguments-weight', type=float, default=0.2)
+# @click.option('--quantifier-axiom', multiple=True, default=None)
+@click.option('--quantifier-axiom', type=str, default='all')
 @click.option('--quantification-degree', type=str, default='all_constants')
 @click.option('--propositional-arguments-factor', type=float, default=1.0)
 @click.option('--negation-arguments-weight', type=float, default=None,
-              help="""Negation arguments can affect the benchmar performance, especially benchmarks such as NLI,
+              help="""Negation arguments can affect the benchmark performance, especially benchmarks such as NLI,
                       as they require distinguishing between 'entailment' and 'contradiction'.
                       So we should fix their ratio for fair comparison among different corpora.""")
 @click.option('--theorem-tree-prob', type=float, default=1.0,
@@ -296,9 +297,9 @@ def generate_instances(size: int, *args):
                       Whether to include theorem arguments or not is determined by random sampling,
                       which mainly affected by 'theorem-arguments-factor""")
 @click.option('--theorem-arguments-factor', type=float, default=0.3)
-@click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False,
-              help='If True, the weights for more important theorem arguments are increased.')
-@click.option('--theorem-subset', type=str, default='all')
+# @click.option('--adjust-theorem-argument-weight', type=bool, is_flag=True, default=False,
+#               help='If True, the weights for more important theorem arguments are increased.')
+@click.option('--theorem-arguments-weight-adjustment-subset', type=str, default=None)
 #
 @click.option('--knowledge-argument-factor', type=float, default=1.0)
 #
@@ -326,8 +327,9 @@ def generate_instances(size: int, *args):
 @click.option('--translation-no-transitive-object', type=bool, is_flag=True)
 @click.option('--translation-vocab', type=str, default=None)
 #
-@click.option('--distractor', default='mixture.negative_tree.negative_tree')
-@click.option('--distractors-range', type=str, default=json.dumps([5, 5]))
+# @click.option('--distractor', default='mixture.negative_tree.negative_tree')
+@click.option('--distractor', default='mixture(negative_tree_double.simplified_formula.various_form)')
+@click.option('--distractors-range', type=str, default=json.dumps([0, 20]))
 @click.option('--disallow-hard-negative-distractors', type=bool, is_flag=True)
 # @click.option('--negative-tree-negated-hypothesis-ratio', type=float, default=0.5)
 @click.option('--sample-distractor-prototype-formulas-from-all-possible-formulas', type=bool, is_flag=True)
@@ -403,8 +405,8 @@ def main(output_path,
          negation_arguments_weight,
          theorem_tree_prob,
          theorem_arguments_factor,
-         adjust_theorem_argument_weight,
-         theorem_subset,
+         # adjust_theorem_argument_weight,
+         theorem_arguments_weight_adjustment_subset,
          knowledge_argument_factor,
          keep_dneg,
          distractor,
@@ -496,8 +498,8 @@ def main(output_path,
                     negation_arguments_weight,
                     theorem_tree_prob,
                     theorem_arguments_factor,
-                    adjust_theorem_argument_weight,
-                    theorem_subset,
+                    # adjust_theorem_argument_weight,
+                    theorem_arguments_weight_adjustment_subset,
                     knowledge_argument_factor,
                     keep_dneg,
                     distractor,

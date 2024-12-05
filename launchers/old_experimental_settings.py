@@ -25,7 +25,7 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
         'complex_formula_arguments_weight': 0.0,
@@ -35,8 +35,8 @@ _DATASET_SETTINGS = {
         'reused_object_nouns_max_factor': 0.0,
         'disallow_subj_obj_swapped_distractor': True,
 
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': True,
@@ -78,18 +78,18 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 0),
         'reused_object_nouns_max_factor': 0.0,
         'disallow_subj_obj_swapped_distractor': True,
 
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': True,
@@ -131,10 +131,10 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -185,7 +185,7 @@ _DATASET_SETTINGS = {
         'quantifier_axiom_arguments_weight': 0.0,  # can not be used with AACorpus
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -237,10 +237,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -289,10 +289,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -341,10 +341,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -392,10 +392,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -455,7 +455,7 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
         'complex_formula_arguments_weight': 0.0,
@@ -515,10 +515,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 0),
@@ -565,7 +565,7 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
         'complex_formula_arguments_weight': 0.0,
@@ -621,10 +621,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -673,10 +673,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -725,10 +725,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -777,10 +777,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -828,10 +828,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -882,10 +882,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -935,10 +935,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -990,10 +990,10 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1045,7 +1045,7 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
         'complex_formula_arguments_weight': 0.3,
@@ -1062,7 +1062,7 @@ _DATASET_SETTINGS = {
         'disallow_subj_obj_swapped_distractor': True,
 
 
-        'translation_distractors_range': (0, 0),
+        # 'translation_distractors_range': (0, 0),
         'use_collapsed_translation_nodes_for_unknown_tree': True,
 
 
@@ -1104,10 +1104,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1155,10 +1155,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1205,10 +1205,10 @@ _DATASET_SETTINGS = {
             './configs/arguments/propositional/theorems/and_or.json',
             './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1256,10 +1256,10 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1308,10 +1308,10 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1358,10 +1358,10 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1408,17 +1408,17 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
         'fallback_from_formula_to_translation_distractor': False,
 
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': True,
@@ -1462,17 +1462,18 @@ _DATASET_SETTINGS = {
 
             './configs/arguments/predicate/theorems/G_MP.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            # 'universal_quantifier_intro',
+        # 'quantifier_axioms': [
+        #     'universal_quantifier_elim',
+        #     # 'universal_quantifier_intro',
 
-            # we do not use existential_quantifier_intro since it has no linkable_args without existential_quantifier_elim, which is not implemented yet.
-            # 'existential_quantifier_intro',
-        ],
+        #     # we do not use existential_quantifier_intro since it has no linkable_args without existential_quantifier_elim, which is not implemented yet.
+        #     # 'existential_quantifier_intro',
+        # ],
+        'quantifier_axioms': 'universal_quantifier_elim',
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 15),
@@ -1518,18 +1519,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (0, 20),
@@ -1576,18 +1572,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -1637,22 +1628,17 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
 
         'translation_distractors_range': (0, 5),
         'use_collapsed_translation_nodes_for_unknown_tree': True,
@@ -1700,18 +1686,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -1761,18 +1742,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -1821,18 +1797,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -1882,18 +1853,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -1943,18 +1909,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -2006,18 +1967,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -2069,18 +2025,13 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
@@ -2133,22 +2084,17 @@ _DATASET_SETTINGS = {
             # './configs/arguments/propositional/theorems/and_or.json',
             # './configs/arguments/predicate/theorems/and_or.json',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractors_range': (15, 20),
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
 
         'translation_distractors_range': (0, 5),
         'use_collapsed_translation_nodes_for_unknown_tree': True,
@@ -2179,18 +2125,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2225,25 +2166,20 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
         'distractors_range': (15, 20),
 
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2270,18 +2206,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2315,18 +2246,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2359,18 +2285,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2404,18 +2325,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_triple)',
@@ -2449,18 +2365,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_quadruple)',
@@ -2495,18 +2406,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2541,18 +2447,13 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axiom_arguments_weight': 0.2,
 
 
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
+        # 'quantifier_axioms': 'all',,
 
 
-        'complex_formula_arguments_weight': 0.5,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'distractor': 'mixture(negative_tree_double)',
@@ -2594,14 +2495,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2611,8 +2507,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_double)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2634,14 +2530,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2651,8 +2542,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_quadruple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2674,14 +2565,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -2691,8 +2577,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_double)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2715,14 +2601,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -2732,8 +2613,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_quadruple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2763,14 +2644,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2780,8 +2656,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_double)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2803,14 +2679,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2820,8 +2691,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_triple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2843,14 +2714,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2860,8 +2726,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_quadruple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2883,14 +2749,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -2900,8 +2761,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'fallback(mixture(negative_tree_double).simplified_formula.various_form)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2925,14 +2786,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -2942,8 +2798,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_double)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -2966,14 +2822,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -2983,8 +2834,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_triple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3007,14 +2858,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3024,8 +2870,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'mixture(negative_tree_quadruple)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3049,14 +2895,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3066,8 +2907,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'fallback(mixture(negative_tree_double).simplified_formula.various_form)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3090,14 +2931,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3107,8 +2943,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'fallback(mixture(negative_tree_double).simplified_formula.various_form)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3136,14 +2972,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3151,10 +2982,10 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (15, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3176,14 +3007,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3193,8 +3019,8 @@ _DATASET_SETTINGS = {
 
         'distractor': 'fallback(mixture(negative_tree_double).simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3216,14 +3042,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3231,10 +3052,10 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3257,14 +3078,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3272,10 +3088,10 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3299,14 +3115,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3314,15 +3125,15 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
         'limit_vocab_size_per_type': None,
-        'translation_volume_to_weight': 'log10',
+        # 'translation_volume_to_weight': 'log10',
 
 
         'split_sizes': {
@@ -3342,14 +3153,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3357,16 +3163,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
         'limit_vocab_size_per_type': None,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3385,14 +3191,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3400,10 +3201,10 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'use_fixed_translation': False,
@@ -3430,14 +3231,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3445,14 +3241,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3471,14 +3267,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3486,14 +3277,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3513,14 +3304,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3528,16 +3314,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3554,14 +3340,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3569,16 +3350,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3596,14 +3377,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3611,14 +3387,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3637,14 +3413,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 8),
@@ -3652,14 +3423,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3677,14 +3448,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 1),
@@ -3692,16 +3458,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 0),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 0),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3718,14 +3484,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 1),
@@ -3733,16 +3494,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 0),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3761,14 +3522,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 1),
@@ -3776,16 +3532,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3804,14 +3560,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3819,16 +3570,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3847,14 +3598,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3862,16 +3608,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3890,14 +3636,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -3905,16 +3646,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3933,14 +3674,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 1),
@@ -3948,16 +3684,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 0),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 0),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -3974,14 +3710,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 1),
@@ -3989,16 +3720,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 0),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -4015,14 +3746,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4030,16 +3756,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -4057,14 +3783,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 5),
@@ -4072,16 +3793,16 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
         'translation_lang': 'jpn',
         'translation_configs': _TRANSLATION_THING_CONFIGS_JPN_V1,
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_sizes': {
@@ -4100,14 +3821,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4115,21 +3831,21 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': False,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
             },
             'valid': {
             },
@@ -4151,14 +3867,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4166,21 +3877,21 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': False,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
             },
             'valid': {
             },
@@ -4202,14 +3913,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4217,21 +3923,21 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': True,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
             },
             'valid': {
             },
@@ -4253,14 +3959,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4268,21 +3969,21 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': True,
                 'context_shuffles_per_instance': 3,
-                'translation_variants_per_logic': 1,
+                # 'translation_variants_per_logic': 1,
             },
             'valid': {
             },
@@ -4304,14 +4005,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4319,14 +4015,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
@@ -4362,14 +4058,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4377,21 +4068,21 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': False,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
             },
             'valid': {
             },
@@ -4412,20 +4103,15 @@ _DATASET_SETTINGS = {
 
         'knowledge_range': [0.49, 0.5],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'argument_configs': [
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4433,20 +4119,20 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': False,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
                 'atomic_filepath': './res/knowledge_banks/commonsense-kg-completion/data/atomic/train.txt',
             },
             'valid': {
@@ -4470,19 +4156,14 @@ _DATASET_SETTINGS = {
 
         'knowledge_range': [0.49, 0.5],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'argument_configs': [
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4491,20 +4172,20 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
             'train': {
                 'sample_all_stances_per_logic': False,
-                'context_shuffles_per_instance': 1,
-                'translation_variants_per_logic': 1,
+                # 'context_shuffles_per_instance': 1,
+                # 'translation_variants_per_logic': 1,
                 'atomic_filepath': './res/knowledge_banks/commonsense-kg-completion/data/atomic/train.txt',
             },
             'valid': {
@@ -4531,14 +4212,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4546,14 +4222,14 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
@@ -4583,13 +4259,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4598,13 +4269,13 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
 
         'split_wise_settings': {
@@ -4634,13 +4305,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4649,17 +4315,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.49, 0.5],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -4695,13 +4361,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4710,17 +4371,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -4756,13 +4417,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4771,17 +4427,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -4820,13 +4476,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4835,17 +4486,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -4884,14 +4535,9 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
-        'complex_formula_arguments_weight': 0.5,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
+        # 'complex_formula_arguments_weight': 0.5,
 
 
         'depth_range': (1, 3),
@@ -4899,17 +4545,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': None,
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -4952,13 +4598,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -4967,17 +4608,17 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': [0.0, 1.0],
-        'knowledge_argument_factor': 1.0,
+        # 'knowledge_argument_factor': 1.0,
 
         'split_wise_settings': {
             'train': {
@@ -5018,13 +4659,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -5033,13 +4669,13 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': [0.0, 1.0],
@@ -5085,13 +4721,8 @@ _DATASET_SETTINGS = {
             './configs/arguments/axioms/',
             './configs/arguments/references/',
         ],
-        'quantifier_axioms': [
-            'universal_quantifier_elim',
-            'universal_quantifier_intro',
-            'existential_quantifier_intro',
-            'existential_quantifier_elim',
-        ],
-        'quantifier_axiom_arguments_weight': 0.2,
+        # 'quantifier_axioms': 'all',,
+        # 'quantifier_axiom_arguments_weight': 0.2,
         'complex_formula_arguments_weight': 0.3,
 
 
@@ -5100,13 +4731,13 @@ _DATASET_SETTINGS = {
         'branch_extensions_range': (0, 5),
 
 
-        'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
+        # 'distractor': 'mixture(negative_tree_double.simplified_formula.various_form)',
         'distractors_range': (0, 20),
-        'translation_distractors_range': (0, 0),
-        'use_collapsed_translation_nodes_for_unknown_tree': False,
+        # 'translation_distractors_range': (0, 0),
+        # 'use_collapsed_translation_nodes_for_unknown_tree': False,
 
-        'translation_volume_to_weight': 'log10',
-        'translation_adj_verb_noun_ratio': '1-1-1',
+        # 'translation_volume_to_weight': 'log10',
+        # 'translation_adj_verb_noun_ratio': '1-1-1',
 
         'knowledge_range': [0.0, 1.0],
         'collapsed_knowledge_range': [0.0, 1.0],

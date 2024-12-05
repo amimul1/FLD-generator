@@ -36,7 +36,13 @@ def main():
     # =================================== 2024-09-03.toward_camera_ready ========================================
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-03.toward_camera_ready')
     # output_top_dir = Path('./outputs/00.create_corpus/2024-09-16.fix_negation')
-    output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-09-18.fix_negation')
+
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-12-01.refactor_before_NeurIPS_2024_release.tmp')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-12-01.refactor_before_NeurIPS_2024_release.tmp.tmp')
+    # output_top_dir = Path('./outputs/00.create_corpus/2024-12-01.refactor_before_NeurIPS_2024_release.tmp.tmp.tmp')
+    output_top_dir = Path('./outputs/00.create_corpus/2024-12-01.refactor_before_NeurIPS_2024_release.tmp.tmp.tmp.tmp')
+    # raise Exception('エラーを完全に無くしてから投げて')
 
 
 
@@ -49,11 +55,12 @@ def main():
         # '2024-09-18.FLD.neg-0.10.other_seed',
 
         # -- main single corpus (used in the paper)
-        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
+
         # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
+        # '2024-09-18.PLD.neg-0.10.trnsl-v2',
 
         # -- main hybrid corpus (used in the paper)
-        '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
+        # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
 
         # -- ablation single corpus (used for creating hybrid corpus)
         # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15.rules-G_MP',
@@ -85,8 +92,8 @@ def main():
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
 
@@ -102,6 +109,10 @@ def main():
         QsubEngine('haic', 'xcs_s.middle'),
         QsubEngine('haic', 'xcl_s.middle'),
     ]
+
+
+    dry_run = True
+    # dry_run = False
 
 
 
@@ -126,8 +137,6 @@ def main():
 
 
     # ---------------------------- fixed settings --------------------------
-    dry_run = False
-    # dry_run = True
 
     # skip_if_exists = False
     skip_if_exists = True
@@ -302,16 +311,19 @@ def make_dataset(dataset_name: str,
                         '--increase-depth-by-extend-branches' if job_settings.get('increase_depth_by_extend_branches', False) else '',
 
                         _make_multiple_value_option('--argument-config', job_settings['argument_configs']),
-                        f'--complex-formula-arguments-weight {job_settings["complex_formula_arguments_weight"]}',
-                        f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
-                        _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
+                        # f'--complex-formula-arguments-weight {job_settings["complex_formula_arguments_weight"]}',
+                        maybe_option('--complex-formula-arguments-weight', job_settings.get('complex_formula_arguments_weight', None)),
+                        # f'--quantifier-axiom-arguments-weight {job_settings["quantifier_axiom_arguments_weight"]}',
+                        maybe_option('--quantifier-axiom-arguments-weight', job_settings.get('quantifier_axiom_arguments_weight', None)),
+                        # _make_multiple_value_option('--quantifier-axiom', job_settings['quantifier_axioms']),
+                        maybe_option('--quantifier-axioms', job_settings.get('quantifier_axioms', None)),
                         maybe_option('--quantification-degree', job_settings.get('quantification_degree', None)),
                         maybe_option('--propositional-arguments-factor', job_settings.get('propositional_arguments_factor', None)),
                         maybe_option('--negation-arguments-weight', job_settings.get('negation_arguments_weight', None)),
                         maybe_option('--theorem-tree-prob', job_settings.get('theorem_tree_prob', None)),
                         maybe_option('--theorem-arguments-factor', job_settings.get('theorem_arguments_factor', None)),
-                        '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
-                        maybe_option('--theorem-subset', job_settings.get('theorem_subset', None)),
+                        # '--adjust-theorem-argument-weight' if job_settings.get('adjust_theorem_argument_weight', False) else '',
+                        maybe_option('--theorem-arguments-weight-adjustment-subset', job_settings.get('theorem_arguments_weight_adjustment_subset', None)),
 
                         maybe_option('--translation-lang', job_settings.get('translation_lang', None)),
                         _make_multiple_value_option('--translation-config', job_settings['translation_configs']),
@@ -324,15 +336,15 @@ def make_dataset(dataset_name: str,
                         maybe_option('--translation-vocab', job_settings.get("translation_vocab", None)),
 
 
-                        f'--distractor "{job_settings["distractor"]}"',
-                        f'--distractors-range \'{json.dumps(job_settings["distractors_range"])}\'',
+                        maybe_option('--distractor', job_settings.get('distractor', None)),
+                        f'--distractors-range \'{json.dumps(job_settings["distractors_range"])}\'' if job_settings.get('distractors_range', None) is not None else '',
                         # maybe_option('--negative-tree-negated-hypothesis-ratio', job_settings.get('negative_tree_negated_hypothesis_ratio', None)),
                         '--sample-distractor-prototype-formulas-from-all-possible-formulas' if job_settings.get('sample_distractor_prototype_formulas_from_all_possible_formulas', False) else '',
                         '--disallow-simplified-tree-formulas-as-distractor-prototype' if job_settings.get('disallow_simplified_tree_formulas_as_distractor_prototype', False) else '',
                         '--disallow-subj-obj-swapped-distractor' if job_settings.get('disallow_subj_obj_swapped_distractor', False) else '',
                         maybe_option('--swap-ng-words-config', job_settings.get("swap_ng_words_config", None)),
                         maybe_option('--translation-distractor', job_settings.get("translation_distractor", None)),
-                        f'--translation-distractors-range \'{json.dumps(job_settings["translation_distractors_range"])}\'',
+                        f'--translation-distractors-range \'{json.dumps(job_settings["translation_distractors_range"])}\'' if job_settings.get('translation_distractors_range', None) is not None else '',
                         '--fallback-from-formula-to-translation-distractor' if job_settings.get('fallback_from_formula_to_translation_distractor', False) else '',
 
                         f'--knowledge-range \'{json.dumps(job_settings["knowledge_range"])}\'' if job_settings.get('knowledge_range', None) is not None else '',

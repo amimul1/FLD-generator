@@ -8,13 +8,15 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
 
 
 
-## Releases (READ CAREFULLY to determine which branch suits you)
-* **`NLP_2024_KOBE_BEEF`** branch (2024-01-24) 
+## Release Branches  (READ CAREFULLY to determine which branch suits you)
+* **(New!)** `NeurIPS_2024` branch (2024-12)
+    - We released the code for generating FLDx2 (Formal Logic Deduction Diverse).
+* `NLP_2024_KOBE_BEEF` branch (2024-01-24) 
     - Release at LREC-COLING 2024 and 言語処理学会 2024.
-    - **Now capable of generating Japanese corpora (JFLD).**
+    - Now capable of generating Japanese corpora (JFLD).
     - Slight changes in the corpus schema.
-    - **This branch and the generated corpora might not be compatible with older branches of related repositories.**
-* **`main`** branch (2023-08-22)
+    - This branch and the generated corpora might not be compatible with older branches of related repositories.
+* `main` branch (2023-08-22)
     - Initial release at ICML 2023.
     - This is version 2.0 of FLD corpora. See the Appendix H of [our paper](https://arxiv.org/abs/2308.07336) for details.
 
@@ -28,7 +30,6 @@ pip install -r ./requirements/requrements.txt
 export PYTHONPATH=`pwd -P`:$PYTHONPATH
 ```
 
-[!] (2024-02-14) Do not use PyPy, as it may cause the program to hang.
 
 
 ## Additional Resources Required
@@ -44,179 +45,60 @@ export PYTHONPATH=`pwd -P`:$PYTHONPATH
 
 
 
-## How to generate FLD corpus
-Use `./scripts/create_corpus.py`, which generates a corpus based on the design specified by the option values.
-Note that creating corpora is computationally expensive; for instance, generating 30,000 examples may require approximately 500 CPU cores for 30 minutes."
+## How to Generate FLDx2 (Formal Logic Deduction Diverse) Corpus
+We create 100k examples of FLDx2 using the generation script `./scripts/create_corpus.py`.
+We recommend to parallelize the run, as the computation is large, roughly estimated as a few thousand CPU hours.
 
-* **FLD** (FLD.3):
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 3]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 5]' \
-        --argument-config ./configs/arguments/axioms/ \
-        --argument-config ./configs/arguments/references/ \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang eng \
-        --translation-config ./configs/translations/eng/thing.v1/     \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 20]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
+1. Create 95k examples with less diverse natural language expressions:
+```console
+python ./scripts/create_corpus.py \
+    {output_dir} \
+    {num_examples} \
+    --translation-config old-thing.v1 \
+    --generate-stem-steps-range '[1, 3]' \
+    --extend-branches-steps-range '[0, 5]' \
+    --argument-config ./configs/arguments/predicate/specified/axioms/ \
+    --argument-config ./configs/arguments/propositional/axioms/ \
+    --argument-config ./configs/arguments/predicate/specified/references/ \
+    --argument-config ./configs/arguments/propositional/references/ \
+    --argument-config ./configs/arguments/predicate/quantified/references/ \
+    --argument-config ./configs/arguments/predicate/specified/theorems \
+    --argument-config ./configs/arguments/propositional/theorems \
+    --argument-config ./configs/arguments/predicate/quantified/theorems \
+    --negation-arguments-weight 0.1 \
+    --theorem-tree-prob 0.15 \
+    --theorem-arguments-factor 0.01 \
+    --theorem-arguments-weight-adjustment-subset G_MP.syllogism.contraposition.interchangeability \
+    --reference-tree-prob 0.2 \
+    --num-workers 10 \
+    --seed 0
+```
 
-* **FLD★** (FLD.4):
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 8]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 5]' \
-        --argument-config ./configs/arguments/axioms/ \
-        --argument-config ./configs/arguments/references/ \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang eng \
-        --translation-config ./configs/translations/eng/thing.v1/     \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 20]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
+2. Create 5k examples with more diverse natural language expressions (which requires more computation):
+```console
+python ./scripts/create_corpus.py \
+    {output_dir} \
+    {num_examples} \
+    --translation-config thing_person.v2 \
+    --generate-stem-steps-range '[1, 3]' \
+    --extend-branches-steps-range '[0, 5]' \
+    --argument-config ./configs/arguments/predicate/specified/axioms/ \
+    --argument-config ./configs/arguments/propositional/axioms/ \
+    --argument-config ./configs/arguments/predicate/specified/references/ \
+    --argument-config ./configs/arguments/propositional/references/ \
+    --argument-config ./configs/arguments/predicate/quantified/references/ \
+    --argument-config ./configs/arguments/predicate/specified/theorems \
+    --argument-config ./configs/arguments/propositional/theorems \
+    --argument-config ./configs/arguments/predicate/quantified/theorems \
+    --negation-arguments-weight 0.2 \
+    --theorem-tree-prob 0.15 \
+    --theorem-arguments-factor 0.01 \
+    --theorem-arguments-weight-adjustment-subset G_MP.syllogism.contraposition.interchangeability \
+    --reference-tree-prob 0.1 \
+    --num-workers 10 \
+    --seed 261
+```
 
-* **JFLD_BCCWJ (D1_minus)**
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 1]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 0]' \
-        --argument-config ./configs/arguments/axioms/axiom.and_or.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.implication_intro.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.negation.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.pred_arg.json \
-        --argument-config ./configs/arguments/references/reference.pred_arg.json \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang jpn \
-        --translation-config thing.v1 \
-        --translation-no-transitive-object    \
-        --translation-vocab BCCWJ \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 0]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
+3. Concatenate the above examples to create "raw" FLDx2 corpus.
 
-* **JFLD_BCCWJ (D1)**
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 1]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 0]' \
-        --argument-config ./configs/arguments/axioms/axiom.and_or.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.implication_intro.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.negation.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.pred_arg.json \
-        --argument-config ./configs/arguments/references/reference.pred_arg.json \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang jpn \
-        --translation-config thing.v1 \
-        --translation-no-transitive-object    \
-        --translation-vocab BCCWJ \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 20]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
-
-* **JFLD_BCCWJ (D3)**
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 3]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 5]' \
-        --argument-config ./configs/arguments/axioms/axiom.and_or.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.implication_intro.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.negation.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.pred_arg.json \
-        --argument-config ./configs/arguments/references/reference.pred_arg.json \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang jpn \
-        --translation-config thing.v1 \
-        --translation-no-transitive-object    \
-        --translation-vocab BCCWJ \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 20]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
-
-* **JFLD_BCCWJ (D8)**
-    ```console
-    python ./scripts/create_corpus.py \
-        <output_dir> \
-        <dataset_size> \
-        --depth-range '[1, 8]' \
-        --depth-distrib flat \
-        --branch-extensions-range '[0, 5]' \
-        --argument-config ./configs/arguments/axioms/axiom.and_or.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.implication_intro.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.negation.pred_arg.json \
-        --argument-config ./configs/arguments/axioms/axiom.pred_arg.json \
-        --argument-config ./configs/arguments/references/reference.pred_arg.json \
-        --complex-formula-arguments-weight 0.5 \
-        --quantifier-axiom-arguments-weight 0.2 \
-        --quantifier-axiom universal_quantifier_elim \
-        --quantifier-axiom universal_quantifier_intro \
-        --quantifier-axiom existential_quantifier_intro \
-        --quantifier-axiom existential_quantifier_elim  \
-        --translation-lang jpn \
-        --translation-config thing.v1 \
-        --translation-no-transitive-object    \
-        --translation-vocab BCCWJ \
-        --distractor "mixture(negative_tree_double.simplified_formula.various_form)" \
-        --distractors-range '[0, 20]'      \
-        --num-workers 5 \
-        --seed 0
-    ```
-
-* **JFLD_punipuni_monster**
-    - The same as BCCWJ but swap the following options:
-        ```console
-        (...)
-        --translation-config punipuni.v0 \
-        --translation-vocab punipuni \
-        (...)
-        ```
+4. Make "prompt-output" pairs from the corpus, following [FLD-task](https://github.com/hitachi-nlp/FLD-task).
