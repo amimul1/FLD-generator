@@ -52,11 +52,11 @@ def main():
         # ==================== NeurIPS_2024 camera ready ===================
 
         # -- the baseline FLD corpus
-        '2024-09-18.FLD.neg-0.10.other_seed',
+        # '2024-09-18.FLD.neg-0.10.other_seed',
 
         # -- main single corpus (used in the paper)
+        # '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
         '2024-09-18.PLD.neg-0.10.trnsl-v2',
-        '2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15',
 
         # -- main hybrid corpus (used in the paper)
         # '2024-10-23.hybrid__PLD_v2.neg-0.10=0.10__2024-09-18.FLD.neg-0.10.voc-large.theorems-0.15=0.90',
@@ -91,8 +91,8 @@ def main():
 
 
 
-    # only_gather = False
-    only_gather = True
+    only_gather = False
+    # only_gather = True
 
 
 
@@ -110,8 +110,8 @@ def main():
     ]
 
 
-    # dry_run = True
-    dry_run = False
+    dry_run = True
+    # dry_run = False
 
 
 
