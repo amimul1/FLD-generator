@@ -8,9 +8,9 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
 
 
 
-## Releases (READ CAREFULLY to determine which branch suits you)
+## Release Branches  (READ CAREFULLY to determine which branch suits you)
 * **(New!)** `NeurIPS_2024` branch (2024-12)
-    - We released the code for generating FLD2 (Formal Logic Deduction Diverse).
+    - We released the code for generating FLDx2 (Formal Logic Deduction Diverse).
 * `NLP_2024_KOBE_BEEF` branch (2024-01-24) 
     - Release at LREC-COLING 2024 and 言語処理学会 2024.
     - Now capable of generating Japanese corpora (JFLD).
@@ -45,9 +45,9 @@ export PYTHONPATH=`pwd -P`:$PYTHONPATH
 
 
 
-## How to Generate FLD2 (Formal Logic Deduction Diverse) Corpus
-We create 100k examples of FLD2 using the generation script `./scripts/create_corpus.py`, which generates a corpus based on the design specified by the option values.
-We recommend to parallelize the run, as the computation is large, roughly estimated as a few thousand CPU hours for 100,000 examples.
+## How to Generate FLDx2 (Formal Logic Deduction Diverse) Corpus
+We create 100k examples of FLDx2 using the generation script `./scripts/create_corpus.py`.
+We recommend to parallelize the run, as the computation is large, roughly estimated as a few thousand CPU hours.
 
 1. Create 95k examples with less diverse natural language expressions:
 ```console
@@ -99,6 +99,6 @@ python ./scripts/create_corpus.py \
     --seed 261
 ```
 
-3. Concatenate the above examples to create "raw" FLD2 corpus.
+3. Concatenate the above examples to create "raw" FLDx2 corpus.
 
 4. Make "prompt-output" pairs from the corpus, following [FLD-task](https://github.com/hitachi-nlp/FLD-task).
