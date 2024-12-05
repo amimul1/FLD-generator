@@ -16,7 +16,7 @@ See [the entry-point repository](https://github.com/hitachi-nlp/FLD.git) about t
     - Now capable of generating Japanese corpora (JFLD).
     - Slight changes in the corpus schema.
     - This branch and the generated corpora might not be compatible with older branches of related repositories.
-* `main` branch (2023-08-22)
+* `ICML_2023` branch (2023-08-22)
     - Initial release at ICML 2023.
     - This is version 2.0 of FLD corpora. See the Appendix H of [our paper](https://arxiv.org/abs/2308.07336) for details.
 
@@ -30,9 +30,7 @@ pip install -r ./requirements/requrements.txt
 export PYTHONPATH=`pwd -P`:$PYTHONPATH
 ```
 
-
-
-## Additional Resources Required
+### Additional Resources Required
 * For Japanese FLD
     ```console
     ./download_scripts/00.download_JFLD_resources.sh
