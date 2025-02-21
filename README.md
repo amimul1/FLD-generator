@@ -14,7 +14,7 @@ python3 -m venv myenv
 source myenv/bin/activate
 ```
 
-### Remoce the “#” before line_profling@git, which is written in requrements.txt.
+### Remove the “#” before line_profling@git, which is written in requrements.txt.
 
 ### Run the following commands
 ```bash
