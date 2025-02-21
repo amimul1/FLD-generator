@@ -1,3 +1,71 @@
+# Zohas Edit:
+
+This is a fork of the FLD generator repo. Below are steps to set up the project, resolve any potential installation issues, and generate sample data.
+
+## Setup
+
+### Clone the Repo  
+Then cd into the directory
+
+### Create & Activate Virtual Environment
+
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
+
+### Remoce the “#” before line_profling@git, which is written in requrements.txt.
+
+### Run the following commands
+```bash
+pip install setuptools numpy line-profiler
+```
+```bash
+pip install --no-build-isolation -r ./requirements/requrements.txt
+```
+### Generating Sample Data
+
+### 5 Samples, Only Axioms (NO Theorems/References)
+```bash
+python ./scripts/create_corpus.py \
+./corpus_output_axioms_only \
+5 \
+--translation-config old-thing.v1 \
+--generate-stem-steps-range '[1, 4]' \
+--extend-branches-steps-range '[0, 4]' \
+--argument-config ./configs/arguments/predicate/specified/axioms/ \
+--argument-config ./configs/arguments/propositional/axioms/ \
+--negation-arguments-weight 0.1 \
+--theorem-tree-prob 0.0 \
+--reference-tree-prob 0.0 \
+--steps-limit 4 \
+--num-workers 1 \
+--seed 0
+```
+### 500 Samples
+```bash
+python ./scripts/create_corpus.py \
+  ./corpus_output_500samples \
+  500 \
+  --translation-config old-thing.v1 \
+  --generate-stem-steps-range '[1, 4]' \
+  --extend-branches-steps-range '[0, 4]' \
+  --argument-config ./configs/arguments/predicate/specified/axioms/ \
+  --argument-config ./configs/arguments/propositional/axioms/ \
+  --negation-arguments-weight 0.1 \
+  --theorem-tree-prob 0.1 \
+  --reference-tree-prob 0.1 \
+  --steps-limit 4 \
+  --num-workers 1 \
+  --seed 0
+```
+### For for examples, read the ReadMe portion below and also check the create_corpus script file for details
+
+### Note: The above steps are expected to work on a Mac OS, might need extra dependencies if running on windows...
+
+### Zohas edit part ends. Below is the original readme composed by the authors of FLD corpora.
+
+
 # FLD Generator
 ![framework_overview](./images/framework_overview.PNG)
 
